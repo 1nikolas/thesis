@@ -1,0 +1,276 @@
+{
+    "nodes": [
+        "(:Appointment) appoIntmentId: INTEGER, appointmentDate: STRING, appointmentStatus: STRING, modeOfAppointment: STRING, modeOfPayment: STRING, paymentAmount: INTEGER, reason: STRING",
+        "(:Bed) bedNo: INTEGER",
+        "(:BedRecord) admissionDate: STRING, admissionId: INTEGER, amount: INTEGER, dischargeDate: STRING, modeOfPayment: STRING",
+        "(:Department) deptId: INTEGER, deptName: STRING",
+        "(:Doctor) contactNo: STRING, doctId: INTEGER, fName: STRING, gender: STRING, lName: STRING, officeNo: INTEGER, surgeonType: STRING",
+        "(:Helper) contactNo: STRING, fName: STRING, gender: STRING, helperId: INTEGER, lName: STRING",
+        "(:MedicalRecord) currBloodPressure: STRING, currHeight: FLOAT, currTempF: FLOAT, currWeight: FLOAT, diagnosis: STRING, nextVisit: STRING, recordId: INTEGER, treatment: STRING, visitDate: STRING",
+        "(:Nurse) conatctNo: STRING, fName: STRING, gender: STRING, lName: STRING, nurseId: INTEGER",
+        "(:Patient) contactNo: INTEGER, dateOfBirth: STRING, fName: STRING, gender: STRING, lName: STRING, patientId: INTEGER, ptAddress: STRING",
+        "(:Room) roomNo: INTEGER, roomType: STRING",
+        "(:RoomRecord) admissionDate: STRING, admissonId: INTEGER, amount: INTEGER, dischargeDate: STRING, modeOfPayment: STRING",
+        "(:StaffShift) shiftDate: STRING, shiftEnd: STRING, shiftId: INTEGER, shiftStart: STRING",
+        "(:SurgeryRecord) endTime: STRING, notes: STRING, startTime: STRING, surgeryDate: STRING, surgeryId: INTEGER, surgeryType: STRING",
+        "(:Ward) wardName: STRING, wardNo: INTEGER"
+    ],
+    "relations": [
+        "(:ASSIGNED_BED) ",
+        "(:ASSIGNED_DOCTOR) ",
+        "(:ASSIGNED_HELPER) ",
+        "(:ASSIGNED_NURSE) ",
+        "(:ASSIGNED_ROOM) ",
+        "(:ASSISTED_BY_HELPER) ",
+        "(:ASSISTED_BY_NURSE) ",
+        "(:BELONGS_TO) ",
+        "(:FOR_PATIENT) ",
+        "(:IN_DEPARTMENT) ",
+        "(:IN_ROOM) ",
+        "(:IN_WARD) ",
+        "(:OF_PATIENT) ",
+        "(:PERFORMED_BY) ",
+        "(:WITH_DOCTOR) ",
+        "(:WRITTEN_BY) "
+    ],
+    "connections": [
+        "(:Appointment)-[:FOR_PATIENT]->(:Patient)",
+        "(:Appointment)-[:WITH_DOCTOR]->(:Doctor)",
+        "(:Bed)-[:IN_WARD]->(:Ward)",
+        "(:BedRecord)-[:ASSIGNED_BED]->(:Bed)",
+        "(:BedRecord)-[:ASSIGNED_HELPER]->(:Helper)",
+        "(:BedRecord)-[:ASSIGNED_NURSE]->(:Nurse)",
+        "(:BedRecord)-[:FOR_PATIENT]->(:Patient)",
+        "(:Doctor)-[:BELONGS_TO]->(:Department)",
+        "(:Helper)-[:BELONGS_TO]->(:Department)",
+        "(:MedicalRecord)-[:OF_PATIENT]->(:Patient)",
+        "(:MedicalRecord)-[:WRITTEN_BY]->(:Doctor)",
+        "(:Nurse)-[:BELONGS_TO]->(:Department)",
+        "(:Room)-[:IN_DEPARTMENT]->(:Department)",
+        "(:RoomRecord)-[:ASSIGNED_HELPER]->(:Helper)",
+        "(:RoomRecord)-[:ASSIGNED_NURSE]->(:Nurse)",
+        "(:RoomRecord)-[:ASSIGNED_ROOM]->(:Room)",
+        "(:RoomRecord)-[:FOR_PATIENT]->(:Patient)",
+        "(:StaffShift)-[:ASSIGNED_DOCTOR]->(:Doctor)",
+        "(:StaffShift)-[:ASSIGNED_HELPER]->(:Helper)",
+        "(:StaffShift)-[:ASSIGNED_NURSE]->(:Nurse)",
+        "(:SurgeryRecord)-[:ASSISTED_BY_HELPER]->(:Helper)",
+        "(:SurgeryRecord)-[:ASSISTED_BY_NURSE]->(:Nurse)",
+        "(:SurgeryRecord)-[:FOR_PATIENT]->(:Patient)",
+        "(:SurgeryRecord)-[:IN_ROOM]->(:Room)",
+        "(:SurgeryRecord)-[:PERFORMED_BY]->(:Doctor)",
+        "(:Ward)-[:IN_DEPARTMENT]->(:Department)"
+    ],
+    "simple_connections": [
+        "Appointment -> Doctor  using relation WITH_DOCTOR",
+        "Appointment -> Patient  using relation FOR_PATIENT",
+        "Bed -> Ward  using relation IN_WARD",
+        "BedRecord -> Bed  using relation ASSIGNED_BED",
+        "BedRecord -> Helper  using relation ASSIGNED_HELPER",
+        "BedRecord -> Nurse  using relation ASSIGNED_NURSE",
+        "BedRecord -> Patient  using relation FOR_PATIENT",
+        "Doctor -> Department  using relation BELONGS_TO",
+        "Helper -> Department  using relation BELONGS_TO",
+        "MedicalRecord -> Doctor  using relation WRITTEN_BY",
+        "MedicalRecord -> Patient  using relation OF_PATIENT",
+        "Nurse -> Department  using relation BELONGS_TO",
+        "Room -> Department  using relation IN_DEPARTMENT",
+        "RoomRecord -> Helper  using relation ASSIGNED_HELPER",
+        "RoomRecord -> Nurse  using relation ASSIGNED_NURSE",
+        "RoomRecord -> Patient  using relation FOR_PATIENT",
+        "RoomRecord -> Room  using relation ASSIGNED_ROOM",
+        "StaffShift -> Doctor  using relation ASSIGNED_DOCTOR",
+        "StaffShift -> Helper  using relation ASSIGNED_HELPER",
+        "StaffShift -> Nurse  using relation ASSIGNED_NURSE",
+        "SurgeryRecord -> Doctor  using relation PERFORMED_BY",
+        "SurgeryRecord -> Helper  using relation ASSISTED_BY_HELPER",
+        "SurgeryRecord -> Nurse  using relation ASSISTED_BY_NURSE",
+        "SurgeryRecord -> Patient  using relation FOR_PATIENT",
+        "SurgeryRecord -> Room  using relation IN_ROOM",
+        "Ward -> Department  using relation IN_DEPARTMENT"
+    ],
+    "schema": [
+        [
+            "Appointment",
+            "FOR_PATIENT",
+            "Patient",
+            1,
+            1
+        ],
+        [
+            "Appointment",
+            "WITH_DOCTOR",
+            "Doctor",
+            1,
+            1
+        ],
+        [
+            "Bed",
+            "IN_WARD",
+            "Ward",
+            1,
+            1
+        ],
+        [
+            "BedRecord",
+            "ASSIGNED_BED",
+            "Bed",
+            1,
+            1
+        ],
+        [
+            "BedRecord",
+            "ASSIGNED_HELPER",
+            "Helper",
+            1,
+            1
+        ],
+        [
+            "BedRecord",
+            "ASSIGNED_NURSE",
+            "Nurse",
+            1,
+            1
+        ],
+        [
+            "BedRecord",
+            "FOR_PATIENT",
+            "Patient",
+            1,
+            1
+        ],
+        [
+            "Doctor",
+            "BELONGS_TO",
+            "Department",
+            1,
+            1
+        ],
+        [
+            "Helper",
+            "BELONGS_TO",
+            "Department",
+            1,
+            1
+        ],
+        [
+            "MedicalRecord",
+            "OF_PATIENT",
+            "Patient",
+            1,
+            1
+        ],
+        [
+            "MedicalRecord",
+            "WRITTEN_BY",
+            "Doctor",
+            1,
+            1
+        ],
+        [
+            "Nurse",
+            "BELONGS_TO",
+            "Department",
+            1,
+            1
+        ],
+        [
+            "Room",
+            "IN_DEPARTMENT",
+            "Department",
+            1,
+            1
+        ],
+        [
+            "RoomRecord",
+            "ASSIGNED_HELPER",
+            "Helper",
+            1,
+            1
+        ],
+        [
+            "RoomRecord",
+            "ASSIGNED_NURSE",
+            "Nurse",
+            1,
+            1
+        ],
+        [
+            "RoomRecord",
+            "ASSIGNED_ROOM",
+            "Room",
+            1,
+            1
+        ],
+        [
+            "RoomRecord",
+            "FOR_PATIENT",
+            "Patient",
+            1,
+            1
+        ],
+        [
+            "StaffShift",
+            "ASSIGNED_DOCTOR",
+            "Doctor",
+            1,
+            1
+        ],
+        [
+            "StaffShift",
+            "ASSIGNED_HELPER",
+            "Helper",
+            1,
+            1
+        ],
+        [
+            "StaffShift",
+            "ASSIGNED_NURSE",
+            "Nurse",
+            1,
+            1
+        ],
+        [
+            "SurgeryRecord",
+            "ASSISTED_BY_HELPER",
+            "Helper",
+            1,
+            1
+        ],
+        [
+            "SurgeryRecord",
+            "ASSISTED_BY_NURSE",
+            "Nurse",
+            1,
+            1
+        ],
+        [
+            "SurgeryRecord",
+            "FOR_PATIENT",
+            "Patient",
+            1,
+            1
+        ],
+        [
+            "SurgeryRecord",
+            "IN_ROOM",
+            "Room",
+            1,
+            1
+        ],
+        [
+            "SurgeryRecord",
+            "PERFORMED_BY",
+            "Doctor",
+            1,
+            1
+        ],
+        [
+            "Ward",
+            "IN_DEPARTMENT",
+            "Department",
+            1,
+            1
+        ]
+    ]
+}

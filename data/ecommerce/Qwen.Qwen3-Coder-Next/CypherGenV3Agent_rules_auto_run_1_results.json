@@ -1,0 +1,2408 @@
+[
+    {
+        "qid": 17,
+        "template": 3,
+        "question": "Which customer made return \"RET06499\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 39,
+        "template": 7,
+        "question": "Who is the primary supplier of product \"PROD0461\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 63,
+        "template": 12,
+        "question": "List the product ids appearing on transactions of customer \"CUST07024\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 184,
+        "template": 47,
+        "question": "How many products come from more than one supplier?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 214,
+        "template": 56,
+        "question": "Sum the stock units held for products of the brand GlowUp.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (w:Warehouse)-[:STOCKS]->(p:Product {brand: 'GlowUp'})\nRETURN sum(p.stockUnits) AS totalStockUnits",
+        "query_ans": [
+            [
+                "0"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "486"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 199,
+        "template": 53,
+        "question": "How many returns for wrong_item were not restocked?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 135,
+        "template": 28,
+        "question": "How much revenue did customer \"CUST02307\" generate in 2024?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 233,
+        "template": 60,
+        "question": "Which employee processed transaction \"TXN087445\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 127,
+        "template": 27,
+        "question": "Give the date of the latest transaction placed by customer \"CUST02844\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 234,
+        "template": 60,
+        "question": "What courier delivered transaction \"TXN020430\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 206,
+        "template": 54,
+        "question": "What is the total revenue from customers in Australia?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 190,
+        "template": 50,
+        "question": "How many customers bought the product with the longest primary-supplier lead time?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 235,
+        "template": 60,
+        "question": "Which employee processed transaction \"TXN082643\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 114,
+        "template": 22,
+        "question": "How many units of product \"PROD0098\" have been sold in total?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 103,
+        "template": 20,
+        "question": "Sum the profit over every transaction containing product \"PROD0178\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 122,
+        "template": 25,
+        "question": "Which products are no longer active? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 9,
+        "template": 1,
+        "question": "Which product is in transaction \"TXN034950\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 102,
+        "template": 20,
+        "question": "What is the total profit made on product \"PROD0407\"?",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (p:Product {productId: \"PROD0407})<-[:CONTAINS_PRODUCT]-(t:Transaction) \nRETURN sum(t.profitUsd) AS totalProfit\n",
+        "errors": [
+            "Failed to parse string literal. The query must contain an even number of non-escaped quotes. (line 1, column 30 (offset: 29))\n\"MATCH (p:Product {productId: \"PROD0407})<-[:CONTAINS_PRODUCT]-(t:Transaction)\"\n                              ^"
+        ]
+    },
+    {
+        "qid": 216,
+        "template": 57,
+        "question": "What is the shipping address of customer \"CUST05968\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 71,
+        "template": 14,
+        "question": "Count the distinct customers who bought product \"PROD0359\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 188,
+        "template": 49,
+        "question": "Which suppliers are the primary supplier of a discontinued product? Give their names.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 186,
+        "template": 48,
+        "question": "How many products are stocked below the minimum order quantity their supplier sets?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 215,
+        "template": 56,
+        "question": "How many units of FunZone products are in stock across all warehouses?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 87,
+        "template": 17,
+        "question": "How many transactions does customer \"CUST03796\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 185,
+        "template": 47,
+        "question": "Count the products supplied by at least two suppliers.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 36,
+        "template": 7,
+        "question": "Give the supplier marked as primary for product \"PROD0415\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 93,
+        "template": 18,
+        "question": "Count the returns of product \"PROD0354\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 95,
+        "template": 19,
+        "question": "What is the total revenue from customer \"CUST06607\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 227,
+        "template": 59,
+        "question": "What is the contact email for ActiveGear TW?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 53,
+        "template": 10,
+        "question": "Give the warehouse and last restock date for product \"PROD0284\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 134,
+        "template": 28,
+        "question": "Sum the 2024 transaction revenue for customer \"CUST04247\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 130,
+        "template": 27,
+        "question": "When was the most recent transaction by customer \"CUST07710\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 187,
+        "template": 48,
+        "question": "Count the products whose warehouse stock is under the supplier minimum order quantity.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 179,
+        "template": 44,
+        "question": "Which warehouses do not stock product \"PROD0085\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 141,
+        "template": 31,
+        "question": "Give the id of the newest product in the Electronics category by launch date.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 223,
+        "template": 58,
+        "question": "What is the average review rating of product \"PROD0067\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 4,
+        "template": 0,
+        "question": "Which customer placed transaction \"TXN042885\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 117,
+        "template": 23,
+        "question": "What is the highest unit price in the Books category?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 106,
+        "template": 21,
+        "question": "Sum the refund amounts on returns by customer \"CUST05114\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 75,
+        "template": 15,
+        "question": "Which product categories does SportSupply US supply?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 94,
+        "template": 18,
+        "question": "How many times has product \"PROD0102\" been returned?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 29,
+        "template": 5,
+        "question": "Which warehouses stock product \"PROD0466\", and how many units does each hold?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 212,
+        "template": 56,
+        "question": "Sum the stock units held for products of the brand PureForm.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 111,
+        "template": 22,
+        "question": "Sum the quantity across every transaction containing product \"PROD0328\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 115,
+        "template": 23,
+        "question": "What is the highest unit price in the Electronics category?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 213,
+        "template": 56,
+        "question": "How many units of ZenLife products are in stock across all warehouses?",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (w:Warehouse)-[:STOCKS]->(p:Product {brand: 'ZenLife'})\nRETURN SUM(st.stockUnits) AS totalUnits",
+        "errors": [
+            "Variable `st` not defined (line 2, column 12 (offset: 73))\n\"RETURN SUM(st.stockUnits) AS totalUnits\"\n            ^"
+        ]
+    },
+    {
+        "qid": 226,
+        "template": 59,
+        "question": "What country is EuroFashion IT based in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 38,
+        "template": 7,
+        "question": "Give the supplier marked as primary for product \"PROD0265\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 167,
+        "template": 41,
+        "question": "What warehouse has the highest total stock?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 125,
+        "template": 26,
+        "question": "Count the returns whose restocked flag is false.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 150,
+        "template": 34,
+        "question": "Break down the return count by reason.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "RETURN reason, count(*) AS returnCount\nORDER BY returnCount DESC",
+        "errors": [
+            "Variable `reason` not defined (line 1, column 8 (offset: 7))\n\"RETURN reason, count(*) AS returnCount\"\n        ^"
+        ]
+    },
+    {
+        "qid": 84,
+        "template": 16,
+        "question": "Which suppliers made the products customer \"CUST02107\" bought? Give their names.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (c:Customer {customerId: \"CUST02107\"})<-[:PLACED_BY]-(:Transaction)-[:CONTAINS_PRODUCT]->(p:Product)<-[:SUPPLIES]-(s:Supplier)\nRETURN s.supplierName\nDISTINCT",
+        "errors": [
+            "Invalid input 'DISTINCT': expected an expression, ',', 'AS', 'GROUP BY', 'ORDER BY', 'CALL', 'CREATE', 'LOAD CSV', 'DELETE', 'DETACH', 'FILTER', 'FINISH', 'FOR', 'FOREACH', 'INSERT', 'LET', 'LIMIT', 'MATCH', 'MERGE', 'NEXT', 'NODETACH', 'OFFSET', 'OPTIONAL', 'REMOVE', 'RETURN', 'SET', 'SHOW', 'SKIP', 'TERMINATE', 'UNION', 'UNWIND', 'USE', 'WITH' or <EOF> (line 3, column 1 (offset: 155))\n\"DISTINCT\"\n ^"
+        ]
+    },
+    {
+        "qid": 169,
+        "template": 42,
+        "question": "List the ids of products that appear on no transaction.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 229,
+        "template": 59,
+        "question": "What is the contact email for SportSupply US?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 138,
+        "template": 30,
+        "question": "How much revenue was there in each year?",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (t:Transaction)\nRETURN year(t.date) AS year, sum(t.revenueUsd) AS totalRevenue\nORDER BY year",
+        "errors": [
+            "Unknown function 'year' (line 2, column 8 (offset: 29))\n\"RETURN year(t.date) AS year, sum(t.revenueUsd) AS totalRevenue\"\n        ^"
+        ]
+    },
+    {
+        "qid": 57,
+        "template": 11,
+        "question": "How many products does OutdoorPro CA supply as the primary supplier?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 164,
+        "template": 40,
+        "question": "Which supplier supplies the most products?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 72,
+        "template": 14,
+        "question": "How many different customers have bought product \"PROD0424\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 159,
+        "template": 37,
+        "question": "Which customer id has the highest total revenue?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 31,
+        "template": 6,
+        "question": "Give the total stock of product \"PROD0372\" over every warehouse.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 79,
+        "template": 15,
+        "question": "Which product categories does FabricWorld CN supply?",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (:Supplier {supplierName: 'FabricWorld CN'})-[:SUPPLIES]->(:Product)\nRETURN DISTINCT Product.category",
+        "errors": [
+            "Variable `Product` not defined (line 2, column 17 (offset: 91))\n\"RETURN DISTINCT Product.category\"\n                 ^"
+        ]
+    },
+    {
+        "qid": 196,
+        "template": 52,
+        "question": "What is the average discount on completed transactions?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 221,
+        "template": 58,
+        "question": "What is the average review rating of product \"PROD0120\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 142,
+        "template": 31,
+        "question": "Which Toys & Games product was launched most recently? Give its id.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 92,
+        "template": 18,
+        "question": "How many times has product \"PROD0046\" been returned?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 163,
+        "template": 39,
+        "question": "What product category has the highest total revenue?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 176,
+        "template": 44,
+        "question": "List the warehouses holding no units of product \"PROD0105\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 61,
+        "template": 12,
+        "question": "List the product ids appearing on transactions of customer \"CUST07180\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 82,
+        "template": 16,
+        "question": "Which suppliers made the products customer \"CUST04578\" bought? Give their names.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 76,
+        "template": 15,
+        "question": "List the categories of the products supplied by GlobalTech USA.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 157,
+        "template": 36,
+        "question": "For each product PrintMedia UK supplies, what is the lead time?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:Supplier {supplierName: \"PrintMedia UK\"})-[:SUPPLIES]->(p:Product)<-[rel:SUPPLIES]-(s)\nRETURN p.productId AS productId, rel.leadTimeDays AS leadTimeDays",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "10",
+                    "PROD0172"
+                ],
+                [
+                    "10",
+                    "PROD0193"
+                ],
+                [
+                    "11",
+                    "PROD0355"
+                ],
+                [
+                    "11",
+                    "PROD0379"
+                ],
+                [
+                    "11",
+                    "PROD0485"
+                ],
+                [
+                    "12",
+                    "PROD0240"
+                ],
+                [
+                    "12",
+                    "PROD0366"
+                ],
+                [
+                    "13",
+                    "PROD0016"
+                ],
+                [
+                    "13",
+                    "PROD0041"
+                ],
+                [
+                    "13",
+                    "PROD0094"
+                ],
+                [
+                    "13",
+                    "PROD0275"
+                ],
+                [
+                    "13",
+                    "PROD0433"
+                ],
+                [
+                    "15",
+                    "PROD0157"
+                ],
+                [
+                    "15",
+                    "PROD0336"
+                ],
+                [
+                    "16",
+                    "PROD0244"
+                ],
+                [
+                    "17",
+                    "PROD0050"
+                ],
+                [
+                    "17",
+                    "PROD0096"
+                ],
+                [
+                    "17",
+                    "PROD0251"
+                ],
+                [
+                    "17",
+                    "PROD0491"
+                ],
+                [
+                    "18",
+                    "PROD0138"
+                ],
+                [
+                    "19",
+                    "PROD0083"
+                ],
+                [
+                    "19",
+                    "PROD0341"
+                ],
+                [
+                    "5",
+                    "PROD0020"
+                ],
+                [
+                    "5",
+                    "PROD0362"
+                ],
+                [
+                    "5",
+                    "PROD0461"
+                ],
+                [
+                    "6",
+                    "PROD0404"
+                ],
+                [
+                    "6",
+                    "PROD0418"
+                ],
+                [
+                    "7",
+                    "PROD0062"
+                ],
+                [
+                    "8",
+                    "PROD0035"
+                ],
+                [
+                    "8",
+                    "PROD0352"
+                ],
+                [
+                    "8",
+                    "PROD0354"
+                ],
+                [
+                    "8",
+                    "PROD0397"
+                ],
+                [
+                    "9",
+                    "PROD0056"
+                ],
+                [
+                    "9",
+                    "PROD0475"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 81,
+        "template": 16,
+        "question": "List the suppliers of every product on transactions of customer \"CUST01976\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 15,
+        "template": 3,
+        "question": "Which customer made return \"RET01518\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 74,
+        "template": 14,
+        "question": "How many different customers have bought product \"PROD0197\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 2,
+        "template": 0,
+        "question": "Which customer placed transaction \"TXN099806\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 18,
+        "template": 3,
+        "question": "Give the customer id on return \"RET00215\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 173,
+        "template": 43,
+        "question": "List the suppliers that have no supply arrangement for product \"PROD0030\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 46,
+        "template": 9,
+        "question": "Give the product with the fewest units held at US-West.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 64,
+        "template": 12,
+        "question": "Which products has customer \"CUST07962\" bought? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 160,
+        "template": 38,
+        "question": "Which product has been returned the most? Give its id.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 124,
+        "template": 26,
+        "question": "How many returns were not restocked?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 100,
+        "template": 20,
+        "question": "What is the total profit made on product \"PROD0173\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 209,
+        "template": 55,
+        "question": "How many premium customers have more than one transaction?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 50,
+        "template": 10,
+        "question": "When was product \"PROD0326\" last restocked, and where?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_NEGATIVE"
+    },
+    {
+        "qid": 155,
+        "template": 36,
+        "question": "For each product HealthSource SE supplies, what is the lead time?",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (s:Supplier {supplierName: 'HealthSource SE'})-[:SUPPLIES]->(p:Product)\nRETURN p.productId, s.supplierName, sup.leadTimeDays\nORDER BY p.productId",
+        "errors": [
+            "Variable `sup` not defined (line 2, column 37 (offset: 114))\n\"RETURN p.productId, s.supplierName, sup.leadTimeDays\"\n                                     ^"
+        ]
+    },
+    {
+        "qid": 55,
+        "template": 11,
+        "question": "How many products does EuroFashion IT supply as the primary supplier?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 3,
+        "template": 0,
+        "question": "Give the customer id on transaction \"TXN020914\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 48,
+        "template": 9,
+        "question": "Give the product with the fewest units held at APAC.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 110,
+        "template": 22,
+        "question": "How many units of product \"PROD0062\" have been sold in total?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 165,
+        "template": 40,
+        "question": "What supplier covers the largest number of products?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 1,
+        "template": 0,
+        "question": "Give the customer id on transaction \"TXN048124\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 19,
+        "template": 3,
+        "question": "Which customer made return \"RET06507\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 139,
+        "template": 30,
+        "question": "Break down total transaction revenue by year.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 192,
+        "template": 51,
+        "question": "How many transactions were discounted by more than 20%?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 16,
+        "template": 3,
+        "question": "Give the customer id on return \"RET01410\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 8,
+        "template": 1,
+        "question": "Give the product id contained in transaction \"TXN086751\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 133,
+        "template": 28,
+        "question": "How much revenue did customer \"CUST06290\" generate in 2024?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 42,
+        "template": 8,
+        "question": "What unit cost does each supplier charge for product \"PROD0465\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 195,
+        "template": 52,
+        "question": "Give the mean discount percentage across transactions in refunded status.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 232,
+        "template": 60,
+        "question": "What courier delivered transaction \"TXN087341\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 204,
+        "template": 54,
+        "question": "What is the total revenue from customers in France?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 90,
+        "template": 18,
+        "question": "How many times has product \"PROD0299\" been returned?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 156,
+        "template": 36,
+        "question": "Per product supplied by OutdoorPro CA, give the lead time in days.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (s:Supplier {supplierName: \"OutdoorPro CA\"})-[:SUPPLIES]->(p:Product)\nRETURN p.productId AS productId, s.supplierName AS supplierName, l.leadTimeDays AS leadTimeDays\nWHERE (s)-[l:SUPPLIES]->(p)",
+        "errors": [
+            "Invalid input 'WHERE': expected ',', 'GROUP BY', 'ORDER BY', 'CALL', 'CREATE', 'LOAD CSV', 'DELETE', 'DETACH', 'FILTER', 'FINISH', 'FOR', 'FOREACH', 'INSERT', 'LET', 'LIMIT', 'MATCH', 'MERGE', 'NEXT', 'NODETACH', 'OFFSET', 'OPTIONAL', 'REMOVE', 'RETURN', 'SET', 'SHOW', 'SKIP', 'TERMINATE', 'UNION', 'UNWIND', 'USE', 'WITH' or <EOF> (line 3, column 1 (offset: 172))\n\"WHERE (s)-[l:SUPPLIES]->(p)\"\n ^"
+        ]
+    },
+    {
+        "qid": 143,
+        "template": 31,
+        "question": "Give the id of the newest product in the Books category by launch date.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 45,
+        "template": 9,
+        "question": "Which product is lowest in stock at US-East?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 83,
+        "template": 16,
+        "question": "List the suppliers of every product on transactions of customer \"CUST03502\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 43,
+        "template": 8,
+        "question": "For product \"PROD0040\", give each supplier and its unit cost.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 101,
+        "template": 20,
+        "question": "Sum the profit over every transaction containing product \"PROD0340\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 11,
+        "template": 2,
+        "question": "Give the status and revenue recorded on transaction \"TXN012826\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 136,
+        "template": 29,
+        "question": "How many transactions were there in 2023?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 116,
+        "template": 23,
+        "question": "Give the most expensive unit price among Home & Kitchen products.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 144,
+        "template": 31,
+        "question": "Which Beauty & Health product was launched most recently? Give its id.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 67,
+        "template": 13,
+        "question": "Which products has customer \"CUST02612\" returned? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 168,
+        "template": 42,
+        "question": "Which products have never been sold? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 123,
+        "template": 25,
+        "question": "List the ids of products whose active flag is false.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 97,
+        "template": 19,
+        "question": "What is the total revenue from customer \"CUST04558\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 41,
+        "template": 8,
+        "question": "For product \"PROD0480\", give each supplier and its unit cost.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 47,
+        "template": 9,
+        "question": "Which product is lowest in stock at EU-West?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 220,
+        "template": 57,
+        "question": "What is the shipping address of customer \"CUST04196\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 104,
+        "template": 20,
+        "question": "What is the total profit made on product \"PROD0085\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 33,
+        "template": 6,
+        "question": "Give the total stock of product \"PROD0486\" over every warehouse.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 35,
+        "template": 7,
+        "question": "Who is the primary supplier of product \"PROD0321\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 54,
+        "template": 10,
+        "question": "When was product \"PROD0415\" last restocked, and where?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 200,
+        "template": 53,
+        "question": "Count the returns with reason defective that were not put back in stock.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 218,
+        "template": 57,
+        "question": "What is the shipping address of customer \"CUST05020\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 178,
+        "template": 44,
+        "question": "List the warehouses holding no units of product \"PROD0175\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 14,
+        "template": 2,
+        "question": "What is the status and revenue of transaction \"TXN031930\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 66,
+        "template": 13,
+        "question": "List the product ids on returns made by customer \"CUST06401\".",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (c:Customer {customerId: \"CUST06401\"})<-[:PLACED_BY]-(:Transaction)-[:CONTAINS_PRODUCT]->(p:Product)<-[:OF_PRODUCT]-(:Return) RETURN DISTINCT p.productId",
+        "query_ans": [
+            [
+                "PROD0023"
+            ],
+            [
+                "PROD0053"
+            ],
+            [
+                "PROD0084"
+            ],
+            [
+                "PROD0103"
+            ],
+            [
+                "PROD0136"
+            ],
+            [
+                "PROD0166"
+            ],
+            [
+                "PROD0170"
+            ],
+            [
+                "PROD0175"
+            ],
+            [
+                "PROD0188"
+            ],
+            [
+                "PROD0261"
+            ],
+            [
+                "PROD0286"
+            ],
+            [
+                "PROD0321"
+            ],
+            [
+                "PROD0356"
+            ],
+            [
+                "PROD0372"
+            ],
+            [
+                "PROD0405"
+            ],
+            [
+                "PROD0499"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "PROD0084"
+                ],
+                [
+                    "PROD0103"
+                ],
+                [
+                    "PROD0136"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 85,
+        "template": 17,
+        "question": "How many transactions does customer \"CUST06641\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 30,
+        "template": 6,
+        "question": "How many units of product \"PROD0310\" are in stock across all warehouses?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 132,
+        "template": 28,
+        "question": "Sum the 2024 transaction revenue for customer \"CUST03010\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 109,
+        "template": 21,
+        "question": "How much has been refunded to customer \"CUST03212\" in total?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 40,
+        "template": 8,
+        "question": "What unit cost does each supplier charge for product \"PROD0121\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 183,
+        "template": 46,
+        "question": "Count the customers who returned a product they had bought.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 7,
+        "template": 1,
+        "question": "Which product is in transaction \"TXN067261\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 0,
+        "template": 0,
+        "question": "Which customer placed transaction \"TXN093623\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 96,
+        "template": 19,
+        "question": "Sum the revenue across all transactions of customer \"CUST03533\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 13,
+        "template": 2,
+        "question": "Give the status and revenue recorded on transaction \"TXN037557\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 105,
+        "template": 21,
+        "question": "How much has been refunded to customer \"CUST07417\" in total?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 137,
+        "template": 29,
+        "question": "Count the transactions dated in 2023.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 217,
+        "template": 57,
+        "question": "What phone number is on file for customer \"CUST03058\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 211,
+        "template": 56,
+        "question": "How many units of BoldEdge products are in stock across all warehouses?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 153,
+        "template": 36,
+        "question": "For each product BeautyLab FR supplies, what is the lead time?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:Supplier {supplierName: \"BeautyLab\"})-[rel:SUPPLIES]->(p:Product)\nRETURN p.productId, rel.leadTimeDays",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "10",
+                    "PROD0118"
+                ],
+                [
+                    "10",
+                    "PROD0123"
+                ],
+                [
+                    "10",
+                    "PROD0434"
+                ],
+                [
+                    "12",
+                    "PROD0099"
+                ],
+                [
+                    "12",
+                    "PROD0144"
+                ],
+                [
+                    "12",
+                    "PROD0179"
+                ],
+                [
+                    "12",
+                    "PROD0188"
+                ],
+                [
+                    "12",
+                    "PROD0340"
+                ],
+                [
+                    "13",
+                    "PROD0006"
+                ],
+                [
+                    "13",
+                    "PROD0119"
+                ],
+                [
+                    "13",
+                    "PROD0142"
+                ],
+                [
+                    "13",
+                    "PROD0313"
+                ],
+                [
+                    "14",
+                    "PROD0030"
+                ],
+                [
+                    "14",
+                    "PROD0327"
+                ],
+                [
+                    "14",
+                    "PROD0415"
+                ],
+                [
+                    "14",
+                    "PROD0459"
+                ],
+                [
+                    "15",
+                    "PROD0218"
+                ],
+                [
+                    "16",
+                    "PROD0324"
+                ],
+                [
+                    "17",
+                    "PROD0088"
+                ],
+                [
+                    "17",
+                    "PROD0301"
+                ],
+                [
+                    "17",
+                    "PROD0474"
+                ],
+                [
+                    "18",
+                    "PROD0274"
+                ],
+                [
+                    "18",
+                    "PROD0401"
+                ],
+                [
+                    "18",
+                    "PROD0500"
+                ],
+                [
+                    "6",
+                    "PROD0037"
+                ],
+                [
+                    "6",
+                    "PROD0357"
+                ],
+                [
+                    "7",
+                    "PROD0312"
+                ],
+                [
+                    "8",
+                    "PROD0019"
+                ],
+                [
+                    "9",
+                    "PROD0436"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 52,
+        "template": 10,
+        "question": "When was product \"PROD0280\" last restocked, and where?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 189,
+        "template": 49,
+        "question": "List the suppliers marked primary on a product that is no longer active.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 51,
+        "template": 10,
+        "question": "Give the warehouse and last restock date for product \"PROD0121\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 73,
+        "template": 14,
+        "question": "Count the distinct customers who bought product \"PROD0162\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 191,
+        "template": 50,
+        "question": "Count the customers who bought the product whose primary supplier is slowest.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 129,
+        "template": 27,
+        "question": "Give the date of the latest transaction placed by customer \"CUST02873\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 65,
+        "template": 13,
+        "question": "Which products has customer \"CUST06428\" returned? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 202,
+        "template": 53,
+        "question": "Count the returns with reason not_as_described that were not put back in stock.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 23,
+        "template": 4,
+        "question": "Give the brand and category of product \"PROD0168\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 20,
+        "template": 4,
+        "question": "What brand and category is product \"PROD0403\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 49,
+        "template": 9,
+        "question": "Which product is lowest in stock at EU-Central?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 231,
+        "template": 60,
+        "question": "Which employee processed transaction \"TXN046037\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 98,
+        "template": 19,
+        "question": "Sum the revenue across all transactions of customer \"CUST06943\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 228,
+        "template": 59,
+        "question": "What country is GameSource JP based in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 208,
+        "template": 54,
+        "question": "What is the total revenue from customers in Spain?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 140,
+        "template": 31,
+        "question": "Which Sports & Outdoors product was launched most recently? Give its id.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 154,
+        "template": 36,
+        "question": "Per product supplied by PaperSource NL, give the lead time in days.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:Supplier {supplierName: 'PaperSource NL'})-[:SUPPLIES]->(p:Product)<-[rel:SUPPLIES]-()\nRETURN p.productId AS productId, rel.leadTimeDays AS leadTimeDays\nORDER BY p.productId",
+        "query_ans": [
+            [
+                "10",
+                "PROD0193"
+            ],
+            [
+                "10",
+                "PROD0240"
+            ],
+            [
+                "11",
+                "PROD0355"
+            ],
+            [
+                "11",
+                "PROD0379"
+            ],
+            [
+                "11",
+                "PROD0485"
+            ],
+            [
+                "12",
+                "PROD0203"
+            ],
+            [
+                "12",
+                "PROD0240"
+            ],
+            [
+                "12",
+                "PROD0366"
+            ],
+            [
+                "13",
+                "PROD0016"
+            ],
+            [
+                "13",
+                "PROD0041"
+            ],
+            [
+                "13",
+                "PROD0166"
+            ],
+            [
+                "13",
+                "PROD0275"
+            ],
+            [
+                "13",
+                "PROD0433"
+            ],
+            [
+                "14",
+                "PROD0388"
+            ],
+            [
+                "15",
+                "PROD0157"
+            ],
+            [
+                "15",
+                "PROD0275"
+            ],
+            [
+                "15",
+                "PROD0336"
+            ],
+            [
+                "16",
+                "PROD0404"
+            ],
+            [
+                "17",
+                "PROD0056"
+            ],
+            [
+                "18",
+                "PROD0138"
+            ],
+            [
+                "18",
+                "PROD0352"
+            ],
+            [
+                "19",
+                "PROD0083"
+            ],
+            [
+                "5",
+                "PROD0020"
+            ],
+            [
+                "5",
+                "PROD0336"
+            ],
+            [
+                "5",
+                "PROD0355"
+            ],
+            [
+                "5",
+                "PROD0362"
+            ],
+            [
+                "5",
+                "PROD0454"
+            ],
+            [
+                "5",
+                "PROD0461"
+            ],
+            [
+                "6",
+                "PROD0404"
+            ],
+            [
+                "6",
+                "PROD0433"
+            ],
+            [
+                "7",
+                "PROD0001"
+            ],
+            [
+                "7",
+                "PROD0062"
+            ],
+            [
+                "7",
+                "PROD0083"
+            ],
+            [
+                "7",
+                "PROD0485"
+            ],
+            [
+                "8",
+                "PROD0016"
+            ],
+            [
+                "8",
+                "PROD0035"
+            ],
+            [
+                "8",
+                "PROD0352"
+            ],
+            [
+                "8",
+                "PROD0354"
+            ],
+            [
+                "8",
+                "PROD0362"
+            ],
+            [
+                "8",
+                "PROD0397"
+            ],
+            [
+                "8",
+                "PROD0461"
+            ],
+            [
+                "9",
+                "PROD0041"
+            ],
+            [
+                "9",
+                "PROD0056"
+            ],
+            [
+                "9",
+                "PROD0062"
+            ],
+            [
+                "9",
+                "PROD0138"
+            ],
+            [
+                "9",
+                "PROD0354"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "10",
+                    "PROD0138"
+                ],
+                [
+                    "10",
+                    "PROD0170"
+                ],
+                [
+                    "10",
+                    "PROD0404"
+                ],
+                [
+                    "12",
+                    "PROD0275"
+                ],
+                [
+                    "13",
+                    "PROD0033"
+                ],
+                [
+                    "13",
+                    "PROD0083"
+                ],
+                [
+                    "13",
+                    "PROD0336"
+                ],
+                [
+                    "13",
+                    "PROD0392"
+                ],
+                [
+                    "13",
+                    "PROD0461"
+                ],
+                [
+                    "14",
+                    "PROD0035"
+                ],
+                [
+                    "14",
+                    "PROD0397"
+                ],
+                [
+                    "15",
+                    "PROD0205"
+                ],
+                [
+                    "15",
+                    "PROD0366"
+                ],
+                [
+                    "15",
+                    "PROD0454"
+                ],
+                [
+                    "16",
+                    "PROD0016"
+                ],
+                [
+                    "16",
+                    "PROD0388"
+                ],
+                [
+                    "17",
+                    "PROD0240"
+                ],
+                [
+                    "17",
+                    "PROD0379"
+                ],
+                [
+                    "18",
+                    "PROD0241"
+                ],
+                [
+                    "19",
+                    "PROD0193"
+                ],
+                [
+                    "19",
+                    "PROD0355"
+                ],
+                [
+                    "5",
+                    "PROD0485"
+                ],
+                [
+                    "6",
+                    "PROD0056"
+                ],
+                [
+                    "6",
+                    "PROD0111"
+                ],
+                [
+                    "6",
+                    "PROD0249"
+                ],
+                [
+                    "6",
+                    "PROD0352"
+                ],
+                [
+                    "6",
+                    "PROD0362"
+                ],
+                [
+                    "6",
+                    "PROD0433"
+                ],
+                [
+                    "7",
+                    "PROD0020"
+                ],
+                [
+                    "7",
+                    "PROD0062"
+                ],
+                [
+                    "7",
+                    "PROD0181"
+                ],
+                [
+                    "7",
+                    "PROD0203"
+                ],
+                [
+                    "7",
+                    "PROD0354"
+                ],
+                [
+                    "9",
+                    "PROD0001"
+                ],
+                [
+                    "9",
+                    "PROD0041"
+                ],
+                [
+                    "9",
+                    "PROD0157"
+                ],
+                [
+                    "9",
+                    "PROD0166"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 162,
+        "template": 39,
+        "question": "Which category brought in the most revenue?",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product)\nWITH p.category, SUM(t.revenueUsd) AS totalRevenue\nORDER BY totalRevenue DESC\nLIMIT 1\nRETURN p.category",
+        "errors": [
+            "Expression in WITH must be aliased (use AS) (line 2, column 6 (offset: 60))\n\"WITH p.category, SUM(t.revenueUsd) AS totalRevenue\"\n      ^"
+        ]
+    },
+    {
+        "qid": 203,
+        "template": 53,
+        "question": "How many returns for changed_mind were not restocked?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 225,
+        "template": 58,
+        "question": "What is the average review rating of product \"PROD0167\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 194,
+        "template": 52,
+        "question": "What is the average discount on cancelled transactions?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 201,
+        "template": 53,
+        "question": "How many returns for late_delivery were not restocked?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 12,
+        "template": 2,
+        "question": "What is the status and revenue of transaction \"TXN034894\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 25,
+        "template": 5,
+        "question": "Which warehouses stock product \"PROD0217\", and how many units does each hold?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 44,
+        "template": 8,
+        "question": "What unit cost does each supplier charge for product \"PROD0387\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 131,
+        "template": 28,
+        "question": "How much revenue did customer \"CUST02011\" generate in 2024?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 108,
+        "template": 21,
+        "question": "Sum the refund amounts on returns by customer \"CUST01502\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 148,
+        "template": 33,
+        "question": "Break down the transaction count by status.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 180,
+        "template": 45,
+        "question": "How many customers have never returned anything?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 10,
+        "template": 2,
+        "question": "What is the status and revenue of transaction \"TXN088638\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 145,
+        "template": 32,
+        "question": "How much revenue did each product category bring in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 28,
+        "template": 5,
+        "question": "For product \"PROD0044\", give each warehouse and its stock level.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 68,
+        "template": 13,
+        "question": "List the product ids on returns made by customer \"CUST06935\".",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (c:Customer {customerId: \"CUST06935\"})-[:PLACED_BY]->(:Transaction)<-[:BY_CUSTOMER]-(r:Return)-[:OF_PRODUCT]->(p:Product) RETURN DISTINCT p.productId",
+        "errors": [
+            "No relationship [:BY_CUSTOMER] between (:Return) and (:Transaction) in either direction; these labels are connected by: (:Return)-[:FOR_TRANSACTION]->(:Transaction)"
+        ]
+    },
+    {
+        "qid": 207,
+        "template": 54,
+        "question": "Sum the transaction revenue for customers whose country is Italy.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 175,
+        "template": 44,
+        "question": "Which warehouses do not stock product \"PROD0178\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 34,
+        "template": 6,
+        "question": "How many units of product \"PROD0495\" are in stock across all warehouses?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 112,
+        "template": 22,
+        "question": "How many units of product \"PROD0463\" have been sold in total?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 59,
+        "template": 11,
+        "question": "How many products does SportSupply US supply as the primary supplier?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 161,
+        "template": 38,
+        "question": "Which product id appears on the highest number of returns?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 126,
+        "template": 27,
+        "question": "When was the most recent transaction by customer \"CUST02107\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 26,
+        "template": 5,
+        "question": "For product \"PROD0010\", give each warehouse and its stock level.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 174,
+        "template": 43,
+        "question": "Which suppliers do not supply product \"PROD0265\"? Give their names.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:Supplier)-[:SUPPLIES]->(p:Product)\nWHERE p.productId <> \"PROD0265\"\nWITH s, COLLECT(DISTINCT p.productId) AS suppliedProductIds\nWHERE NOT \"PROD0265\" IN suppliedProductIds\nRETURN s.supplierName",
+        "query_ans": [
+            [
+                "ActiveGear TW"
+            ],
+            [
+                "BeautyLab FR"
+            ],
+            [
+                "BookSupply DE"
+            ],
+            [
+                "CosmeticsCo KR"
+            ],
+            [
+                "DomesticSupply UK"
+            ],
+            [
+                "ElectroPrime EU"
+            ],
+            [
+                "EuroFashion IT"
+            ],
+            [
+                "FabricWorld CN"
+            ],
+            [
+                "GameSource JP"
+            ],
+            [
+                "GlobalTech USA"
+            ],
+            [
+                "HealthSource SE"
+            ],
+            [
+                "HomeGoods DE"
+            ],
+            [
+                "KitchenPro PL"
+            ],
+            [
+                "OutdoorPro CA"
+            ],
+            [
+                "PaperSource NL"
+            ],
+            [
+                "PlaySupply US"
+            ],
+            [
+                "PrintMedia UK"
+            ],
+            [
+                "SportSupply US"
+            ],
+            [
+                "StyleSupply TR"
+            ],
+            [
+                "TechSource Asia"
+            ],
+            [
+                "ToyFactory CN"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "ActiveGear TW"
+                ],
+                [
+                    "BeautyLab FR"
+                ],
+                [
+                    "BookSupply DE"
+                ],
+                [
+                    "CosmeticsCo KR"
+                ],
+                [
+                    "DomesticSupply UK"
+                ],
+                [
+                    "ElectroPrime EU"
+                ],
+                [
+                    "EuroFashion IT"
+                ],
+                [
+                    "FabricWorld CN"
+                ],
+                [
+                    "GameSource JP"
+                ],
+                [
+                    "GlobalTech USA"
+                ],
+                [
+                    "HealthSource SE"
+                ],
+                [
+                    "OutdoorPro CA"
+                ],
+                [
+                    "PaperSource NL"
+                ],
+                [
+                    "PlaySupply US"
+                ],
+                [
+                    "PrintMedia UK"
+                ],
+                [
+                    "SportSupply US"
+                ],
+                [
+                    "StyleSupply TR"
+                ],
+                [
+                    "TechSource Asia"
+                ],
+                [
+                    "ToyFactory CN"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 21,
+        "template": 4,
+        "question": "Give the brand and category of product \"PROD0258\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 151,
+        "template": 35,
+        "question": "For each category, how many different customers have bought from it?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 152,
+        "template": 35,
+        "question": "Per product category, count the distinct customers who bought one.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 99,
+        "template": 19,
+        "question": "What is the total revenue from customer \"CUST03767\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 107,
+        "template": 21,
+        "question": "How much has been refunded to customer \"CUST00238\" in total?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 78,
+        "template": 15,
+        "question": "List the categories of the products supplied by KitchenPro PL.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 166,
+        "template": 41,
+        "question": "Which warehouse holds the most units overall?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 24,
+        "template": 4,
+        "question": "What brand and category is product \"PROD0280\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 181,
+        "template": 45,
+        "question": "Count the customers with no returns.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 113,
+        "template": 22,
+        "question": "Sum the quantity across every transaction containing product \"PROD0202\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 69,
+        "template": 13,
+        "question": "Which products has customer \"CUST02462\" returned? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 177,
+        "template": 44,
+        "question": "Which warehouses do not stock product \"PROD0169\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 224,
+        "template": 58,
+        "question": "How many stars has product \"PROD0097\" been given?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 121,
+        "template": 24,
+        "question": "Count the customers flagged as premium.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 219,
+        "template": 57,
+        "question": "What phone number is on file for customer \"CUST05391\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 22,
+        "template": 4,
+        "question": "What brand and category is product \"PROD0388\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 210,
+        "template": 55,
+        "question": "Count the premium customers with at least two transactions.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 230,
+        "template": 59,
+        "question": "What country is DomesticSupply UK based in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 6,
+        "template": 1,
+        "question": "Give the product id contained in transaction \"TXN004284\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 86,
+        "template": 17,
+        "question": "Count the transactions placed by customer \"CUST02498\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 77,
+        "template": 15,
+        "question": "Which product categories does PaperSource NL supply?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 62,
+        "template": 12,
+        "question": "Which products has customer \"CUST00611\" bought? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 88,
+        "template": 17,
+        "question": "Count the transactions placed by customer \"CUST03563\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 171,
+        "template": 43,
+        "question": "List the suppliers that have no supply arrangement for product \"PROD0355\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 237,
+        "template": 61,
+        "question": "What did they order last time?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_POSITIVE"
+    },
+    {
+        "qid": 149,
+        "template": 34,
+        "question": "How many returns were there for each reason?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 5,
+        "template": 1,
+        "question": "Which product is in transaction \"TXN031506\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 37,
+        "template": 7,
+        "question": "Who is the primary supplier of product \"PROD0087\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 58,
+        "template": 11,
+        "question": "Count the products where ToyFactory CN is marked primary.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 60,
+        "template": 12,
+        "question": "Which products has customer \"CUST03956\" bought? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 32,
+        "template": 6,
+        "question": "How many units of product \"PROD0369\" are in stock across all warehouses?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 56,
+        "template": 11,
+        "question": "Count the products where BeautyLab FR is marked primary.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 89,
+        "template": 17,
+        "question": "How many transactions does customer \"CUST01097\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 170,
+        "template": 43,
+        "question": "Which suppliers do not supply product \"PROD0073\"? Give their names.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:Supplier)-[:SUPPLIES]->(p:Product) WHERE p.productId <> \"PROD0073\" RETURN DISTINCT s.supplierName\nUNION\nMATCH (s:Supplier) WHERE NOT EXISTS { (s)-[:SUPPLIES]->(:Product {productId: \"PROD0073\"}) } RETURN s.supplierName",
+        "query_ans": [
+            [
+                "ActiveGear TW"
+            ],
+            [
+                "BeautyLab FR"
+            ],
+            [
+                "BookSupply DE"
+            ],
+            [
+                "CosmeticsCo KR"
+            ],
+            [
+                "DomesticSupply UK"
+            ],
+            [
+                "ElectroPrime EU"
+            ],
+            [
+                "EuroFashion IT"
+            ],
+            [
+                "FabricWorld CN"
+            ],
+            [
+                "GameSource JP"
+            ],
+            [
+                "GlobalTech USA"
+            ],
+            [
+                "HealthSource SE"
+            ],
+            [
+                "HomeGoods DE"
+            ],
+            [
+                "KitchenPro PL"
+            ],
+            [
+                "OutdoorPro CA"
+            ],
+            [
+                "PaperSource NL"
+            ],
+            [
+                "PlaySupply US"
+            ],
+            [
+                "PrintMedia UK"
+            ],
+            [
+                "SportSupply US"
+            ],
+            [
+                "StyleSupply TR"
+            ],
+            [
+                "TechSource Asia"
+            ],
+            [
+                "ToyFactory CN"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "ActiveGear TW"
+                ],
+                [
+                    "BeautyLab FR"
+                ],
+                [
+                    "BookSupply DE"
+                ],
+                [
+                    "CosmeticsCo KR"
+                ],
+                [
+                    "DomesticSupply UK"
+                ],
+                [
+                    "ElectroPrime EU"
+                ],
+                [
+                    "FabricWorld CN"
+                ],
+                [
+                    "GameSource JP"
+                ],
+                [
+                    "GlobalTech USA"
+                ],
+                [
+                    "HealthSource SE"
+                ],
+                [
+                    "HomeGoods DE"
+                ],
+                [
+                    "KitchenPro PL"
+                ],
+                [
+                    "OutdoorPro CA"
+                ],
+                [
+                    "PaperSource NL"
+                ],
+                [
+                    "PlaySupply US"
+                ],
+                [
+                    "PrintMedia UK"
+                ],
+                [
+                    "SportSupply US"
+                ],
+                [
+                    "TechSource Asia"
+                ],
+                [
+                    "ToyFactory CN"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 222,
+        "template": 58,
+        "question": "How many stars has product \"PROD0137\" been given?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 119,
+        "template": 23,
+        "question": "What is the highest unit price in the Beauty & Health category?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 172,
+        "template": 43,
+        "question": "Which suppliers do not supply product \"PROD0138\"? Give their names.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (s:Supplier)-[:SUPPLIES]->(p:Product)\nWHERE p.productId <> 'PROD0138'\nWITH s, collect(DISTINCT p.productId) AS suppliedProductIds\nWHERE 'PROD0138' <> ALL(suppliedProductIds)\nRETURN s.supplierName\nUNION\nMATCH (s:Supplier)\nWHERE NOT EXISTS { (s)-[:SUPPLIES]->(:Product {productId: 'PROD0138'}) }\nRETURN s.supplierName",
+        "errors": [
+            "Unknown function 'ALL' (line 4, column 21 (offset: 156))\n\"WHERE 'PROD0138' <> ALL(suppliedProductIds)\"\n                     ^"
+        ]
+    },
+    {
+        "qid": 236,
+        "template": 61,
+        "question": "How many of them are left?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 80,
+        "template": 16,
+        "question": "Which suppliers made the products customer \"CUST04746\" bought? Give their names.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 120,
+        "template": 24,
+        "question": "How many customers are premium members?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 182,
+        "template": 46,
+        "question": "How many customers have bought and also returned the same product?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 147,
+        "template": 33,
+        "question": "How many transactions are there of each status?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 198,
+        "template": 52,
+        "question": "What is the average discount on refunded transactions?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 27,
+        "template": 5,
+        "question": "Which warehouses stock product \"PROD0321\", and how many units does each hold?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 91,
+        "template": 18,
+        "question": "Count the returns of product \"PROD0280\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 70,
+        "template": 14,
+        "question": "How many different customers have bought product \"PROD0062\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 205,
+        "template": 54,
+        "question": "Sum the transaction revenue for customers whose country is Sweden.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 197,
+        "template": 52,
+        "question": "Give the mean discount percentage across transactions in cancelled status.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 118,
+        "template": 23,
+        "question": "Give the most expensive unit price among Clothing products.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 158,
+        "template": 37,
+        "question": "Which customer has spent the most in total? Give their id.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 146,
+        "template": 32,
+        "question": "Break down total revenue by product category.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 193,
+        "template": 51,
+        "question": "Count the transactions whose discount is above 0.2.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 128,
+        "template": 27,
+        "question": "When was the most recent transaction by customer \"CUST02057\"?",
+        "result": "BenchmarkResult.CORRECT"
+    }
+]

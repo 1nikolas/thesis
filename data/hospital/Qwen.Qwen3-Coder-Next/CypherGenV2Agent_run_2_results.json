@@ -1,0 +1,5768 @@
+[
+    {
+        "qid": 98,
+        "template": 25,
+        "question": "How many completed appointments does doctor \"1175\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 65,
+        "template": 16,
+        "question": "List the departments of the doctors patient \"1383\" had appointments with.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 124,
+        "template": 32,
+        "question": "How many appointments were held online?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 84,
+        "template": 21,
+        "question": "How many surgeries has doctor \"1300\" performed?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 18,
+        "template": 4,
+        "question": "Which department does doctor \"1289\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 116,
+        "template": 29,
+        "question": "What is the total payment collected on appointments in Hematology?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 194,
+        "template": 63,
+        "question": "What is the email address of patient \"1031\"?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_POSITIVE"
+    },
+    {
+        "qid": 97,
+        "template": 24,
+        "question": "Sum the payment amounts on appointments for patient \"434\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 207,
+        "template": 66,
+        "question": "Who was on duty that day?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 50,
+        "template": 13,
+        "question": "Which nurses assisted surgeries performed by doctor \"1172\"? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 68,
+        "template": 17,
+        "question": "Which departments did patient \"1399\" stay in, going by their room records?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 47,
+        "template": 12,
+        "question": "List the wards where patient \"746\" was assigned a bed.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 136,
+        "template": 38,
+        "question": "For each doctor in Endocrinology, how many appointments do they have?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(:Department {deptName: 'Endocrinology'})<-[:IN_DEPARTMENT]-(:Room)<-[:IN_ROOM]-(s:SurgeryRecord) \nWITH d \nMATCH (d)<-[:WITH_DOCTOR]-(a:Appointment) \nRETURN d.doctId, d.fName, d.lName, count(a) AS appointmentCount",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "1024",
+                    "107"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 181,
+        "template": 58,
+        "question": "In Cardiology, list the ids of doctors with over 1 appointment.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(:Department {deptName: \"Cardiology\"})<-[:IN_DEPARTMENT]-(r:Room)<-[:IN_ROOM]-(s:SurgeryRecord)-[:FOR_PATIENT]->(p:Patient)<-[:FOR_PATIENT]-(a:Appointment)\nWITH d, COUNT(a) AS apptCount\nWHERE apptCount > 1\nRETURN d.doctId AS doctorId",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "1001",
+                    "79"
+                ],
+                [
+                    "1002",
+                    "30"
+                ],
+                [
+                    "1003",
+                    "26"
+                ],
+                [
+                    "1004",
+                    "29"
+                ]
+            ],
+            [
+                [
+                    "1001"
+                ],
+                [
+                    "1002"
+                ],
+                [
+                    "1003"
+                ],
+                [
+                    "1004"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 206,
+        "template": 66,
+        "question": "How many of them are there?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_POSITIVE"
+    },
+    {
+        "qid": 90,
+        "template": 23,
+        "question": "How many beds are in the Pediatrics Ward?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (:Ward {wardName: \"Pediatrics\"})<-[:IN_WARD]-(b:Bed) RETURN count(b) AS bedCount",
+        "query_ans": [
+            [
+                "0"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "17"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 201,
+        "template": 64,
+        "question": "Which pharmacy filled the prescription for medical record \"1349\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 117,
+        "template": 29,
+        "question": "Sum the appointment payments for doctors belonging to Rehabilitation.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(dept:Department {deptName: \"Rehabilitation\"})-[]->() \nWITH d \nMATCH (d)<-[:WITH_DOCTOR]-(a:Appointment) \nRETURN sum(a.paymentAmount) AS totalAppointmentPayments",
+        "errors": [
+            "Malformed relationship pattern '-[]->' in '(dept:Department {deptName: \"Rehabilitation\"})-[]->()'. Write it as -[:REL]-> or <-[:REL]-."
+        ]
+    },
+    {
+        "qid": 36,
+        "template": 9,
+        "question": "Which doctors has patient \"126\" had appointments with? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 6,
+        "template": 1,
+        "question": "Which doctor is appointment \"5472\" with?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (a:Appointment {appoIntmentId: 5472})-[:WITH_DOCTOR]->(d:Doctor)\nRETURN d.fName, d.lName, d.doctId",
+        "query_ans": [
+            [
+                "1027",
+                "Dr. Raza",
+                "Hasnain"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "1027"
+                ]
+            ],
+            [
+                [
+                    "Dr. Raza",
+                    "Hasnain"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 164,
+        "template": 51,
+        "question": "Which patients have both a room record and an appointment? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 115,
+        "template": 29,
+        "question": "Sum the appointment payments for doctors belonging to Homeopathy.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(:Department {deptName: \"Homeopathy\"})<-[:WITH_DOCTOR]-(a:Appointment) RETURN sum(a.paymentAmount) AS totalAppointmentPayments",
+        "errors": [
+            "No relationship [:WITH_DOCTOR] between (:Appointment) and (:Department) in either direction; [:WITH_DOCTOR] only connects: (:Appointment)-[:WITH_DOCTOR]->(:Doctor)"
+        ]
+    },
+    {
+        "qid": 24,
+        "template": 6,
+        "question": "Which room was assigned on room record \"500984\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 158,
+        "template": 48,
+        "question": "Which rooms have never been used for surgery?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 170,
+        "template": 54,
+        "question": "Which helpers both assisted a surgery and were assigned to a bed record? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 99,
+        "template": 25,
+        "question": "Count the appointments with doctor \"1250\" whose status is Completed.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 42,
+        "template": 11,
+        "question": "Which doctors wrote medical records for patient \"131\"? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 32,
+        "template": 8,
+        "question": "What is the contact number of nurse \"3001\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 38,
+        "template": 9,
+        "question": "Which doctors has patient \"1032\" had appointments with? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 169,
+        "template": 53,
+        "question": "List the ids of nurses appearing on both a bed record and a room record.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 71,
+        "template": 18,
+        "question": "Give the department of the room used for surgery \"10623\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 72,
+        "template": 18,
+        "question": "Which department was surgery \"10623\" carried out in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 101,
+        "template": 25,
+        "question": "Count the appointments with doctor \"1223\" whose status is Completed.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 132,
+        "template": 36,
+        "question": "How many doctors belong to each department?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 107,
+        "template": 27,
+        "question": "Count the doctors in Cardiology whose gender is F.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 67,
+        "template": 17,
+        "question": "List the departments of the rooms assigned to patient \"893\".",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (p:Patient {patientId: 893})-[:ASSIGNED_ROOM]->(r:Room)-[:IN_DEPARTMENT]->(d:Department) RETURN d.deptId, d.deptName",
+        "errors": [
+            "No relationship [:ASSIGNED_ROOM] between (:Patient) and (:Room) in either direction; [:ASSIGNED_ROOM] only connects: (:RoomRecord)-[:ASSIGNED_ROOM]->(:Room)"
+        ]
+    },
+    {
+        "qid": 154,
+        "template": 46,
+        "question": "Which doctors have never performed a surgery? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 155,
+        "template": 46,
+        "question": "List the ids of doctors with no surgery records.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 133,
+        "template": 36,
+        "question": "Break down the doctor count by department.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 83,
+        "template": 21,
+        "question": "Count the surgery records for doctor \"1328\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 73,
+        "template": 18,
+        "question": "Give the department of the room used for surgery \"10424\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 174,
+        "template": 56,
+        "question": "Which patients have been treated by doctors from more than one department? Give their ids.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (p:Patient)<-[:OF_PATIENT]-(m:MedicalRecord)-[:WRITTEN_BY]->(d:Doctor)-[:BELONGS_TO]->(dept:Department)\nWITH p.patientId AS patientId, collect(DISTINCT dept.deptId) AS depts\nWHERE size(depts) > 1\nRETURN patientId",
+        "query_ans": [
+            [
+                "100"
+            ],
+            [
+                "1000"
+            ],
+            [
+                "1001"
+            ],
+            [
+                "1002"
+            ],
+            [
+                "1003"
+            ],
+            [
+                "1004"
+            ],
+            [
+                "1005"
+            ],
+            [
+                "1006"
+            ],
+            [
+                "1008"
+            ],
+            [
+                "101"
+            ],
+            [
+                "1010"
+            ],
+            [
+                "1015"
+            ],
+            [
+                "1017"
+            ],
+            [
+                "102"
+            ],
+            [
+                "1020"
+            ],
+            [
+                "1021"
+            ],
+            [
+                "1022"
+            ],
+            [
+                "1023"
+            ],
+            [
+                "1024"
+            ],
+            [
+                "1026"
+            ],
+            [
+                "1030"
+            ],
+            [
+                "1032"
+            ],
+            [
+                "1033"
+            ],
+            [
+                "1036"
+            ],
+            [
+                "1037"
+            ],
+            [
+                "1038"
+            ],
+            [
+                "104"
+            ],
+            [
+                "1042"
+            ],
+            [
+                "1047"
+            ],
+            [
+                "1049"
+            ],
+            [
+                "105"
+            ],
+            [
+                "1053"
+            ],
+            [
+                "1054"
+            ],
+            [
+                "1055"
+            ],
+            [
+                "1058"
+            ],
+            [
+                "1059"
+            ],
+            [
+                "106"
+            ],
+            [
+                "1060"
+            ],
+            [
+                "1062"
+            ],
+            [
+                "1063"
+            ],
+            [
+                "1067"
+            ],
+            [
+                "1068"
+            ],
+            [
+                "1069"
+            ],
+            [
+                "1071"
+            ],
+            [
+                "1074"
+            ],
+            [
+                "1076"
+            ],
+            [
+                "1078"
+            ],
+            [
+                "1079"
+            ],
+            [
+                "108"
+            ],
+            [
+                "1080"
+            ],
+            [
+                "1081"
+            ],
+            [
+                "1082"
+            ],
+            [
+                "1083"
+            ],
+            [
+                "1085"
+            ],
+            [
+                "1086"
+            ],
+            [
+                "1087"
+            ],
+            [
+                "1088"
+            ],
+            [
+                "1089"
+            ],
+            [
+                "1090"
+            ],
+            [
+                "1093"
+            ],
+            [
+                "1094"
+            ],
+            [
+                "1096"
+            ],
+            [
+                "1098"
+            ],
+            [
+                "110"
+            ],
+            [
+                "1100"
+            ],
+            [
+                "1101"
+            ],
+            [
+                "1103"
+            ],
+            [
+                "1104"
+            ],
+            [
+                "1105"
+            ],
+            [
+                "1107"
+            ],
+            [
+                "111"
+            ],
+            [
+                "1110"
+            ],
+            [
+                "1111"
+            ],
+            [
+                "1112"
+            ],
+            [
+                "1114"
+            ],
+            [
+                "1115"
+            ],
+            [
+                "1117"
+            ],
+            [
+                "1118"
+            ],
+            [
+                "1120"
+            ],
+            [
+                "1122"
+            ],
+            [
+                "1123"
+            ],
+            [
+                "1125"
+            ],
+            [
+                "1127"
+            ],
+            [
+                "1128"
+            ],
+            [
+                "113"
+            ],
+            [
+                "1132"
+            ],
+            [
+                "1133"
+            ],
+            [
+                "1135"
+            ],
+            [
+                "1138"
+            ],
+            [
+                "1139"
+            ],
+            [
+                "114"
+            ],
+            [
+                "1142"
+            ],
+            [
+                "1148"
+            ],
+            [
+                "115"
+            ],
+            [
+                "1150"
+            ],
+            [
+                "1155"
+            ],
+            [
+                "1160"
+            ],
+            [
+                "1163"
+            ],
+            [
+                "1164"
+            ],
+            [
+                "1165"
+            ],
+            [
+                "1167"
+            ],
+            [
+                "1168"
+            ],
+            [
+                "1169"
+            ],
+            [
+                "1171"
+            ],
+            [
+                "1172"
+            ],
+            [
+                "1173"
+            ],
+            [
+                "1175"
+            ],
+            [
+                "1176"
+            ],
+            [
+                "1180"
+            ],
+            [
+                "1181"
+            ],
+            [
+                "1182"
+            ],
+            [
+                "1184"
+            ],
+            [
+                "1185"
+            ],
+            [
+                "1186"
+            ],
+            [
+                "1187"
+            ],
+            [
+                "1190"
+            ],
+            [
+                "1191"
+            ],
+            [
+                "1192"
+            ],
+            [
+                "1193"
+            ],
+            [
+                "1194"
+            ],
+            [
+                "1196"
+            ],
+            [
+                "1197"
+            ],
+            [
+                "1198"
+            ],
+            [
+                "120"
+            ],
+            [
+                "1200"
+            ],
+            [
+                "1201"
+            ],
+            [
+                "1204"
+            ],
+            [
+                "1205"
+            ],
+            [
+                "1206"
+            ],
+            [
+                "1207"
+            ],
+            [
+                "1209"
+            ],
+            [
+                "121"
+            ],
+            [
+                "1213"
+            ],
+            [
+                "1214"
+            ],
+            [
+                "1217"
+            ],
+            [
+                "1218"
+            ],
+            [
+                "122"
+            ],
+            [
+                "1221"
+            ],
+            [
+                "1222"
+            ],
+            [
+                "1224"
+            ],
+            [
+                "1226"
+            ],
+            [
+                "1227"
+            ],
+            [
+                "1229"
+            ],
+            [
+                "1232"
+            ],
+            [
+                "1234"
+            ],
+            [
+                "1237"
+            ],
+            [
+                "1238"
+            ],
+            [
+                "1239"
+            ],
+            [
+                "1240"
+            ],
+            [
+                "1242"
+            ],
+            [
+                "1244"
+            ],
+            [
+                "1245"
+            ],
+            [
+                "1246"
+            ],
+            [
+                "125"
+            ],
+            [
+                "1250"
+            ],
+            [
+                "1251"
+            ],
+            [
+                "1253"
+            ],
+            [
+                "1254"
+            ],
+            [
+                "1256"
+            ],
+            [
+                "1257"
+            ],
+            [
+                "1258"
+            ],
+            [
+                "1259"
+            ],
+            [
+                "1260"
+            ],
+            [
+                "1263"
+            ],
+            [
+                "1266"
+            ],
+            [
+                "1267"
+            ],
+            [
+                "127"
+            ],
+            [
+                "1270"
+            ],
+            [
+                "1271"
+            ],
+            [
+                "1273"
+            ],
+            [
+                "1275"
+            ],
+            [
+                "1276"
+            ],
+            [
+                "1278"
+            ],
+            [
+                "1279"
+            ],
+            [
+                "1281"
+            ],
+            [
+                "1282"
+            ],
+            [
+                "1283"
+            ],
+            [
+                "1284"
+            ],
+            [
+                "1285"
+            ],
+            [
+                "1287"
+            ],
+            [
+                "1289"
+            ],
+            [
+                "1291"
+            ],
+            [
+                "1293"
+            ],
+            [
+                "1294"
+            ],
+            [
+                "1295"
+            ],
+            [
+                "1298"
+            ],
+            [
+                "1302"
+            ],
+            [
+                "1303"
+            ],
+            [
+                "1306"
+            ],
+            [
+                "1307"
+            ],
+            [
+                "1308"
+            ],
+            [
+                "1309"
+            ],
+            [
+                "131"
+            ],
+            [
+                "1313"
+            ],
+            [
+                "1316"
+            ],
+            [
+                "1317"
+            ],
+            [
+                "1318"
+            ],
+            [
+                "1319"
+            ],
+            [
+                "1320"
+            ],
+            [
+                "1323"
+            ],
+            [
+                "1325"
+            ],
+            [
+                "1329"
+            ],
+            [
+                "133"
+            ],
+            [
+                "1332"
+            ],
+            [
+                "1334"
+            ],
+            [
+                "1336"
+            ],
+            [
+                "1337"
+            ],
+            [
+                "1338"
+            ],
+            [
+                "1339"
+            ],
+            [
+                "134"
+            ],
+            [
+                "1341"
+            ],
+            [
+                "1343"
+            ],
+            [
+                "1344"
+            ],
+            [
+                "1346"
+            ],
+            [
+                "1347"
+            ],
+            [
+                "1348"
+            ],
+            [
+                "1349"
+            ],
+            [
+                "135"
+            ],
+            [
+                "1351"
+            ],
+            [
+                "1352"
+            ],
+            [
+                "1354"
+            ],
+            [
+                "1356"
+            ],
+            [
+                "1358"
+            ],
+            [
+                "1360"
+            ],
+            [
+                "1362"
+            ],
+            [
+                "1363"
+            ],
+            [
+                "1364"
+            ],
+            [
+                "1366"
+            ],
+            [
+                "1367"
+            ],
+            [
+                "1368"
+            ],
+            [
+                "1370"
+            ],
+            [
+                "1371"
+            ],
+            [
+                "1373"
+            ],
+            [
+                "1375"
+            ],
+            [
+                "1376"
+            ],
+            [
+                "1378"
+            ],
+            [
+                "1379"
+            ],
+            [
+                "138"
+            ],
+            [
+                "1380"
+            ],
+            [
+                "1382"
+            ],
+            [
+                "1383"
+            ],
+            [
+                "1384"
+            ],
+            [
+                "1386"
+            ],
+            [
+                "1387"
+            ],
+            [
+                "1388"
+            ],
+            [
+                "139"
+            ],
+            [
+                "1390"
+            ],
+            [
+                "1391"
+            ],
+            [
+                "1395"
+            ],
+            [
+                "1398"
+            ],
+            [
+                "1399"
+            ],
+            [
+                "140"
+            ],
+            [
+                "1401"
+            ],
+            [
+                "1403"
+            ],
+            [
+                "1405"
+            ],
+            [
+                "1406"
+            ],
+            [
+                "1407"
+            ],
+            [
+                "1410"
+            ],
+            [
+                "1411"
+            ],
+            [
+                "1412"
+            ],
+            [
+                "1413"
+            ],
+            [
+                "1415"
+            ],
+            [
+                "1416"
+            ],
+            [
+                "1417"
+            ],
+            [
+                "1419"
+            ],
+            [
+                "142"
+            ],
+            [
+                "1420"
+            ],
+            [
+                "1422"
+            ],
+            [
+                "1423"
+            ],
+            [
+                "1426"
+            ],
+            [
+                "1427"
+            ],
+            [
+                "1428"
+            ],
+            [
+                "1429"
+            ],
+            [
+                "1432"
+            ],
+            [
+                "1435"
+            ],
+            [
+                "1436"
+            ],
+            [
+                "1437"
+            ],
+            [
+                "1438"
+            ],
+            [
+                "144"
+            ],
+            [
+                "1441"
+            ],
+            [
+                "1442"
+            ],
+            [
+                "1443"
+            ],
+            [
+                "1446"
+            ],
+            [
+                "1447"
+            ],
+            [
+                "1448"
+            ],
+            [
+                "1449"
+            ],
+            [
+                "145"
+            ],
+            [
+                "1450"
+            ],
+            [
+                "1452"
+            ],
+            [
+                "1453"
+            ],
+            [
+                "1455"
+            ],
+            [
+                "1457"
+            ],
+            [
+                "1458"
+            ],
+            [
+                "1459"
+            ],
+            [
+                "146"
+            ],
+            [
+                "1460"
+            ],
+            [
+                "1463"
+            ],
+            [
+                "1464"
+            ],
+            [
+                "1465"
+            ],
+            [
+                "1466"
+            ],
+            [
+                "1467"
+            ],
+            [
+                "1468"
+            ],
+            [
+                "1471"
+            ],
+            [
+                "1472"
+            ],
+            [
+                "1474"
+            ],
+            [
+                "1477"
+            ],
+            [
+                "1479"
+            ],
+            [
+                "1482"
+            ],
+            [
+                "1486"
+            ],
+            [
+                "1487"
+            ],
+            [
+                "149"
+            ],
+            [
+                "1491"
+            ],
+            [
+                "1492"
+            ],
+            [
+                "1493"
+            ],
+            [
+                "1495"
+            ],
+            [
+                "1499"
+            ],
+            [
+                "1500"
+            ],
+            [
+                "1503"
+            ],
+            [
+                "1505"
+            ],
+            [
+                "1506"
+            ],
+            [
+                "1507"
+            ],
+            [
+                "1508"
+            ],
+            [
+                "1509"
+            ],
+            [
+                "1510"
+            ],
+            [
+                "1511"
+            ],
+            [
+                "1512"
+            ],
+            [
+                "1514"
+            ],
+            [
+                "1515"
+            ],
+            [
+                "1517"
+            ],
+            [
+                "1518"
+            ],
+            [
+                "1519"
+            ],
+            [
+                "152"
+            ],
+            [
+                "1520"
+            ],
+            [
+                "1521"
+            ],
+            [
+                "1522"
+            ],
+            [
+                "1523"
+            ],
+            [
+                "1524"
+            ],
+            [
+                "1526"
+            ],
+            [
+                "1527"
+            ],
+            [
+                "1528"
+            ],
+            [
+                "153"
+            ],
+            [
+                "1532"
+            ],
+            [
+                "1534"
+            ],
+            [
+                "1538"
+            ],
+            [
+                "154"
+            ],
+            [
+                "1544"
+            ],
+            [
+                "1549"
+            ],
+            [
+                "155"
+            ],
+            [
+                "1551"
+            ],
+            [
+                "1555"
+            ],
+            [
+                "1556"
+            ],
+            [
+                "1559"
+            ],
+            [
+                "1561"
+            ],
+            [
+                "1562"
+            ],
+            [
+                "1564"
+            ],
+            [
+                "1566"
+            ],
+            [
+                "1567"
+            ],
+            [
+                "1569"
+            ],
+            [
+                "157"
+            ],
+            [
+                "1570"
+            ],
+            [
+                "1571"
+            ],
+            [
+                "1572"
+            ],
+            [
+                "1574"
+            ],
+            [
+                "1576"
+            ],
+            [
+                "1581"
+            ],
+            [
+                "1584"
+            ],
+            [
+                "1585"
+            ],
+            [
+                "1586"
+            ],
+            [
+                "1588"
+            ],
+            [
+                "1589"
+            ],
+            [
+                "159"
+            ],
+            [
+                "1591"
+            ],
+            [
+                "1594"
+            ],
+            [
+                "1595"
+            ],
+            [
+                "1599"
+            ],
+            [
+                "160"
+            ],
+            [
+                "161"
+            ],
+            [
+                "162"
+            ],
+            [
+                "164"
+            ],
+            [
+                "166"
+            ],
+            [
+                "167"
+            ],
+            [
+                "168"
+            ],
+            [
+                "170"
+            ],
+            [
+                "171"
+            ],
+            [
+                "172"
+            ],
+            [
+                "173"
+            ],
+            [
+                "174"
+            ],
+            [
+                "175"
+            ],
+            [
+                "177"
+            ],
+            [
+                "178"
+            ],
+            [
+                "179"
+            ],
+            [
+                "180"
+            ],
+            [
+                "181"
+            ],
+            [
+                "182"
+            ],
+            [
+                "183"
+            ],
+            [
+                "185"
+            ],
+            [
+                "186"
+            ],
+            [
+                "188"
+            ],
+            [
+                "189"
+            ],
+            [
+                "193"
+            ],
+            [
+                "194"
+            ],
+            [
+                "195"
+            ],
+            [
+                "196"
+            ],
+            [
+                "199"
+            ],
+            [
+                "207"
+            ],
+            [
+                "213"
+            ],
+            [
+                "215"
+            ],
+            [
+                "216"
+            ],
+            [
+                "220"
+            ],
+            [
+                "222"
+            ],
+            [
+                "223"
+            ],
+            [
+                "224"
+            ],
+            [
+                "226"
+            ],
+            [
+                "229"
+            ],
+            [
+                "230"
+            ],
+            [
+                "231"
+            ],
+            [
+                "233"
+            ],
+            [
+                "234"
+            ],
+            [
+                "235"
+            ],
+            [
+                "236"
+            ],
+            [
+                "238"
+            ],
+            [
+                "239"
+            ],
+            [
+                "240"
+            ],
+            [
+                "243"
+            ],
+            [
+                "245"
+            ],
+            [
+                "246"
+            ],
+            [
+                "247"
+            ],
+            [
+                "249"
+            ],
+            [
+                "250"
+            ],
+            [
+                "251"
+            ],
+            [
+                "253"
+            ],
+            [
+                "254"
+            ],
+            [
+                "257"
+            ],
+            [
+                "258"
+            ],
+            [
+                "259"
+            ],
+            [
+                "263"
+            ],
+            [
+                "264"
+            ],
+            [
+                "265"
+            ],
+            [
+                "266"
+            ],
+            [
+                "267"
+            ],
+            [
+                "268"
+            ],
+            [
+                "269"
+            ],
+            [
+                "270"
+            ],
+            [
+                "271"
+            ],
+            [
+                "273"
+            ],
+            [
+                "274"
+            ],
+            [
+                "275"
+            ],
+            [
+                "277"
+            ],
+            [
+                "279"
+            ],
+            [
+                "281"
+            ],
+            [
+                "282"
+            ],
+            [
+                "284"
+            ],
+            [
+                "288"
+            ],
+            [
+                "289"
+            ],
+            [
+                "290"
+            ],
+            [
+                "292"
+            ],
+            [
+                "294"
+            ],
+            [
+                "296"
+            ],
+            [
+                "299"
+            ],
+            [
+                "300"
+            ],
+            [
+                "304"
+            ],
+            [
+                "306"
+            ],
+            [
+                "307"
+            ],
+            [
+                "309"
+            ],
+            [
+                "310"
+            ],
+            [
+                "311"
+            ],
+            [
+                "312"
+            ],
+            [
+                "313"
+            ],
+            [
+                "316"
+            ],
+            [
+                "318"
+            ],
+            [
+                "320"
+            ],
+            [
+                "322"
+            ],
+            [
+                "328"
+            ],
+            [
+                "332"
+            ],
+            [
+                "334"
+            ],
+            [
+                "336"
+            ],
+            [
+                "337"
+            ],
+            [
+                "338"
+            ],
+            [
+                "339"
+            ],
+            [
+                "341"
+            ],
+            [
+                "345"
+            ],
+            [
+                "348"
+            ],
+            [
+                "349"
+            ],
+            [
+                "354"
+            ],
+            [
+                "355"
+            ],
+            [
+                "357"
+            ],
+            [
+                "360"
+            ],
+            [
+                "361"
+            ],
+            [
+                "362"
+            ],
+            [
+                "363"
+            ],
+            [
+                "364"
+            ],
+            [
+                "365"
+            ],
+            [
+                "366"
+            ],
+            [
+                "370"
+            ],
+            [
+                "371"
+            ],
+            [
+                "374"
+            ],
+            [
+                "375"
+            ],
+            [
+                "376"
+            ],
+            [
+                "378"
+            ],
+            [
+                "379"
+            ],
+            [
+                "381"
+            ],
+            [
+                "383"
+            ],
+            [
+                "384"
+            ],
+            [
+                "387"
+            ],
+            [
+                "388"
+            ],
+            [
+                "389"
+            ],
+            [
+                "390"
+            ],
+            [
+                "392"
+            ],
+            [
+                "393"
+            ],
+            [
+                "395"
+            ],
+            [
+                "399"
+            ],
+            [
+                "402"
+            ],
+            [
+                "403"
+            ],
+            [
+                "405"
+            ],
+            [
+                "406"
+            ],
+            [
+                "407"
+            ],
+            [
+                "408"
+            ],
+            [
+                "410"
+            ],
+            [
+                "413"
+            ],
+            [
+                "414"
+            ],
+            [
+                "416"
+            ],
+            [
+                "419"
+            ],
+            [
+                "420"
+            ],
+            [
+                "422"
+            ],
+            [
+                "424"
+            ],
+            [
+                "425"
+            ],
+            [
+                "427"
+            ],
+            [
+                "428"
+            ],
+            [
+                "430"
+            ],
+            [
+                "432"
+            ],
+            [
+                "433"
+            ],
+            [
+                "436"
+            ],
+            [
+                "437"
+            ],
+            [
+                "440"
+            ],
+            [
+                "442"
+            ],
+            [
+                "443"
+            ],
+            [
+                "444"
+            ],
+            [
+                "445"
+            ],
+            [
+                "449"
+            ],
+            [
+                "451"
+            ],
+            [
+                "452"
+            ],
+            [
+                "454"
+            ],
+            [
+                "455"
+            ],
+            [
+                "456"
+            ],
+            [
+                "457"
+            ],
+            [
+                "459"
+            ],
+            [
+                "460"
+            ],
+            [
+                "461"
+            ],
+            [
+                "463"
+            ],
+            [
+                "464"
+            ],
+            [
+                "465"
+            ],
+            [
+                "468"
+            ],
+            [
+                "469"
+            ],
+            [
+                "472"
+            ],
+            [
+                "473"
+            ],
+            [
+                "474"
+            ],
+            [
+                "475"
+            ],
+            [
+                "476"
+            ],
+            [
+                "477"
+            ],
+            [
+                "478"
+            ],
+            [
+                "479"
+            ],
+            [
+                "481"
+            ],
+            [
+                "483"
+            ],
+            [
+                "487"
+            ],
+            [
+                "488"
+            ],
+            [
+                "489"
+            ],
+            [
+                "490"
+            ],
+            [
+                "494"
+            ],
+            [
+                "497"
+            ],
+            [
+                "499"
+            ],
+            [
+                "500"
+            ],
+            [
+                "501"
+            ],
+            [
+                "504"
+            ],
+            [
+                "505"
+            ],
+            [
+                "507"
+            ],
+            [
+                "508"
+            ],
+            [
+                "509"
+            ],
+            [
+                "510"
+            ],
+            [
+                "512"
+            ],
+            [
+                "513"
+            ],
+            [
+                "514"
+            ],
+            [
+                "517"
+            ],
+            [
+                "518"
+            ],
+            [
+                "519"
+            ],
+            [
+                "523"
+            ],
+            [
+                "524"
+            ],
+            [
+                "525"
+            ],
+            [
+                "526"
+            ],
+            [
+                "527"
+            ],
+            [
+                "528"
+            ],
+            [
+                "529"
+            ],
+            [
+                "531"
+            ],
+            [
+                "532"
+            ],
+            [
+                "534"
+            ],
+            [
+                "536"
+            ],
+            [
+                "539"
+            ],
+            [
+                "540"
+            ],
+            [
+                "543"
+            ],
+            [
+                "544"
+            ],
+            [
+                "545"
+            ],
+            [
+                "546"
+            ],
+            [
+                "547"
+            ],
+            [
+                "548"
+            ],
+            [
+                "549"
+            ],
+            [
+                "550"
+            ],
+            [
+                "551"
+            ],
+            [
+                "552"
+            ],
+            [
+                "553"
+            ],
+            [
+                "554"
+            ],
+            [
+                "555"
+            ],
+            [
+                "557"
+            ],
+            [
+                "560"
+            ],
+            [
+                "561"
+            ],
+            [
+                "563"
+            ],
+            [
+                "564"
+            ],
+            [
+                "565"
+            ],
+            [
+                "566"
+            ],
+            [
+                "569"
+            ],
+            [
+                "570"
+            ],
+            [
+                "571"
+            ],
+            [
+                "573"
+            ],
+            [
+                "574"
+            ],
+            [
+                "575"
+            ],
+            [
+                "577"
+            ],
+            [
+                "579"
+            ],
+            [
+                "580"
+            ],
+            [
+                "581"
+            ],
+            [
+                "584"
+            ],
+            [
+                "588"
+            ],
+            [
+                "591"
+            ],
+            [
+                "595"
+            ],
+            [
+                "596"
+            ],
+            [
+                "597"
+            ],
+            [
+                "599"
+            ],
+            [
+                "601"
+            ],
+            [
+                "602"
+            ],
+            [
+                "603"
+            ],
+            [
+                "604"
+            ],
+            [
+                "605"
+            ],
+            [
+                "606"
+            ],
+            [
+                "607"
+            ],
+            [
+                "608"
+            ],
+            [
+                "610"
+            ],
+            [
+                "611"
+            ],
+            [
+                "613"
+            ],
+            [
+                "614"
+            ],
+            [
+                "615"
+            ],
+            [
+                "616"
+            ],
+            [
+                "617"
+            ],
+            [
+                "618"
+            ],
+            [
+                "625"
+            ],
+            [
+                "627"
+            ],
+            [
+                "630"
+            ],
+            [
+                "633"
+            ],
+            [
+                "634"
+            ],
+            [
+                "637"
+            ],
+            [
+                "638"
+            ],
+            [
+                "641"
+            ],
+            [
+                "643"
+            ],
+            [
+                "644"
+            ],
+            [
+                "647"
+            ],
+            [
+                "650"
+            ],
+            [
+                "651"
+            ],
+            [
+                "653"
+            ],
+            [
+                "655"
+            ],
+            [
+                "658"
+            ],
+            [
+                "659"
+            ],
+            [
+                "660"
+            ],
+            [
+                "662"
+            ],
+            [
+                "663"
+            ],
+            [
+                "664"
+            ],
+            [
+                "665"
+            ],
+            [
+                "666"
+            ],
+            [
+                "667"
+            ],
+            [
+                "668"
+            ],
+            [
+                "669"
+            ],
+            [
+                "670"
+            ],
+            [
+                "671"
+            ],
+            [
+                "674"
+            ],
+            [
+                "675"
+            ],
+            [
+                "676"
+            ],
+            [
+                "678"
+            ],
+            [
+                "679"
+            ],
+            [
+                "680"
+            ],
+            [
+                "681"
+            ],
+            [
+                "684"
+            ],
+            [
+                "688"
+            ],
+            [
+                "689"
+            ],
+            [
+                "690"
+            ],
+            [
+                "692"
+            ],
+            [
+                "693"
+            ],
+            [
+                "694"
+            ],
+            [
+                "695"
+            ],
+            [
+                "696"
+            ],
+            [
+                "698"
+            ],
+            [
+                "699"
+            ],
+            [
+                "700"
+            ],
+            [
+                "705"
+            ],
+            [
+                "706"
+            ],
+            [
+                "711"
+            ],
+            [
+                "712"
+            ],
+            [
+                "713"
+            ],
+            [
+                "715"
+            ],
+            [
+                "717"
+            ],
+            [
+                "720"
+            ],
+            [
+                "723"
+            ],
+            [
+                "724"
+            ],
+            [
+                "728"
+            ],
+            [
+                "732"
+            ],
+            [
+                "733"
+            ],
+            [
+                "734"
+            ],
+            [
+                "735"
+            ],
+            [
+                "736"
+            ],
+            [
+                "737"
+            ],
+            [
+                "738"
+            ],
+            [
+                "739"
+            ],
+            [
+                "740"
+            ],
+            [
+                "742"
+            ],
+            [
+                "743"
+            ],
+            [
+                "744"
+            ],
+            [
+                "745"
+            ],
+            [
+                "748"
+            ],
+            [
+                "750"
+            ],
+            [
+                "751"
+            ],
+            [
+                "752"
+            ],
+            [
+                "754"
+            ],
+            [
+                "755"
+            ],
+            [
+                "756"
+            ],
+            [
+                "757"
+            ],
+            [
+                "759"
+            ],
+            [
+                "762"
+            ],
+            [
+                "763"
+            ],
+            [
+                "764"
+            ],
+            [
+                "765"
+            ],
+            [
+                "766"
+            ],
+            [
+                "768"
+            ],
+            [
+                "770"
+            ],
+            [
+                "771"
+            ],
+            [
+                "774"
+            ],
+            [
+                "776"
+            ],
+            [
+                "779"
+            ],
+            [
+                "780"
+            ],
+            [
+                "781"
+            ],
+            [
+                "783"
+            ],
+            [
+                "786"
+            ],
+            [
+                "787"
+            ],
+            [
+                "788"
+            ],
+            [
+                "791"
+            ],
+            [
+                "792"
+            ],
+            [
+                "794"
+            ],
+            [
+                "795"
+            ],
+            [
+                "796"
+            ],
+            [
+                "797"
+            ],
+            [
+                "801"
+            ],
+            [
+                "802"
+            ],
+            [
+                "803"
+            ],
+            [
+                "805"
+            ],
+            [
+                "807"
+            ],
+            [
+                "808"
+            ],
+            [
+                "809"
+            ],
+            [
+                "810"
+            ],
+            [
+                "812"
+            ],
+            [
+                "813"
+            ],
+            [
+                "815"
+            ],
+            [
+                "816"
+            ],
+            [
+                "817"
+            ],
+            [
+                "819"
+            ],
+            [
+                "820"
+            ],
+            [
+                "822"
+            ],
+            [
+                "823"
+            ],
+            [
+                "824"
+            ],
+            [
+                "826"
+            ],
+            [
+                "828"
+            ],
+            [
+                "829"
+            ],
+            [
+                "831"
+            ],
+            [
+                "832"
+            ],
+            [
+                "836"
+            ],
+            [
+                "837"
+            ],
+            [
+                "838"
+            ],
+            [
+                "842"
+            ],
+            [
+                "843"
+            ],
+            [
+                "844"
+            ],
+            [
+                "845"
+            ],
+            [
+                "847"
+            ],
+            [
+                "848"
+            ],
+            [
+                "849"
+            ],
+            [
+                "850"
+            ],
+            [
+                "851"
+            ],
+            [
+                "852"
+            ],
+            [
+                "855"
+            ],
+            [
+                "860"
+            ],
+            [
+                "862"
+            ],
+            [
+                "864"
+            ],
+            [
+                "865"
+            ],
+            [
+                "866"
+            ],
+            [
+                "867"
+            ],
+            [
+                "868"
+            ],
+            [
+                "869"
+            ],
+            [
+                "870"
+            ],
+            [
+                "871"
+            ],
+            [
+                "874"
+            ],
+            [
+                "876"
+            ],
+            [
+                "881"
+            ],
+            [
+                "883"
+            ],
+            [
+                "884"
+            ],
+            [
+                "885"
+            ],
+            [
+                "887"
+            ],
+            [
+                "888"
+            ],
+            [
+                "889"
+            ],
+            [
+                "891"
+            ],
+            [
+                "893"
+            ],
+            [
+                "894"
+            ],
+            [
+                "896"
+            ],
+            [
+                "898"
+            ],
+            [
+                "899"
+            ],
+            [
+                "901"
+            ],
+            [
+                "903"
+            ],
+            [
+                "905"
+            ],
+            [
+                "908"
+            ],
+            [
+                "909"
+            ],
+            [
+                "910"
+            ],
+            [
+                "915"
+            ],
+            [
+                "916"
+            ],
+            [
+                "920"
+            ],
+            [
+                "921"
+            ],
+            [
+                "922"
+            ],
+            [
+                "923"
+            ],
+            [
+                "925"
+            ],
+            [
+                "926"
+            ],
+            [
+                "927"
+            ],
+            [
+                "929"
+            ],
+            [
+                "931"
+            ],
+            [
+                "932"
+            ],
+            [
+                "933"
+            ],
+            [
+                "936"
+            ],
+            [
+                "937"
+            ],
+            [
+                "941"
+            ],
+            [
+                "942"
+            ],
+            [
+                "944"
+            ],
+            [
+                "945"
+            ],
+            [
+                "948"
+            ],
+            [
+                "950"
+            ],
+            [
+                "953"
+            ],
+            [
+                "955"
+            ],
+            [
+                "957"
+            ],
+            [
+                "958"
+            ],
+            [
+                "959"
+            ],
+            [
+                "964"
+            ],
+            [
+                "965"
+            ],
+            [
+                "968"
+            ],
+            [
+                "969"
+            ],
+            [
+                "972"
+            ],
+            [
+                "973"
+            ],
+            [
+                "974"
+            ],
+            [
+                "975"
+            ],
+            [
+                "977"
+            ],
+            [
+                "980"
+            ],
+            [
+                "981"
+            ],
+            [
+                "984"
+            ],
+            [
+                "986"
+            ],
+            [
+                "987"
+            ],
+            [
+                "990"
+            ],
+            [
+                "991"
+            ],
+            [
+                "992"
+            ],
+            [
+                "994"
+            ],
+            [
+                "995"
+            ],
+            [
+                "996"
+            ],
+            [
+                "997"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "1000"
+                ],
+                [
+                    "1003"
+                ],
+                [
+                    "1006"
+                ],
+                [
+                    "1008"
+                ],
+                [
+                    "1017"
+                ],
+                [
+                    "1032"
+                ],
+                [
+                    "1037"
+                ],
+                [
+                    "104"
+                ],
+                [
+                    "1060"
+                ],
+                [
+                    "1078"
+                ],
+                [
+                    "1088"
+                ],
+                [
+                    "1089"
+                ],
+                [
+                    "1090"
+                ],
+                [
+                    "1094"
+                ],
+                [
+                    "1098"
+                ],
+                [
+                    "1112"
+                ],
+                [
+                    "1125"
+                ],
+                [
+                    "1135"
+                ],
+                [
+                    "1184"
+                ],
+                [
+                    "1190"
+                ],
+                [
+                    "1192"
+                ],
+                [
+                    "1206"
+                ],
+                [
+                    "1209"
+                ],
+                [
+                    "121"
+                ],
+                [
+                    "1217"
+                ],
+                [
+                    "122"
+                ],
+                [
+                    "1221"
+                ],
+                [
+                    "1224"
+                ],
+                [
+                    "1245"
+                ],
+                [
+                    "1257"
+                ],
+                [
+                    "1258"
+                ],
+                [
+                    "1259"
+                ],
+                [
+                    "1266"
+                ],
+                [
+                    "127"
+                ],
+                [
+                    "1273"
+                ],
+                [
+                    "1284"
+                ],
+                [
+                    "1309"
+                ],
+                [
+                    "1316"
+                ],
+                [
+                    "1320"
+                ],
+                [
+                    "1338"
+                ],
+                [
+                    "1341"
+                ],
+                [
+                    "1360"
+                ],
+                [
+                    "1366"
+                ],
+                [
+                    "1383"
+                ],
+                [
+                    "1384"
+                ],
+                [
+                    "1406"
+                ],
+                [
+                    "1416"
+                ],
+                [
+                    "1420"
+                ],
+                [
+                    "1429"
+                ],
+                [
+                    "1449"
+                ],
+                [
+                    "1455"
+                ],
+                [
+                    "1486"
+                ],
+                [
+                    "1500"
+                ],
+                [
+                    "1506"
+                ],
+                [
+                    "1509"
+                ],
+                [
+                    "1511"
+                ],
+                [
+                    "152"
+                ],
+                [
+                    "1561"
+                ],
+                [
+                    "1564"
+                ],
+                [
+                    "1584"
+                ],
+                [
+                    "1585"
+                ],
+                [
+                    "1586"
+                ],
+                [
+                    "159"
+                ],
+                [
+                    "166"
+                ],
+                [
+                    "177"
+                ],
+                [
+                    "181"
+                ],
+                [
+                    "188"
+                ],
+                [
+                    "193"
+                ],
+                [
+                    "195"
+                ],
+                [
+                    "196"
+                ],
+                [
+                    "216"
+                ],
+                [
+                    "222"
+                ],
+                [
+                    "229"
+                ],
+                [
+                    "231"
+                ],
+                [
+                    "233"
+                ],
+                [
+                    "238"
+                ],
+                [
+                    "240"
+                ],
+                [
+                    "249"
+                ],
+                [
+                    "257"
+                ],
+                [
+                    "259"
+                ],
+                [
+                    "271"
+                ],
+                [
+                    "277"
+                ],
+                [
+                    "279"
+                ],
+                [
+                    "281"
+                ],
+                [
+                    "282"
+                ],
+                [
+                    "289"
+                ],
+                [
+                    "304"
+                ],
+                [
+                    "311"
+                ],
+                [
+                    "318"
+                ],
+                [
+                    "334"
+                ],
+                [
+                    "336"
+                ],
+                [
+                    "337"
+                ],
+                [
+                    "345"
+                ],
+                [
+                    "349"
+                ],
+                [
+                    "376"
+                ],
+                [
+                    "387"
+                ],
+                [
+                    "402"
+                ],
+                [
+                    "422"
+                ],
+                [
+                    "430"
+                ],
+                [
+                    "442"
+                ],
+                [
+                    "449"
+                ],
+                [
+                    "460"
+                ],
+                [
+                    "464"
+                ],
+                [
+                    "465"
+                ],
+                [
+                    "479"
+                ],
+                [
+                    "483"
+                ],
+                [
+                    "499"
+                ],
+                [
+                    "507"
+                ],
+                [
+                    "512"
+                ],
+                [
+                    "514"
+                ],
+                [
+                    "527"
+                ],
+                [
+                    "531"
+                ],
+                [
+                    "536"
+                ],
+                [
+                    "544"
+                ],
+                [
+                    "548"
+                ],
+                [
+                    "551"
+                ],
+                [
+                    "560"
+                ],
+                [
+                    "566"
+                ],
+                [
+                    "569"
+                ],
+                [
+                    "580"
+                ],
+                [
+                    "596"
+                ],
+                [
+                    "613"
+                ],
+                [
+                    "615"
+                ],
+                [
+                    "616"
+                ],
+                [
+                    "643"
+                ],
+                [
+                    "678"
+                ],
+                [
+                    "680"
+                ],
+                [
+                    "690"
+                ],
+                [
+                    "694"
+                ],
+                [
+                    "735"
+                ],
+                [
+                    "737"
+                ],
+                [
+                    "752"
+                ],
+                [
+                    "754"
+                ],
+                [
+                    "755"
+                ],
+                [
+                    "776"
+                ],
+                [
+                    "783"
+                ],
+                [
+                    "796"
+                ],
+                [
+                    "797"
+                ],
+                [
+                    "805"
+                ],
+                [
+                    "813"
+                ],
+                [
+                    "824"
+                ],
+                [
+                    "849"
+                ],
+                [
+                    "894"
+                ],
+                [
+                    "896"
+                ],
+                [
+                    "903"
+                ],
+                [
+                    "909"
+                ],
+                [
+                    "929"
+                ],
+                [
+                    "944"
+                ],
+                [
+                    "957"
+                ],
+                [
+                    "968"
+                ],
+                [
+                    "977"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 198,
+        "template": 64,
+        "question": "What dosage was prescribed in medical record \"1349\"?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_POSITIVE"
+    },
+    {
+        "qid": 3,
+        "template": 0,
+        "question": "Give the patient id for appointment \"5668\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 21,
+        "template": 5,
+        "question": "Give the diagnosis and treatment on medical record \"569\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 118,
+        "template": 30,
+        "question": "Which of patient \"591\"'s appointments were paid by Insurance? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 37,
+        "template": 9,
+        "question": "List the ids of doctors who have appointments with patient \"737\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 48,
+        "template": 12,
+        "question": "Which wards has patient \"746\" occupied a bed in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 119,
+        "template": 30,
+        "question": "List the appointment ids for patient \"1242\" with Insurance as the payment mode.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 166,
+        "template": 52,
+        "question": "Which doctors have both performed a surgery and written a medical record? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 78,
+        "template": 20,
+        "question": "How many appointments does doctor \"1337\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 127,
+        "template": 33,
+        "question": "List the ids of medical records where nextVisit is null.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 25,
+        "template": 6,
+        "question": "Give the room number for room record \"500077\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 163,
+        "template": 50,
+        "question": "List the ids of patients appearing on both a surgery record and a bed record.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 45,
+        "template": 11,
+        "question": "List the ids of doctors who authored medical records for patient \"131\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 120,
+        "template": 30,
+        "question": "Which of patient \"1242\"'s appointments were paid by Insurance? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 59,
+        "template": 15,
+        "question": "Trace bed \"92\" through its ward to a department.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (b:Bed {bedNo: 92})-[:IN_WARD]->(w:Ward)-[:IN_DEPARTMENT]->(d:Department) RETURN b, w, d",
+        "query_ans": [
+            [
+                "{'bedNo': 92}",
+                "{'deptName': 'Gastroenterology', 'deptId': 103}",
+                "{'wardNo': 510, 'wardName': 'General Medicine Ward'}"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "Gastroenterology"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 102,
+        "template": 26,
+        "question": "How many appointments of patient \"1023\" were cancelled?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 108,
+        "template": 27,
+        "question": "How many female doctors are in Cardiology?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (:Department {deptName: \"Cardiology\"})<-[:BELONGS_TO]-(d:Doctor {gender: \"Female\"})\nRETURN COUNT(d) AS femaleDoctorCount",
+        "query_ans": [
+            [
+                "0"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "2"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 143,
+        "template": 40,
+        "question": "What department employs the largest number of doctors?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 82,
+        "template": 21,
+        "question": "How many surgeries has doctor \"1023\" performed?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 142,
+        "template": 40,
+        "question": "Which department has the most doctors?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 0,
+        "template": 0,
+        "question": "Which patient is appointment \"5920\" for?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (a:Appointment {appoIntmentId: 5920})-[:FOR_PATIENT]->(p:Patient) RETURN p.fName, p.lName, p.patientId",
+        "query_ans": [
+            [
+                "1006",
+                "Hafeez",
+                "Hussain"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "1006"
+                ]
+            ],
+            [
+                [
+                    "Hafeez",
+                    "Hussain"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 177,
+        "template": 57,
+        "question": "List the ids of nurses assisting a surgery where the operating doctor belongs to another department.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 27,
+        "template": 6,
+        "question": "Give the room number for room record \"500436\".",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (rr:RoomRecord {admissionId: 500436})-[:ASSIGNED_ROOM]->(r:Room) RETURN r.roomNo AS roomNo",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "530"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 56,
+        "template": 14,
+        "question": "In which rooms did patient \"469\" have surgery?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (p:Patient {patientId: 469})<-[:FOR_PATIENT]-(s:SurgeryRecord)-[:IN_ROOM]->(r:Room)\nRETURN r.roomNo, r.roomType",
+        "query_ans": [
+            [
+                "278",
+                "Operation Theatre"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "278"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 179,
+        "template": 58,
+        "question": "In Neurology, list the ids of doctors with over 1 appointment.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 30,
+        "template": 7,
+        "question": "Which bed was assigned on bed record \"100479\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 64,
+        "template": 16,
+        "question": "Which departments has patient \"641\" been seen in through appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 46,
+        "template": 12,
+        "question": "Which wards has patient \"1171\" occupied a bed in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 139,
+        "template": 38,
+        "question": "Per doctor in Endocrinology, give the appointment count.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(:Department {deptName: \"Endocrinology\"})\nRETURN d.doctId AS doctorId, d.fName AS firstName, d.lName AS lastName, COUNT {(d)<-[:WITH_DOCTOR]-(:Appointment)} AS appointmentCount",
+        "query_ans": [
+            [
+                "0",
+                "1025",
+                "Dr. Abdul",
+                "Haleem"
+            ],
+            [
+                "0",
+                "1026",
+                "Dr. Tania",
+                "Shaikh"
+            ],
+            [
+                "1024",
+                "107",
+                "Dr. Muhammad",
+                "Imran"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "1024",
+                    "107"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 11,
+        "template": 2,
+        "question": "What ward does bed \"407\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 159,
+        "template": 48,
+        "question": "List the room numbers with no surgery record attached.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 87,
+        "template": 22,
+        "question": "Count the doctors belonging to Nephrology.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 4,
+        "template": 1,
+        "question": "Which doctor is appointment \"5154\" with?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 147,
+        "template": 42,
+        "question": "Which doctor id appears on the most surgery records?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 77,
+        "template": 19,
+        "question": "Count the appointments booked for patient \"1350\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 137,
+        "template": 38,
+        "question": "Per doctor in General Medicine, give the appointment count.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(dept:Department {deptName: \"General Medicine\"})\nOPTIONAL MATCH (d)<-[:WITH_DOCTOR]-(a:Appointment)\nRETURN d.fName + ' ' + d.lName AS doctorName, count(a) AS appointmentCount\nORDER BY doctorName",
+        "query_ans": [
+            [
+                "0",
+                "Dr. Abdul Wahab Yousafzai"
+            ],
+            [
+                "0",
+                "Dr. Afsar Ali Bhatti"
+            ],
+            [
+                "0",
+                "Dr. Amjad Ali Bukhari"
+            ],
+            [
+                "0",
+                "Dr. Amna Tariq"
+            ],
+            [
+                "0",
+                "Dr. Aqeel Ahmed Shaikh"
+            ],
+            [
+                "0",
+                "Dr. Aqib Sohail"
+            ],
+            [
+                "0",
+                "Dr. Arsalan Ahmad"
+            ],
+            [
+                "0",
+                "Dr. Asad Akram Faruqi"
+            ],
+            [
+                "0",
+                "Dr. Ashraf Jamal"
+            ],
+            [
+                "0",
+                "Dr. Asim Ateeq"
+            ],
+            [
+                "0",
+                "Dr. Athar Niaz Rana"
+            ],
+            [
+                "0",
+                "Dr. Atta Ur Rehman"
+            ],
+            [
+                "0",
+                "Dr. Ayesha Ashfaq"
+            ],
+            [
+                "0",
+                "Dr. Azib Aftab"
+            ],
+            [
+                "0",
+                "Dr. Farouk Atiq Babri"
+            ],
+            [
+                "0",
+                "Dr. Fawad Ahmad Randhawa"
+            ],
+            [
+                "0",
+                "Dr. Ghulam Mujtaba Zafar"
+            ],
+            [
+                "0",
+                "Dr. Humayoon Sarwat"
+            ],
+            [
+                "0",
+                "Dr. Imran Ijaz Haider"
+            ],
+            [
+                "0",
+                "Dr. Imran Jawaid"
+            ],
+            [
+                "0",
+                "Dr. Javaid Iqbal Khattak"
+            ],
+            [
+                "0",
+                "Dr. Khawar Abbas"
+            ],
+            [
+                "0",
+                "Dr. Khawar Abbas Chaudhry"
+            ],
+            [
+                "0",
+                "Dr. Lubna Habib"
+            ],
+            [
+                "0",
+                "Dr. Mahmud Haider Javed"
+            ],
+            [
+                "0",
+                "Dr. Muhammad Ahmed Raza Butt"
+            ],
+            [
+                "0",
+                "Dr. Muhammad Amir"
+            ],
+            [
+                "0",
+                "Dr. Muhammad Imtiaz"
+            ],
+            [
+                "0",
+                "Dr. Muhammad Iqbal"
+            ],
+            [
+                "0",
+                "Dr. Muhammad Javid Bhutta"
+            ],
+            [
+                "0",
+                "Dr. Muhammad Moinuddin"
+            ],
+            [
+                "0",
+                "Dr. Muhammad Muzaffar Mahmood"
+            ],
+            [
+                "0",
+                "Dr. Muhammad Shahzad"
+            ],
+            [
+                "0",
+                "Dr. Muhammad Zubair"
+            ],
+            [
+                "0",
+                "Dr. Musab Riaz"
+            ],
+            [
+                "0",
+                "Dr. Rajesh Kumar Khatri"
+            ],
+            [
+                "0",
+                "Dr. Rashid Akram"
+            ],
+            [
+                "0",
+                "Dr. Rehan Bin Asif"
+            ],
+            [
+                "0",
+                "Dr. Rizwan Khan"
+            ],
+            [
+                "0",
+                "Dr. Saba Shabbir Sheikh"
+            ],
+            [
+                "0",
+                "Dr. Sarfraz Latif"
+            ],
+            [
+                "0",
+                "Dr. Seema Asif"
+            ],
+            [
+                "0",
+                "Dr. Shafiq Yasin"
+            ],
+            [
+                "0",
+                "Dr. Shahid Sami"
+            ],
+            [
+                "0",
+                "Dr. Syed Hassan Abid"
+            ],
+            [
+                "0",
+                "Dr. Tayyaba Iqbal"
+            ],
+            [
+                "0",
+                "Dr. Urooj Naz"
+            ],
+            [
+                "0",
+                "Dr. Zahid Iqbal"
+            ],
+            [
+                "0",
+                "Dr. Zahra Shah"
+            ],
+            [
+                "0",
+                "Dr. Zulfiqar Haider"
+            ],
+            [
+                "505",
+                "Dr. Raza Hasnain"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "1027",
+                    "505"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 157,
+        "template": 47,
+        "question": "List the ids of nurses with no surgery assistance recorded.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 125,
+        "template": 32,
+        "question": "Count the appointments whose mode is Online.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 185,
+        "template": 60,
+        "question": "List the ids of doctors whose gender is F and who appear on a surgery record.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 191,
+        "template": 62,
+        "question": "How many years of experience does doctor \"1004\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 123,
+        "template": 31,
+        "question": "List the ids of appointments whose status is No-Show.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 1,
+        "template": 0,
+        "question": "Give the patient id for appointment \"5920\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 130,
+        "template": 35,
+        "question": "How much was paid through each payment mode on appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 189,
+        "template": 61,
+        "question": "Which insurance provider covers patient \"216\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 156,
+        "template": 47,
+        "question": "Which nurses have never assisted a surgery? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 52,
+        "template": 13,
+        "question": "Which nurses assisted surgeries performed by doctor \"1175\"? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 5,
+        "template": 1,
+        "question": "Give the doctor id for appointment \"5321\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 35,
+        "template": 8,
+        "question": "Give the phone number recorded for nurse \"3405\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 188,
+        "template": 61,
+        "question": "What is the insurance policy number of patient \"484\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 88,
+        "template": 22,
+        "question": "How many doctors work in Rehabilitation?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 173,
+        "template": 55,
+        "question": "List the ids of nurses appearing on a surgery record and a bed record for the same patient.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 184,
+        "template": 60,
+        "question": "Which female doctors have performed at least one surgery? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 63,
+        "template": 16,
+        "question": "List the departments of the doctors patient \"214\" had appointments with.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 75,
+        "template": 19,
+        "question": "Count the appointments booked for patient \"1328\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 39,
+        "template": 9,
+        "question": "List the ids of doctors who have appointments with patient \"299\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 161,
+        "template": 49,
+        "question": "List the ids of doctors who appear on an appointment but on no staff shift.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 89,
+        "template": 22,
+        "question": "Count the doctors belonging to Immunology.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 176,
+        "template": 57,
+        "question": "Which nurses work in a different department from the doctor whose surgeries they assist? Give the nurse ids.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (nurse:Nurse)<-[:ASSISTED_BY_NURSE]-(surgery:SurgeryRecord)-[:PERFORMED_BY]->(doctor:Doctor)\nWHERE nurse.belongsto <> doctor.belongsto\nRETURN nurse.nurseId AS nurseId",
+        "errors": [
+            "warn: property key does not exist. The property `belongsto` does not exist in database `2c91ac24`. Verify that the spelling is correct.",
+            "warn: property key does not exist. The property `belongsto` does not exist in database `2c91ac24`. Verify that the spelling is correct."
+        ]
+    },
+    {
+        "qid": 182,
+        "template": 59,
+        "question": "Which patients have more than 2 completed appointments? Give their ids.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (p:Patient)<-[:FOR_PATIENT]-(a:Appointment {appointmentStatus: 'completed'})\nWITH p, COUNT(a) AS completedAppointments\nWHERE completedAppointments > 2\nRETURN p.patientId AS patientId",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "1003",
+                    "3"
+                ],
+                [
+                    "1006",
+                    "4"
+                ],
+                [
+                    "1068",
+                    "3"
+                ],
+                [
+                    "1258",
+                    "3"
+                ],
+                [
+                    "1266",
+                    "3"
+                ],
+                [
+                    "1316",
+                    "3"
+                ],
+                [
+                    "1384",
+                    "3"
+                ],
+                [
+                    "1500",
+                    "3"
+                ],
+                [
+                    "166",
+                    "3"
+                ],
+                [
+                    "181",
+                    "3"
+                ],
+                [
+                    "193",
+                    "3"
+                ],
+                [
+                    "249",
+                    "3"
+                ],
+                [
+                    "271",
+                    "3"
+                ],
+                [
+                    "3",
+                    "320"
+                ],
+                [
+                    "3",
+                    "336"
+                ],
+                [
+                    "3",
+                    "349"
+                ],
+                [
+                    "3",
+                    "449"
+                ],
+                [
+                    "3",
+                    "499"
+                ],
+                [
+                    "3",
+                    "548"
+                ],
+                [
+                    "3",
+                    "613"
+                ],
+                [
+                    "3",
+                    "653"
+                ],
+                [
+                    "3",
+                    "680"
+                ],
+                [
+                    "3",
+                    "694"
+                ],
+                [
+                    "3",
+                    "768"
+                ],
+                [
+                    "3",
+                    "894"
+                ],
+                [
+                    "3",
+                    "929"
+                ],
+                [
+                    "4",
+                    "483"
+                ],
+                [
+                    "5",
+                    "527"
+                ]
+            ],
+            [
+                [
+                    "1003"
+                ],
+                [
+                    "1006"
+                ],
+                [
+                    "1068"
+                ],
+                [
+                    "1258"
+                ],
+                [
+                    "1266"
+                ],
+                [
+                    "1316"
+                ],
+                [
+                    "1384"
+                ],
+                [
+                    "1500"
+                ],
+                [
+                    "166"
+                ],
+                [
+                    "181"
+                ],
+                [
+                    "193"
+                ],
+                [
+                    "249"
+                ],
+                [
+                    "271"
+                ],
+                [
+                    "320"
+                ],
+                [
+                    "336"
+                ],
+                [
+                    "349"
+                ],
+                [
+                    "449"
+                ],
+                [
+                    "483"
+                ],
+                [
+                    "499"
+                ],
+                [
+                    "527"
+                ],
+                [
+                    "548"
+                ],
+                [
+                    "613"
+                ],
+                [
+                    "653"
+                ],
+                [
+                    "680"
+                ],
+                [
+                    "694"
+                ],
+                [
+                    "768"
+                ],
+                [
+                    "894"
+                ],
+                [
+                    "929"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 51,
+        "template": 13,
+        "question": "List the ids of nurses who assisted in surgeries by doctor \"1172\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 131,
+        "template": 35,
+        "question": "Break down total appointment payments by mode of payment.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (a:Appointment)\nRETURN a.modeOfPayment, SUM(a.paymentAmount) AS totalPayment\nGROUP BY a.modeOfPayment",
+        "errors": [
+            "Invalid input 'GROUP': expected ',', 'ORDER BY', 'CALL', 'CREATE', 'LOAD CSV', 'DELETE', 'DETACH', 'FINISH', 'FOREACH', 'INSERT', 'LIMIT', 'MATCH', 'MERGE', 'NODETACH', 'OFFSET', 'OPTIONAL', 'REMOVE', 'RETURN', 'SET', 'SKIP', 'UNION', 'UNWIND', 'USE', 'WITH' or <EOF> (line 3, column 1 (offset: 83))\n\"GROUP BY a.modeOfPayment\"\n ^"
+        ]
+    },
+    {
+        "qid": 205,
+        "template": 65,
+        "question": "How much does room \"144\" cost per night?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 70,
+        "template": 18,
+        "question": "Which department was surgery \"10458\" carried out in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 96,
+        "template": 24,
+        "question": "What is the total amount patient \"1259\" paid across all appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 34,
+        "template": 8,
+        "question": "What is the contact number of nurse \"3167\"?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (n:Nurse {fName: \"3167\"}) RETURN n.conatctNo AS contactNo",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "+92 3172817006"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 148,
+        "template": 43,
+        "question": "Which department collected the most in appointment payments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 162,
+        "template": 50,
+        "question": "Which patients have had both a surgery and a bed record? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 200,
+        "template": 64,
+        "question": "What dosage was prescribed in medical record \"212\"?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_POSITIVE"
+    },
+    {
+        "qid": 103,
+        "template": 26,
+        "question": "Count the cancelled appointments for patient \"1152\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 141,
+        "template": 39,
+        "question": "Which doctor id appears on the highest number of appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 113,
+        "template": 28,
+        "question": "Count the appointments whose reason is Chest Pain.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 197,
+        "template": 63,
+        "question": "What is the blood type of patient \"1023\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 85,
+        "template": 21,
+        "question": "Count the surgery records for doctor \"1023\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 190,
+        "template": 62,
+        "question": "What is the salary of doctor \"1376\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 10,
+        "template": 2,
+        "question": "Which ward is bed \"303\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 19,
+        "template": 4,
+        "question": "What is the department of doctor \"1298\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 20,
+        "template": 5,
+        "question": "What diagnosis and treatment are recorded in medical record \"569\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 135,
+        "template": 37,
+        "question": "Break down the bed count by ward.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 66,
+        "template": 17,
+        "question": "Which departments did patient \"1207\" stay in, going by their room records?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 151,
+        "template": 44,
+        "question": "What ward contains the largest number of beds?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 86,
+        "template": 22,
+        "question": "How many doctors work in Surgery?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 105,
+        "template": 26,
+        "question": "Count the cancelled appointments for patient \"594\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 112,
+        "template": 28,
+        "question": "How many appointments were booked for Chest Pain?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 31,
+        "template": 7,
+        "question": "Give the bed number for bed record \"100095\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 153,
+        "template": 45,
+        "question": "List the ids of patients with no appointment booked.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (p:Patient)\nWHERE NOT (p)--[:FOR_PATIENT]->(:Appointment)\nRETURN p.patientId",
+        "errors": [
+            "Invalid input ':': expected an expression (line 2, column 17 (offset: 34))\n\"WHERE NOT (p)--[:FOR_PATIENT]->(:Appointment)\"\n                 ^"
+        ]
+    },
+    {
+        "qid": 106,
+        "template": 27,
+        "question": "How many female doctors are in Psychiatry?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (:Department {deptName: \"Psychiatry\"})<-[:BELONGS_TO]-(d:Doctor {gender: \"Female\"}) RETURN count(d) AS countFemaleDoctors",
+        "query_ans": [
+            [
+                "0"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "4"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 62,
+        "template": 16,
+        "question": "Which departments has patient \"876\" been seen in through appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 91,
+        "template": 23,
+        "question": "Count the beds belonging to the Geriatrics Ward.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (:Ward {wardName: \"Geriatrics\"})<-[:IN_WARD]-(:Bed) RETURN count(*) AS bedCount",
+        "query_ans": [
+            [
+                "0"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "19"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 29,
+        "template": 7,
+        "question": "Give the bed number for bed record \"100479\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 28,
+        "template": 7,
+        "question": "Which bed was assigned on bed record \"100697\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 17,
+        "template": 4,
+        "question": "What is the department of doctor \"1289\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 152,
+        "template": 45,
+        "question": "Which patients have no appointments at all? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 145,
+        "template": 41,
+        "question": "Which patient id appears on the highest number of appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 183,
+        "template": 59,
+        "question": "List the ids of patients with over 2 appointments in Completed status.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 172,
+        "template": 55,
+        "question": "Which nurses have both assisted a surgery and been assigned to a bed record for the same patient? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 53,
+        "template": 13,
+        "question": "List the ids of nurses who assisted in surgeries by doctor \"1161\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 43,
+        "template": 11,
+        "question": "List the ids of doctors who authored medical records for patient \"785\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 23,
+        "template": 5,
+        "question": "Give the diagnosis and treatment on medical record \"635\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 60,
+        "template": 15,
+        "question": "Which department is bed \"116\" ultimately in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 149,
+        "template": 43,
+        "question": "What department has the highest total appointment revenue?",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (a:Appointment)-[:FOR_PATIENT]->(:Patient)\nWITH a.appointmentDate, a.paymentAmount, (a:Appointment) AS app\nMATCH (app)-[:WITH_DOCTOR]->(d:Doctor)-[:BELONGS_TO]->(dept:Department)\nRETURN dept.deptName AS departmentName, SUM(app.paymentAmount) AS totalRevenue\nORDER BY totalRevenue DESC\nLIMIT 1",
+        "errors": [
+            "Expression in WITH must be aliased (use AS) (line 2, column 6 (offset: 54))\n\"WITH a.appointmentDate, a.paymentAmount, (a:Appointment) AS app\"\n      ^"
+        ]
+    },
+    {
+        "qid": 165,
+        "template": 51,
+        "question": "List the ids of patients who appear on a room record and on an appointment.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 168,
+        "template": 53,
+        "question": "Which nurses have been assigned to both a bed record and a room record? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 58,
+        "template": 15,
+        "question": "Which department is bed \"80\" ultimately in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 44,
+        "template": 11,
+        "question": "Which doctors wrote medical records for patient \"229\"? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 110,
+        "template": 28,
+        "question": "How many appointments were booked for Migraine?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 129,
+        "template": 34,
+        "question": "Break down the appointment count by status.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 204,
+        "template": 65,
+        "question": "What floor is room \"144\" on?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 74,
+        "template": 19,
+        "question": "How many appointments does patient \"785\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 187,
+        "template": 61,
+        "question": "Which insurance provider covers patient \"889\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 196,
+        "template": 63,
+        "question": "What is the email address of patient \"1023\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 95,
+        "template": 24,
+        "question": "Sum the payment amounts on appointments for patient \"1122\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 195,
+        "template": 63,
+        "question": "What is the blood type of patient \"1031\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 57,
+        "template": 14,
+        "question": "List the room numbers where patient \"741\" was operated on.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 180,
+        "template": 58,
+        "question": "Which doctors in Neurology have more than 1 appointment? Give their ids.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(:Department {deptName: \"Neurology\"})-[:IN_DEPARTMENT]->(:Room)<-[:IN_ROOM]-(:SurgeryRecord)<-[:PERFORMED_BY]-(:SurgeryRecord)<-[:WITH_DOCTOR]-(:Appointment)\nWITH d, count(*) AS appointmentCount\nWHERE appointmentCount > 1\nRETURN d.doctId AS doctorId",
+        "errors": [
+            "No relationship [:PERFORMED_BY] between (:SurgeryRecord) and (:SurgeryRecord) in either direction; these labels are connected by: (:SurgeryRecord)-[:ASSISTED_BY_HELPER]->(:Helper), (:SurgeryRecord)-[:ASSISTED_BY_NURSE]->(:Nurse), (:SurgeryRecord)-[:FOR_PATIENT]->(:Patient), (:SurgeryRecord)-[:IN_ROOM]->(:Room), (:SurgeryRecord)-[:PERFORMED_BY]->(:Doctor)"
+        ]
+    },
+    {
+        "qid": 54,
+        "template": 14,
+        "question": "In which rooms did patient \"309\" have surgery?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 121,
+        "template": 30,
+        "question": "List the appointment ids for patient \"175\" with Insurance as the payment mode.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 150,
+        "template": 44,
+        "question": "Which ward has the most beds?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (bed:Bed)-[:IN_WARD]->(ward:Ward)\nRETURN ward.wardName, COUNT(bed) AS bedCount\nORDER BY bedCount DESC\nLIMIT 1",
+        "query_ans": [
+            [
+                "150",
+                "General Medicine Ward"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "Surgical Ward"
+                ]
+            ],
+            [
+                [
+                    "16",
+                    "Surgical Ward"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 33,
+        "template": 8,
+        "question": "Give the phone number recorded for nurse \"3001\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 93,
+        "template": 23,
+        "question": "Count the beds belonging to the Post-Anesthesia Care Unit.",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_NEGATIVE"
+    },
+    {
+        "qid": 111,
+        "template": 28,
+        "question": "Count the appointments whose reason is Fever.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 126,
+        "template": 33,
+        "question": "Which medical records have no next visit scheduled? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 109,
+        "template": 27,
+        "question": "Count the doctors in Audiology & Speech whose gender is F.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 199,
+        "template": 64,
+        "question": "Which pharmacy filled the prescription for medical record \"212\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 134,
+        "template": 37,
+        "question": "How many beds does each ward have?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (w:Ward)<-[:IN_WARD]-(b:Bed)\nRETURN w.wardNo AS wardNo, w.wardName AS wardName, COUNT(b) AS bedCount\nORDER BY w.wardNo",
+        "query_ans": [
+            [
+                "10",
+                "511",
+                "General Medicine Ward"
+            ],
+            [
+                "10",
+                "513",
+                "General Medicine Ward"
+            ],
+            [
+                "10",
+                "519",
+                "General Medicine Ward"
+            ],
+            [
+                "10",
+                "536",
+                "Surgical Ward"
+            ],
+            [
+                "10",
+                "537",
+                "Surgical Ward"
+            ],
+            [
+                "10",
+                "539",
+                "Surgical Ward"
+            ],
+            [
+                "10",
+                "555",
+                "General Medicine Ward"
+            ],
+            [
+                "10",
+                "556",
+                "Psychiatry Ward"
+            ],
+            [
+                "10",
+                "557",
+                "General Medicine Ward"
+            ],
+            [
+                "10",
+                "558",
+                "ICU"
+            ],
+            [
+                "10",
+                "559",
+                "ICU"
+            ],
+            [
+                "10",
+                "560",
+                "ICU"
+            ],
+            [
+                "10",
+                "561",
+                "Geriatrics Ward"
+            ],
+            [
+                "12",
+                "508",
+                "ICU"
+            ],
+            [
+                "12",
+                "512",
+                "General Medicine Ward"
+            ],
+            [
+                "12",
+                "540",
+                "General Medicine Ward"
+            ],
+            [
+                "14",
+                "510",
+                "General Medicine Ward"
+            ],
+            [
+                "15",
+                "501",
+                "ICU"
+            ],
+            [
+                "16",
+                "538",
+                "Surgical Ward"
+            ],
+            [
+                "4",
+                "532",
+                "Psychiatry Ward"
+            ],
+            [
+                "5",
+                "523",
+                "Pediatrics Ward"
+            ],
+            [
+                "5",
+                "524",
+                "Orthopedics Ward"
+            ],
+            [
+                "5",
+                "531",
+                "Psychiatry Ward"
+            ],
+            [
+                "502",
+                "8",
+                "Cardiology Ward"
+            ],
+            [
+                "503",
+                "8",
+                "Cardiology Ward"
+            ],
+            [
+                "504",
+                "8",
+                "ICU"
+            ],
+            [
+                "505",
+                "6",
+                "Cardiology Ward"
+            ],
+            [
+                "506",
+                "6",
+                "Neurology Ward"
+            ],
+            [
+                "507",
+                "8",
+                "Neurology Ward"
+            ],
+            [
+                "509",
+                "8",
+                "Neurology Ward"
+            ],
+            [
+                "514",
+                "8",
+                "Isolation Ward"
+            ],
+            [
+                "515",
+                "8",
+                "General Medicine Ward"
+            ],
+            [
+                "516",
+                "6",
+                "General Medicine Ward"
+            ],
+            [
+                "517",
+                "6",
+                "General Medicine Ward"
+            ],
+            [
+                "518",
+                "8",
+                "General Medicine Ward"
+            ],
+            [
+                "520",
+                "8",
+                "General Medicine Ward"
+            ],
+            [
+                "521",
+                "6",
+                "Pediatrics Ward"
+            ],
+            [
+                "522",
+                "6",
+                "Pediatrics Ward"
+            ],
+            [
+                "525",
+                "6",
+                "Orthopedics Ward"
+            ],
+            [
+                "526",
+                "6",
+                "Obstetrics & Gynecology Ward"
+            ],
+            [
+                "527",
+                "6",
+                "Obstetrics & Gynecology Ward"
+            ],
+            [
+                "528",
+                "9",
+                "Obstetrics & Gynecology Ward"
+            ],
+            [
+                "529",
+                "8",
+                "General Medicine Ward"
+            ],
+            [
+                "530",
+                "6",
+                "General Medicine Ward"
+            ],
+            [
+                "533",
+                "6",
+                "Psychiatry Ward"
+            ],
+            [
+                "534",
+                "6",
+                "Psychiatry Ward"
+            ],
+            [
+                "535",
+                "6",
+                "Surgical Ward"
+            ],
+            [
+                "541",
+                "6",
+                "ICU"
+            ],
+            [
+                "542",
+                "8",
+                "Oncology Ward"
+            ],
+            [
+                "543",
+                "8",
+                "Oncology Ward"
+            ],
+            [
+                "544",
+                "8",
+                "Oncology Ward"
+            ],
+            [
+                "545",
+                "6",
+                "Isolation Ward"
+            ],
+            [
+                "546",
+                "6",
+                "Post-Anesthesia Care Unit"
+            ],
+            [
+                "547",
+                "6",
+                "Emergency Ward"
+            ],
+            [
+                "548",
+                "8",
+                "Emergency Ward"
+            ],
+            [
+                "549",
+                "8",
+                "Emergency Ward"
+            ],
+            [
+                "550",
+                "6",
+                "General Medicine Ward"
+            ],
+            [
+                "551",
+                "6",
+                "Rehabilitation Ward"
+            ],
+            [
+                "552",
+                "6",
+                "Isolation Ward"
+            ],
+            [
+                "553",
+                "6",
+                "Isolation Ward"
+            ],
+            [
+                "554",
+                "6",
+                "General Medicine Ward"
+            ],
+            [
+                "562",
+                "9",
+                "Geriatrics Ward"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "11",
+                    "Orthopedics Ward"
+                ],
+                [
+                    "150",
+                    "General Medicine Ward"
+                ],
+                [
+                    "17",
+                    "Pediatrics Ward"
+                ],
+                [
+                    "19",
+                    "Geriatrics Ward"
+                ],
+                [
+                    "21",
+                    "Obstetrics & Gynecology Ward"
+                ],
+                [
+                    "22",
+                    "Cardiology Ward"
+                ],
+                [
+                    "22",
+                    "Emergency Ward"
+                ],
+                [
+                    "22",
+                    "Neurology Ward"
+                ],
+                [
+                    "24",
+                    "Oncology Ward"
+                ],
+                [
+                    "26",
+                    "Isolation Ward"
+                ],
+                [
+                    "31",
+                    "Psychiatry Ward"
+                ],
+                [
+                    "52",
+                    "Surgical Ward"
+                ],
+                [
+                    "6",
+                    "Post-Anesthesia Care Unit"
+                ],
+                [
+                    "6",
+                    "Rehabilitation Ward"
+                ],
+                [
+                    "71",
+                    "ICU"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 16,
+        "template": 4,
+        "question": "Which department does doctor \"1298\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 144,
+        "template": 41,
+        "question": "Which patient has the most appointments? Give their id.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 146,
+        "template": 42,
+        "question": "Which doctor has performed the most surgeries? Give their id.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (d:Doctor)<-[:PERFORMED_BY]-(s:SurgeryRecord)\nRETURN d.doctId\nORDER BY COUNT(s) DESC\nLIMIT 1",
+        "errors": [
+            "Cannot use aggregation in ORDER BY if there are no aggregate expressions in the preceding RETURN (line 2, column 1 (offset: 52))\n\"RETURN d.doctId\"\n ^"
+        ]
+    },
+    {
+        "qid": 13,
+        "template": 3,
+        "question": "What department does room \"207\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 193,
+        "template": 62,
+        "question": "How many years of experience does doctor \"1205\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 22,
+        "template": 5,
+        "question": "What diagnosis and treatment are recorded in medical record \"635\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 41,
+        "template": 10,
+        "question": "List the ids of patients booked with doctor \"1004\".",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (p:Patient)<-[:FOR_PATIENT]-(a:Appointment {appointmentId: 1004}) \nRETURN p.patientId;",
+        "errors": [
+            "warn: property key does not exist. The property `appointmentId` does not exist in database `2c91ac24`. Verify that the spelling is correct."
+        ]
+    },
+    {
+        "qid": 69,
+        "template": 17,
+        "question": "List the departments of the rooms assigned to patient \"751\".",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (p:Patient {patientId: 751})<-[:FOR_PATIENT]-(rr:RoomRecord)-[:ASSIGNED_ROOM]->(r:Room)-[:IN_DEPARTMENT]->(d:Department)\nRETURN d.deptId, d.deptName",
+        "query_ans": [
+            [
+                "114",
+                "Psychology"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "Psychology"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 49,
+        "template": 12,
+        "question": "List the wards where patient \"1171\" was assigned a bed.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 2,
+        "template": 0,
+        "question": "Which patient is appointment \"5668\" for?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 128,
+        "template": 34,
+        "question": "How many appointments are there of each status?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 104,
+        "template": 26,
+        "question": "How many appointments of patient \"1152\" were cancelled?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 92,
+        "template": 23,
+        "question": "How many beds are in the Geriatrics Ward?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (:Ward {wardName: \"Geriatrics\"})<-[:IN_WARD]-(:Bed)\nRETURN count(*) AS bedCount",
+        "query_ans": [
+            [
+                "0"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "19"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 12,
+        "template": 3,
+        "question": "Which department is room \"207\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 140,
+        "template": 39,
+        "question": "Which doctor has the most appointments? Give their id.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (:Doctor)<-[:WITH_DOCTOR]-(a:Appointment)\nWITH a.doctId AS doctorId, count(a) AS appointmentCount\nRETURN doctorId\nORDER BY appointmentCount DESC\nLIMIT 1",
+        "query_ans": [
+            [
+                "None"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "1027"
+                ]
+            ],
+            [
+                [
+                    "1027",
+                    "505"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 94,
+        "template": 24,
+        "question": "What is the total amount patient \"434\" paid across all appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 203,
+        "template": 65,
+        "question": "How much does room \"234\" cost per night?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 40,
+        "template": 10,
+        "question": "Which patients have appointments with doctor \"1004\"? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 81,
+        "template": 20,
+        "question": "Count the appointments assigned to doctor \"1134\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 160,
+        "template": 49,
+        "question": "Which doctors have appointments but no staff shift assigned? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 14,
+        "template": 3,
+        "question": "Which department is room \"325\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 178,
+        "template": 58,
+        "question": "Which doctors in General Medicine have more than 1 appointment? Give their ids.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(:Department {deptName: \"General Medicine\"})-[:IN_DEPARTMENT]->(:Room)<-[:IN_ROOM]-(a:Appointment)\nWITH d, COUNT(a) AS appointmentCount\nWHERE appointmentCount > 1\nRETURN d.doctId AS doctorId",
+        "errors": [
+            "No relationship [:IN_ROOM] between (:Appointment) and (:Room) in either direction; [:IN_ROOM] only connects: (:SurgeryRecord)-[:IN_ROOM]->(:Room)"
+        ]
+    },
+    {
+        "qid": 138,
+        "template": 38,
+        "question": "For each doctor in Pulmonology, how many appointments do they have?",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(:Department {deptName: \"Pulmonology\"})-[:IN_DEPARTMENT]->(:Department)<-[:IN_DEPARTMENT]-(d)\nWITH d\nMATCH (d)-[:WITH_DOCTOR]->(a:Appointment)\nRETURN d.doctId AS doctorId, d.fName AS firstName, d.lName AS lastName, COUNT(a) AS appointmentCount",
+        "errors": [
+            "No relationship [:IN_DEPARTMENT] between (:Department) and (:Department) in either direction; these labels are connected by: (:Doctor)-[:BELONGS_TO]->(:Department), (:Helper)-[:BELONGS_TO]->(:Department), (:Nurse)-[:BELONGS_TO]->(:Department), (:Room)-[:IN_DEPARTMENT]->(:Department), (:Ward)-[:IN_DEPARTMENT]->(:Department)"
+        ]
+    },
+    {
+        "qid": 167,
+        "template": 52,
+        "question": "List the ids of doctors appearing on both a surgery record and a medical record.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 9,
+        "template": 2,
+        "question": "What ward does bed \"55\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 80,
+        "template": 20,
+        "question": "How many appointments does doctor \"1254\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 192,
+        "template": 62,
+        "question": "What is the salary of doctor \"1205\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 55,
+        "template": 14,
+        "question": "List the room numbers where patient \"523\" was operated on.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 186,
+        "template": 61,
+        "question": "What is the insurance policy number of patient \"1091\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 114,
+        "template": 29,
+        "question": "What is the total payment collected on appointments in Homeopathy?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_NEGATIVE"
+    },
+    {
+        "qid": 7,
+        "template": 1,
+        "question": "Give the doctor id for appointment \"5121\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 171,
+        "template": 54,
+        "question": "List the ids of helpers appearing on both a surgery record and a bed record.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 8,
+        "template": 2,
+        "question": "Which ward is bed \"55\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 175,
+        "template": 56,
+        "question": "List the ids of patients whose appointment doctors span at least two departments.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 202,
+        "template": 65,
+        "question": "What floor is room \"15\" on?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 100,
+        "template": 25,
+        "question": "How many completed appointments does doctor \"1250\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 76,
+        "template": 19,
+        "question": "How many appointments does patient \"1328\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 15,
+        "template": 3,
+        "question": "What department does room \"245\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 26,
+        "template": 6,
+        "question": "Which room was assigned on room record \"500436\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 122,
+        "template": 31,
+        "question": "Which appointments were no-shows? Give their ids.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (a:Appointment)-[:FOR_PATIENT]->(:Patient)\nWHERE a.appointmentStatus = 'no-show'\nRETURN a.appoIntmentId AS appoIntmentId",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "5023"
+                ],
+                [
+                    "5025"
+                ],
+                [
+                    "5040"
+                ],
+                [
+                    "5041"
+                ],
+                [
+                    "5043"
+                ],
+                [
+                    "5049"
+                ],
+                [
+                    "5063"
+                ],
+                [
+                    "5065"
+                ],
+                [
+                    "5079"
+                ],
+                [
+                    "5111"
+                ],
+                [
+                    "5126"
+                ],
+                [
+                    "5128"
+                ],
+                [
+                    "5147"
+                ],
+                [
+                    "5158"
+                ],
+                [
+                    "5180"
+                ],
+                [
+                    "5193"
+                ],
+                [
+                    "5201"
+                ],
+                [
+                    "5206"
+                ],
+                [
+                    "5213"
+                ],
+                [
+                    "5231"
+                ],
+                [
+                    "5238"
+                ],
+                [
+                    "5240"
+                ],
+                [
+                    "5250"
+                ],
+                [
+                    "5269"
+                ],
+                [
+                    "5274"
+                ],
+                [
+                    "5283"
+                ],
+                [
+                    "5287"
+                ],
+                [
+                    "5293"
+                ],
+                [
+                    "5325"
+                ],
+                [
+                    "5336"
+                ],
+                [
+                    "5346"
+                ],
+                [
+                    "5353"
+                ],
+                [
+                    "5354"
+                ],
+                [
+                    "5369"
+                ],
+                [
+                    "5372"
+                ],
+                [
+                    "5390"
+                ],
+                [
+                    "5391"
+                ],
+                [
+                    "5397"
+                ],
+                [
+                    "5428"
+                ],
+                [
+                    "5433"
+                ],
+                [
+                    "5435"
+                ],
+                [
+                    "5440"
+                ],
+                [
+                    "5443"
+                ],
+                [
+                    "5451"
+                ],
+                [
+                    "5474"
+                ],
+                [
+                    "5485"
+                ],
+                [
+                    "5495"
+                ],
+                [
+                    "5501"
+                ],
+                [
+                    "5505"
+                ],
+                [
+                    "5513"
+                ],
+                [
+                    "5523"
+                ],
+                [
+                    "5544"
+                ],
+                [
+                    "5551"
+                ],
+                [
+                    "5559"
+                ],
+                [
+                    "5569"
+                ],
+                [
+                    "5570"
+                ],
+                [
+                    "5607"
+                ],
+                [
+                    "5616"
+                ],
+                [
+                    "5621"
+                ],
+                [
+                    "5624"
+                ],
+                [
+                    "5631"
+                ],
+                [
+                    "5651"
+                ],
+                [
+                    "5659"
+                ],
+                [
+                    "5664"
+                ],
+                [
+                    "5665"
+                ],
+                [
+                    "5666"
+                ],
+                [
+                    "5677"
+                ],
+                [
+                    "5693"
+                ],
+                [
+                    "5700"
+                ],
+                [
+                    "5711"
+                ],
+                [
+                    "5726"
+                ],
+                [
+                    "5755"
+                ],
+                [
+                    "5760"
+                ],
+                [
+                    "5766"
+                ],
+                [
+                    "5773"
+                ],
+                [
+                    "5778"
+                ],
+                [
+                    "5779"
+                ],
+                [
+                    "5797"
+                ],
+                [
+                    "5801"
+                ],
+                [
+                    "5810"
+                ],
+                [
+                    "5816"
+                ],
+                [
+                    "5819"
+                ],
+                [
+                    "5824"
+                ],
+                [
+                    "5831"
+                ],
+                [
+                    "5835"
+                ],
+                [
+                    "5865"
+                ],
+                [
+                    "5871"
+                ],
+                [
+                    "5879"
+                ],
+                [
+                    "5886"
+                ],
+                [
+                    "5891"
+                ],
+                [
+                    "5901"
+                ],
+                [
+                    "5905"
+                ],
+                [
+                    "5906"
+                ],
+                [
+                    "5924"
+                ],
+                [
+                    "5930"
+                ],
+                [
+                    "5953"
+                ],
+                [
+                    "5959"
+                ],
+                [
+                    "5968"
+                ],
+                [
+                    "5976"
+                ],
+                [
+                    "5985"
+                ],
+                [
+                    "5991"
+                ],
+                [
+                    "5993"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 79,
+        "template": 20,
+        "question": "Count the appointments assigned to doctor \"1057\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 61,
+        "template": 15,
+        "question": "Trace bed \"116\" through its ward to a department.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (b:Bed {bedNo: 116})-[:IN_WARD]->(w:Ward)-[:IN_DEPARTMENT]->(d:Department) RETURN d.deptName, w.wardName, b.bedNo",
+        "query_ans": [
+            [
+                "116",
+                "General Medicine Ward",
+                "Pulmonology"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "Pulmonology"
+                ]
+            ]
+        ]
+    }
+]

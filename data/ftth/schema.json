@@ -1,0 +1,269 @@
+{
+    "nodes": [
+        "(:CABIN) capacity: INTEGER, name: STRING, street: STRING",
+        "(:CARD) card_type: STRING, name: STRING, slot: INTEGER",
+        "(:OLT) capacity: INTEGER, model: STRING, name: STRING, vendor: STRING",
+        "(:ONT) install_date: DATE, name: STRING, signal_dbm: FLOAT, status: STRING",
+        "(:PON_PORT) name: STRING",
+        "(:PORT) admin_state: STRING, name: STRING, slot: INTEGER",
+        "(:SITE) name: STRING",
+        "(:SPLITTER) install_date: DATE, name: STRING, split_ratio: INTEGER",
+        "(:SUB_SPLITTER) name: STRING, split_ratio: INTEGER"
+    ],
+    "relations": [
+        "(:BACKUP_FOR) ",
+        "(:CONNECTS_TO) ",
+        "(:IN_SITE) "
+    ],
+    "connections": [
+        "(:CABIN)-[:BACKUP_FOR*1..]->(:CABIN)",
+        "(:CABIN)-[:BACKUP_FOR]->(:CABIN)",
+        "(:CABIN)-[:CONNECTS_TO*2]->(:PON_PORT)",
+        "(:CABIN)-[:CONNECTS_TO*3]->(:PORT)",
+        "(:CABIN)-[:CONNECTS_TO*4]->(:CARD)",
+        "(:CABIN)-[:CONNECTS_TO*5]->(:OLT)",
+        "(:CABIN)-[:CONNECTS_TO]->(:SPLITTER)",
+        "(:CARD)-[:CONNECTS_TO]->(:OLT)",
+        "(:OLT)-[:IN_SITE]->(:SITE)",
+        "(:ONT)-[:CONNECTS_TO*1..2]->(:SPLITTER)",
+        "(:ONT)-[:CONNECTS_TO*2..3]->(:PON_PORT)",
+        "(:ONT)-[:CONNECTS_TO*2]->(:PON_PORT)",
+        "(:ONT)-[:CONNECTS_TO*2]->(:SPLITTER)",
+        "(:ONT)-[:CONNECTS_TO*3..4]->(:PORT)",
+        "(:ONT)-[:CONNECTS_TO*3]->(:PON_PORT)",
+        "(:ONT)-[:CONNECTS_TO*3]->(:PORT)",
+        "(:ONT)-[:CONNECTS_TO*4..5]->(:CARD)",
+        "(:ONT)-[:CONNECTS_TO*4]->(:CARD)",
+        "(:ONT)-[:CONNECTS_TO*4]->(:PORT)",
+        "(:ONT)-[:CONNECTS_TO*5..6]->(:OLT)",
+        "(:ONT)-[:CONNECTS_TO*5]->(:CARD)",
+        "(:ONT)-[:CONNECTS_TO*5]->(:OLT)",
+        "(:ONT)-[:CONNECTS_TO*6]->(:OLT)",
+        "(:ONT)-[:CONNECTS_TO]->(:SPLITTER)",
+        "(:ONT)-[:CONNECTS_TO]->(:SUB_SPLITTER)",
+        "(:PON_PORT)-[:CONNECTS_TO*2]->(:CARD)",
+        "(:PON_PORT)-[:CONNECTS_TO*3]->(:OLT)",
+        "(:PON_PORT)-[:CONNECTS_TO]->(:PORT)",
+        "(:PORT)-[:CONNECTS_TO*2]->(:OLT)",
+        "(:PORT)-[:CONNECTS_TO]->(:CARD)",
+        "(:SPLITTER)-[:CONNECTS_TO*2]->(:PORT)",
+        "(:SPLITTER)-[:CONNECTS_TO*3]->(:CARD)",
+        "(:SPLITTER)-[:CONNECTS_TO*4]->(:OLT)",
+        "(:SPLITTER)-[:CONNECTS_TO]->(:PON_PORT)",
+        "(:SUB_SPLITTER)-[:CONNECTS_TO*2]->(:PON_PORT)",
+        "(:SUB_SPLITTER)-[:CONNECTS_TO*3]->(:PORT)",
+        "(:SUB_SPLITTER)-[:CONNECTS_TO*4]->(:CARD)",
+        "(:SUB_SPLITTER)-[:CONNECTS_TO*5]->(:OLT)",
+        "(:SUB_SPLITTER)-[:CONNECTS_TO]->(:SPLITTER)"
+    ],
+    "simple_connections": [
+        "CABIN -> CABIN  using relation BACKUP_FOR",
+        "CABIN -> SPLITTER  using relation CONNECTS_TO",
+        "CARD -> OLT  using relation CONNECTS_TO",
+        "OLT -> SITE  using relation IN_SITE",
+        "ONT -> SPLITTER  using relation CONNECTS_TO",
+        "ONT -> SUB_SPLITTER  using relation CONNECTS_TO",
+        "PON_PORT -> PORT  using relation CONNECTS_TO",
+        "PORT -> CARD  using relation CONNECTS_TO",
+        "SPLITTER -> PON_PORT  using relation CONNECTS_TO",
+        "SUB_SPLITTER -> SPLITTER  using relation CONNECTS_TO"
+    ],
+    "schema": [
+        [
+            "CABIN",
+            "BACKUP_FOR",
+            "CABIN",
+            1,
+            null
+        ],
+        [
+            "CABIN",
+            "CONNECTS_TO",
+            "CARD",
+            4,
+            4
+        ],
+        [
+            "CABIN",
+            "CONNECTS_TO",
+            "OLT",
+            5,
+            5
+        ],
+        [
+            "CABIN",
+            "CONNECTS_TO",
+            "PON_PORT",
+            2,
+            2
+        ],
+        [
+            "CABIN",
+            "CONNECTS_TO",
+            "PORT",
+            3,
+            3
+        ],
+        [
+            "CABIN",
+            "CONNECTS_TO",
+            "SPLITTER",
+            1,
+            1
+        ],
+        [
+            "CARD",
+            "CONNECTS_TO",
+            "OLT",
+            1,
+            1
+        ],
+        [
+            "OLT",
+            "IN_SITE",
+            "SITE",
+            1,
+            1
+        ],
+        [
+            "ONT",
+            "CONNECTS_TO",
+            "CARD",
+            4,
+            5
+        ],
+        [
+            "ONT",
+            "CONNECTS_TO",
+            "OLT",
+            5,
+            6
+        ],
+        [
+            "ONT",
+            "CONNECTS_TO",
+            "PON_PORT",
+            2,
+            3
+        ],
+        [
+            "ONT",
+            "CONNECTS_TO",
+            "PORT",
+            3,
+            4
+        ],
+        [
+            "ONT",
+            "CONNECTS_TO",
+            "SPLITTER",
+            1,
+            2
+        ],
+        [
+            "ONT",
+            "CONNECTS_TO",
+            "SUB_SPLITTER",
+            1,
+            1
+        ],
+        [
+            "PON_PORT",
+            "CONNECTS_TO",
+            "CARD",
+            2,
+            2
+        ],
+        [
+            "PON_PORT",
+            "CONNECTS_TO",
+            "OLT",
+            3,
+            3
+        ],
+        [
+            "PON_PORT",
+            "CONNECTS_TO",
+            "PORT",
+            1,
+            1
+        ],
+        [
+            "PORT",
+            "CONNECTS_TO",
+            "CARD",
+            1,
+            1
+        ],
+        [
+            "PORT",
+            "CONNECTS_TO",
+            "OLT",
+            2,
+            2
+        ],
+        [
+            "SPLITTER",
+            "CONNECTS_TO",
+            "CARD",
+            3,
+            3
+        ],
+        [
+            "SPLITTER",
+            "CONNECTS_TO",
+            "OLT",
+            4,
+            4
+        ],
+        [
+            "SPLITTER",
+            "CONNECTS_TO",
+            "PON_PORT",
+            1,
+            1
+        ],
+        [
+            "SPLITTER",
+            "CONNECTS_TO",
+            "PORT",
+            2,
+            2
+        ],
+        [
+            "SUB_SPLITTER",
+            "CONNECTS_TO",
+            "CARD",
+            4,
+            4
+        ],
+        [
+            "SUB_SPLITTER",
+            "CONNECTS_TO",
+            "OLT",
+            5,
+            5
+        ],
+        [
+            "SUB_SPLITTER",
+            "CONNECTS_TO",
+            "PON_PORT",
+            2,
+            2
+        ],
+        [
+            "SUB_SPLITTER",
+            "CONNECTS_TO",
+            "PORT",
+            3,
+            3
+        ],
+        [
+            "SUB_SPLITTER",
+            "CONNECTS_TO",
+            "SPLITTER",
+            1,
+            1
+        ]
+    ]
+}

@@ -1,0 +1,5179 @@
+[
+    {
+        "qid": 148,
+        "template": 33,
+        "question": "Break down the transaction count by status.",
+        "cypher": "MATCH (t:Transaction) WITH t.status AS status, count(DISTINCT t) AS total RETURN status, total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "5049",
+                    "cancelled"
+                ],
+                [
+                    "7126",
+                    "refunded"
+                ],
+                [
+                    "87825",
+                    "completed"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 141,
+        "template": 31,
+        "question": "Give the id of the newest product in the Electronics category by launch date.",
+        "cypher": "MATCH (p:Product {category: \"Electronics\"}) RETURN p.productId ORDER BY p.launchDate DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0122"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 147,
+        "template": 33,
+        "question": "How many transactions are there of each status?",
+        "cypher": "MATCH (t:Transaction) WITH t.status AS status, count(DISTINCT t) AS total RETURN status, total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "5049",
+                    "cancelled"
+                ],
+                [
+                    "7126",
+                    "refunded"
+                ],
+                [
+                    "87825",
+                    "completed"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 77,
+        "template": 15,
+        "question": "Which product categories does PaperSource NL supply?",
+        "cypher": "MATCH (s:Supplier {supplierName: \"PaperSource NL\"})-[:SUPPLIES]->(p:Product) RETURN DISTINCT p.category",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Books"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 0,
+        "template": 0,
+        "question": "Which customer placed transaction \"TXN093623\"?",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN093623\"})-[:PLACED_BY]->(c:Customer) RETURN c.customerId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "CUST01583"
+                ]
+            ],
+            [
+                [
+                    "Anderson",
+                    "Sophie"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 95,
+        "template": 19,
+        "question": "What is the total revenue from customer \"CUST06607\"?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST06607\"}) RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1801.31"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 174,
+        "template": 43,
+        "question": "Which suppliers do not supply product \"PROD0265\"? Give their names.",
+        "cypher": "MATCH (s:Supplier) WHERE NOT EXISTS { (s)-[:SUPPLIES]->(:Product {productId: \"PROD0265\"}) } RETURN s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "ActiveGear TW"
+                ],
+                [
+                    "BeautyLab FR"
+                ],
+                [
+                    "BookSupply DE"
+                ],
+                [
+                    "CosmeticsCo KR"
+                ],
+                [
+                    "DomesticSupply UK"
+                ],
+                [
+                    "ElectroPrime EU"
+                ],
+                [
+                    "EuroFashion IT"
+                ],
+                [
+                    "FabricWorld CN"
+                ],
+                [
+                    "GameSource JP"
+                ],
+                [
+                    "GlobalTech USA"
+                ],
+                [
+                    "HealthSource SE"
+                ],
+                [
+                    "OutdoorPro CA"
+                ],
+                [
+                    "PaperSource NL"
+                ],
+                [
+                    "PlaySupply US"
+                ],
+                [
+                    "PrintMedia UK"
+                ],
+                [
+                    "SportSupply US"
+                ],
+                [
+                    "StyleSupply TR"
+                ],
+                [
+                    "TechSource Asia"
+                ],
+                [
+                    "ToyFactory CN"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 220,
+        "template": 57,
+        "question": "What is the shipping address of customer \"CUST04196\"?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 1,
+        "template": 0,
+        "question": "Give the customer id on transaction \"TXN048124\".",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN048124\"})-[:PLACED_BY]->(c:Customer) RETURN c.customerId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "CUST01697"
+                ]
+            ],
+            [
+                [
+                    "James",
+                    "Walker"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 229,
+        "template": 59,
+        "question": "What is the contact email for SportSupply US?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 105,
+        "template": 21,
+        "question": "How much has been refunded to customer \"CUST07417\" in total?",
+        "cypher": "MATCH (r:Return)-[:BY_CUSTOMER]->(c:Customer {customerId: \"CUST07417\"}) RETURN sum(r.refundAmountUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "0"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 232,
+        "template": 60,
+        "question": "What courier delivered transaction \"TXN087341\"?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 146,
+        "template": 32,
+        "question": "Break down total revenue by product category.",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product) WITH p.category AS category, sum(t.revenueUsd) AS total RETURN category, total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1416567.21",
+                    "Toys & Games"
+                ],
+                [
+                    "24384968.81",
+                    "Electronics"
+                ],
+                [
+                    "2665120.98",
+                    "Beauty & Health"
+                ],
+                [
+                    "700094.77",
+                    "Books"
+                ],
+                [
+                    "7161970.18",
+                    "Home & Kitchen"
+                ],
+                [
+                    "7700172.94",
+                    "Sports & Outdoors"
+                ],
+                [
+                    "8843065.15",
+                    "Clothing"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 70,
+        "template": 14,
+        "question": "How many different customers have bought product \"PROD0062\"?",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0062\"}) MATCH (t)-[:PLACED_BY]->(c:Customer) RETURN count(DISTINCT c) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "106"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 198,
+        "template": 52,
+        "question": "What is the average discount on refunded transactions?",
+        "cypher": "MATCH (t:Transaction {status: \"refunded\"}) RETURN avg(t.discountPct) AS average",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "0.06"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 63,
+        "template": 12,
+        "question": "List the product ids appearing on transactions of customer \"CUST07024\".",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST07024\"}) MATCH (t)-[:CONTAINS_PRODUCT]->(p:Product) RETURN DISTINCT p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0035"
+                ],
+                [
+                    "PROD0087"
+                ],
+                [
+                    "PROD0336"
+                ],
+                [
+                    "PROD0483"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 197,
+        "template": 52,
+        "question": "Give the mean discount percentage across transactions in cancelled status.",
+        "cypher": "MATCH (t:Transaction {status: \"cancelled\"}) RETURN avg(t.discountPct) AS average",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "0.06"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 121,
+        "template": 24,
+        "question": "Count the customers flagged as premium.",
+        "cypher": "MATCH (c:Customer) WHERE c.isPremium = true RETURN count(DISTINCT c) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1749"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 103,
+        "template": 20,
+        "question": "Sum the profit over every transaction containing product \"PROD0178\".",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0178\"}) RETURN sum(t.profitUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "22080.71"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 170,
+        "template": 43,
+        "question": "Which suppliers do not supply product \"PROD0073\"? Give their names.",
+        "cypher": "MATCH (s:Supplier) WHERE NOT EXISTS { (s)-[:SUPPLIES]->(:Product {productId: \"PROD0073\"}) } RETURN s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "ActiveGear TW"
+                ],
+                [
+                    "BeautyLab FR"
+                ],
+                [
+                    "BookSupply DE"
+                ],
+                [
+                    "CosmeticsCo KR"
+                ],
+                [
+                    "DomesticSupply UK"
+                ],
+                [
+                    "ElectroPrime EU"
+                ],
+                [
+                    "FabricWorld CN"
+                ],
+                [
+                    "GameSource JP"
+                ],
+                [
+                    "GlobalTech USA"
+                ],
+                [
+                    "HealthSource SE"
+                ],
+                [
+                    "HomeGoods DE"
+                ],
+                [
+                    "KitchenPro PL"
+                ],
+                [
+                    "OutdoorPro CA"
+                ],
+                [
+                    "PaperSource NL"
+                ],
+                [
+                    "PlaySupply US"
+                ],
+                [
+                    "PrintMedia UK"
+                ],
+                [
+                    "SportSupply US"
+                ],
+                [
+                    "TechSource Asia"
+                ],
+                [
+                    "ToyFactory CN"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 97,
+        "template": 19,
+        "question": "What is the total revenue from customer \"CUST04558\"?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST04558\"}) RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2638.34"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 90,
+        "template": 18,
+        "question": "How many times has product \"PROD0299\" been returned?",
+        "cypher": "MATCH (r:Return)-[:OF_PRODUCT]->(p:Product {productId: \"PROD0299\"}) RETURN count(DISTINCT r) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "9"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 168,
+        "template": 42,
+        "question": "Which products have never been sold? Give their ids.",
+        "cypher": "MATCH (p:Product) WHERE NOT EXISTS { (:Transaction)-[:CONTAINS_PRODUCT]->(p) } RETURN p.productId",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 12,
+        "template": 2,
+        "question": "What is the status and revenue of transaction \"TXN034894\"?",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN034894\"}) RETURN t.status, t.revenueUsd",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "214.83",
+                    "completed"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 222,
+        "template": 58,
+        "question": "How many stars has product \"PROD0137\" been given?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 176,
+        "template": 44,
+        "question": "List the warehouses holding no units of product \"PROD0105\".",
+        "cypher": "MATCH (w:Warehouse) WHERE NOT EXISTS { (w)-[:STOCKS]->(:Product {productId: \"PROD0105\"}) } RETURN w.warehouseLocation",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "APAC"
+                ],
+                [
+                    "EU-Central"
+                ],
+                [
+                    "US-East"
+                ],
+                [
+                    "US-West"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 51,
+        "template": 10,
+        "question": "Give the warehouse and last restock date for product \"PROD0121\".",
+        "cypher": "MATCH (w:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0121\"}) RETURN w.warehouseLocation, s.lastRestockDate ORDER BY s.lastRestockDate DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2024-10-14T00:00:00.000000000+00:00",
+                    "EU-Central"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 83,
+        "template": 16,
+        "question": "List the suppliers of every product on transactions of customer \"CUST03502\".",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST03502\"}) MATCH (t)-[:CONTAINS_PRODUCT]->(p:Product) MATCH (s:Supplier)-[:SUPPLIES]->(p) RETURN DISTINCT s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "ActiveGear TW"
+                ],
+                [
+                    "BeautyLab FR"
+                ],
+                [
+                    "BookSupply DE"
+                ],
+                [
+                    "DomesticSupply UK"
+                ],
+                [
+                    "ElectroPrime EU"
+                ],
+                [
+                    "EuroFashion IT"
+                ],
+                [
+                    "FabricWorld CN"
+                ],
+                [
+                    "GlobalTech USA"
+                ],
+                [
+                    "HealthSource SE"
+                ],
+                [
+                    "HomeGoods DE"
+                ],
+                [
+                    "KitchenPro PL"
+                ],
+                [
+                    "OutdoorPro CA"
+                ],
+                [
+                    "PaperSource NL"
+                ],
+                [
+                    "PlaySupply US"
+                ],
+                [
+                    "PrintMedia UK"
+                ],
+                [
+                    "SportSupply US"
+                ],
+                [
+                    "StyleSupply TR"
+                ],
+                [
+                    "TechSource Asia"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 145,
+        "template": 32,
+        "question": "How much revenue did each product category bring in?",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product) WITH p.category AS category, sum(t.revenueUsd) AS total RETURN category, total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1416567.21",
+                    "Toys & Games"
+                ],
+                [
+                    "24384968.81",
+                    "Electronics"
+                ],
+                [
+                    "2665120.98",
+                    "Beauty & Health"
+                ],
+                [
+                    "700094.77",
+                    "Books"
+                ],
+                [
+                    "7161970.18",
+                    "Home & Kitchen"
+                ],
+                [
+                    "7700172.94",
+                    "Sports & Outdoors"
+                ],
+                [
+                    "8843065.15",
+                    "Clothing"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 73,
+        "template": 14,
+        "question": "Count the distinct customers who bought product \"PROD0162\".",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0162\"}) MATCH (t)-[:PLACED_BY]->(c:Customer) RETURN count(DISTINCT c) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "109"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 157,
+        "template": 36,
+        "question": "For each product PrintMedia UK supplies, what is the lead time?",
+        "cypher": "MATCH (s:Supplier {supplierName: \"PrintMedia UK\"})-[sup:SUPPLIES]->(p:Product) RETURN p.productId, sup.leadTimeDays",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "10",
+                    "PROD0172"
+                ],
+                [
+                    "10",
+                    "PROD0193"
+                ],
+                [
+                    "11",
+                    "PROD0355"
+                ],
+                [
+                    "11",
+                    "PROD0379"
+                ],
+                [
+                    "11",
+                    "PROD0485"
+                ],
+                [
+                    "12",
+                    "PROD0240"
+                ],
+                [
+                    "12",
+                    "PROD0366"
+                ],
+                [
+                    "13",
+                    "PROD0016"
+                ],
+                [
+                    "13",
+                    "PROD0041"
+                ],
+                [
+                    "13",
+                    "PROD0094"
+                ],
+                [
+                    "13",
+                    "PROD0275"
+                ],
+                [
+                    "13",
+                    "PROD0433"
+                ],
+                [
+                    "15",
+                    "PROD0157"
+                ],
+                [
+                    "15",
+                    "PROD0336"
+                ],
+                [
+                    "16",
+                    "PROD0244"
+                ],
+                [
+                    "17",
+                    "PROD0050"
+                ],
+                [
+                    "17",
+                    "PROD0096"
+                ],
+                [
+                    "17",
+                    "PROD0251"
+                ],
+                [
+                    "17",
+                    "PROD0491"
+                ],
+                [
+                    "18",
+                    "PROD0138"
+                ],
+                [
+                    "19",
+                    "PROD0083"
+                ],
+                [
+                    "19",
+                    "PROD0341"
+                ],
+                [
+                    "5",
+                    "PROD0020"
+                ],
+                [
+                    "5",
+                    "PROD0362"
+                ],
+                [
+                    "5",
+                    "PROD0461"
+                ],
+                [
+                    "6",
+                    "PROD0404"
+                ],
+                [
+                    "6",
+                    "PROD0418"
+                ],
+                [
+                    "7",
+                    "PROD0062"
+                ],
+                [
+                    "8",
+                    "PROD0035"
+                ],
+                [
+                    "8",
+                    "PROD0352"
+                ],
+                [
+                    "8",
+                    "PROD0354"
+                ],
+                [
+                    "8",
+                    "PROD0397"
+                ],
+                [
+                    "9",
+                    "PROD0056"
+                ],
+                [
+                    "9",
+                    "PROD0475"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 160,
+        "template": 38,
+        "question": "Which product has been returned the most? Give its id.",
+        "cypher": "MATCH (r:Return)-[:OF_PRODUCT]->(p:Product) WITH p, count(DISTINCT r) AS total RETURN p.productId ORDER BY total DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0055"
+                ]
+            ],
+            [
+                [
+                    "217",
+                    "PROD0055"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 151,
+        "template": 35,
+        "question": "For each category, how many different customers have bought from it?",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product) MATCH (t)-[:PLACED_BY]->(c:Customer) WITH p.category AS category, count(DISTINCT c) AS total RETURN category, total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4003",
+                    "Toys & Games"
+                ],
+                [
+                    "4353",
+                    "Books"
+                ],
+                [
+                    "4588",
+                    "Beauty & Health"
+                ],
+                [
+                    "5203",
+                    "Sports & Outdoors"
+                ],
+                [
+                    "5749",
+                    "Electronics"
+                ],
+                [
+                    "5759",
+                    "Home & Kitchen"
+                ],
+                [
+                    "6696",
+                    "Clothing"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 171,
+        "template": 43,
+        "question": "List the suppliers that have no supply arrangement for product \"PROD0355\".",
+        "cypher": "MATCH (s:Supplier) WHERE NOT EXISTS { (s)-[:SUPPLIES]->(:Product {productId: \"PROD0355\"}) } RETURN s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "ActiveGear TW"
+                ],
+                [
+                    "BeautyLab FR"
+                ],
+                [
+                    "CosmeticsCo KR"
+                ],
+                [
+                    "DomesticSupply UK"
+                ],
+                [
+                    "ElectroPrime EU"
+                ],
+                [
+                    "EuroFashion IT"
+                ],
+                [
+                    "FabricWorld CN"
+                ],
+                [
+                    "GameSource JP"
+                ],
+                [
+                    "GlobalTech USA"
+                ],
+                [
+                    "HealthSource SE"
+                ],
+                [
+                    "HomeGoods DE"
+                ],
+                [
+                    "KitchenPro PL"
+                ],
+                [
+                    "OutdoorPro CA"
+                ],
+                [
+                    "PlaySupply US"
+                ],
+                [
+                    "SportSupply US"
+                ],
+                [
+                    "StyleSupply TR"
+                ],
+                [
+                    "TechSource Asia"
+                ],
+                [
+                    "ToyFactory CN"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 214,
+        "template": 56,
+        "question": "Sum the stock units held for products of the brand GlowUp.",
+        "cypher": "MATCH (:Warehouse)-[s:STOCKS]->(p:Product {brand: \"GlowUp\"}) RETURN sum(s.stockUnits) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "486"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 161,
+        "template": 38,
+        "question": "Which product id appears on the highest number of returns?",
+        "cypher": "MATCH (r:Return)-[:OF_PRODUCT]->(p:Product) WITH p, count(DISTINCT r) AS total RETURN p.productId ORDER BY total DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0055"
+                ]
+            ],
+            [
+                [
+                    "217",
+                    "PROD0055"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 180,
+        "template": 45,
+        "question": "How many customers have never returned anything?",
+        "cypher": "MATCH (c:Customer) WHERE NOT EXISTS { (:Return)-[:BY_CUSTOMER]->(c) } RETURN count(DISTINCT c) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4268"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 187,
+        "template": 48,
+        "question": "Count the products whose warehouse stock is under the supplier minimum order quantity.",
+        "cypher": "MATCH (w:Warehouse)-[st:STOCKS]->(p:Product) MATCH (:Supplier)-[sp:SUPPLIES]->(p) WHERE st.stockUnits < sp.minOrderQty RETURN count(DISTINCT p) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "451"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 167,
+        "template": 41,
+        "question": "What warehouse has the highest total stock?",
+        "cypher": "MATCH (w:Warehouse)-[s:STOCKS]->(:Product) WITH w, sum(s.stockUnits) AS total RETURN w.warehouseLocation ORDER BY total DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "APAC"
+                ]
+            ],
+            [
+                [
+                    "2163",
+                    "APAC"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 109,
+        "template": 21,
+        "question": "How much has been refunded to customer \"CUST03212\" in total?",
+        "cypher": "MATCH (r:Return)-[:BY_CUSTOMER]->(c:Customer {customerId: \"CUST03212\"}) RETURN sum(r.refundAmountUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "0"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 26,
+        "template": 5,
+        "question": "For product \"PROD0010\", give each warehouse and its stock level.",
+        "cypher": "MATCH (w:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0010\"}) RETURN w.warehouseLocation, s.stockUnits",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "20",
+                    "US-West"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 107,
+        "template": 21,
+        "question": "How much has been refunded to customer \"CUST00238\" in total?",
+        "cypher": "MATCH (r:Return)-[:BY_CUSTOMER]->(c:Customer {customerId: \"CUST00238\"}) RETURN sum(r.refundAmountUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "0"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 34,
+        "template": 6,
+        "question": "How many units of product \"PROD0495\" are in stock across all warehouses?",
+        "cypher": "MATCH (:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0495\"}) RETURN sum(s.stockUnits) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "14"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 10,
+        "template": 2,
+        "question": "What is the status and revenue of transaction \"TXN088638\"?",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN088638\"}) RETURN t.status, t.revenueUsd",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "185.33",
+                    "refunded"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 20,
+        "template": 4,
+        "question": "What brand and category is product \"PROD0403\"?",
+        "cypher": "MATCH (p:Product {productId: \"PROD0403\"}) RETURN p.brand, p.category",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Home & Kitchen",
+                    "NexGen"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 102,
+        "template": 20,
+        "question": "What is the total profit made on product \"PROD0407\"?",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0407\"}) RETURN sum(t.profitUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "66395.6"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 76,
+        "template": 15,
+        "question": "List the categories of the products supplied by GlobalTech USA.",
+        "cypher": "MATCH (s:Supplier {supplierName: \"GlobalTech USA\"})-[:SUPPLIES]->(p:Product) RETURN DISTINCT p.category",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Electronics"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 134,
+        "template": 28,
+        "question": "Sum the 2024 transaction revenue for customer \"CUST04247\".",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST04247\"}) WHERE t.date.year = 2024 RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1185.9"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 62,
+        "template": 12,
+        "question": "Which products has customer \"CUST00611\" bought? Give their ids.",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST00611\"}) MATCH (t)-[:CONTAINS_PRODUCT]->(p:Product) RETURN DISTINCT p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0023"
+                ],
+                [
+                    "PROD0031"
+                ],
+                [
+                    "PROD0038"
+                ],
+                [
+                    "PROD0059"
+                ],
+                [
+                    "PROD0122"
+                ],
+                [
+                    "PROD0125"
+                ],
+                [
+                    "PROD0136"
+                ],
+                [
+                    "PROD0168"
+                ],
+                [
+                    "PROD0180"
+                ],
+                [
+                    "PROD0182"
+                ],
+                [
+                    "PROD0203"
+                ],
+                [
+                    "PROD0209"
+                ],
+                [
+                    "PROD0216"
+                ],
+                [
+                    "PROD0223"
+                ],
+                [
+                    "PROD0229"
+                ],
+                [
+                    "PROD0311"
+                ],
+                [
+                    "PROD0331"
+                ],
+                [
+                    "PROD0375"
+                ],
+                [
+                    "PROD0407"
+                ],
+                [
+                    "PROD0422"
+                ],
+                [
+                    "PROD0472"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 88,
+        "template": 17,
+        "question": "Count the transactions placed by customer \"CUST03563\".",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST03563\"}) RETURN count(DISTINCT t) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "22"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 42,
+        "template": 8,
+        "question": "What unit cost does each supplier charge for product \"PROD0465\"?",
+        "cypher": "MATCH (s:Supplier)-[sup:SUPPLIES]->(p:Product {productId: \"PROD0465\"}) RETURN s.supplierName, sup.unitCostUsd",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "619.29",
+                    "TechSource Asia"
+                ],
+                [
+                    "654.61",
+                    "ElectroPrime EU"
+                ],
+                [
+                    "702.83",
+                    "GlobalTech USA"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 94,
+        "template": 18,
+        "question": "How many times has product \"PROD0102\" been returned?",
+        "cypher": "MATCH (r:Return)-[:OF_PRODUCT]->(p:Product {productId: \"PROD0102\"}) RETURN count(DISTINCT r) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "11"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 237,
+        "template": 61,
+        "question": "What did they order last time?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 2,
+        "template": 0,
+        "question": "Which customer placed transaction \"TXN099806\"?",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN099806\"})-[:PLACED_BY]->(c:Customer) RETURN c.customerId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "CUST04447"
+                ]
+            ],
+            [
+                [
+                    "Garcia",
+                    "Sophie"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 114,
+        "template": 22,
+        "question": "How many units of product \"PROD0098\" have been sold in total?",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0098\"}) RETURN sum(t.quantity) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "314"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 82,
+        "template": 16,
+        "question": "Which suppliers made the products customer \"CUST04578\" bought? Give their names.",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST04578\"}) MATCH (t)-[:CONTAINS_PRODUCT]->(p:Product) MATCH (s:Supplier)-[:SUPPLIES]->(p) RETURN DISTINCT s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "BeautyLab FR"
+                ],
+                [
+                    "BookSupply DE"
+                ],
+                [
+                    "CosmeticsCo KR"
+                ],
+                [
+                    "DomesticSupply UK"
+                ],
+                [
+                    "ElectroPrime EU"
+                ],
+                [
+                    "EuroFashion IT"
+                ],
+                [
+                    "FabricWorld CN"
+                ],
+                [
+                    "GameSource JP"
+                ],
+                [
+                    "GlobalTech USA"
+                ],
+                [
+                    "HomeGoods DE"
+                ],
+                [
+                    "KitchenPro PL"
+                ],
+                [
+                    "PaperSource NL"
+                ],
+                [
+                    "PrintMedia UK"
+                ],
+                [
+                    "SportSupply US"
+                ],
+                [
+                    "StyleSupply TR"
+                ],
+                [
+                    "TechSource Asia"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 45,
+        "template": 9,
+        "question": "Which product is lowest in stock at US-East?",
+        "cypher": "MATCH (w:Warehouse {warehouseLocation: \"US-East\"})-[s:STOCKS]->(p:Product) RETURN p.productId ORDER BY s.stockUnits ASC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0201"
+                ]
+            ],
+            [
+                [
+                    "2",
+                    "PROD0201"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 129,
+        "template": 27,
+        "question": "Give the date of the latest transaction placed by customer \"CUST02873\".",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST02873\"}) RETURN max(t.date) AS latest",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2024-11-25T00:00:00.000000000+00:00"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 44,
+        "template": 8,
+        "question": "What unit cost does each supplier charge for product \"PROD0387\"?",
+        "cypher": "MATCH (s:Supplier)-[sup:SUPPLIES]->(p:Product {productId: \"PROD0387\"}) RETURN s.supplierName, sup.unitCostUsd",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "27.53",
+                    "SportSupply US"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 113,
+        "template": 22,
+        "question": "Sum the quantity across every transaction containing product \"PROD0202\".",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0202\"}) RETURN sum(t.quantity) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "493"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 110,
+        "template": 22,
+        "question": "How many units of product \"PROD0062\" have been sold in total?",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0062\"}) RETURN sum(t.quantity) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "247"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 5,
+        "template": 1,
+        "question": "Which product is in transaction \"TXN031506\"?",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN031506\"})-[:CONTAINS_PRODUCT]->(p:Product) RETURN p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0023"
+                ]
+            ],
+            [
+                [
+                    "FunZone Clothing Item 23"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 138,
+        "template": 30,
+        "question": "How much revenue was there in each year?",
+        "cypher": "MATCH (t:Transaction) WITH t.date.year AS year, sum(t.revenueUsd) AS total RETURN year, total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "17599156.98",
+                    "2023"
+                ],
+                [
+                    "17622634.29",
+                    "2022"
+                ],
+                [
+                    "17650168.77",
+                    "2024"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 93,
+        "template": 18,
+        "question": "Count the returns of product \"PROD0354\".",
+        "cypher": "MATCH (r:Return)-[:OF_PRODUCT]->(p:Product {productId: \"PROD0354\"}) RETURN count(DISTINCT r) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "14"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 43,
+        "template": 8,
+        "question": "For product \"PROD0040\", give each supplier and its unit cost.",
+        "cypher": "MATCH (s:Supplier)-[sup:SUPPLIES]->(p:Product {productId: \"PROD0040\"}) RETURN s.supplierName, sup.unitCostUsd",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "317.83",
+                    "GlobalTech USA"
+                ],
+                [
+                    "359.48",
+                    "ElectroPrime EU"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 69,
+        "template": 13,
+        "question": "Which products has customer \"CUST02462\" returned? Give their ids.",
+        "cypher": "MATCH (r:Return)-[:BY_CUSTOMER]->(c:Customer {customerId: \"CUST02462\"}) MATCH (r)-[:OF_PRODUCT]->(p:Product) RETURN DISTINCT p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0407"
+                ],
+                [
+                    "PROD0464"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 190,
+        "template": 50,
+        "question": "How many customers bought the product with the longest primary-supplier lead time?",
+        "cypher": "MATCH (:Supplier)-[sup:SUPPLIES]->(p:Product) WHERE sup.isPrimary = true WITH p ORDER BY sup.leadTimeDays DESC LIMIT 1 MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p) MATCH (t)-[:PLACED_BY]->(c:Customer) RETURN count(DISTINCT c) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "138"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 72,
+        "template": 14,
+        "question": "How many different customers have bought product \"PROD0424\"?",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0424\"}) MATCH (t)-[:PLACED_BY]->(c:Customer) RETURN count(DISTINCT c) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "96"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 175,
+        "template": 44,
+        "question": "Which warehouses do not stock product \"PROD0178\"?",
+        "cypher": "MATCH (w:Warehouse) WHERE NOT EXISTS { (w)-[:STOCKS]->(:Product {productId: \"PROD0178\"}) } RETURN w.warehouseLocation",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "APAC"
+                ],
+                [
+                    "EU-Central"
+                ],
+                [
+                    "EU-West"
+                ],
+                [
+                    "US-East"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 104,
+        "template": 20,
+        "question": "What is the total profit made on product \"PROD0085\"?",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0085\"}) RETURN sum(t.profitUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "128996.95"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 179,
+        "template": 44,
+        "question": "Which warehouses do not stock product \"PROD0085\"?",
+        "cypher": "MATCH (w:Warehouse) WHERE NOT EXISTS { (w)-[:STOCKS]->(:Product {productId: \"PROD0085\"}) } RETURN w.warehouseLocation",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "APAC"
+                ],
+                [
+                    "EU-Central"
+                ],
+                [
+                    "US-East"
+                ],
+                [
+                    "US-West"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 71,
+        "template": 14,
+        "question": "Count the distinct customers who bought product \"PROD0359\".",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0359\"}) MATCH (t)-[:PLACED_BY]->(c:Customer) RETURN count(DISTINCT c) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "287"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 185,
+        "template": 47,
+        "question": "Count the products supplied by at least two suppliers.",
+        "cypher": "MATCH (s:Supplier)-[:SUPPLIES]->(p:Product) WITH p, count(DISTINCT s) AS suppliers WHERE suppliers > 1 RETURN count(DISTINCT p) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "339"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 17,
+        "template": 3,
+        "question": "Which customer made return \"RET06499\"?",
+        "cypher": "MATCH (r:Return {returnId: \"RET06499\"})-[:BY_CUSTOMER]->(c:Customer) RETURN c.customerId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "CUST02939"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 166,
+        "template": 41,
+        "question": "Which warehouse holds the most units overall?",
+        "cypher": "MATCH (w:Warehouse)-[s:STOCKS]->(:Product) WITH w, sum(s.stockUnits) AS total RETURN w.warehouseLocation ORDER BY total DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "APAC"
+                ]
+            ],
+            [
+                [
+                    "2163",
+                    "APAC"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 126,
+        "template": 27,
+        "question": "When was the most recent transaction by customer \"CUST02107\"?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST02107\"}) RETURN max(t.date) AS latest",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2024-11-07T00:00:00.000000000+00:00"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 206,
+        "template": 54,
+        "question": "What is the total revenue from customers in Australia?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {country: \"Australia\"}) RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2499672.92"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 188,
+        "template": 49,
+        "question": "Which suppliers are the primary supplier of a discontinued product? Give their names.",
+        "cypher": "MATCH (s:Supplier)-[sup:SUPPLIES]->(p:Product) WHERE sup.isPrimary = true AND p.isActive = false RETURN DISTINCT s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "ActiveGear TW"
+                ],
+                [
+                    "BeautyLab FR"
+                ],
+                [
+                    "BookSupply DE"
+                ],
+                [
+                    "CosmeticsCo KR"
+                ],
+                [
+                    "DomesticSupply UK"
+                ],
+                [
+                    "ElectroPrime EU"
+                ],
+                [
+                    "FabricWorld CN"
+                ],
+                [
+                    "GameSource JP"
+                ],
+                [
+                    "GlobalTech USA"
+                ],
+                [
+                    "HomeGoods DE"
+                ],
+                [
+                    "KitchenPro PL"
+                ],
+                [
+                    "OutdoorPro CA"
+                ],
+                [
+                    "PaperSource NL"
+                ],
+                [
+                    "PlaySupply US"
+                ],
+                [
+                    "PrintMedia UK"
+                ],
+                [
+                    "SportSupply US"
+                ],
+                [
+                    "StyleSupply TR"
+                ],
+                [
+                    "TechSource Asia"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 124,
+        "template": 26,
+        "question": "How many returns were not restocked?",
+        "cypher": "MATCH (r:Return) WHERE r.restocked = false RETURN count(DISTINCT r) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2450"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 223,
+        "template": 58,
+        "question": "What is the average review rating of product \"PROD0067\"?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 155,
+        "template": 36,
+        "question": "For each product HealthSource SE supplies, what is the lead time?",
+        "cypher": "MATCH (s:Supplier {supplierName: \"HealthSource SE\"})-[sup:SUPPLIES]->(p:Product) RETURN p.productId, sup.leadTimeDays",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "10",
+                    "PROD0123"
+                ],
+                [
+                    "10",
+                    "PROD0218"
+                ],
+                [
+                    "10",
+                    "PROD0301"
+                ],
+                [
+                    "10",
+                    "PROD0327"
+                ],
+                [
+                    "10",
+                    "PROD0357"
+                ],
+                [
+                    "10",
+                    "PROD0434"
+                ],
+                [
+                    "11",
+                    "PROD0006"
+                ],
+                [
+                    "11",
+                    "PROD0008"
+                ],
+                [
+                    "11",
+                    "PROD0048"
+                ],
+                [
+                    "11",
+                    "PROD0119"
+                ],
+                [
+                    "11",
+                    "PROD0163"
+                ],
+                [
+                    "11",
+                    "PROD0165"
+                ],
+                [
+                    "12",
+                    "PROD0148"
+                ],
+                [
+                    "13",
+                    "PROD0324"
+                ],
+                [
+                    "13",
+                    "PROD0401"
+                ],
+                [
+                    "14",
+                    "PROD0389"
+                ],
+                [
+                    "15",
+                    "PROD0402"
+                ],
+                [
+                    "16",
+                    "PROD0399"
+                ],
+                [
+                    "16",
+                    "PROD0459"
+                ],
+                [
+                    "19",
+                    "PROD0078"
+                ],
+                [
+                    "19",
+                    "PROD0088"
+                ],
+                [
+                    "19",
+                    "PROD0099"
+                ],
+                [
+                    "19",
+                    "PROD0312"
+                ],
+                [
+                    "5",
+                    "PROD0144"
+                ],
+                [
+                    "6",
+                    "PROD0118"
+                ],
+                [
+                    "6",
+                    "PROD0338"
+                ],
+                [
+                    "6",
+                    "PROD0415"
+                ],
+                [
+                    "7",
+                    "PROD0032"
+                ],
+                [
+                    "7",
+                    "PROD0037"
+                ],
+                [
+                    "7",
+                    "PROD0079"
+                ],
+                [
+                    "7",
+                    "PROD0179"
+                ],
+                [
+                    "8",
+                    "PROD0142"
+                ],
+                [
+                    "8",
+                    "PROD0369"
+                ],
+                [
+                    "9",
+                    "PROD0436"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 68,
+        "template": 13,
+        "question": "List the product ids on returns made by customer \"CUST06935\".",
+        "cypher": "MATCH (r:Return)-[:BY_CUSTOMER]->(c:Customer {customerId: \"CUST06935\"}) MATCH (r)-[:OF_PRODUCT]->(p:Product) RETURN DISTINCT p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0274"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 142,
+        "template": 31,
+        "question": "Which Toys & Games product was launched most recently? Give its id.",
+        "cypher": "MATCH (p:Product {category: \"Toys & Games\"}) RETURN p.productId ORDER BY p.launchDate DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0152"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 53,
+        "template": 10,
+        "question": "Give the warehouse and last restock date for product \"PROD0284\".",
+        "cypher": "MATCH (w:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0284\"}) RETURN w.warehouseLocation, s.lastRestockDate ORDER BY s.lastRestockDate DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2024-12-10T00:00:00.000000000+00:00",
+                    "APAC"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 92,
+        "template": 18,
+        "question": "How many times has product \"PROD0046\" been returned?",
+        "cypher": "MATCH (r:Return)-[:OF_PRODUCT]->(p:Product {productId: \"PROD0046\"}) RETURN count(DISTINCT r) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "21"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 137,
+        "template": 29,
+        "question": "Count the transactions dated in 2023.",
+        "cypher": "MATCH (t:Transaction) WHERE t.date.year = 2023 RETURN count(DISTINCT t) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "33265"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 135,
+        "template": 28,
+        "question": "How much revenue did customer \"CUST02307\" generate in 2024?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST02307\"}) WHERE t.date.year = 2024 RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "330.7"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 28,
+        "template": 5,
+        "question": "For product \"PROD0044\", give each warehouse and its stock level.",
+        "cypher": "MATCH (w:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0044\"}) RETURN w.warehouseLocation, s.stockUnits",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "10",
+                    "US-East"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 218,
+        "template": 57,
+        "question": "What is the shipping address of customer \"CUST05020\"?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 216,
+        "template": 57,
+        "question": "What is the shipping address of customer \"CUST05968\"?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 32,
+        "template": 6,
+        "question": "How many units of product \"PROD0369\" are in stock across all warehouses?",
+        "cypher": "MATCH (:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0369\"}) RETURN sum(s.stockUnits) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "14"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 96,
+        "template": 19,
+        "question": "Sum the revenue across all transactions of customer \"CUST03533\".",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST03533\"}) RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1165.87"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 172,
+        "template": 43,
+        "question": "Which suppliers do not supply product \"PROD0138\"? Give their names.",
+        "cypher": "MATCH (s:Supplier) WHERE NOT EXISTS { (s)-[:SUPPLIES]->(:Product {productId: \"PROD0138\"}) } RETURN s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "ActiveGear TW"
+                ],
+                [
+                    "BeautyLab FR"
+                ],
+                [
+                    "CosmeticsCo KR"
+                ],
+                [
+                    "DomesticSupply UK"
+                ],
+                [
+                    "ElectroPrime EU"
+                ],
+                [
+                    "EuroFashion IT"
+                ],
+                [
+                    "FabricWorld CN"
+                ],
+                [
+                    "GameSource JP"
+                ],
+                [
+                    "GlobalTech USA"
+                ],
+                [
+                    "HealthSource SE"
+                ],
+                [
+                    "HomeGoods DE"
+                ],
+                [
+                    "KitchenPro PL"
+                ],
+                [
+                    "OutdoorPro CA"
+                ],
+                [
+                    "PlaySupply US"
+                ],
+                [
+                    "SportSupply US"
+                ],
+                [
+                    "StyleSupply TR"
+                ],
+                [
+                    "TechSource Asia"
+                ],
+                [
+                    "ToyFactory CN"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 162,
+        "template": 39,
+        "question": "Which category brought in the most revenue?",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product) WITH p.category AS category, sum(t.revenueUsd) AS total RETURN category ORDER BY total DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Electronics"
+                ]
+            ],
+            [
+                [
+                    "24384968.81",
+                    "Electronics"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 194,
+        "template": 52,
+        "question": "What is the average discount on cancelled transactions?",
+        "cypher": "MATCH (t:Transaction {status: \"cancelled\"}) RETURN avg(t.discountPct) AS average",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "0.06"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 132,
+        "template": 28,
+        "question": "Sum the 2024 transaction revenue for customer \"CUST03010\".",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST03010\"}) WHERE t.date.year = 2024 RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "353.54"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 8,
+        "template": 1,
+        "question": "Give the product id contained in transaction \"TXN086751\".",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN086751\"})-[:CONTAINS_PRODUCT]->(p:Product) RETURN p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0227"
+                ]
+            ],
+            [
+                [
+                    "BoldEdge Beauty Item 227"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 153,
+        "template": 36,
+        "question": "For each product BeautyLab FR supplies, what is the lead time?",
+        "cypher": "MATCH (s:Supplier {supplierName: \"BeautyLab FR\"})-[sup:SUPPLIES]->(p:Product) RETURN p.productId, sup.leadTimeDays",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "10",
+                    "PROD0118"
+                ],
+                [
+                    "10",
+                    "PROD0123"
+                ],
+                [
+                    "10",
+                    "PROD0434"
+                ],
+                [
+                    "12",
+                    "PROD0099"
+                ],
+                [
+                    "12",
+                    "PROD0144"
+                ],
+                [
+                    "12",
+                    "PROD0179"
+                ],
+                [
+                    "12",
+                    "PROD0188"
+                ],
+                [
+                    "12",
+                    "PROD0340"
+                ],
+                [
+                    "13",
+                    "PROD0006"
+                ],
+                [
+                    "13",
+                    "PROD0119"
+                ],
+                [
+                    "13",
+                    "PROD0142"
+                ],
+                [
+                    "13",
+                    "PROD0313"
+                ],
+                [
+                    "14",
+                    "PROD0030"
+                ],
+                [
+                    "14",
+                    "PROD0327"
+                ],
+                [
+                    "14",
+                    "PROD0415"
+                ],
+                [
+                    "14",
+                    "PROD0459"
+                ],
+                [
+                    "15",
+                    "PROD0218"
+                ],
+                [
+                    "16",
+                    "PROD0324"
+                ],
+                [
+                    "17",
+                    "PROD0088"
+                ],
+                [
+                    "17",
+                    "PROD0301"
+                ],
+                [
+                    "17",
+                    "PROD0474"
+                ],
+                [
+                    "18",
+                    "PROD0274"
+                ],
+                [
+                    "18",
+                    "PROD0401"
+                ],
+                [
+                    "18",
+                    "PROD0500"
+                ],
+                [
+                    "6",
+                    "PROD0037"
+                ],
+                [
+                    "6",
+                    "PROD0357"
+                ],
+                [
+                    "7",
+                    "PROD0312"
+                ],
+                [
+                    "8",
+                    "PROD0019"
+                ],
+                [
+                    "9",
+                    "PROD0436"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 193,
+        "template": 51,
+        "question": "Count the transactions whose discount is above 0.2.",
+        "cypher": "MATCH (t:Transaction) WHERE t.discountPct > 0.2 RETURN count(DISTINCT t) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1143"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 9,
+        "template": 1,
+        "question": "Which product is in transaction \"TXN034950\"?",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN034950\"})-[:CONTAINS_PRODUCT]->(p:Product) RETURN p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0023"
+                ]
+            ],
+            [
+                [
+                    "FunZone Clothing Item 23"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 99,
+        "template": 19,
+        "question": "What is the total revenue from customer \"CUST03767\"?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST03767\"}) RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3135.84"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 219,
+        "template": 57,
+        "question": "What phone number is on file for customer \"CUST05391\"?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 205,
+        "template": 54,
+        "question": "Sum the transaction revenue for customers whose country is Sweden.",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {country: \"Sweden\"}) RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1086933.67"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 235,
+        "template": 60,
+        "question": "Which employee processed transaction \"TXN082643\"?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 156,
+        "template": 36,
+        "question": "Per product supplied by OutdoorPro CA, give the lead time in days.",
+        "cypher": "MATCH (s:Supplier {supplierName: \"OutdoorPro CA\"})-[sup:SUPPLIES]->(p:Product) RETURN p.productId, sup.leadTimeDays",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "10",
+                    "PROD0076"
+                ],
+                [
+                    "10",
+                    "PROD0160"
+                ],
+                [
+                    "10",
+                    "PROD0180"
+                ],
+                [
+                    "10",
+                    "PROD0334"
+                ],
+                [
+                    "11",
+                    "PROD0226"
+                ],
+                [
+                    "11",
+                    "PROD0296"
+                ],
+                [
+                    "11",
+                    "PROD0319"
+                ],
+                [
+                    "11",
+                    "PROD0471"
+                ],
+                [
+                    "3",
+                    "PROD0017"
+                ],
+                [
+                    "3",
+                    "PROD0126"
+                ],
+                [
+                    "3",
+                    "PROD0145"
+                ],
+                [
+                    "3",
+                    "PROD0359"
+                ],
+                [
+                    "3",
+                    "PROD0380"
+                ],
+                [
+                    "3",
+                    "PROD0455"
+                ],
+                [
+                    "4",
+                    "PROD0141"
+                ],
+                [
+                    "4",
+                    "PROD0158"
+                ],
+                [
+                    "4",
+                    "PROD0207"
+                ],
+                [
+                    "4",
+                    "PROD0221"
+                ],
+                [
+                    "4",
+                    "PROD0272"
+                ],
+                [
+                    "4",
+                    "PROD0450"
+                ],
+                [
+                    "5",
+                    "PROD0009"
+                ],
+                [
+                    "5",
+                    "PROD0075"
+                ],
+                [
+                    "5",
+                    "PROD0090"
+                ],
+                [
+                    "5",
+                    "PROD0195"
+                ],
+                [
+                    "5",
+                    "PROD0294"
+                ],
+                [
+                    "6",
+                    "PROD0047"
+                ],
+                [
+                    "6",
+                    "PROD0263"
+                ],
+                [
+                    "6",
+                    "PROD0308"
+                ],
+                [
+                    "6",
+                    "PROD0423"
+                ],
+                [
+                    "7",
+                    "PROD0085"
+                ],
+                [
+                    "7",
+                    "PROD0223"
+                ],
+                [
+                    "8",
+                    "PROD0072"
+                ],
+                [
+                    "8",
+                    "PROD0102"
+                ],
+                [
+                    "8",
+                    "PROD0149"
+                ],
+                [
+                    "8",
+                    "PROD0173"
+                ],
+                [
+                    "8",
+                    "PROD0417"
+                ],
+                [
+                    "9",
+                    "PROD0258"
+                ],
+                [
+                    "9",
+                    "PROD0370"
+                ],
+                [
+                    "9",
+                    "PROD0395"
+                ],
+                [
+                    "9",
+                    "PROD0466"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 200,
+        "template": 53,
+        "question": "Count the returns with reason defective that were not put back in stock.",
+        "cypher": "MATCH (r:Return {reason: \"defective\"}) WHERE r.restocked = false RETURN count(DISTINCT r) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "591"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 46,
+        "template": 9,
+        "question": "Give the product with the fewest units held at US-West.",
+        "cypher": "MATCH (w:Warehouse {warehouseLocation: \"US-West\"})-[s:STOCKS]->(p:Product) RETURN p.productId ORDER BY s.stockUnits ASC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0245"
+                ]
+            ],
+            [
+                [
+                    "2",
+                    "PROD0245"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 139,
+        "template": 30,
+        "question": "Break down total transaction revenue by year.",
+        "cypher": "MATCH (t:Transaction) WITH t.date.year AS year, sum(t.revenueUsd) AS total RETURN year, total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "17599156.98",
+                    "2023"
+                ],
+                [
+                    "17622634.29",
+                    "2022"
+                ],
+                [
+                    "17650168.77",
+                    "2024"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 91,
+        "template": 18,
+        "question": "Count the returns of product \"PROD0280\".",
+        "cypher": "MATCH (r:Return)-[:OF_PRODUCT]->(p:Product {productId: \"PROD0280\"}) RETURN count(DISTINCT r) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "21"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 64,
+        "template": 12,
+        "question": "Which products has customer \"CUST07962\" bought? Give their ids.",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST07962\"}) MATCH (t)-[:CONTAINS_PRODUCT]->(p:Product) RETURN DISTINCT p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0083"
+                ],
+                [
+                    "PROD0231"
+                ],
+                [
+                    "PROD0261"
+                ],
+                [
+                    "PROD0331"
+                ],
+                [
+                    "PROD0483"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 100,
+        "template": 20,
+        "question": "What is the total profit made on product \"PROD0173\"?",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0173\"}) RETURN sum(t.profitUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "119011.06"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 195,
+        "template": 52,
+        "question": "Give the mean discount percentage across transactions in refunded status.",
+        "cypher": "MATCH (t:Transaction {status: \"refunded\"}) RETURN avg(t.discountPct) AS average",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "0.06"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 123,
+        "template": 25,
+        "question": "List the ids of products whose active flag is false.",
+        "cypher": "MATCH (p:Product) WHERE p.isActive = false RETURN p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0040"
+                ],
+                [
+                    "PROD0074"
+                ],
+                [
+                    "PROD0112"
+                ],
+                [
+                    "PROD0114"
+                ],
+                [
+                    "PROD0115"
+                ],
+                [
+                    "PROD0140"
+                ],
+                [
+                    "PROD0157"
+                ],
+                [
+                    "PROD0166"
+                ],
+                [
+                    "PROD0170"
+                ],
+                [
+                    "PROD0186"
+                ],
+                [
+                    "PROD0199"
+                ],
+                [
+                    "PROD0206"
+                ],
+                [
+                    "PROD0223"
+                ],
+                [
+                    "PROD0253"
+                ],
+                [
+                    "PROD0257"
+                ],
+                [
+                    "PROD0272"
+                ],
+                [
+                    "PROD0274"
+                ],
+                [
+                    "PROD0290"
+                ],
+                [
+                    "PROD0296"
+                ],
+                [
+                    "PROD0303"
+                ],
+                [
+                    "PROD0320"
+                ],
+                [
+                    "PROD0322"
+                ],
+                [
+                    "PROD0329"
+                ],
+                [
+                    "PROD0332"
+                ],
+                [
+                    "PROD0374"
+                ],
+                [
+                    "PROD0395"
+                ],
+                [
+                    "PROD0415"
+                ],
+                [
+                    "PROD0423"
+                ],
+                [
+                    "PROD0437"
+                ],
+                [
+                    "PROD0475"
+                ],
+                [
+                    "PROD0487"
+                ],
+                [
+                    "PROD0500"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 25,
+        "template": 5,
+        "question": "Which warehouses stock product \"PROD0217\", and how many units does each hold?",
+        "cypher": "MATCH (w:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0217\"}) RETURN w.warehouseLocation, s.stockUnits",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "7",
+                    "US-East"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 165,
+        "template": 40,
+        "question": "What supplier covers the largest number of products?",
+        "cypher": "MATCH (s:Supplier)-[:SUPPLIES]->(p:Product) WITH s, count(DISTINCT p) AS total RETURN s.supplierName ORDER BY total DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "FabricWorld CN"
+                ]
+            ],
+            [
+                [
+                    "82",
+                    "FabricWorld CN"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 173,
+        "template": 43,
+        "question": "List the suppliers that have no supply arrangement for product \"PROD0030\".",
+        "cypher": "MATCH (s:Supplier) WHERE NOT EXISTS { (s)-[:SUPPLIES]->(:Product {productId: \"PROD0030\"}) } RETURN s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "ActiveGear TW"
+                ],
+                [
+                    "BookSupply DE"
+                ],
+                [
+                    "DomesticSupply UK"
+                ],
+                [
+                    "ElectroPrime EU"
+                ],
+                [
+                    "EuroFashion IT"
+                ],
+                [
+                    "FabricWorld CN"
+                ],
+                [
+                    "GameSource JP"
+                ],
+                [
+                    "GlobalTech USA"
+                ],
+                [
+                    "HealthSource SE"
+                ],
+                [
+                    "HomeGoods DE"
+                ],
+                [
+                    "KitchenPro PL"
+                ],
+                [
+                    "OutdoorPro CA"
+                ],
+                [
+                    "PaperSource NL"
+                ],
+                [
+                    "PlaySupply US"
+                ],
+                [
+                    "PrintMedia UK"
+                ],
+                [
+                    "SportSupply US"
+                ],
+                [
+                    "StyleSupply TR"
+                ],
+                [
+                    "TechSource Asia"
+                ],
+                [
+                    "ToyFactory CN"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 31,
+        "template": 6,
+        "question": "Give the total stock of product \"PROD0372\" over every warehouse.",
+        "cypher": "MATCH (:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0372\"}) RETURN sum(s.stockUnits) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "9"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 112,
+        "template": 22,
+        "question": "How many units of product \"PROD0463\" have been sold in total?",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0463\"}) RETURN sum(t.quantity) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "407"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 127,
+        "template": 27,
+        "question": "Give the date of the latest transaction placed by customer \"CUST02844\".",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST02844\"}) RETURN max(t.date) AS latest",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2023-11-21T00:00:00.000000000+00:00"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 230,
+        "template": 59,
+        "question": "What country is DomesticSupply UK based in?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 19,
+        "template": 3,
+        "question": "Which customer made return \"RET06507\"?",
+        "cypher": "MATCH (r:Return {returnId: \"RET06507\"})-[:BY_CUSTOMER]->(c:Customer) RETURN c.customerId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "CUST07367"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 30,
+        "template": 6,
+        "question": "How many units of product \"PROD0310\" are in stock across all warehouses?",
+        "cypher": "MATCH (:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0310\"}) RETURN sum(s.stockUnits) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "13"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 65,
+        "template": 13,
+        "question": "Which products has customer \"CUST06428\" returned? Give their ids.",
+        "cypher": "MATCH (r:Return)-[:BY_CUSTOMER]->(c:Customer {customerId: \"CUST06428\"}) MATCH (r)-[:OF_PRODUCT]->(p:Product) RETURN DISTINCT p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0424"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 212,
+        "template": 56,
+        "question": "Sum the stock units held for products of the brand PureForm.",
+        "cypher": "MATCH (:Warehouse)-[s:STOCKS]->(p:Product {brand: \"PureForm\"}) RETURN sum(s.stockUnits) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "451"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 163,
+        "template": 39,
+        "question": "What product category has the highest total revenue?",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product) WITH p.category AS category, sum(t.revenueUsd) AS total RETURN category ORDER BY total DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Electronics"
+                ]
+            ],
+            [
+                [
+                    "24384968.81",
+                    "Electronics"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 37,
+        "template": 7,
+        "question": "Who is the primary supplier of product \"PROD0087\"?",
+        "cypher": "MATCH (s:Supplier)-[sup:SUPPLIES]->(p:Product {productId: \"PROD0087\"}) WHERE sup.isPrimary = true RETURN s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PlaySupply US"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 11,
+        "template": 2,
+        "question": "Give the status and revenue recorded on transaction \"TXN012826\".",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN012826\"}) RETURN t.status, t.revenueUsd",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "713.54",
+                    "completed"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 130,
+        "template": 27,
+        "question": "When was the most recent transaction by customer \"CUST07710\"?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST07710\"}) RETURN max(t.date) AS latest",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2024-12-28T00:00:00.000000000+00:00"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 152,
+        "template": 35,
+        "question": "Per product category, count the distinct customers who bought one.",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product) MATCH (t)-[:PLACED_BY]->(c:Customer) WITH p.category AS category, count(DISTINCT c) AS total RETURN category, total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4003",
+                    "Toys & Games"
+                ],
+                [
+                    "4353",
+                    "Books"
+                ],
+                [
+                    "4588",
+                    "Beauty & Health"
+                ],
+                [
+                    "5203",
+                    "Sports & Outdoors"
+                ],
+                [
+                    "5749",
+                    "Electronics"
+                ],
+                [
+                    "5759",
+                    "Home & Kitchen"
+                ],
+                [
+                    "6696",
+                    "Clothing"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 78,
+        "template": 15,
+        "question": "List the categories of the products supplied by KitchenPro PL.",
+        "cypher": "MATCH (s:Supplier {supplierName: \"KitchenPro PL\"})-[:SUPPLIES]->(p:Product) RETURN DISTINCT p.category",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Home & Kitchen"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 80,
+        "template": 16,
+        "question": "Which suppliers made the products customer \"CUST04746\" bought? Give their names.",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST04746\"}) MATCH (t)-[:CONTAINS_PRODUCT]->(p:Product) MATCH (s:Supplier)-[:SUPPLIES]->(p) RETURN DISTINCT s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "ElectroPrime EU"
+                ],
+                [
+                    "EuroFashion IT"
+                ],
+                [
+                    "FabricWorld CN"
+                ],
+                [
+                    "GlobalTech USA"
+                ],
+                [
+                    "PaperSource NL"
+                ],
+                [
+                    "StyleSupply TR"
+                ],
+                [
+                    "TechSource Asia"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 101,
+        "template": 20,
+        "question": "Sum the profit over every transaction containing product \"PROD0340\".",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0340\"}) RETURN sum(t.profitUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "23124.18"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 140,
+        "template": 31,
+        "question": "Which Sports & Outdoors product was launched most recently? Give its id.",
+        "cypher": "MATCH (p:Product {category: \"Sports & Outdoors\"}) RETURN p.productId ORDER BY p.launchDate DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0052"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 86,
+        "template": 17,
+        "question": "Count the transactions placed by customer \"CUST02498\".",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST02498\"}) RETURN count(DISTINCT t) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "12"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 118,
+        "template": 23,
+        "question": "Give the most expensive unit price among Clothing products.",
+        "cypher": "MATCH (p:Product {category: \"Clothing\"}) RETURN max(p.unitPriceUsd) AS highest",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "298.17"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 57,
+        "template": 11,
+        "question": "How many products does OutdoorPro CA supply as the primary supplier?",
+        "cypher": "MATCH (s:Supplier {supplierName: \"OutdoorPro CA\"})-[sup:SUPPLIES]->(p:Product) WHERE sup.isPrimary = true RETURN count(DISTINCT p) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "15"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 15,
+        "template": 3,
+        "question": "Which customer made return \"RET01518\"?",
+        "cypher": "MATCH (r:Return {returnId: \"RET01518\"})-[:BY_CUSTOMER]->(c:Customer) RETURN c.customerId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "CUST03000"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 40,
+        "template": 8,
+        "question": "What unit cost does each supplier charge for product \"PROD0121\"?",
+        "cypher": "MATCH (s:Supplier)-[sup:SUPPLIES]->(p:Product {productId: \"PROD0121\"}) RETURN s.supplierName, sup.unitCostUsd",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "310.41",
+                    "TechSource Asia"
+                ],
+                [
+                    "333.1",
+                    "GlobalTech USA"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 204,
+        "template": 54,
+        "question": "What is the total revenue from customers in France?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {country: \"France\"}) RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "5190254.92"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 158,
+        "template": 37,
+        "question": "Which customer has spent the most in total? Give their id.",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer) WITH c, sum(t.revenueUsd) AS total RETURN c.customerId ORDER BY total DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "CUST01713"
+                ]
+            ],
+            [
+                [
+                    "884247.14",
+                    "CUST01713"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 203,
+        "template": 53,
+        "question": "How many returns for changed_mind were not restocked?",
+        "cypher": "MATCH (r:Return {reason: \"changed_mind\"}) WHERE r.restocked = false RETURN count(DISTINCT r) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "494"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 52,
+        "template": 10,
+        "question": "When was product \"PROD0280\" last restocked, and where?",
+        "cypher": "MATCH (w:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0280\"}) RETURN w.warehouseLocation, s.lastRestockDate ORDER BY s.lastRestockDate DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2024-11-29T00:00:00.000000000+00:00",
+                    "US-East"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 47,
+        "template": 9,
+        "question": "Which product is lowest in stock at EU-West?",
+        "cypher": "MATCH (w:Warehouse {warehouseLocation: \"EU-West\"})-[s:STOCKS]->(p:Product) RETURN p.productId ORDER BY s.stockUnits ASC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0263"
+                ]
+            ],
+            [
+                [
+                    "2",
+                    "PROD0263"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 164,
+        "template": 40,
+        "question": "Which supplier supplies the most products?",
+        "cypher": "MATCH (s:Supplier)-[:SUPPLIES]->(p:Product) WITH s, count(DISTINCT p) AS total RETURN s.supplierName ORDER BY total DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "FabricWorld CN"
+                ]
+            ],
+            [
+                [
+                    "82",
+                    "FabricWorld CN"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 116,
+        "template": 23,
+        "question": "Give the most expensive unit price among Home & Kitchen products.",
+        "cypher": "MATCH (p:Product {category: \"Home & Kitchen\"}) RETURN max(p.unitPriceUsd) AS highest",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "392.8"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 54,
+        "template": 10,
+        "question": "When was product \"PROD0415\" last restocked, and where?",
+        "cypher": "MATCH (w:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0415\"}) RETURN w.warehouseLocation, s.lastRestockDate ORDER BY s.lastRestockDate DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2024-10-27T00:00:00.000000000+00:00",
+                    "APAC"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 221,
+        "template": 58,
+        "question": "What is the average review rating of product \"PROD0120\"?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 131,
+        "template": 28,
+        "question": "How much revenue did customer \"CUST02011\" generate in 2024?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST02011\"}) WHERE t.date.year = 2024 RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "868.96"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 56,
+        "template": 11,
+        "question": "Count the products where BeautyLab FR is marked primary.",
+        "cypher": "MATCH (s:Supplier {supplierName: \"BeautyLab FR\"})-[sup:SUPPLIES]->(p:Product) WHERE sup.isPrimary = true RETURN count(DISTINCT p) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "17"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 233,
+        "template": 60,
+        "question": "Which employee processed transaction \"TXN087445\"?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 184,
+        "template": 47,
+        "question": "How many products come from more than one supplier?",
+        "cypher": "MATCH (s:Supplier)-[:SUPPLIES]->(p:Product) WITH p, count(DISTINCT s) AS suppliers WHERE suppliers > 1 RETURN count(DISTINCT p) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "339"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 7,
+        "template": 1,
+        "question": "Which product is in transaction \"TXN067261\"?",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN067261\"})-[:CONTAINS_PRODUCT]->(p:Product) RETURN p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0263"
+                ]
+            ],
+            [
+                [
+                    "PureForm Sports Item 263"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 215,
+        "template": 56,
+        "question": "How many units of FunZone products are in stock across all warehouses?",
+        "cypher": "MATCH (:Warehouse)-[s:STOCKS]->(p:Product {brand: \"FunZone\"}) RETURN sum(s.stockUnits) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "763"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 236,
+        "template": 61,
+        "question": "How many of them are left?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 136,
+        "template": 29,
+        "question": "How many transactions were there in 2023?",
+        "cypher": "MATCH (t:Transaction) WHERE t.date.year = 2023 RETURN count(DISTINCT t) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "33265"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 224,
+        "template": 58,
+        "question": "How many stars has product \"PROD0097\" been given?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 189,
+        "template": 49,
+        "question": "List the suppliers marked primary on a product that is no longer active.",
+        "cypher": "MATCH (s:Supplier)-[sup:SUPPLIES]->(p:Product) WHERE sup.isPrimary = true AND p.isActive = false RETURN DISTINCT s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "ActiveGear TW"
+                ],
+                [
+                    "BeautyLab FR"
+                ],
+                [
+                    "BookSupply DE"
+                ],
+                [
+                    "CosmeticsCo KR"
+                ],
+                [
+                    "DomesticSupply UK"
+                ],
+                [
+                    "ElectroPrime EU"
+                ],
+                [
+                    "FabricWorld CN"
+                ],
+                [
+                    "GameSource JP"
+                ],
+                [
+                    "GlobalTech USA"
+                ],
+                [
+                    "HomeGoods DE"
+                ],
+                [
+                    "KitchenPro PL"
+                ],
+                [
+                    "OutdoorPro CA"
+                ],
+                [
+                    "PaperSource NL"
+                ],
+                [
+                    "PlaySupply US"
+                ],
+                [
+                    "PrintMedia UK"
+                ],
+                [
+                    "SportSupply US"
+                ],
+                [
+                    "StyleSupply TR"
+                ],
+                [
+                    "TechSource Asia"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 199,
+        "template": 53,
+        "question": "How many returns for wrong_item were not restocked?",
+        "cypher": "MATCH (r:Return {reason: \"wrong_item\"}) WHERE r.restocked = false RETURN count(DISTINCT r) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "510"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 217,
+        "template": 57,
+        "question": "What phone number is on file for customer \"CUST03058\"?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 61,
+        "template": 12,
+        "question": "List the product ids appearing on transactions of customer \"CUST07180\".",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST07180\"}) MATCH (t)-[:CONTAINS_PRODUCT]->(p:Product) RETURN DISTINCT p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0001"
+                ],
+                [
+                    "PROD0075"
+                ],
+                [
+                    "PROD0192"
+                ],
+                [
+                    "PROD0209"
+                ],
+                [
+                    "PROD0248"
+                ],
+                [
+                    "PROD0368"
+                ],
+                [
+                    "PROD0391"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 117,
+        "template": 23,
+        "question": "What is the highest unit price in the Books category?",
+        "cypher": "MATCH (p:Product {category: \"Books\"}) RETURN max(p.unitPriceUsd) AS highest",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "59.49"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 27,
+        "template": 5,
+        "question": "Which warehouses stock product \"PROD0321\", and how many units does each hold?",
+        "cypher": "MATCH (w:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0321\"}) RETURN w.warehouseLocation, s.stockUnits",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "15",
+                    "US-East"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 55,
+        "template": 11,
+        "question": "How many products does EuroFashion IT supply as the primary supplier?",
+        "cypher": "MATCH (s:Supplier {supplierName: \"EuroFashion IT\"})-[sup:SUPPLIES]->(p:Product) WHERE sup.isPrimary = true RETURN count(DISTINCT p) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "32"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 149,
+        "template": 34,
+        "question": "How many returns were there for each reason?",
+        "cypher": "MATCH (r:Return) WITH r.reason AS reason, count(DISTINCT r) AS total RETURN reason, total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1395",
+                    "wrong_item"
+                ],
+                [
+                    "1451",
+                    "changed_mind"
+                ],
+                [
+                    "1758",
+                    "defective"
+                ],
+                [
+                    "1793",
+                    "not_as_described"
+                ],
+                [
+                    "729",
+                    "late_delivery"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 49,
+        "template": 9,
+        "question": "Which product is lowest in stock at EU-Central?",
+        "cypher": "MATCH (w:Warehouse {warehouseLocation: \"EU-Central\"})-[s:STOCKS]->(p:Product) RETURN p.productId ORDER BY s.stockUnits ASC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0380"
+                ]
+            ],
+            [
+                [
+                    "1",
+                    "PROD0380"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 3,
+        "template": 0,
+        "question": "Give the customer id on transaction \"TXN020914\".",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN020914\"})-[:PLACED_BY]->(c:Customer) RETURN c.customerId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "CUST03925"
+                ]
+            ],
+            [
+                [
+                    "Carlos",
+                    "Harris"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 35,
+        "template": 7,
+        "question": "Who is the primary supplier of product \"PROD0321\"?",
+        "cypher": "MATCH (s:Supplier)-[sup:SUPPLIES]->(p:Product {productId: \"PROD0321\"}) WHERE sup.isPrimary = true RETURN s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "ToyFactory CN"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 111,
+        "template": 22,
+        "question": "Sum the quantity across every transaction containing product \"PROD0328\".",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0328\"}) RETURN sum(t.quantity) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "225"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 144,
+        "template": 31,
+        "question": "Which Beauty & Health product was launched most recently? Give its id.",
+        "cypher": "MATCH (p:Product {category: \"Beauty & Health\"}) RETURN p.productId ORDER BY p.launchDate DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0324"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 181,
+        "template": 45,
+        "question": "Count the customers with no returns.",
+        "cypher": "MATCH (c:Customer) WHERE NOT EXISTS { (:Return)-[:BY_CUSTOMER]->(c) } RETURN count(DISTINCT c) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4268"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 169,
+        "template": 42,
+        "question": "List the ids of products that appear on no transaction.",
+        "cypher": "MATCH (p:Product) WHERE NOT EXISTS { (:Transaction)-[:CONTAINS_PRODUCT]->(p) } RETURN p.productId",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 210,
+        "template": 55,
+        "question": "Count the premium customers with at least two transactions.",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer) WHERE c.isPremium = true WITH c, count(DISTINCT t) AS total WHERE total > 1 RETURN count(DISTINCT c) AS customers",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1710"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 208,
+        "template": 54,
+        "question": "What is the total revenue from customers in Spain?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {country: \"Spain\"}) RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4346892.11"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 59,
+        "template": 11,
+        "question": "How many products does SportSupply US supply as the primary supplier?",
+        "cypher": "MATCH (s:Supplier {supplierName: \"SportSupply US\"})-[sup:SUPPLIES]->(p:Product) WHERE sup.isPrimary = true RETURN count(DISTINCT p) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "28"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 119,
+        "template": 23,
+        "question": "What is the highest unit price in the Beauty & Health category?",
+        "cypher": "MATCH (p:Product {category: \"Beauty & Health\"}) RETURN max(p.unitPriceUsd) AS highest",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "192.64"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 115,
+        "template": 23,
+        "question": "What is the highest unit price in the Electronics category?",
+        "cypher": "MATCH (p:Product {category: \"Electronics\"}) RETURN max(p.unitPriceUsd) AS highest",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1191.59"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 196,
+        "template": 52,
+        "question": "What is the average discount on completed transactions?",
+        "cypher": "MATCH (t:Transaction {status: \"completed\"}) RETURN avg(t.discountPct) AS average",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "0.06"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 228,
+        "template": 59,
+        "question": "What country is GameSource JP based in?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 150,
+        "template": 34,
+        "question": "Break down the return count by reason.",
+        "cypher": "MATCH (r:Return) WITH r.reason AS reason, count(DISTINCT r) AS total RETURN reason, total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1395",
+                    "wrong_item"
+                ],
+                [
+                    "1451",
+                    "changed_mind"
+                ],
+                [
+                    "1758",
+                    "defective"
+                ],
+                [
+                    "1793",
+                    "not_as_described"
+                ],
+                [
+                    "729",
+                    "late_delivery"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 209,
+        "template": 55,
+        "question": "How many premium customers have more than one transaction?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer) WHERE c.isPremium = true WITH c, count(DISTINCT t) AS total WHERE total > 1 RETURN count(DISTINCT c) AS customers",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1710"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 24,
+        "template": 4,
+        "question": "What brand and category is product \"PROD0280\"?",
+        "cypher": "MATCH (p:Product {productId: \"PROD0280\"}) RETURN p.brand, p.category",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Clothing",
+                    "GlowUp"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 227,
+        "template": 59,
+        "question": "What is the contact email for ActiveGear TW?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 225,
+        "template": 58,
+        "question": "What is the average review rating of product \"PROD0167\"?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 79,
+        "template": 15,
+        "question": "Which product categories does FabricWorld CN supply?",
+        "cypher": "MATCH (s:Supplier {supplierName: \"FabricWorld CN\"})-[:SUPPLIES]->(p:Product) RETURN DISTINCT p.category",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Clothing"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 58,
+        "template": 11,
+        "question": "Count the products where ToyFactory CN is marked primary.",
+        "cypher": "MATCH (s:Supplier {supplierName: \"ToyFactory CN\"})-[sup:SUPPLIES]->(p:Product) WHERE sup.isPrimary = true RETURN count(DISTINCT p) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "17"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 234,
+        "template": 60,
+        "question": "What courier delivered transaction \"TXN020430\"?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 183,
+        "template": 46,
+        "question": "Count the customers who returned a product they had bought.",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer) MATCH (t)-[:CONTAINS_PRODUCT]->(p:Product) MATCH (r:Return)-[:BY_CUSTOMER]->(c) MATCH (r)-[:OF_PRODUCT]->(p) RETURN count(DISTINCT c) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3732"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 75,
+        "template": 15,
+        "question": "Which product categories does SportSupply US supply?",
+        "cypher": "MATCH (s:Supplier {supplierName: \"SportSupply US\"})-[:SUPPLIES]->(p:Product) RETURN DISTINCT p.category",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Sports & Outdoors"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 98,
+        "template": 19,
+        "question": "Sum the revenue across all transactions of customer \"CUST06943\".",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST06943\"}) RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "12778.49"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 108,
+        "template": 21,
+        "question": "Sum the refund amounts on returns by customer \"CUST01502\".",
+        "cypher": "MATCH (r:Return)-[:BY_CUSTOMER]->(c:Customer {customerId: \"CUST01502\"}) RETURN sum(r.refundAmountUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1186.4"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 177,
+        "template": 44,
+        "question": "Which warehouses do not stock product \"PROD0169\"?",
+        "cypher": "MATCH (w:Warehouse) WHERE NOT EXISTS { (w)-[:STOCKS]->(:Product {productId: \"PROD0169\"}) } RETURN w.warehouseLocation",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "APAC"
+                ],
+                [
+                    "EU-West"
+                ],
+                [
+                    "US-East"
+                ],
+                [
+                    "US-West"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 39,
+        "template": 7,
+        "question": "Who is the primary supplier of product \"PROD0461\"?",
+        "cypher": "MATCH (s:Supplier)-[sup:SUPPLIES]->(p:Product {productId: \"PROD0461\"}) WHERE sup.isPrimary = true RETURN s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PaperSource NL"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 192,
+        "template": 51,
+        "question": "How many transactions were discounted by more than 20%?",
+        "cypher": "MATCH (t:Transaction) WHERE t.discountPct > 0.2 RETURN count(DISTINCT t) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1143"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 207,
+        "template": 54,
+        "question": "Sum the transaction revenue for customers whose country is Italy.",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {country: \"Italy\"}) RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4192056.1"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 143,
+        "template": 31,
+        "question": "Give the id of the newest product in the Books category by launch date.",
+        "cypher": "MATCH (p:Product {category: \"Books\"}) RETURN p.productId ORDER BY p.launchDate DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0224"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 154,
+        "template": 36,
+        "question": "Per product supplied by PaperSource NL, give the lead time in days.",
+        "cypher": "MATCH (s:Supplier {supplierName: \"PaperSource NL\"})-[sup:SUPPLIES]->(p:Product) RETURN p.productId, sup.leadTimeDays",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "10",
+                    "PROD0138"
+                ],
+                [
+                    "10",
+                    "PROD0170"
+                ],
+                [
+                    "10",
+                    "PROD0404"
+                ],
+                [
+                    "12",
+                    "PROD0275"
+                ],
+                [
+                    "13",
+                    "PROD0033"
+                ],
+                [
+                    "13",
+                    "PROD0083"
+                ],
+                [
+                    "13",
+                    "PROD0336"
+                ],
+                [
+                    "13",
+                    "PROD0392"
+                ],
+                [
+                    "13",
+                    "PROD0461"
+                ],
+                [
+                    "14",
+                    "PROD0035"
+                ],
+                [
+                    "14",
+                    "PROD0397"
+                ],
+                [
+                    "15",
+                    "PROD0205"
+                ],
+                [
+                    "15",
+                    "PROD0366"
+                ],
+                [
+                    "15",
+                    "PROD0454"
+                ],
+                [
+                    "16",
+                    "PROD0016"
+                ],
+                [
+                    "16",
+                    "PROD0388"
+                ],
+                [
+                    "17",
+                    "PROD0240"
+                ],
+                [
+                    "17",
+                    "PROD0379"
+                ],
+                [
+                    "18",
+                    "PROD0241"
+                ],
+                [
+                    "19",
+                    "PROD0193"
+                ],
+                [
+                    "19",
+                    "PROD0355"
+                ],
+                [
+                    "5",
+                    "PROD0485"
+                ],
+                [
+                    "6",
+                    "PROD0056"
+                ],
+                [
+                    "6",
+                    "PROD0111"
+                ],
+                [
+                    "6",
+                    "PROD0249"
+                ],
+                [
+                    "6",
+                    "PROD0352"
+                ],
+                [
+                    "6",
+                    "PROD0362"
+                ],
+                [
+                    "6",
+                    "PROD0433"
+                ],
+                [
+                    "7",
+                    "PROD0020"
+                ],
+                [
+                    "7",
+                    "PROD0062"
+                ],
+                [
+                    "7",
+                    "PROD0181"
+                ],
+                [
+                    "7",
+                    "PROD0203"
+                ],
+                [
+                    "7",
+                    "PROD0354"
+                ],
+                [
+                    "9",
+                    "PROD0001"
+                ],
+                [
+                    "9",
+                    "PROD0041"
+                ],
+                [
+                    "9",
+                    "PROD0157"
+                ],
+                [
+                    "9",
+                    "PROD0166"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 48,
+        "template": 9,
+        "question": "Give the product with the fewest units held at APAC.",
+        "cypher": "MATCH (w:Warehouse {warehouseLocation: \"APAC\"})-[s:STOCKS]->(p:Product) RETURN p.productId ORDER BY s.stockUnits ASC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0312"
+                ]
+            ],
+            [
+                [
+                    "3",
+                    "PROD0312"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 36,
+        "template": 7,
+        "question": "Give the supplier marked as primary for product \"PROD0415\".",
+        "cypher": "MATCH (s:Supplier)-[sup:SUPPLIES]->(p:Product {productId: \"PROD0415\"}) WHERE sup.isPrimary = true RETURN s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "CosmeticsCo KR"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 125,
+        "template": 26,
+        "question": "Count the returns whose restocked flag is false.",
+        "cypher": "MATCH (r:Return) WHERE r.restocked = false RETURN count(DISTINCT r) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2450"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 128,
+        "template": 27,
+        "question": "When was the most recent transaction by customer \"CUST02057\"?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST02057\"}) RETURN max(t.date) AS latest",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2024-11-19T00:00:00.000000000+00:00"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 87,
+        "template": 17,
+        "question": "How many transactions does customer \"CUST03796\" have?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST03796\"}) RETURN count(DISTINCT t) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 84,
+        "template": 16,
+        "question": "Which suppliers made the products customer \"CUST02107\" bought? Give their names.",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST02107\"}) MATCH (t)-[:CONTAINS_PRODUCT]->(p:Product) MATCH (s:Supplier)-[:SUPPLIES]->(p) RETURN DISTINCT s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "ActiveGear TW"
+                ],
+                [
+                    "BeautyLab FR"
+                ],
+                [
+                    "EuroFashion IT"
+                ],
+                [
+                    "GameSource JP"
+                ],
+                [
+                    "HealthSource SE"
+                ],
+                [
+                    "PaperSource NL"
+                ],
+                [
+                    "PlaySupply US"
+                ],
+                [
+                    "PrintMedia UK"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 186,
+        "template": 48,
+        "question": "How many products are stocked below the minimum order quantity their supplier sets?",
+        "cypher": "MATCH (w:Warehouse)-[st:STOCKS]->(p:Product) MATCH (:Supplier)-[sp:SUPPLIES]->(p) WHERE st.stockUnits < sp.minOrderQty RETURN count(DISTINCT p) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "451"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 202,
+        "template": 53,
+        "question": "Count the returns with reason not_as_described that were not put back in stock.",
+        "cypher": "MATCH (r:Return {reason: \"not_as_described\"}) WHERE r.restocked = false RETURN count(DISTINCT r) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "608"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 33,
+        "template": 6,
+        "question": "Give the total stock of product \"PROD0486\" over every warehouse.",
+        "cypher": "MATCH (:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0486\"}) RETURN sum(s.stockUnits) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "45"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 211,
+        "template": 56,
+        "question": "How many units of BoldEdge products are in stock across all warehouses?",
+        "cypher": "MATCH (:Warehouse)-[s:STOCKS]->(p:Product {brand: \"BoldEdge\"}) RETURN sum(s.stockUnits) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "905"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 178,
+        "template": 44,
+        "question": "List the warehouses holding no units of product \"PROD0175\".",
+        "cypher": "MATCH (w:Warehouse) WHERE NOT EXISTS { (w)-[:STOCKS]->(:Product {productId: \"PROD0175\"}) } RETURN w.warehouseLocation",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "APAC"
+                ],
+                [
+                    "EU-Central"
+                ],
+                [
+                    "EU-West"
+                ],
+                [
+                    "US-West"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 13,
+        "template": 2,
+        "question": "Give the status and revenue recorded on transaction \"TXN037557\".",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN037557\"}) RETURN t.status, t.revenueUsd",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "832.84",
+                    "cancelled"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 159,
+        "template": 37,
+        "question": "Which customer id has the highest total revenue?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer) WITH c, sum(t.revenueUsd) AS total RETURN c.customerId ORDER BY total DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "CUST01713"
+                ]
+            ],
+            [
+                [
+                    "884247.14",
+                    "CUST01713"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 16,
+        "template": 3,
+        "question": "Give the customer id on return \"RET01410\".",
+        "cypher": "MATCH (r:Return {returnId: \"RET01410\"})-[:BY_CUSTOMER]->(c:Customer) RETURN c.customerId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "CUST06418"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 23,
+        "template": 4,
+        "question": "Give the brand and category of product \"PROD0168\".",
+        "cypher": "MATCH (p:Product {productId: \"PROD0168\"}) RETURN p.brand, p.category",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Clothing",
+                    "StyleCo"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 213,
+        "template": 56,
+        "question": "How many units of ZenLife products are in stock across all warehouses?",
+        "cypher": "MATCH (:Warehouse)-[s:STOCKS]->(p:Product {brand: \"ZenLife\"}) RETURN sum(s.stockUnits) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "361"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 41,
+        "template": 8,
+        "question": "For product \"PROD0480\", give each supplier and its unit cost.",
+        "cypher": "MATCH (s:Supplier)-[sup:SUPPLIES]->(p:Product {productId: \"PROD0480\"}) RETURN s.supplierName, sup.unitCostUsd",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "261.64",
+                    "SportSupply US"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 67,
+        "template": 13,
+        "question": "Which products has customer \"CUST02612\" returned? Give their ids.",
+        "cypher": "MATCH (r:Return)-[:BY_CUSTOMER]->(c:Customer {customerId: \"CUST02612\"}) MATCH (r)-[:OF_PRODUCT]->(p:Product) RETURN DISTINCT p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0307"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 231,
+        "template": 60,
+        "question": "Which employee processed transaction \"TXN046037\"?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 14,
+        "template": 2,
+        "question": "What is the status and revenue of transaction \"TXN031930\"?",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN031930\"}) RETURN t.status, t.revenueUsd",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "208.49",
+                    "completed"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 226,
+        "template": 59,
+        "question": "What country is EuroFashion IT based in?",
+        "cypher": null,
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 66,
+        "template": 13,
+        "question": "List the product ids on returns made by customer \"CUST06401\".",
+        "cypher": "MATCH (r:Return)-[:BY_CUSTOMER]->(c:Customer {customerId: \"CUST06401\"}) MATCH (r)-[:OF_PRODUCT]->(p:Product) RETURN DISTINCT p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0084"
+                ],
+                [
+                    "PROD0103"
+                ],
+                [
+                    "PROD0136"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 122,
+        "template": 25,
+        "question": "Which products are no longer active? Give their ids.",
+        "cypher": "MATCH (p:Product) WHERE p.isActive = false RETURN p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0040"
+                ],
+                [
+                    "PROD0074"
+                ],
+                [
+                    "PROD0112"
+                ],
+                [
+                    "PROD0114"
+                ],
+                [
+                    "PROD0115"
+                ],
+                [
+                    "PROD0140"
+                ],
+                [
+                    "PROD0157"
+                ],
+                [
+                    "PROD0166"
+                ],
+                [
+                    "PROD0170"
+                ],
+                [
+                    "PROD0186"
+                ],
+                [
+                    "PROD0199"
+                ],
+                [
+                    "PROD0206"
+                ],
+                [
+                    "PROD0223"
+                ],
+                [
+                    "PROD0253"
+                ],
+                [
+                    "PROD0257"
+                ],
+                [
+                    "PROD0272"
+                ],
+                [
+                    "PROD0274"
+                ],
+                [
+                    "PROD0290"
+                ],
+                [
+                    "PROD0296"
+                ],
+                [
+                    "PROD0303"
+                ],
+                [
+                    "PROD0320"
+                ],
+                [
+                    "PROD0322"
+                ],
+                [
+                    "PROD0329"
+                ],
+                [
+                    "PROD0332"
+                ],
+                [
+                    "PROD0374"
+                ],
+                [
+                    "PROD0395"
+                ],
+                [
+                    "PROD0415"
+                ],
+                [
+                    "PROD0423"
+                ],
+                [
+                    "PROD0437"
+                ],
+                [
+                    "PROD0475"
+                ],
+                [
+                    "PROD0487"
+                ],
+                [
+                    "PROD0500"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 191,
+        "template": 50,
+        "question": "Count the customers who bought the product whose primary supplier is slowest.",
+        "cypher": "MATCH (:Supplier)-[sup:SUPPLIES]->(p:Product) WHERE sup.isPrimary = true WITH p ORDER BY sup.leadTimeDays DESC LIMIT 1 MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p) MATCH (t)-[:PLACED_BY]->(c:Customer) RETURN count(DISTINCT c) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "138"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 106,
+        "template": 21,
+        "question": "Sum the refund amounts on returns by customer \"CUST05114\".",
+        "cypher": "MATCH (r:Return)-[:BY_CUSTOMER]->(c:Customer {customerId: \"CUST05114\"}) RETURN sum(r.refundAmountUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "137.69"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 74,
+        "template": 14,
+        "question": "How many different customers have bought product \"PROD0197\"?",
+        "cypher": "MATCH (t:Transaction)-[:CONTAINS_PRODUCT]->(p:Product {productId: \"PROD0197\"}) MATCH (t)-[:PLACED_BY]->(c:Customer) RETURN count(DISTINCT c) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "140"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 81,
+        "template": 16,
+        "question": "List the suppliers of every product on transactions of customer \"CUST01976\".",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST01976\"}) MATCH (t)-[:CONTAINS_PRODUCT]->(p:Product) MATCH (s:Supplier)-[:SUPPLIES]->(p) RETURN DISTINCT s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "ElectroPrime EU"
+                ],
+                [
+                    "FabricWorld CN"
+                ],
+                [
+                    "GlobalTech USA"
+                ],
+                [
+                    "HomeGoods DE"
+                ],
+                [
+                    "KitchenPro PL"
+                ],
+                [
+                    "StyleSupply TR"
+                ],
+                [
+                    "TechSource Asia"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 89,
+        "template": 17,
+        "question": "How many transactions does customer \"CUST01097\" have?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST01097\"}) RETURN count(DISTINCT t) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "10"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 133,
+        "template": 28,
+        "question": "How much revenue did customer \"CUST06290\" generate in 2024?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST06290\"}) WHERE t.date.year = 2024 RETURN sum(t.revenueUsd) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "369.89"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 18,
+        "template": 3,
+        "question": "Give the customer id on return \"RET00215\".",
+        "cypher": "MATCH (r:Return {returnId: \"RET00215\"})-[:BY_CUSTOMER]->(c:Customer) RETURN c.customerId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "CUST06503"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 85,
+        "template": 17,
+        "question": "How many transactions does customer \"CUST06641\" have?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST06641\"}) RETURN count(DISTINCT t) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 120,
+        "template": 24,
+        "question": "How many customers are premium members?",
+        "cypher": "MATCH (c:Customer) WHERE c.isPremium = true RETURN count(DISTINCT c) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1749"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 38,
+        "template": 7,
+        "question": "Give the supplier marked as primary for product \"PROD0265\".",
+        "cypher": "MATCH (s:Supplier)-[sup:SUPPLIES]->(p:Product {productId: \"PROD0265\"}) WHERE sup.isPrimary = true RETURN s.supplierName",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "HomeGoods DE"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 50,
+        "template": 10,
+        "question": "When was product \"PROD0326\" last restocked, and where?",
+        "cypher": "MATCH (w:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0326\"}) RETURN w.warehouseLocation, s.lastRestockDate ORDER BY s.lastRestockDate DESC LIMIT 1",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2024-12-27T00:00:00.000000000+00:00",
+                    "EU-West"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 22,
+        "template": 4,
+        "question": "What brand and category is product \"PROD0388\"?",
+        "cypher": "MATCH (p:Product {productId: \"PROD0388\"}) RETURN p.brand, p.category",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Books",
+                    "NexGen"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 21,
+        "template": 4,
+        "question": "Give the brand and category of product \"PROD0258\".",
+        "cypher": "MATCH (p:Product {productId: \"PROD0258\"}) RETURN p.brand, p.category",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "ClearView",
+                    "Sports & Outdoors"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 29,
+        "template": 5,
+        "question": "Which warehouses stock product \"PROD0466\", and how many units does each hold?",
+        "cypher": "MATCH (w:Warehouse)-[s:STOCKS]->(p:Product {productId: \"PROD0466\"}) RETURN w.warehouseLocation, s.stockUnits",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "14",
+                    "EU-West"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 6,
+        "template": 1,
+        "question": "Give the product id contained in transaction \"TXN004284\".",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN004284\"})-[:CONTAINS_PRODUCT]->(p:Product) RETURN p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0058"
+                ]
+            ],
+            [
+                [
+                    "ActiveGear Clothing Item 58"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 4,
+        "template": 0,
+        "question": "Which customer placed transaction \"TXN042885\"?",
+        "cypher": "MATCH (t:Transaction {transactionId: \"TXN042885\"})-[:PLACED_BY]->(c:Customer) RETURN c.customerId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "CUST07914"
+                ]
+            ],
+            [
+                [
+                    "Allen",
+                    "Daniel"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 60,
+        "template": 12,
+        "question": "Which products has customer \"CUST03956\" bought? Give their ids.",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer {customerId: \"CUST03956\"}) MATCH (t)-[:CONTAINS_PRODUCT]->(p:Product) RETURN DISTINCT p.productId",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "PROD0034"
+                ],
+                [
+                    "PROD0047"
+                ],
+                [
+                    "PROD0055"
+                ],
+                [
+                    "PROD0081"
+                ],
+                [
+                    "PROD0104"
+                ],
+                [
+                    "PROD0124"
+                ],
+                [
+                    "PROD0145"
+                ],
+                [
+                    "PROD0175"
+                ],
+                [
+                    "PROD0195"
+                ],
+                [
+                    "PROD0214"
+                ],
+                [
+                    "PROD0222"
+                ],
+                [
+                    "PROD0233"
+                ],
+                [
+                    "PROD0261"
+                ],
+                [
+                    "PROD0266"
+                ],
+                [
+                    "PROD0276"
+                ],
+                [
+                    "PROD0279"
+                ],
+                [
+                    "PROD0282"
+                ],
+                [
+                    "PROD0286"
+                ],
+                [
+                    "PROD0291"
+                ],
+                [
+                    "PROD0301"
+                ],
+                [
+                    "PROD0311"
+                ],
+                [
+                    "PROD0314"
+                ],
+                [
+                    "PROD0326"
+                ],
+                [
+                    "PROD0388"
+                ],
+                [
+                    "PROD0432"
+                ],
+                [
+                    "PROD0452"
+                ],
+                [
+                    "PROD0456"
+                ],
+                [
+                    "PROD0467"
+                ],
+                [
+                    "PROD0472"
+                ],
+                [
+                    "PROD0475"
+                ],
+                [
+                    "PROD0492"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 201,
+        "template": 53,
+        "question": "How many returns for late_delivery were not restocked?",
+        "cypher": "MATCH (r:Return {reason: \"late_delivery\"}) WHERE r.restocked = false RETURN count(DISTINCT r) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "247"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 182,
+        "template": 46,
+        "question": "How many customers have bought and also returned the same product?",
+        "cypher": "MATCH (t:Transaction)-[:PLACED_BY]->(c:Customer) MATCH (t)-[:CONTAINS_PRODUCT]->(p:Product) MATCH (r:Return)-[:BY_CUSTOMER]->(c) MATCH (r)-[:OF_PRODUCT]->(p) RETURN count(DISTINCT c) AS total",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3732"
+                ]
+            ]
+        ]
+    }
+]

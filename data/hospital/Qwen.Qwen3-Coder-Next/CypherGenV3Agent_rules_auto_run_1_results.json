@@ -1,0 +1,3219 @@
+[
+    {
+        "qid": 80,
+        "template": 20,
+        "question": "How many appointments does doctor \"1254\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 52,
+        "template": 13,
+        "question": "Which nurses assisted surgeries performed by doctor \"1175\"? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 56,
+        "template": 14,
+        "question": "In which rooms did patient \"469\" have surgery?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 167,
+        "template": 52,
+        "question": "List the ids of doctors appearing on both a surgery record and a medical record.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 66,
+        "template": 17,
+        "question": "Which departments did patient \"1207\" stay in, going by their room records?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 118,
+        "template": 30,
+        "question": "Which of patient \"591\"'s appointments were paid by Insurance? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 113,
+        "template": 28,
+        "question": "Count the appointments whose reason is Chest Pain.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 132,
+        "template": 36,
+        "question": "How many doctors belong to each department?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 137,
+        "template": 38,
+        "question": "Per doctor in General Medicine, give the appointment count.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (a:Appointment)-[:WITH_DOCTOR]->(d:Doctor)-[:BELONGS_TO]->(dep:Department {deptName: \"General Medicine\"})\nRETURN d.doctId, d.fName, d.lName, COUNT(a) AS appointmentCount\nORDER BY d.doctId",
+        "query_ans": [
+            [
+                "1027",
+                "505",
+                "Dr. Raza",
+                "Hasnain"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "1027",
+                    "505"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 146,
+        "template": 42,
+        "question": "Which doctor has performed the most surgeries? Give their id.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (s:SurgeryRecord)-[:PERFORMED_BY]->(d:Doctor)\nRETURN d.doctId AS doctId\nORDER BY count(s) DESC\nLIMIT 1",
+        "errors": [
+            "Cannot use aggregation in ORDER BY if there are no aggregate expressions in the preceding RETURN (line 2, column 1 (offset: 52))\n\"RETURN d.doctId AS doctId\"\n ^"
+        ]
+    },
+    {
+        "qid": 24,
+        "template": 6,
+        "question": "Which room was assigned on room record \"500984\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 170,
+        "template": 54,
+        "question": "Which helpers both assisted a surgery and were assigned to a bed record? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 92,
+        "template": 23,
+        "question": "How many beds are in the Geriatrics Ward?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 165,
+        "template": 51,
+        "question": "List the ids of patients who appear on a room record and on an appointment.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 11,
+        "template": 2,
+        "question": "What ward does bed \"407\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 96,
+        "template": 24,
+        "question": "What is the total amount patient \"1259\" paid across all appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 25,
+        "template": 6,
+        "question": "Give the room number for room record \"500077\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 93,
+        "template": 23,
+        "question": "Count the beds belonging to the Post-Anesthesia Care Unit.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 112,
+        "template": 28,
+        "question": "How many appointments were booked for Chest Pain?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 62,
+        "template": 16,
+        "question": "Which departments has patient \"876\" been seen in through appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 6,
+        "template": 1,
+        "question": "Which doctor is appointment \"5472\" with?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 36,
+        "template": 9,
+        "question": "Which doctors has patient \"126\" had appointments with? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 169,
+        "template": 53,
+        "question": "List the ids of nurses appearing on both a bed record and a room record.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (n:Nurse)-[:ASSIGNED_BED]->(br:BedRecord)-[:FOR_PATIENT]->(p:Patient)<-[:FOR_PATIENT]-(rr:RoomRecord)<-[:ASSIGNED_ROOM]-(r:Room)\nWITH DISTINCT n\nMATCH (n)-[:ASSIGNED_ROOM]->(rr2:RoomRecord)\nRETURN DISTINCT n.nurseId AS nurseId\n",
+        "errors": [
+            "No relationship [:ASSIGNED_BED] between (:Nurse) and (:BedRecord) in either direction; these labels are connected by: (:BedRecord)-[:ASSIGNED_NURSE]->(:Nurse)"
+        ]
+    },
+    {
+        "qid": 54,
+        "template": 14,
+        "question": "In which rooms did patient \"309\" have surgery?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 142,
+        "template": 40,
+        "question": "Which department has the most doctors?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 41,
+        "template": 10,
+        "question": "List the ids of patients booked with doctor \"1004\".",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (a:Appointment)-[:WITH_DOCTOR]->(d:Doctor {doctId: 1004})-[:FOR_PATIENT]->(p:Patient) RETURN p.patientId AS patientId",
+        "errors": [
+            "No relationship [:FOR_PATIENT] between (:Doctor) and (:Patient) in either direction; [:FOR_PATIENT] only connects: (:Appointment)-[:FOR_PATIENT]->(:Patient), (:BedRecord)-[:FOR_PATIENT]->(:Patient), (:RoomRecord)-[:FOR_PATIENT]->(:Patient), (:SurgeryRecord)-[:FOR_PATIENT]->(:Patient)"
+        ]
+    },
+    {
+        "qid": 78,
+        "template": 20,
+        "question": "How many appointments does doctor \"1337\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 117,
+        "template": 29,
+        "question": "Sum the appointment payments for doctors belonging to Rehabilitation.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 102,
+        "template": 26,
+        "question": "How many appointments of patient \"1023\" were cancelled?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 15,
+        "template": 3,
+        "question": "What department does room \"245\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 154,
+        "template": 46,
+        "question": "Which doctors have never performed a surgery? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 153,
+        "template": 45,
+        "question": "List the ids of patients with no appointment booked.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (p:Patient)\nWHERE NOT (p)--(:Appointment)\nRETURN p.patientId",
+        "errors": [
+            "Malformed relationship pattern '--' in '(p)--(:Appointment)'. Write it as -[:REL]-> or <-[:REL]-."
+        ]
+    },
+    {
+        "qid": 166,
+        "template": 52,
+        "question": "Which doctors have both performed a surgery and written a medical record? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 5,
+        "template": 1,
+        "question": "Give the doctor id for appointment \"5321\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 37,
+        "template": 9,
+        "question": "List the ids of doctors who have appointments with patient \"737\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 7,
+        "template": 1,
+        "question": "Give the doctor id for appointment \"5121\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 19,
+        "template": 4,
+        "question": "What is the department of doctor \"1298\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 43,
+        "template": 11,
+        "question": "List the ids of doctors who authored medical records for patient \"785\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 110,
+        "template": 28,
+        "question": "How many appointments were booked for Migraine?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 101,
+        "template": 25,
+        "question": "Count the appointments with doctor \"1223\" whose status is Completed.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 0,
+        "template": 0,
+        "question": "Which patient is appointment \"5920\" for?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 67,
+        "template": 17,
+        "question": "List the departments of the rooms assigned to patient \"893\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 158,
+        "template": 48,
+        "question": "Which rooms have never been used for surgery?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 139,
+        "template": 38,
+        "question": "Per doctor in Endocrinology, give the appointment count.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 181,
+        "template": 58,
+        "question": "In Cardiology, list the ids of doctors with over 1 appointment.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 177,
+        "template": 57,
+        "question": "List the ids of nurses assisting a surgery where the operating doctor belongs to another department.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (sr:SurgeryRecord)-[:PERFORMED_BY]->(d:Doctor)<-[:IN_DEPARTMENT]-(dept1:Department),\n      (sr)-[:ASSISTED_BY_NURSE]->(n:Nurse)-[:BELONGS_TO]->(dept2:Department)\nWHERE dept1.deptId <> dept2.deptId\nRETURN DISTINCT n.nurseId",
+        "errors": [
+            "No relationship [:IN_DEPARTMENT] between (:Department) and (:Doctor) in either direction; these labels are connected by: (:Doctor)-[:BELONGS_TO]->(:Department)"
+        ]
+    },
+    {
+        "qid": 107,
+        "template": 27,
+        "question": "Count the doctors in Cardiology whose gender is F.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 87,
+        "template": 22,
+        "question": "Count the doctors belonging to Nephrology.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 163,
+        "template": 50,
+        "question": "List the ids of patients appearing on both a surgery record and a bed record.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 1,
+        "template": 0,
+        "question": "Give the patient id for appointment \"5920\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 176,
+        "template": 57,
+        "question": "Which nurses work in a different department from the doctor whose surgeries they assist? Give the nurse ids.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (nurse:Nurse)<-[:ASSISTED_BY_NURSE]-(surgery:SurgeryRecord)-[:PERFORMED_BY]->(doctor:Doctor)\nWHERE nurse <> doctor AND nurse.gender = \"F\"\nWITH nurse, doctor\nMATCH (nurse)-[:BELONGS_TO]->(nurseDept:Department), (doctor)-[:BELONGS_TO]->(doctorDept:Department)\nWHERE nurseDept.deptId <> doctorDept.deptId\nRETURN DISTINCT nurse.nurseId",
+        "query_ans": [
+            [
+                "3003"
+            ],
+            [
+                "3004"
+            ],
+            [
+                "3005"
+            ],
+            [
+                "3006"
+            ],
+            [
+                "3009"
+            ],
+            [
+                "3012"
+            ],
+            [
+                "3013"
+            ],
+            [
+                "3015"
+            ],
+            [
+                "3018"
+            ],
+            [
+                "3022"
+            ],
+            [
+                "3023"
+            ],
+            [
+                "3024"
+            ],
+            [
+                "3025"
+            ],
+            [
+                "3028"
+            ],
+            [
+                "3030"
+            ],
+            [
+                "3031"
+            ],
+            [
+                "3032"
+            ],
+            [
+                "3039"
+            ],
+            [
+                "3040"
+            ],
+            [
+                "3042"
+            ],
+            [
+                "3045"
+            ],
+            [
+                "3048"
+            ],
+            [
+                "3050"
+            ],
+            [
+                "3052"
+            ],
+            [
+                "3053"
+            ],
+            [
+                "3055"
+            ],
+            [
+                "3056"
+            ],
+            [
+                "3058"
+            ],
+            [
+                "3059"
+            ],
+            [
+                "3062"
+            ],
+            [
+                "3063"
+            ],
+            [
+                "3064"
+            ],
+            [
+                "3066"
+            ],
+            [
+                "3068"
+            ],
+            [
+                "3069"
+            ],
+            [
+                "3072"
+            ],
+            [
+                "3073"
+            ],
+            [
+                "3075"
+            ],
+            [
+                "3076"
+            ],
+            [
+                "3077"
+            ],
+            [
+                "3078"
+            ],
+            [
+                "3079"
+            ],
+            [
+                "3085"
+            ],
+            [
+                "3087"
+            ],
+            [
+                "3093"
+            ],
+            [
+                "3096"
+            ],
+            [
+                "3097"
+            ],
+            [
+                "3100"
+            ],
+            [
+                "3101"
+            ],
+            [
+                "3102"
+            ],
+            [
+                "3104"
+            ],
+            [
+                "3105"
+            ],
+            [
+                "3106"
+            ],
+            [
+                "3109"
+            ],
+            [
+                "3112"
+            ],
+            [
+                "3115"
+            ],
+            [
+                "3116"
+            ],
+            [
+                "3119"
+            ],
+            [
+                "3120"
+            ],
+            [
+                "3121"
+            ],
+            [
+                "3122"
+            ],
+            [
+                "3125"
+            ],
+            [
+                "3126"
+            ],
+            [
+                "3127"
+            ],
+            [
+                "3128"
+            ],
+            [
+                "3130"
+            ],
+            [
+                "3131"
+            ],
+            [
+                "3132"
+            ],
+            [
+                "3138"
+            ],
+            [
+                "3139"
+            ],
+            [
+                "3141"
+            ],
+            [
+                "3142"
+            ],
+            [
+                "3144"
+            ],
+            [
+                "3145"
+            ],
+            [
+                "3146"
+            ],
+            [
+                "3147"
+            ],
+            [
+                "3149"
+            ],
+            [
+                "3150"
+            ],
+            [
+                "3152"
+            ],
+            [
+                "3153"
+            ],
+            [
+                "3154"
+            ],
+            [
+                "3156"
+            ],
+            [
+                "3159"
+            ],
+            [
+                "3160"
+            ],
+            [
+                "3162"
+            ],
+            [
+                "3163"
+            ],
+            [
+                "3165"
+            ],
+            [
+                "3167"
+            ],
+            [
+                "3170"
+            ],
+            [
+                "3171"
+            ],
+            [
+                "3172"
+            ],
+            [
+                "3173"
+            ],
+            [
+                "3175"
+            ],
+            [
+                "3177"
+            ],
+            [
+                "3179"
+            ],
+            [
+                "3182"
+            ],
+            [
+                "3183"
+            ],
+            [
+                "3188"
+            ],
+            [
+                "3191"
+            ],
+            [
+                "3194"
+            ],
+            [
+                "3195"
+            ],
+            [
+                "3197"
+            ],
+            [
+                "3198"
+            ],
+            [
+                "3199"
+            ],
+            [
+                "3201"
+            ],
+            [
+                "3203"
+            ],
+            [
+                "3204"
+            ],
+            [
+                "3206"
+            ],
+            [
+                "3209"
+            ],
+            [
+                "3210"
+            ],
+            [
+                "3211"
+            ],
+            [
+                "3215"
+            ],
+            [
+                "3218"
+            ],
+            [
+                "3224"
+            ],
+            [
+                "3225"
+            ],
+            [
+                "3231"
+            ],
+            [
+                "3238"
+            ],
+            [
+                "3239"
+            ],
+            [
+                "3290"
+            ],
+            [
+                "3291"
+            ],
+            [
+                "3292"
+            ],
+            [
+                "3295"
+            ],
+            [
+                "3297"
+            ],
+            [
+                "3298"
+            ],
+            [
+                "3303"
+            ],
+            [
+                "3306"
+            ],
+            [
+                "3310"
+            ],
+            [
+                "3314"
+            ],
+            [
+                "3317"
+            ],
+            [
+                "3318"
+            ],
+            [
+                "3320"
+            ],
+            [
+                "3322"
+            ],
+            [
+                "3323"
+            ],
+            [
+                "3324"
+            ],
+            [
+                "3330"
+            ],
+            [
+                "3331"
+            ],
+            [
+                "3335"
+            ],
+            [
+                "3338"
+            ],
+            [
+                "3347"
+            ],
+            [
+                "3348"
+            ],
+            [
+                "3350"
+            ],
+            [
+                "3351"
+            ],
+            [
+                "3352"
+            ],
+            [
+                "3357"
+            ],
+            [
+                "3360"
+            ],
+            [
+                "3361"
+            ],
+            [
+                "3363"
+            ],
+            [
+                "3366"
+            ],
+            [
+                "3370"
+            ],
+            [
+                "3371"
+            ],
+            [
+                "3375"
+            ],
+            [
+                "3376"
+            ],
+            [
+                "3377"
+            ],
+            [
+                "3378"
+            ],
+            [
+                "3379"
+            ],
+            [
+                "3381"
+            ],
+            [
+                "3385"
+            ],
+            [
+                "3389"
+            ],
+            [
+                "3393"
+            ],
+            [
+                "3394"
+            ],
+            [
+                "3396"
+            ],
+            [
+                "3397"
+            ],
+            [
+                "3398"
+            ],
+            [
+                "3399"
+            ],
+            [
+                "3405"
+            ],
+            [
+                "3411"
+            ],
+            [
+                "3412"
+            ],
+            [
+                "3413"
+            ],
+            [
+                "3414"
+            ],
+            [
+                "3415"
+            ],
+            [
+                "3418"
+            ],
+            [
+                "3420"
+            ],
+            [
+                "3424"
+            ],
+            [
+                "3425"
+            ],
+            [
+                "3426"
+            ],
+            [
+                "3427"
+            ],
+            [
+                "3429"
+            ],
+            [
+                "3434"
+            ],
+            [
+                "3443"
+            ],
+            [
+                "3447"
+            ],
+            [
+                "3448"
+            ],
+            [
+                "3449"
+            ],
+            [
+                "3450"
+            ],
+            [
+                "3451"
+            ],
+            [
+                "3453"
+            ],
+            [
+                "3459"
+            ],
+            [
+                "3460"
+            ],
+            [
+                "3463"
+            ],
+            [
+                "3467"
+            ],
+            [
+                "3468"
+            ],
+            [
+                "3469"
+            ],
+            [
+                "3471"
+            ],
+            [
+                "3475"
+            ],
+            [
+                "3477"
+            ],
+            [
+                "3478"
+            ],
+            [
+                "3479"
+            ],
+            [
+                "3480"
+            ],
+            [
+                "3481"
+            ],
+            [
+                "3483"
+            ],
+            [
+                "3484"
+            ],
+            [
+                "3488"
+            ],
+            [
+                "3489"
+            ],
+            [
+                "3495"
+            ],
+            [
+                "3496"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "3001"
+                ],
+                [
+                    "3003"
+                ],
+                [
+                    "3004"
+                ],
+                [
+                    "3005"
+                ],
+                [
+                    "3006"
+                ],
+                [
+                    "3007"
+                ],
+                [
+                    "3008"
+                ],
+                [
+                    "3009"
+                ],
+                [
+                    "3010"
+                ],
+                [
+                    "3011"
+                ],
+                [
+                    "3012"
+                ],
+                [
+                    "3013"
+                ],
+                [
+                    "3014"
+                ],
+                [
+                    "3015"
+                ],
+                [
+                    "3016"
+                ],
+                [
+                    "3017"
+                ],
+                [
+                    "3018"
+                ],
+                [
+                    "3019"
+                ],
+                [
+                    "3020"
+                ],
+                [
+                    "3021"
+                ],
+                [
+                    "3022"
+                ],
+                [
+                    "3023"
+                ],
+                [
+                    "3024"
+                ],
+                [
+                    "3025"
+                ],
+                [
+                    "3026"
+                ],
+                [
+                    "3027"
+                ],
+                [
+                    "3028"
+                ],
+                [
+                    "3029"
+                ],
+                [
+                    "3030"
+                ],
+                [
+                    "3031"
+                ],
+                [
+                    "3032"
+                ],
+                [
+                    "3033"
+                ],
+                [
+                    "3034"
+                ],
+                [
+                    "3038"
+                ],
+                [
+                    "3039"
+                ],
+                [
+                    "3040"
+                ],
+                [
+                    "3041"
+                ],
+                [
+                    "3042"
+                ],
+                [
+                    "3043"
+                ],
+                [
+                    "3044"
+                ],
+                [
+                    "3045"
+                ],
+                [
+                    "3046"
+                ],
+                [
+                    "3047"
+                ],
+                [
+                    "3048"
+                ],
+                [
+                    "3049"
+                ],
+                [
+                    "3050"
+                ],
+                [
+                    "3051"
+                ],
+                [
+                    "3052"
+                ],
+                [
+                    "3053"
+                ],
+                [
+                    "3054"
+                ],
+                [
+                    "3055"
+                ],
+                [
+                    "3056"
+                ],
+                [
+                    "3057"
+                ],
+                [
+                    "3058"
+                ],
+                [
+                    "3059"
+                ],
+                [
+                    "3060"
+                ],
+                [
+                    "3062"
+                ],
+                [
+                    "3063"
+                ],
+                [
+                    "3064"
+                ],
+                [
+                    "3065"
+                ],
+                [
+                    "3066"
+                ],
+                [
+                    "3067"
+                ],
+                [
+                    "3068"
+                ],
+                [
+                    "3069"
+                ],
+                [
+                    "3070"
+                ],
+                [
+                    "3071"
+                ],
+                [
+                    "3072"
+                ],
+                [
+                    "3073"
+                ],
+                [
+                    "3074"
+                ],
+                [
+                    "3075"
+                ],
+                [
+                    "3076"
+                ],
+                [
+                    "3077"
+                ],
+                [
+                    "3078"
+                ],
+                [
+                    "3079"
+                ],
+                [
+                    "3081"
+                ],
+                [
+                    "3082"
+                ],
+                [
+                    "3083"
+                ],
+                [
+                    "3084"
+                ],
+                [
+                    "3085"
+                ],
+                [
+                    "3087"
+                ],
+                [
+                    "3088"
+                ],
+                [
+                    "3089"
+                ],
+                [
+                    "3090"
+                ],
+                [
+                    "3091"
+                ],
+                [
+                    "3093"
+                ],
+                [
+                    "3094"
+                ],
+                [
+                    "3096"
+                ],
+                [
+                    "3097"
+                ],
+                [
+                    "3098"
+                ],
+                [
+                    "3099"
+                ],
+                [
+                    "3100"
+                ],
+                [
+                    "3101"
+                ],
+                [
+                    "3102"
+                ],
+                [
+                    "3103"
+                ],
+                [
+                    "3104"
+                ],
+                [
+                    "3105"
+                ],
+                [
+                    "3106"
+                ],
+                [
+                    "3108"
+                ],
+                [
+                    "3109"
+                ],
+                [
+                    "3110"
+                ],
+                [
+                    "3111"
+                ],
+                [
+                    "3112"
+                ],
+                [
+                    "3113"
+                ],
+                [
+                    "3114"
+                ],
+                [
+                    "3115"
+                ],
+                [
+                    "3116"
+                ],
+                [
+                    "3117"
+                ],
+                [
+                    "3118"
+                ],
+                [
+                    "3119"
+                ],
+                [
+                    "3120"
+                ],
+                [
+                    "3121"
+                ],
+                [
+                    "3122"
+                ],
+                [
+                    "3123"
+                ],
+                [
+                    "3124"
+                ],
+                [
+                    "3125"
+                ],
+                [
+                    "3126"
+                ],
+                [
+                    "3127"
+                ],
+                [
+                    "3128"
+                ],
+                [
+                    "3129"
+                ],
+                [
+                    "3130"
+                ],
+                [
+                    "3131"
+                ],
+                [
+                    "3132"
+                ],
+                [
+                    "3134"
+                ],
+                [
+                    "3136"
+                ],
+                [
+                    "3137"
+                ],
+                [
+                    "3138"
+                ],
+                [
+                    "3139"
+                ],
+                [
+                    "3140"
+                ],
+                [
+                    "3141"
+                ],
+                [
+                    "3142"
+                ],
+                [
+                    "3144"
+                ],
+                [
+                    "3145"
+                ],
+                [
+                    "3146"
+                ],
+                [
+                    "3147"
+                ],
+                [
+                    "3148"
+                ],
+                [
+                    "3149"
+                ],
+                [
+                    "3150"
+                ],
+                [
+                    "3151"
+                ],
+                [
+                    "3152"
+                ],
+                [
+                    "3153"
+                ],
+                [
+                    "3154"
+                ],
+                [
+                    "3155"
+                ],
+                [
+                    "3156"
+                ],
+                [
+                    "3157"
+                ],
+                [
+                    "3158"
+                ],
+                [
+                    "3159"
+                ],
+                [
+                    "3160"
+                ],
+                [
+                    "3162"
+                ],
+                [
+                    "3163"
+                ],
+                [
+                    "3164"
+                ],
+                [
+                    "3165"
+                ],
+                [
+                    "3166"
+                ],
+                [
+                    "3167"
+                ],
+                [
+                    "3168"
+                ],
+                [
+                    "3169"
+                ],
+                [
+                    "3170"
+                ],
+                [
+                    "3171"
+                ],
+                [
+                    "3172"
+                ],
+                [
+                    "3173"
+                ],
+                [
+                    "3175"
+                ],
+                [
+                    "3176"
+                ],
+                [
+                    "3177"
+                ],
+                [
+                    "3179"
+                ],
+                [
+                    "3180"
+                ],
+                [
+                    "3181"
+                ],
+                [
+                    "3182"
+                ],
+                [
+                    "3183"
+                ],
+                [
+                    "3184"
+                ],
+                [
+                    "3185"
+                ],
+                [
+                    "3186"
+                ],
+                [
+                    "3188"
+                ],
+                [
+                    "3189"
+                ],
+                [
+                    "3190"
+                ],
+                [
+                    "3191"
+                ],
+                [
+                    "3192"
+                ],
+                [
+                    "3193"
+                ],
+                [
+                    "3194"
+                ],
+                [
+                    "3195"
+                ],
+                [
+                    "3196"
+                ],
+                [
+                    "3197"
+                ],
+                [
+                    "3198"
+                ],
+                [
+                    "3199"
+                ],
+                [
+                    "3200"
+                ],
+                [
+                    "3201"
+                ],
+                [
+                    "3202"
+                ],
+                [
+                    "3203"
+                ],
+                [
+                    "3204"
+                ],
+                [
+                    "3205"
+                ],
+                [
+                    "3206"
+                ],
+                [
+                    "3208"
+                ],
+                [
+                    "3209"
+                ],
+                [
+                    "3210"
+                ],
+                [
+                    "3211"
+                ],
+                [
+                    "3212"
+                ],
+                [
+                    "3213"
+                ],
+                [
+                    "3215"
+                ],
+                [
+                    "3216"
+                ],
+                [
+                    "3217"
+                ],
+                [
+                    "3218"
+                ],
+                [
+                    "3219"
+                ],
+                [
+                    "3220"
+                ],
+                [
+                    "3221"
+                ],
+                [
+                    "3222"
+                ],
+                [
+                    "3224"
+                ],
+                [
+                    "3225"
+                ],
+                [
+                    "3227"
+                ],
+                [
+                    "3228"
+                ],
+                [
+                    "3230"
+                ],
+                [
+                    "3231"
+                ],
+                [
+                    "3234"
+                ],
+                [
+                    "3235"
+                ],
+                [
+                    "3236"
+                ],
+                [
+                    "3238"
+                ],
+                [
+                    "3239"
+                ],
+                [
+                    "3290"
+                ],
+                [
+                    "3291"
+                ],
+                [
+                    "3292"
+                ],
+                [
+                    "3293"
+                ],
+                [
+                    "3294"
+                ],
+                [
+                    "3295"
+                ],
+                [
+                    "3296"
+                ],
+                [
+                    "3297"
+                ],
+                [
+                    "3298"
+                ],
+                [
+                    "3299"
+                ],
+                [
+                    "3300"
+                ],
+                [
+                    "3301"
+                ],
+                [
+                    "3302"
+                ],
+                [
+                    "3303"
+                ],
+                [
+                    "3304"
+                ],
+                [
+                    "3306"
+                ],
+                [
+                    "3307"
+                ],
+                [
+                    "3309"
+                ],
+                [
+                    "3310"
+                ],
+                [
+                    "3311"
+                ],
+                [
+                    "3314"
+                ],
+                [
+                    "3316"
+                ],
+                [
+                    "3317"
+                ],
+                [
+                    "3318"
+                ],
+                [
+                    "3320"
+                ],
+                [
+                    "3321"
+                ],
+                [
+                    "3322"
+                ],
+                [
+                    "3323"
+                ],
+                [
+                    "3324"
+                ],
+                [
+                    "3325"
+                ],
+                [
+                    "3326"
+                ],
+                [
+                    "3328"
+                ],
+                [
+                    "3329"
+                ],
+                [
+                    "3330"
+                ],
+                [
+                    "3331"
+                ],
+                [
+                    "3332"
+                ],
+                [
+                    "3333"
+                ],
+                [
+                    "3334"
+                ],
+                [
+                    "3335"
+                ],
+                [
+                    "3336"
+                ],
+                [
+                    "3338"
+                ],
+                [
+                    "3339"
+                ],
+                [
+                    "3340"
+                ],
+                [
+                    "3341"
+                ],
+                [
+                    "3342"
+                ],
+                [
+                    "3344"
+                ],
+                [
+                    "3345"
+                ],
+                [
+                    "3346"
+                ],
+                [
+                    "3347"
+                ],
+                [
+                    "3348"
+                ],
+                [
+                    "3349"
+                ],
+                [
+                    "3350"
+                ],
+                [
+                    "3351"
+                ],
+                [
+                    "3352"
+                ],
+                [
+                    "3353"
+                ],
+                [
+                    "3354"
+                ],
+                [
+                    "3355"
+                ],
+                [
+                    "3356"
+                ],
+                [
+                    "3357"
+                ],
+                [
+                    "3358"
+                ],
+                [
+                    "3359"
+                ],
+                [
+                    "3360"
+                ],
+                [
+                    "3361"
+                ],
+                [
+                    "3363"
+                ],
+                [
+                    "3366"
+                ],
+                [
+                    "3367"
+                ],
+                [
+                    "3368"
+                ],
+                [
+                    "3370"
+                ],
+                [
+                    "3371"
+                ],
+                [
+                    "3372"
+                ],
+                [
+                    "3373"
+                ],
+                [
+                    "3374"
+                ],
+                [
+                    "3375"
+                ],
+                [
+                    "3376"
+                ],
+                [
+                    "3377"
+                ],
+                [
+                    "3378"
+                ],
+                [
+                    "3379"
+                ],
+                [
+                    "3380"
+                ],
+                [
+                    "3381"
+                ],
+                [
+                    "3382"
+                ],
+                [
+                    "3384"
+                ],
+                [
+                    "3385"
+                ],
+                [
+                    "3386"
+                ],
+                [
+                    "3388"
+                ],
+                [
+                    "3389"
+                ],
+                [
+                    "3391"
+                ],
+                [
+                    "3393"
+                ],
+                [
+                    "3394"
+                ],
+                [
+                    "3395"
+                ],
+                [
+                    "3396"
+                ],
+                [
+                    "3397"
+                ],
+                [
+                    "3398"
+                ],
+                [
+                    "3399"
+                ],
+                [
+                    "3401"
+                ],
+                [
+                    "3402"
+                ],
+                [
+                    "3404"
+                ],
+                [
+                    "3405"
+                ],
+                [
+                    "3406"
+                ],
+                [
+                    "3408"
+                ],
+                [
+                    "3409"
+                ],
+                [
+                    "3411"
+                ],
+                [
+                    "3412"
+                ],
+                [
+                    "3413"
+                ],
+                [
+                    "3414"
+                ],
+                [
+                    "3415"
+                ],
+                [
+                    "3416"
+                ],
+                [
+                    "3417"
+                ],
+                [
+                    "3418"
+                ],
+                [
+                    "3419"
+                ],
+                [
+                    "3420"
+                ],
+                [
+                    "3421"
+                ],
+                [
+                    "3422"
+                ],
+                [
+                    "3423"
+                ],
+                [
+                    "3424"
+                ],
+                [
+                    "3425"
+                ],
+                [
+                    "3426"
+                ],
+                [
+                    "3427"
+                ],
+                [
+                    "3428"
+                ],
+                [
+                    "3429"
+                ],
+                [
+                    "3431"
+                ],
+                [
+                    "3432"
+                ],
+                [
+                    "3433"
+                ],
+                [
+                    "3434"
+                ],
+                [
+                    "3435"
+                ],
+                [
+                    "3436"
+                ],
+                [
+                    "3437"
+                ],
+                [
+                    "3438"
+                ],
+                [
+                    "3439"
+                ],
+                [
+                    "3440"
+                ],
+                [
+                    "3441"
+                ],
+                [
+                    "3443"
+                ],
+                [
+                    "3444"
+                ],
+                [
+                    "3446"
+                ],
+                [
+                    "3447"
+                ],
+                [
+                    "3448"
+                ],
+                [
+                    "3449"
+                ],
+                [
+                    "3450"
+                ],
+                [
+                    "3451"
+                ],
+                [
+                    "3452"
+                ],
+                [
+                    "3453"
+                ],
+                [
+                    "3454"
+                ],
+                [
+                    "3456"
+                ],
+                [
+                    "3457"
+                ],
+                [
+                    "3458"
+                ],
+                [
+                    "3459"
+                ],
+                [
+                    "3460"
+                ],
+                [
+                    "3461"
+                ],
+                [
+                    "3462"
+                ],
+                [
+                    "3463"
+                ],
+                [
+                    "3464"
+                ],
+                [
+                    "3465"
+                ],
+                [
+                    "3466"
+                ],
+                [
+                    "3467"
+                ],
+                [
+                    "3468"
+                ],
+                [
+                    "3469"
+                ],
+                [
+                    "3470"
+                ],
+                [
+                    "3471"
+                ],
+                [
+                    "3472"
+                ],
+                [
+                    "3473"
+                ],
+                [
+                    "3475"
+                ],
+                [
+                    "3476"
+                ],
+                [
+                    "3477"
+                ],
+                [
+                    "3478"
+                ],
+                [
+                    "3479"
+                ],
+                [
+                    "3480"
+                ],
+                [
+                    "3481"
+                ],
+                [
+                    "3483"
+                ],
+                [
+                    "3484"
+                ],
+                [
+                    "3487"
+                ],
+                [
+                    "3488"
+                ],
+                [
+                    "3489"
+                ],
+                [
+                    "3490"
+                ],
+                [
+                    "3491"
+                ],
+                [
+                    "3492"
+                ],
+                [
+                    "3493"
+                ],
+                [
+                    "3494"
+                ],
+                [
+                    "3495"
+                ],
+                [
+                    "3496"
+                ],
+                [
+                    "3497"
+                ],
+                [
+                    "3498"
+                ],
+                [
+                    "3499"
+                ],
+                [
+                    "3500"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 174,
+        "template": 56,
+        "question": "Which patients have been treated by doctors from more than one department? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 31,
+        "template": 7,
+        "question": "Give the bed number for bed record \"100095\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 138,
+        "template": 38,
+        "question": "For each doctor in Pulmonology, how many appointments do they have?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(:Department {deptName: \"Pulmonology\"})\nOPTIONAL MATCH (d)<-[:WITH_DOCTOR]-(a:Appointment)\nRETURN d.doctId, d.fName, d.lName, COUNT(a) AS appointmentCount\nORDER BY d.doctId",
+        "query_ans": [
+            [
+                "0",
+                "1021",
+                "Ali",
+                "Dr. Shahbaz"
+            ],
+            [
+                "0",
+                "1022",
+                "Dr. Abida",
+                "Raza"
+            ],
+            [
+                "0",
+                "1023",
+                "Dr. Shazia",
+                "Fakhar"
+            ],
+            [
+                "1020",
+                "110",
+                "Dr. Waqas",
+                "Javed"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "1020",
+                    "110"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 128,
+        "template": 34,
+        "question": "How many appointments are there of each status?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 16,
+        "template": 4,
+        "question": "Which department does doctor \"1298\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 71,
+        "template": 18,
+        "question": "Give the department of the room used for surgery \"10623\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 160,
+        "template": 49,
+        "question": "Which doctors have appointments but no staff shift assigned? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 148,
+        "template": 43,
+        "question": "Which department collected the most in appointment payments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 197,
+        "template": 63,
+        "question": "What is the blood type of patient \"1023\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 131,
+        "template": 35,
+        "question": "Break down total appointment payments by mode of payment.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 8,
+        "template": 2,
+        "question": "Which ward is bed \"55\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 22,
+        "template": 5,
+        "question": "What diagnosis and treatment are recorded in medical record \"635\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 35,
+        "template": 8,
+        "question": "Give the phone number recorded for nurse \"3405\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 23,
+        "template": 5,
+        "question": "Give the diagnosis and treatment on medical record \"635\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 159,
+        "template": 48,
+        "question": "List the room numbers with no surgery record attached.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 14,
+        "template": 3,
+        "question": "Which department is room \"325\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 156,
+        "template": 47,
+        "question": "Which nurses have never assisted a surgery? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 125,
+        "template": 32,
+        "question": "Count the appointments whose mode is Online.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 129,
+        "template": 34,
+        "question": "Break down the appointment count by status.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 152,
+        "template": 45,
+        "question": "Which patients have no appointments at all? Give their ids.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (p:Patient)\nWHERE NOT (p)--(:Appointment)\nRETURN p.patientId",
+        "errors": [
+            "Malformed relationship pattern '--' in '(p)--(:Appointment)'. Write it as -[:REL]-> or <-[:REL]-."
+        ]
+    },
+    {
+        "qid": 89,
+        "template": 22,
+        "question": "Count the doctors belonging to Immunology.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 106,
+        "template": 27,
+        "question": "How many female doctors are in Psychiatry?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 10,
+        "template": 2,
+        "question": "Which ward is bed \"303\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 123,
+        "template": 31,
+        "question": "List the ids of appointments whose status is No-Show.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 198,
+        "template": 64,
+        "question": "What dosage was prescribed in medical record \"1349\"?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_POSITIVE"
+    },
+    {
+        "qid": 144,
+        "template": 41,
+        "question": "Which patient has the most appointments? Give their id.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 73,
+        "template": 18,
+        "question": "Give the department of the room used for surgery \"10424\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 192,
+        "template": 62,
+        "question": "What is the salary of doctor \"1205\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 105,
+        "template": 26,
+        "question": "Count the cancelled appointments for patient \"594\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 149,
+        "template": 43,
+        "question": "What department has the highest total appointment revenue?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 147,
+        "template": 42,
+        "question": "Which doctor id appears on the most surgery records?",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (s:SurgeryRecord)-[:PERFORMED_BY]->(d:Doctor)\nRETURN d.doctId\nORDER BY COUNT(*) DESC\nLIMIT 1",
+        "errors": [
+            "Cannot use aggregation in ORDER BY if there are no aggregate expressions in the preceding RETURN (line 2, column 1 (offset: 52))\n\"RETURN d.doctId\"\n ^"
+        ]
+    },
+    {
+        "qid": 77,
+        "template": 19,
+        "question": "Count the appointments booked for patient \"1350\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 59,
+        "template": 15,
+        "question": "Trace bed \"92\" through its ward to a department.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 95,
+        "template": 24,
+        "question": "Sum the payment amounts on appointments for patient \"1122\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 90,
+        "template": 23,
+        "question": "How many beds are in the Pediatrics Ward?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 75,
+        "template": 19,
+        "question": "Count the appointments booked for patient \"1328\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 180,
+        "template": 58,
+        "question": "Which doctors in Neurology have more than 1 appointment? Give their ids.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(:Department {deptName: \"Neurology\"})<-[:FOR_PATIENT]-(a:Appointment {appointmentStatus: \"Completed\"})-[:WITH_DOCTOR]->(d)\nWITH d.doctId AS doctorId, COUNT(a) AS appointmentCount\nWHERE appointmentCount > 1\nRETURN doctorId",
+        "errors": [
+            "No relationship [:FOR_PATIENT] between (:Appointment) and (:Department) in either direction; [:FOR_PATIENT] only connects: (:Appointment)-[:FOR_PATIENT]->(:Patient), (:BedRecord)-[:FOR_PATIENT]->(:Patient), (:RoomRecord)-[:FOR_PATIENT]->(:Patient), (:SurgeryRecord)-[:FOR_PATIENT]->(:Patient)"
+        ]
+    },
+    {
+        "qid": 58,
+        "template": 15,
+        "question": "Which department is bed \"80\" ultimately in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 175,
+        "template": 56,
+        "question": "List the ids of patients whose appointment doctors span at least two departments.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 12,
+        "template": 3,
+        "question": "Which department is room \"207\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 189,
+        "template": 61,
+        "question": "Which insurance provider covers patient \"216\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 119,
+        "template": 30,
+        "question": "List the appointment ids for patient \"1242\" with Insurance as the payment mode.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 91,
+        "template": 23,
+        "question": "Count the beds belonging to the Geriatrics Ward.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 136,
+        "template": 38,
+        "question": "For each doctor in Endocrinology, how many appointments do they have?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(:Department {deptName: \"Endocrinology\"})\nOPTIONAL MATCH (d)<-[:WITH_DOCTOR]-(a:Appointment)\nRETURN d.doctId, COUNT(a) AS appointmentCount\nORDER BY d.doctId",
+        "query_ans": [
+            [
+                "0",
+                "1025"
+            ],
+            [
+                "0",
+                "1026"
+            ],
+            [
+                "1024",
+                "107"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "1024",
+                    "107"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 150,
+        "template": 44,
+        "question": "Which ward has the most beds?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 124,
+        "template": 32,
+        "question": "How many appointments were held online?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 29,
+        "template": 7,
+        "question": "Give the bed number for bed record \"100479\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 39,
+        "template": 9,
+        "question": "List the ids of doctors who have appointments with patient \"299\".",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (a:Appointment)-[:FOR_PATIENT]->(:Patient {patientId: 299})-[:WITH_DOCTOR]->(d:Doctor)  \nRETURN DISTINCT d.doctId",
+        "errors": [
+            "No relationship [:WITH_DOCTOR] between (:Patient) and (:Doctor) in either direction; [:WITH_DOCTOR] only connects: (:Appointment)-[:WITH_DOCTOR]->(:Doctor)"
+        ]
+    },
+    {
+        "qid": 55,
+        "template": 14,
+        "question": "List the room numbers where patient \"523\" was operated on.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 140,
+        "template": 39,
+        "question": "Which doctor has the most appointments? Give their id.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 108,
+        "template": 27,
+        "question": "How many female doctors are in Cardiology?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 72,
+        "template": 18,
+        "question": "Which department was surgery \"10623\" carried out in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 4,
+        "template": 1,
+        "question": "Which doctor is appointment \"5154\" with?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 42,
+        "template": 11,
+        "question": "Which doctors wrote medical records for patient \"131\"? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 155,
+        "template": 46,
+        "question": "List the ids of doctors with no surgery records.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 200,
+        "template": 64,
+        "question": "What dosage was prescribed in medical record \"212\"?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_POSITIVE"
+    },
+    {
+        "qid": 74,
+        "template": 19,
+        "question": "How many appointments does patient \"785\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 134,
+        "template": 37,
+        "question": "How many beds does each ward have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 3,
+        "template": 0,
+        "question": "Give the patient id for appointment \"5668\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 188,
+        "template": 61,
+        "question": "What is the insurance policy number of patient \"484\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 193,
+        "template": 62,
+        "question": "How many years of experience does doctor \"1205\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 201,
+        "template": 64,
+        "question": "Which pharmacy filled the prescription for medical record \"1349\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 127,
+        "template": 33,
+        "question": "List the ids of medical records where nextVisit is null.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 203,
+        "template": 65,
+        "question": "How much does room \"234\" cost per night?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 185,
+        "template": 60,
+        "question": "List the ids of doctors whose gender is F and who appear on a surgery record.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 38,
+        "template": 9,
+        "question": "Which doctors has patient \"1032\" had appointments with? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 88,
+        "template": 22,
+        "question": "How many doctors work in Rehabilitation?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 64,
+        "template": 16,
+        "question": "Which departments has patient \"641\" been seen in through appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 60,
+        "template": 15,
+        "question": "Which department is bed \"116\" ultimately in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 34,
+        "template": 8,
+        "question": "What is the contact number of nurse \"3167\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 79,
+        "template": 20,
+        "question": "Count the appointments assigned to doctor \"1057\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 99,
+        "template": 25,
+        "question": "Count the appointments with doctor \"1250\" whose status is Completed.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 100,
+        "template": 25,
+        "question": "How many completed appointments does doctor \"1250\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 18,
+        "template": 4,
+        "question": "Which department does doctor \"1289\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 196,
+        "template": 63,
+        "question": "What is the email address of patient \"1023\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 186,
+        "template": 61,
+        "question": "What is the insurance policy number of patient \"1091\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 76,
+        "template": 19,
+        "question": "How many appointments does patient \"1328\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 70,
+        "template": 18,
+        "question": "Which department was surgery \"10458\" carried out in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 187,
+        "template": 61,
+        "question": "Which insurance provider covers patient \"889\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 120,
+        "template": 30,
+        "question": "Which of patient \"1242\"'s appointments were paid by Insurance? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 168,
+        "template": 53,
+        "question": "Which nurses have been assigned to both a bed record and a room record? Give their ids.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (n:Nurse)-[:ASSIGNED_BED]->(br:BedRecord)\nWITH n, br\nMATCH (n)-[:ASSIGNED_NURSE]->(rr:RoomRecord)\nRETURN DISTINCT n.nurseId",
+        "errors": [
+            "No relationship [:ASSIGNED_BED] between (:Nurse) and (:BedRecord) in either direction; these labels are connected by: (:BedRecord)-[:ASSIGNED_NURSE]->(:Nurse)"
+        ]
+    },
+    {
+        "qid": 122,
+        "template": 31,
+        "question": "Which appointments were no-shows? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 69,
+        "template": 17,
+        "question": "List the departments of the rooms assigned to patient \"751\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 32,
+        "template": 8,
+        "question": "What is the contact number of nurse \"3001\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 173,
+        "template": 55,
+        "question": "List the ids of nurses appearing on a surgery record and a bed record for the same patient.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 86,
+        "template": 22,
+        "question": "How many doctors work in Surgery?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 116,
+        "template": 29,
+        "question": "What is the total payment collected on appointments in Hematology?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 133,
+        "template": 36,
+        "question": "Break down the doctor count by department.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 27,
+        "template": 6,
+        "question": "Give the room number for room record \"500436\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 157,
+        "template": 47,
+        "question": "List the ids of nurses with no surgery assistance recorded.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (n:Nurse)-[:ASSIGNED_NURSE]->(:BedRecord)<-[:ASSISTED_BY_NURSE]-(s:SurgeryRecord)\nWITH n.nurseId AS nurseId, count(s) AS assistCount\nWHERE assistCount = 0\nRETURN nurseId",
+        "errors": [
+            "No relationship [:ASSISTED_BY_NURSE] between (:SurgeryRecord) and (:BedRecord) in either direction; [:ASSISTED_BY_NURSE] only connects: (:SurgeryRecord)-[:ASSISTED_BY_NURSE]->(:Nurse)"
+        ]
+    },
+    {
+        "qid": 206,
+        "template": 66,
+        "question": "How many of them are there?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 83,
+        "template": 21,
+        "question": "Count the surgery records for doctor \"1328\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 151,
+        "template": 44,
+        "question": "What ward contains the largest number of beds?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 57,
+        "template": 14,
+        "question": "List the room numbers where patient \"741\" was operated on.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 205,
+        "template": 65,
+        "question": "How much does room \"144\" cost per night?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 103,
+        "template": 26,
+        "question": "Count the cancelled appointments for patient \"1152\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 20,
+        "template": 5,
+        "question": "What diagnosis and treatment are recorded in medical record \"569\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 81,
+        "template": 20,
+        "question": "Count the appointments assigned to doctor \"1134\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 21,
+        "template": 5,
+        "question": "Give the diagnosis and treatment on medical record \"569\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 85,
+        "template": 21,
+        "question": "Count the surgery records for doctor \"1023\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 121,
+        "template": 30,
+        "question": "List the appointment ids for patient \"175\" with Insurance as the payment mode.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 65,
+        "template": 16,
+        "question": "List the departments of the doctors patient \"1383\" had appointments with.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 30,
+        "template": 7,
+        "question": "Which bed was assigned on bed record \"100479\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 143,
+        "template": 40,
+        "question": "What department employs the largest number of doctors?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 68,
+        "template": 17,
+        "question": "Which departments did patient \"1399\" stay in, going by their room records?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 46,
+        "template": 12,
+        "question": "Which wards has patient \"1171\" occupied a bed in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 115,
+        "template": 29,
+        "question": "Sum the appointment payments for doctors belonging to Homeopathy.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 2,
+        "template": 0,
+        "question": "Which patient is appointment \"5668\" for?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 97,
+        "template": 24,
+        "question": "Sum the payment amounts on appointments for patient \"434\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 130,
+        "template": 35,
+        "question": "How much was paid through each payment mode on appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 171,
+        "template": 54,
+        "question": "List the ids of helpers appearing on both a surgery record and a bed record.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (h:Helper)-[:ASSISTED_BY_HELPER]->(:SurgeryRecord)<-[:FOR_PATIENT]-(p:Patient)\nWITH h.helperId AS helperId1\nMATCH (h2:Helper)-[:ASSISTED_BY_HELPER]->(:BedRecord)<-[:FOR_PATIENT]-(p2:Patient)\nWHERE h2.helperId = helperId1\nRETURN DISTINCT helperId1 AS helperId",
+        "errors": [
+            "No relationship [:ASSISTED_BY_HELPER] between (:Helper) and (:BedRecord) in either direction; these labels are connected by: (:BedRecord)-[:ASSIGNED_HELPER]->(:Helper)"
+        ]
+    },
+    {
+        "qid": 98,
+        "template": 25,
+        "question": "How many completed appointments does doctor \"1175\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 26,
+        "template": 6,
+        "question": "Which room was assigned on room record \"500436\"?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (rr:RoomRecord {admissionId: 500436})-[:ASSIGNED_ROOM]->(room:Room)\nRETURN room.roomNo",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "530"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 184,
+        "template": 60,
+        "question": "Which female doctors have performed at least one surgery? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 202,
+        "template": 65,
+        "question": "What floor is room \"15\" on?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 195,
+        "template": 63,
+        "question": "What is the blood type of patient \"1031\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 178,
+        "template": 58,
+        "question": "Which doctors in General Medicine have more than 1 appointment? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 17,
+        "template": 4,
+        "question": "What is the department of doctor \"1289\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 204,
+        "template": 65,
+        "question": "What floor is room \"144\" on?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 164,
+        "template": 51,
+        "question": "Which patients have both a room record and an appointment? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 49,
+        "template": 12,
+        "question": "List the wards where patient \"1171\" was assigned a bed.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 109,
+        "template": 27,
+        "question": "Count the doctors in Audiology & Speech whose gender is F.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 190,
+        "template": 62,
+        "question": "What is the salary of doctor \"1376\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 145,
+        "template": 41,
+        "question": "Which patient id appears on the highest number of appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 47,
+        "template": 12,
+        "question": "List the wards where patient \"746\" was assigned a bed.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 183,
+        "template": 59,
+        "question": "List the ids of patients with over 2 appointments in Completed status.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 45,
+        "template": 11,
+        "question": "List the ids of doctors who authored medical records for patient \"131\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 13,
+        "template": 3,
+        "question": "What department does room \"207\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 162,
+        "template": 50,
+        "question": "Which patients have had both a surgery and a bed record? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 44,
+        "template": 11,
+        "question": "Which doctors wrote medical records for patient \"229\"? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 191,
+        "template": 62,
+        "question": "How many years of experience does doctor \"1004\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 182,
+        "template": 59,
+        "question": "Which patients have more than 2 completed appointments? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 51,
+        "template": 13,
+        "question": "List the ids of nurses who assisted in surgeries by doctor \"1172\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 207,
+        "template": 66,
+        "question": "Who was on duty that day?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_POSITIVE"
+    },
+    {
+        "qid": 199,
+        "template": 64,
+        "question": "Which pharmacy filled the prescription for medical record \"212\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 53,
+        "template": 13,
+        "question": "List the ids of nurses who assisted in surgeries by doctor \"1161\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 135,
+        "template": 37,
+        "question": "Break down the bed count by ward.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 179,
+        "template": 58,
+        "question": "In Neurology, list the ids of doctors with over 1 appointment.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(:Department {deptName: \"Neurology\"})<-[:IN_DEPARTMENT]-(r:Room)<-[:IN_ROOM]-(s:SurgeryRecord)-[:FOR_PATIENT]->(p:Patient)<-[:FOR_PATIENT]-(a:Appointment)-[:WITH_DOCTOR]->(d)\nWITH d, COUNT(a) AS apptCount\nWHERE apptCount > 1\nRETURN d.doctId",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "1008",
+                    "60"
+                ],
+                [
+                    "1009",
+                    "54"
+                ]
+            ],
+            [
+                [
+                    "1008"
+                ],
+                [
+                    "1009"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 161,
+        "template": 49,
+        "question": "List the ids of doctors who appear on an appointment but on no staff shift.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 61,
+        "template": 15,
+        "question": "Trace bed \"116\" through its ward to a department.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 33,
+        "template": 8,
+        "question": "Give the phone number recorded for nurse \"3001\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 141,
+        "template": 39,
+        "question": "Which doctor id appears on the highest number of appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 50,
+        "template": 13,
+        "question": "Which nurses assisted surgeries performed by doctor \"1172\"? Give their ids.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (:SurgeryRecord)-[:PERFORMED_BY]->(:Doctor {doctId: 1172})<-[:ASSISTED_BY_NURSE]-(:Nurse)\nRETURN DISTINCT nurse.nurseId",
+        "errors": [
+            "No relationship [:ASSISTED_BY_NURSE] between (:Nurse) and (:Doctor) in either direction; [:ASSISTED_BY_NURSE] only connects: (:SurgeryRecord)-[:ASSISTED_BY_NURSE]->(:Nurse)"
+        ]
+    },
+    {
+        "qid": 126,
+        "template": 33,
+        "question": "Which medical records have no next visit scheduled? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 48,
+        "template": 12,
+        "question": "Which wards has patient \"746\" occupied a bed in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 104,
+        "template": 26,
+        "question": "How many appointments of patient \"1152\" were cancelled?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 172,
+        "template": 55,
+        "question": "Which nurses have both assisted a surgery and been assigned to a bed record for the same patient? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 94,
+        "template": 24,
+        "question": "What is the total amount patient \"434\" paid across all appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 194,
+        "template": 63,
+        "question": "What is the email address of patient \"1031\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 82,
+        "template": 21,
+        "question": "How many surgeries has doctor \"1023\" performed?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 114,
+        "template": 29,
+        "question": "What is the total payment collected on appointments in Homeopathy?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_NEGATIVE"
+    },
+    {
+        "qid": 28,
+        "template": 7,
+        "question": "Which bed was assigned on bed record \"100697\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 111,
+        "template": 28,
+        "question": "Count the appointments whose reason is Fever.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 40,
+        "template": 10,
+        "question": "Which patients have appointments with doctor \"1004\"? Give their ids.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (a:Appointment)-[:WITH_DOCTOR]->(d:Doctor {doctId: 1004})-[:FOR_PATIENT]->(p:Patient)\nRETURN DISTINCT p.patientId",
+        "errors": [
+            "No relationship [:FOR_PATIENT] between (:Doctor) and (:Patient) in either direction; [:FOR_PATIENT] only connects: (:Appointment)-[:FOR_PATIENT]->(:Patient), (:BedRecord)-[:FOR_PATIENT]->(:Patient), (:RoomRecord)-[:FOR_PATIENT]->(:Patient), (:SurgeryRecord)-[:FOR_PATIENT]->(:Patient)"
+        ]
+    },
+    {
+        "qid": 9,
+        "template": 2,
+        "question": "What ward does bed \"55\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 84,
+        "template": 21,
+        "question": "How many surgeries has doctor \"1300\" performed?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 63,
+        "template": 16,
+        "question": "List the departments of the doctors patient \"214\" had appointments with.",
+        "result": "BenchmarkResult.CORRECT"
+    }
+]

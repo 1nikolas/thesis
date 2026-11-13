@@ -1,0 +1,88 @@
+{
+    "nodes": [
+        "(:Customer) age: INTEGER, country: STRING, currency: STRING, customerId: STRING, email: STRING, firstName: STRING, gender: STRING, isPremium: BOOLEAN, lastName: STRING, registrationDate: DATE_TIME",
+        "(:Product) brand: STRING, category: STRING, isActive: BOOLEAN, launchDate: DATE_TIME, name: STRING, productId: STRING, unitPriceUsd: FLOAT, weightKg: FLOAT",
+        "(:Return) reason: STRING, refundAmountUsd: FLOAT, restocked: BOOLEAN, returnDate: DATE_TIME, returnId: STRING",
+        "(:Supplier) supplierName: STRING",
+        "(:Transaction) costUsd: FLOAT, date: DATE_TIME, discountPct: FLOAT, paymentMethod: STRING, profitUsd: FLOAT, quantity: INTEGER, revenueUsd: FLOAT, shippingCostUsd: FLOAT, status: STRING, transactionId: STRING",
+        "(:Warehouse) warehouseLocation: STRING"
+    ],
+    "relations": [
+        "(:BY_CUSTOMER) ",
+        "(:CONTAINS_PRODUCT) ",
+        "(:FOR_TRANSACTION) ",
+        "(:OF_PRODUCT) ",
+        "(:PLACED_BY) ",
+        "(:STOCKS) lastRestockDate: DATE_TIME, stockUnits: INTEGER",
+        "(:SUPPLIES) isPrimary: BOOLEAN, leadTimeDays: INTEGER, minOrderQty: INTEGER, unitCostUsd: FLOAT"
+    ],
+    "connections": [
+        "(:Return)-[:BY_CUSTOMER]->(:Customer)",
+        "(:Return)-[:FOR_TRANSACTION]->(:Transaction)",
+        "(:Return)-[:OF_PRODUCT]->(:Product)",
+        "(:Supplier)-[:SUPPLIES]->(:Product)",
+        "(:Transaction)-[:CONTAINS_PRODUCT]->(:Product)",
+        "(:Transaction)-[:PLACED_BY]->(:Customer)",
+        "(:Warehouse)-[:STOCKS]->(:Product)"
+    ],
+    "simple_connections": [
+        "Return -> Customer  using relation BY_CUSTOMER",
+        "Return -> Product  using relation OF_PRODUCT",
+        "Return -> Transaction  using relation FOR_TRANSACTION",
+        "Supplier -> Product  using relation SUPPLIES",
+        "Transaction -> Customer  using relation PLACED_BY",
+        "Transaction -> Product  using relation CONTAINS_PRODUCT",
+        "Warehouse -> Product  using relation STOCKS"
+    ],
+    "schema": [
+        [
+            "Return",
+            "BY_CUSTOMER",
+            "Customer",
+            1,
+            1
+        ],
+        [
+            "Return",
+            "FOR_TRANSACTION",
+            "Transaction",
+            1,
+            1
+        ],
+        [
+            "Return",
+            "OF_PRODUCT",
+            "Product",
+            1,
+            1
+        ],
+        [
+            "Supplier",
+            "SUPPLIES",
+            "Product",
+            1,
+            1
+        ],
+        [
+            "Transaction",
+            "CONTAINS_PRODUCT",
+            "Product",
+            1,
+            1
+        ],
+        [
+            "Transaction",
+            "PLACED_BY",
+            "Customer",
+            1,
+            1
+        ],
+        [
+            "Warehouse",
+            "STOCKS",
+            "Product",
+            1,
+            1
+        ]
+    ]
+}

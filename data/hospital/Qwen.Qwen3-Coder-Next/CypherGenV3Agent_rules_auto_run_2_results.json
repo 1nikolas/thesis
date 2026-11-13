@@ -1,0 +1,1457 @@
+[
+    {
+        "qid": 84,
+        "template": 21,
+        "question": "How many surgeries has doctor \"1300\" performed?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 50,
+        "template": 13,
+        "question": "Which nurses assisted surgeries performed by doctor \"1172\"? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 106,
+        "template": 27,
+        "question": "How many female doctors are in Psychiatry?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 167,
+        "template": 52,
+        "question": "List the ids of doctors appearing on both a surgery record and a medical record.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 202,
+        "template": 65,
+        "question": "What floor is room \"15\" on?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 104,
+        "template": 26,
+        "question": "How many appointments of patient \"1152\" were cancelled?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 200,
+        "template": 64,
+        "question": "What dosage was prescribed in medical record \"212\"?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_POSITIVE"
+    },
+    {
+        "qid": 48,
+        "template": 12,
+        "question": "Which wards has patient \"746\" occupied a bed in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 25,
+        "template": 6,
+        "question": "Give the room number for room record \"500077\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 24,
+        "template": 6,
+        "question": "Which room was assigned on room record \"500984\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 33,
+        "template": 8,
+        "question": "Give the phone number recorded for nurse \"3001\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 196,
+        "template": 63,
+        "question": "What is the email address of patient \"1023\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 74,
+        "template": 19,
+        "question": "How many appointments does patient \"785\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 187,
+        "template": 61,
+        "question": "Which insurance provider covers patient \"889\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 149,
+        "template": 43,
+        "question": "What department has the highest total appointment revenue?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 176,
+        "template": 57,
+        "question": "Which nurses work in a different department from the doctor whose surgeries they assist? Give the nurse ids.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (nurse:Nurse)<-[:ASSISTED_BY_NURSE]-(surgery:SurgeryRecord)-[:PERFORMED_BY]->(doctor:Doctor)\nWHERE nurse.gender = \"F\" \n  AND EXISTS {(doctor)-[:BELONGS_TO]->(dept1:Department)<-[:BELONGS_TO]-(nurse)}\n  AND NOT (doctor)-[:BELONGS_TO]->(dept:Department)<-[:BELONGS_TO]-(nurse)\nRETURN DISTINCT nurse.nurseId",
+        "errors": [
+            "PatternExpressions are not allowed to introduce new variables: 'dept'. (line 4, column 36 (offset: 241))\n\"  AND NOT (doctor)-[:BELONGS_TO]->(dept:Department)<-[:BELONGS_TO]-(nurse)\"\n                                    ^"
+        ]
+    },
+    {
+        "qid": 194,
+        "template": 63,
+        "question": "What is the email address of patient \"1031\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 206,
+        "template": 66,
+        "question": "How many of them are there?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 177,
+        "template": 57,
+        "question": "List the ids of nurses assisting a surgery where the operating doctor belongs to another department.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (n:Nurse)-[:ASSISTED_BY_NURSE]->(s:SurgeryRecord)<-[:PERFORMED_BY]-(d:Doctor)<-[:FOR_PATIENT]-(p:Patient)\nWHERE NOT EXISTS {\n  (d)-[:BELONGS_TO]->(:Department)<-[:IN_DEPARTMENT]-(s)-[:IN_ROOM]->(:Room)\n}\nRETURN DISTINCT n.nurseId",
+        "errors": [
+            "No relationship [:FOR_PATIENT] between (:Patient) and (:Doctor) in either direction; [:FOR_PATIENT] only connects: (:Appointment)-[:FOR_PATIENT]->(:Patient), (:BedRecord)-[:FOR_PATIENT]->(:Patient), (:RoomRecord)-[:FOR_PATIENT]->(:Patient), (:SurgeryRecord)-[:FOR_PATIENT]->(:Patient)"
+        ]
+    },
+    {
+        "qid": 152,
+        "template": 45,
+        "question": "Which patients have no appointments at all? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 151,
+        "template": 44,
+        "question": "What ward contains the largest number of beds?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 11,
+        "template": 2,
+        "question": "What ward does bed \"407\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 162,
+        "template": 50,
+        "question": "Which patients have had both a surgery and a bed record? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 8,
+        "template": 2,
+        "question": "Which ward is bed \"55\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 85,
+        "template": 21,
+        "question": "Count the surgery records for doctor \"1023\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 166,
+        "template": 52,
+        "question": "Which doctors have both performed a surgery and written a medical record? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 120,
+        "template": 30,
+        "question": "Which of patient \"1242\"'s appointments were paid by Insurance? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 28,
+        "template": 7,
+        "question": "Which bed was assigned on bed record \"100697\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 68,
+        "template": 17,
+        "question": "Which departments did patient \"1399\" stay in, going by their room records?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 2,
+        "template": 0,
+        "question": "Which patient is appointment \"5668\" for?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 128,
+        "template": 34,
+        "question": "How many appointments are there of each status?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 27,
+        "template": 6,
+        "question": "Give the room number for room record \"500436\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 204,
+        "template": 65,
+        "question": "What floor is room \"144\" on?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 193,
+        "template": 62,
+        "question": "How many years of experience does doctor \"1205\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 70,
+        "template": 18,
+        "question": "Which department was surgery \"10458\" carried out in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 34,
+        "template": 8,
+        "question": "What is the contact number of nurse \"3167\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 198,
+        "template": 64,
+        "question": "What dosage was prescribed in medical record \"1349\"?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_POSITIVE"
+    },
+    {
+        "qid": 141,
+        "template": 39,
+        "question": "Which doctor id appears on the highest number of appointments?",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (a:Appointment)-[:WITH_DOCTOR]->(d:Doctor)\nRETURN d.doctId AS doctorId\nORDER BY COUNT(a) DESC\nLIMIT 1",
+        "errors": [
+            "Cannot use aggregation in ORDER BY if there are no aggregate expressions in the preceding RETURN (line 2, column 1 (offset: 49))\n\"RETURN d.doctId AS doctorId\"\n ^"
+        ]
+    },
+    {
+        "qid": 119,
+        "template": 30,
+        "question": "List the appointment ids for patient \"1242\" with Insurance as the payment mode.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 16,
+        "template": 4,
+        "question": "Which department does doctor \"1298\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 20,
+        "template": 5,
+        "question": "What diagnosis and treatment are recorded in medical record \"569\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 92,
+        "template": 23,
+        "question": "How many beds are in the Geriatrics Ward?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 30,
+        "template": 7,
+        "question": "Which bed was assigned on bed record \"100479\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 10,
+        "template": 2,
+        "question": "Which ward is bed \"303\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 207,
+        "template": 66,
+        "question": "Who was on duty that day?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_POSITIVE"
+    },
+    {
+        "qid": 145,
+        "template": 41,
+        "question": "Which patient id appears on the highest number of appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 199,
+        "template": 64,
+        "question": "Which pharmacy filled the prescription for medical record \"212\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 117,
+        "template": 29,
+        "question": "Sum the appointment payments for doctors belonging to Rehabilitation.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 43,
+        "template": 11,
+        "question": "List the ids of doctors who authored medical records for patient \"785\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 130,
+        "template": 35,
+        "question": "How much was paid through each payment mode on appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 184,
+        "template": 60,
+        "question": "Which female doctors have performed at least one surgery? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 174,
+        "template": 56,
+        "question": "Which patients have been treated by doctors from more than one department? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 95,
+        "template": 24,
+        "question": "Sum the payment amounts on appointments for patient \"1122\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 96,
+        "template": 24,
+        "question": "What is the total amount patient \"1259\" paid across all appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 136,
+        "template": 38,
+        "question": "For each doctor in Endocrinology, how many appointments do they have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 129,
+        "template": 34,
+        "question": "Break down the appointment count by status.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 165,
+        "template": 51,
+        "question": "List the ids of patients who appear on a room record and on an appointment.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 161,
+        "template": 49,
+        "question": "List the ids of doctors who appear on an appointment but on no staff shift.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 81,
+        "template": 20,
+        "question": "Count the appointments assigned to doctor \"1134\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 140,
+        "template": 39,
+        "question": "Which doctor has the most appointments? Give their id.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 91,
+        "template": 23,
+        "question": "Count the beds belonging to the Geriatrics Ward.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 55,
+        "template": 14,
+        "question": "List the room numbers where patient \"523\" was operated on.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 49,
+        "template": 12,
+        "question": "List the wards where patient \"1171\" was assigned a bed.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 35,
+        "template": 8,
+        "question": "Give the phone number recorded for nurse \"3405\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 99,
+        "template": 25,
+        "question": "Count the appointments with doctor \"1250\" whose status is Completed.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 133,
+        "template": 36,
+        "question": "Break down the doctor count by department.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 42,
+        "template": 11,
+        "question": "Which doctors wrote medical records for patient \"131\"? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 40,
+        "template": 10,
+        "question": "Which patients have appointments with doctor \"1004\"? Give their ids.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (a:Appointment)-[:WITH_DOCTOR]->(:Doctor {doctId: 1004})-[:FOR_PATIENT]->(p:Patient)\nRETURN p.patientId",
+        "errors": [
+            "No relationship [:FOR_PATIENT] between (:Doctor) and (:Patient) in either direction; [:FOR_PATIENT] only connects: (:Appointment)-[:FOR_PATIENT]->(:Patient), (:BedRecord)-[:FOR_PATIENT]->(:Patient), (:RoomRecord)-[:FOR_PATIENT]->(:Patient), (:SurgeryRecord)-[:FOR_PATIENT]->(:Patient)"
+        ]
+    },
+    {
+        "qid": 170,
+        "template": 54,
+        "question": "Which helpers both assisted a surgery and were assigned to a bed record? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 7,
+        "template": 1,
+        "question": "Give the doctor id for appointment \"5121\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 175,
+        "template": 56,
+        "question": "List the ids of patients whose appointment doctors span at least two departments.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 156,
+        "template": 47,
+        "question": "Which nurses have never assisted a surgery? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 147,
+        "template": 42,
+        "question": "Which doctor id appears on the most surgery records?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 123,
+        "template": 31,
+        "question": "List the ids of appointments whose status is No-Show.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 62,
+        "template": 16,
+        "question": "Which departments has patient \"876\" been seen in through appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 163,
+        "template": 50,
+        "question": "List the ids of patients appearing on both a surgery record and a bed record.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 155,
+        "template": 46,
+        "question": "List the ids of doctors with no surgery records.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 178,
+        "template": 58,
+        "question": "Which doctors in General Medicine have more than 1 appointment? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 26,
+        "template": 6,
+        "question": "Which room was assigned on room record \"500436\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 12,
+        "template": 3,
+        "question": "Which department is room \"207\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 56,
+        "template": 14,
+        "question": "In which rooms did patient \"469\" have surgery?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 173,
+        "template": 55,
+        "question": "List the ids of nurses appearing on a surgery record and a bed record for the same patient.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 93,
+        "template": 23,
+        "question": "Count the beds belonging to the Post-Anesthesia Care Unit.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 180,
+        "template": 58,
+        "question": "Which doctors in Neurology have more than 1 appointment? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 153,
+        "template": 45,
+        "question": "List the ids of patients with no appointment booked.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 36,
+        "template": 9,
+        "question": "Which doctors has patient \"126\" had appointments with? Give their ids.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (a:Appointment)-[:FOR_PATIENT]->(:Patient {patientId: 126})-[:WITH_DOCTOR]->(d:Doctor)\nRETURN DISTINCT d.doctId",
+        "errors": [
+            "No relationship [:WITH_DOCTOR] between (:Patient) and (:Doctor) in either direction; [:WITH_DOCTOR] only connects: (:Appointment)-[:WITH_DOCTOR]->(:Doctor)"
+        ]
+    },
+    {
+        "qid": 169,
+        "template": 53,
+        "question": "List the ids of nurses appearing on both a bed record and a room record.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (n:Nurse)-[:ASSIGNED_BED]->(br:BedRecord)<-[:FOR_PATIENT]-(p:Patient)\nWITH n, p\nMATCH (n)-[:ASSIGNED_ROOM]->(rr:RoomRecord)<-[:FOR_PATIENT]-(p)\nRETURN DISTINCT n.nurseId AS nurseId",
+        "errors": [
+            "No relationship [:ASSIGNED_BED] between (:Nurse) and (:BedRecord) in either direction; these labels are connected by: (:BedRecord)-[:ASSIGNED_NURSE]->(:Nurse)"
+        ]
+    },
+    {
+        "qid": 135,
+        "template": 37,
+        "question": "Break down the bed count by ward.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 72,
+        "template": 18,
+        "question": "Which department was surgery \"10623\" carried out in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 17,
+        "template": 4,
+        "question": "What is the department of doctor \"1289\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 105,
+        "template": 26,
+        "question": "Count the cancelled appointments for patient \"594\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 69,
+        "template": 17,
+        "question": "List the departments of the rooms assigned to patient \"751\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 139,
+        "template": 38,
+        "question": "Per doctor in Endocrinology, give the appointment count.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 53,
+        "template": 13,
+        "question": "List the ids of nurses who assisted in surgeries by doctor \"1161\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 203,
+        "template": 65,
+        "question": "How much does room \"234\" cost per night?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 22,
+        "template": 5,
+        "question": "What diagnosis and treatment are recorded in medical record \"635\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 5,
+        "template": 1,
+        "question": "Give the doctor id for appointment \"5321\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 82,
+        "template": 21,
+        "question": "How many surgeries has doctor \"1023\" performed?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 4,
+        "template": 1,
+        "question": "Which doctor is appointment \"5154\" with?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 197,
+        "template": 63,
+        "question": "What is the blood type of patient \"1023\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 110,
+        "template": 28,
+        "question": "How many appointments were booked for Migraine?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 98,
+        "template": 25,
+        "question": "How many completed appointments does doctor \"1175\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 138,
+        "template": 38,
+        "question": "For each doctor in Pulmonology, how many appointments do they have?",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(:Department {deptName: \"Pulmonology\"})-[:IN_DEPARTMENT]->(:Department)<-[:IN_DEPARTMENT]-(r:Room)<-[:IN_ROOM]-(s:SurgeryRecord)<-[:FOR_PATIENT]-(p:Patient)<-[:FOR_PATIENT]-(a:Appointment)-[:WITH_DOCTOR]->(d)\nWITH d, COUNT(a) AS appointmentCount\nRETURN d.doctId, appointmentCount\n\nWait \u2014 this is wrong. Let's re-read carefully.\n\nThe question is: *For each doctor in Pulmonology, how many appointments do they have?*\n\nWe should only match appointments directly related to doctors via [:WITH_DOCTOR], and filter doctors by department Pulmonology via [:BELONGS_TO].\n\nCorrect traversal:\n- Match Doctor with BELONGS_TO \u2192 Department where deptName = \"Pulmonology\"\n- Match Appointment with WITH_DOCTOR \u2192 Doctor\n\nSo:\n\nMATCH (d:Doctor)-[:BELONGS_TO]->(dept:Department {deptName: \"Pulmonology\"})\nOPTIONAL MATCH (d)<-[:WITH_DOCTOR]-(a:Appointment)\nRETURN d.doctId, COUNT(a) AS appointmentCount\n\n\u2705 This uses OPTIONAL MATCH to include doctors with zero appointments (though question doesn\u2019t specify, it's safer to include all), and COUNT properly.\n\nBut the instruction says: \"Do not assume Appointments connect to Rooms or Departments via intermediate nodes \u2014 only use the defined relationship... (:Appointment)-[:WITH_DOCTOR]->(:Doctor) and (:Doctor)-[:BELONGS_TO]->(:Department)\"\n\nSo no Room/Department traversal beyond what\u2019s strictly necessary.\n\nYes, the above is correct.\n\nBut wait \u2014 the instruction also says: *Do not include GROUP BY*, and we\u2019re not. We're aggregating with COUNT directly and returning d.doctId \u2014 which is fine since we aggregate per doctor.\n\nHowever, Cypher version 5 does not allow non-aggregated variables in RETURN if they're not functionally dependent on the grouped columns \u2014 but d.doctId *is* functionally dependent on d, and since we\u2019re grouping by the implicit grouping key (d), it\u2019s allowed.\n\nYes \u2014 in Neo4j 5, RETURN d.doctId, COUNT(a) is valid when grouping by d implicitly via aggregation.\n\nFinal answer:\n\nMATCH (d:Doctor)-[:BELONGS_TO]->(:Department {deptName: \"Pulmonology\"})\nOPTIONAL MATCH (d)<-[:WITH_DOCTOR]-(a:Appointment)\nRETURN d.doctId, COUNT(a) AS appointmentCount",
+        "errors": [
+            "No relationship [:IN_DEPARTMENT] between (:Department) and (:Department) in either direction; these labels are connected by: (:Doctor)-[:BELONGS_TO]->(:Department), (:Helper)-[:BELONGS_TO]->(:Department), (:Nurse)-[:BELONGS_TO]->(:Department), (:Room)-[:IN_DEPARTMENT]->(:Department), (:Ward)-[:IN_DEPARTMENT]->(:Department)"
+        ]
+    },
+    {
+        "qid": 171,
+        "template": 54,
+        "question": "List the ids of helpers appearing on both a surgery record and a bed record.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (h:Helper)-[:ASSISTED_BY_HELPER]->(:SurgeryRecord)\nMATCH (h:Helper)-[:ASSISTED_BY_HELPER]->(:BedRecord)\nRETURN DISTINCT h.helperId",
+        "errors": [
+            "No relationship [:ASSISTED_BY_HELPER] between (:Helper|Helper) and (:BedRecord) in either direction; these labels are connected by: (:BedRecord)-[:ASSIGNED_HELPER]->(:Helper)"
+        ]
+    },
+    {
+        "qid": 18,
+        "template": 4,
+        "question": "Which department does doctor \"1289\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 137,
+        "template": 38,
+        "question": "Per doctor in General Medicine, give the appointment count.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (a:Appointment)-[:WITH_DOCTOR]->(d:Doctor)-[:BELONGS_TO]->(dept:Department)\nWHERE dept.deptName = \"General Medicine\"\nWITH d.doctId AS doctorId, d.fName AS firstName, d.lName AS lastName, COUNT(a) AS appointmentCount\nRETURN doctorId, firstName, lastName, appointmentCount",
+        "query_ans": [
+            [
+                "1027",
+                "505",
+                "Dr. Raza",
+                "Hasnain"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "1027",
+                    "505"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 1,
+        "template": 0,
+        "question": "Give the patient id for appointment \"5920\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 97,
+        "template": 24,
+        "question": "Sum the payment amounts on appointments for patient \"434\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 0,
+        "template": 0,
+        "question": "Which patient is appointment \"5920\" for?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 44,
+        "template": 11,
+        "question": "Which doctors wrote medical records for patient \"229\"? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 15,
+        "template": 3,
+        "question": "What department does room \"245\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 23,
+        "template": 5,
+        "question": "Give the diagnosis and treatment on medical record \"635\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 80,
+        "template": 20,
+        "question": "How many appointments does doctor \"1254\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 83,
+        "template": 21,
+        "question": "Count the surgery records for doctor \"1328\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 71,
+        "template": 18,
+        "question": "Give the department of the room used for surgery \"10623\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 113,
+        "template": 28,
+        "question": "Count the appointments whose reason is Chest Pain.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 118,
+        "template": 30,
+        "question": "Which of patient \"591\"'s appointments were paid by Insurance? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 60,
+        "template": 15,
+        "question": "Which department is bed \"116\" ultimately in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 61,
+        "template": 15,
+        "question": "Trace bed \"116\" through its ward to a department.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 73,
+        "template": 18,
+        "question": "Give the department of the room used for surgery \"10424\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 205,
+        "template": 65,
+        "question": "How much does room \"144\" cost per night?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 102,
+        "template": 26,
+        "question": "How many appointments of patient \"1023\" were cancelled?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 103,
+        "template": 26,
+        "question": "Count the cancelled appointments for patient \"1152\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 14,
+        "template": 3,
+        "question": "Which department is room \"325\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 57,
+        "template": 14,
+        "question": "List the room numbers where patient \"741\" was operated on.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 108,
+        "template": 27,
+        "question": "How many female doctors are in Cardiology?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 58,
+        "template": 15,
+        "question": "Which department is bed \"80\" ultimately in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 201,
+        "template": 64,
+        "question": "Which pharmacy filled the prescription for medical record \"1349\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 41,
+        "template": 10,
+        "question": "List the ids of patients booked with doctor \"1004\".",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (a:Appointment)-[:WITH_DOCTOR]->(:Doctor {doctId: 1004})\nRETURN DISTINCT a.patientId AS patientId\nLIMIT 0\n",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "1082"
+                ],
+                [
+                    "1226"
+                ],
+                [
+                    "1277"
+                ],
+                [
+                    "1316"
+                ],
+                [
+                    "1377"
+                ],
+                [
+                    "1429"
+                ],
+                [
+                    "1456"
+                ],
+                [
+                    "1458"
+                ],
+                [
+                    "1553"
+                ],
+                [
+                    "171"
+                ],
+                [
+                    "231"
+                ],
+                [
+                    "251"
+                ],
+                [
+                    "257"
+                ],
+                [
+                    "267"
+                ],
+                [
+                    "271"
+                ],
+                [
+                    "272"
+                ],
+                [
+                    "337"
+                ],
+                [
+                    "341"
+                ],
+                [
+                    "362"
+                ],
+                [
+                    "366"
+                ],
+                [
+                    "437"
+                ],
+                [
+                    "464"
+                ],
+                [
+                    "479"
+                ],
+                [
+                    "489"
+                ],
+                [
+                    "499"
+                ],
+                [
+                    "566"
+                ],
+                [
+                    "748"
+                ],
+                [
+                    "876"
+                ],
+                [
+                    "904"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 146,
+        "template": 42,
+        "question": "Which doctor has performed the most surgeries? Give their id.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 131,
+        "template": 35,
+        "question": "Break down total appointment payments by mode of payment.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 168,
+        "template": 53,
+        "question": "Which nurses have been assigned to both a bed record and a room record? Give their ids.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (n:Nurse)-[:ASSIGNED_BED]->(:BedRecord)<-[:FOR_PATIENT]-(p:Patient)<-[:FOR_PATIENT]-(b:BedRecord)<-[:ASSIGNED_BED]-(n2:Nurse)\nWITH DISTINCT n\nMATCH (n2)-[:ASSIGNED_ROOM]->(:RoomRecord)\nRETURN DISTINCT n2.nurseId AS nurseId\nLIMIT 0\n\nMATCH (n:Nurse)-[:ASSIGNED_BED]->(br1:BedRecord)<-[:FOR_PATIENT]-(p:Patient)\nWITH n, p\nMATCH (n)-[:ASSIGNED_ROOM]->(rr:RoomRecord)<-[:FOR_PATIENT]-(p)\nRETURN DISTINCT n.nurseId AS nurseId",
+        "errors": [
+            "No relationship [:ASSIGNED_BED] between (:Nurse|Nurse) and (:BedRecord) in either direction; these labels are connected by: (:BedRecord)-[:ASSIGNED_NURSE]->(:Nurse)"
+        ]
+    },
+    {
+        "qid": 116,
+        "template": 29,
+        "question": "What is the total payment collected on appointments in Hematology?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 192,
+        "template": 62,
+        "question": "What is the salary of doctor \"1205\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 65,
+        "template": 16,
+        "question": "List the departments of the doctors patient \"1383\" had appointments with.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 32,
+        "template": 8,
+        "question": "What is the contact number of nurse \"3001\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 9,
+        "template": 2,
+        "question": "What ward does bed \"55\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 77,
+        "template": 19,
+        "question": "Count the appointments booked for patient \"1350\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 59,
+        "template": 15,
+        "question": "Trace bed \"92\" through its ward to a department.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 39,
+        "template": 9,
+        "question": "List the ids of doctors who have appointments with patient \"299\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 115,
+        "template": 29,
+        "question": "Sum the appointment payments for doctors belonging to Homeopathy.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 191,
+        "template": 62,
+        "question": "How many years of experience does doctor \"1004\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 67,
+        "template": 17,
+        "question": "List the departments of the rooms assigned to patient \"893\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 86,
+        "template": 22,
+        "question": "How many doctors work in Surgery?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 157,
+        "template": 47,
+        "question": "List the ids of nurses with no surgery assistance recorded.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 158,
+        "template": 48,
+        "question": "Which rooms have never been used for surgery?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 19,
+        "template": 4,
+        "question": "What is the department of doctor \"1298\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 79,
+        "template": 20,
+        "question": "Count the appointments assigned to doctor \"1057\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 182,
+        "template": 59,
+        "question": "Which patients have more than 2 completed appointments? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 88,
+        "template": 22,
+        "question": "How many doctors work in Rehabilitation?",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (:Department {deptName: \"Rehabilitation\"})<-[:BELONGS_TO]-(:Doctor)\nRETURN COUNT(DISTINCT doctor) AS doctorCount",
+        "errors": [
+            "Variable `doctor` not defined (line 2, column 23 (offset: 96))\n\"RETURN COUNT(DISTINCT doctor) AS doctorCount\"\n                       ^"
+        ]
+    },
+    {
+        "qid": 52,
+        "template": 13,
+        "question": "Which nurses assisted surgeries performed by doctor \"1175\"? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 142,
+        "template": 40,
+        "question": "Which department has the most doctors?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 143,
+        "template": 40,
+        "question": "What department employs the largest number of doctors?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 75,
+        "template": 19,
+        "question": "Count the appointments booked for patient \"1328\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 89,
+        "template": 22,
+        "question": "Count the doctors belonging to Immunology.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 111,
+        "template": 28,
+        "question": "Count the appointments whose reason is Fever.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 76,
+        "template": 19,
+        "question": "How many appointments does patient \"1328\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 126,
+        "template": 33,
+        "question": "Which medical records have no next visit scheduled? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 195,
+        "template": 63,
+        "question": "What is the blood type of patient \"1031\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 13,
+        "template": 3,
+        "question": "What department does room \"207\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 150,
+        "template": 44,
+        "question": "Which ward has the most beds?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (w:Ward)<-[:IN_WARD]-(b:Bed)\nWITH w.wardName AS wardName, COUNT(b) AS bedCount\nORDER BY bedCount DESC\nLIMIT 1\nRETURN wardName",
+        "query_ans": [
+            [
+                "General Medicine Ward"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "Surgical Ward"
+                ]
+            ],
+            [
+                [
+                    "16",
+                    "Surgical Ward"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 189,
+        "template": 61,
+        "question": "Which insurance provider covers patient \"216\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 29,
+        "template": 7,
+        "question": "Give the bed number for bed record \"100479\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 179,
+        "template": 58,
+        "question": "In Neurology, list the ids of doctors with over 1 appointment.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (d:Doctor)-[:BELONGS_TO]->(:Department {deptName: \"Neurology\"})<-[:WITH_DOCTOR]-(a:Appointment)\nWITH d.doctId AS doctorId, COUNT(a) AS appointmentCount\nWHERE appointmentCount > 1\nRETURN doctorId",
+        "errors": [
+            "No relationship [:WITH_DOCTOR] between (:Appointment) and (:Department) in either direction; [:WITH_DOCTOR] only connects: (:Appointment)-[:WITH_DOCTOR]->(:Doctor)"
+        ]
+    },
+    {
+        "qid": 87,
+        "template": 22,
+        "question": "Count the doctors belonging to Nephrology.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 63,
+        "template": 16,
+        "question": "List the departments of the doctors patient \"214\" had appointments with.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 100,
+        "template": 25,
+        "question": "How many completed appointments does doctor \"1250\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 134,
+        "template": 37,
+        "question": "How many beds does each ward have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 188,
+        "template": 61,
+        "question": "What is the insurance policy number of patient \"484\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 78,
+        "template": 20,
+        "question": "How many appointments does doctor \"1337\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 185,
+        "template": 60,
+        "question": "List the ids of doctors whose gender is F and who appear on a surgery record.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 160,
+        "template": 49,
+        "question": "Which doctors have appointments but no staff shift assigned? Give their ids.",
+        "result": "BenchmarkResult.CYPHER_FAILED",
+        "query": "MATCH (a:Appointment)-[:WITH_DOCTOR]->(d:Doctor)\nWHERE NOT (d)-[:ASSIGNED_TO]->(:StaffShift)\nRETURN DISTINCT d.doctId",
+        "errors": [
+            "No relationship [:ASSIGNED_TO] between (:Doctor) and (:StaffShift) in either direction; these labels are connected by: (:StaffShift)-[:ASSIGNED_DOCTOR]->(:Doctor)"
+        ]
+    },
+    {
+        "qid": 47,
+        "template": 12,
+        "question": "List the wards where patient \"746\" was assigned a bed.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (Patient {patientId: 746})-[:FOR_PATIENT]->(BedRecord)-[:ASSIGNED_BED]->(Bed)-[:IN_WARD]->(Ward)\nRETURN DISTINCT Ward.wardName",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "Emergency Ward"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 109,
+        "template": 27,
+        "question": "Count the doctors in Audiology & Speech whose gender is F.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 45,
+        "template": 11,
+        "question": "List the ids of doctors who authored medical records for patient \"131\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 183,
+        "template": 59,
+        "question": "List the ids of patients with over 2 appointments in Completed status.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 94,
+        "template": 24,
+        "question": "What is the total amount patient \"434\" paid across all appointments?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 121,
+        "template": 30,
+        "question": "List the appointment ids for patient \"175\" with Insurance as the payment mode.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 46,
+        "template": 12,
+        "question": "Which wards has patient \"1171\" occupied a bed in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 172,
+        "template": 55,
+        "question": "Which nurses have both assisted a surgery and been assigned to a bed record for the same patient? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 154,
+        "template": 46,
+        "question": "Which doctors have never performed a surgery? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 101,
+        "template": 25,
+        "question": "Count the appointments with doctor \"1223\" whose status is Completed.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 190,
+        "template": 62,
+        "question": "What is the salary of doctor \"1376\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 181,
+        "template": 58,
+        "question": "In Cardiology, list the ids of doctors with over 1 appointment.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 132,
+        "template": 36,
+        "question": "How many doctors belong to each department?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 144,
+        "template": 41,
+        "question": "Which patient has the most appointments? Give their id.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 6,
+        "template": 1,
+        "question": "Which doctor is appointment \"5472\" with?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 164,
+        "template": 51,
+        "question": "Which patients have both a room record and an appointment? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 127,
+        "template": 33,
+        "question": "List the ids of medical records where nextVisit is null.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 159,
+        "template": 48,
+        "question": "List the room numbers with no surgery record attached.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 66,
+        "template": 17,
+        "question": "Which departments did patient \"1207\" stay in, going by their room records?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 114,
+        "template": 29,
+        "question": "What is the total payment collected on appointments in Homeopathy?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_NEGATIVE"
+    },
+    {
+        "qid": 124,
+        "template": 32,
+        "question": "How many appointments were held online?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 186,
+        "template": 61,
+        "question": "What is the insurance policy number of patient \"1091\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 37,
+        "template": 9,
+        "question": "List the ids of doctors who have appointments with patient \"737\".",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (a:Appointment {appoIntmentId: 737})-[:WITH_DOCTOR]->(d:Doctor)  \nRETURN d.doctId AS doctorId",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "1024"
+                ],
+                [
+                    "1027"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 38,
+        "template": 9,
+        "question": "Which doctors has patient \"1032\" had appointments with? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 64,
+        "template": 16,
+        "question": "Which departments has patient \"641\" been seen in through appointments?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (a:Appointment {appoIntmentId: 641})-[:FOR_PATIENT]->(p:Patient)<-[:FOR_PATIENT]-(a2:Appointment)-[:WITH_DOCTOR]->(d:Doctor)-[:BELONGS_TO]->(dept:Department)\nRETURN DISTINCT dept.deptName",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "Cardiology"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 3,
+        "template": 0,
+        "question": "Give the patient id for appointment \"5668\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 125,
+        "template": 32,
+        "question": "Count the appointments whose mode is Online.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 54,
+        "template": 14,
+        "question": "In which rooms did patient \"309\" have surgery?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 21,
+        "template": 5,
+        "question": "Give the diagnosis and treatment on medical record \"569\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 122,
+        "template": 31,
+        "question": "Which appointments were no-shows? Give their ids.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 107,
+        "template": 27,
+        "question": "Count the doctors in Cardiology whose gender is F.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 112,
+        "template": 28,
+        "question": "How many appointments were booked for Chest Pain?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 90,
+        "template": 23,
+        "question": "How many beds are in the Pediatrics Ward?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 31,
+        "template": 7,
+        "question": "Give the bed number for bed record \"100095\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 51,
+        "template": 13,
+        "question": "List the ids of nurses who assisted in surgeries by doctor \"1172\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 148,
+        "template": 43,
+        "question": "Which department collected the most in appointment payments?",
+        "result": "BenchmarkResult.CORRECT"
+    }
+]

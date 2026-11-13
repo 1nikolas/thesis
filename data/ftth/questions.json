@@ -1,0 +1,5400 @@
+[
+    {
+        "qid": 161,
+        "template": 38,
+        "cypher": "MATCH (o:ONT {name: \"1971932504\"})-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE) RETURN s.name",
+        "question": "What site does ONT \"1971932504\" belong to?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Heraklion"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 84,
+        "template": 18,
+        "cypher": "MATCH (o:ONT {name: \"4108310021\"}) RETURN o.status = \"active\" AS active",
+        "question": "Is ONT \"4108310021\" currently active?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "True"
+                ]
+            ],
+            [
+                [
+                    "active"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 142,
+        "template": 30,
+        "cypher": "MATCH (d:OLT)-[:IN_SITE]->(s:SITE {name: \"Sparta\"}) MATCH (o:ONT)-[:CONNECTS_TO*5..6]->(d) WITH d, count(DISTINCT o) AS total RETURN d.name, total",
+        "question": "For each OLT in SITE Sparta, how many ONTs does it serve?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1000775993",
+                    "361"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 187,
+        "template": 45,
+        "cypher": "MATCH (d:OLT {name: \"1000775993\"})<-[:CONNECTS_TO]-(c:CARD) MATCH (p:PORT)-[:CONNECTS_TO]->(c) WITH c, count(DISTINCT p) AS total WHERE total > 4 RETURN c.name, total",
+        "question": "On OLT \"1000775993\", list cards with over 4 ports.",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 208,
+        "template": 50,
+        "cypher": null,
+        "question": "What is the operating temperature of OLT \"3683543150\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 104,
+        "template": 22,
+        "cypher": "MATCH (sp:SPLITTER {name: \"1975424847\"})<-[:CONNECTS_TO*1..2]-(o:ONT) WHERE o.signal_dbm < -28 RETURN o.name",
+        "question": "Which ONTs on splitter \"1975424847\" have a signal weaker than -28 dBm?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "7472363058"
+                ]
+            ],
+            [
+                [
+                    "-30.6",
+                    "7472363058"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 87,
+        "template": 18,
+        "cypher": "MATCH (o:ONT {name: \"6208434379\"}) RETURN o.status = \"active\" AS active",
+        "question": "Is ONT \"6208434379\" in active state?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "True"
+                ]
+            ],
+            [
+                [
+                    "active"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 30,
+        "template": 6,
+        "cypher": "MATCH (sp:SPLITTER {name: \"1494277645\"})<-[:CONNECTS_TO]-(o:ONT) RETURN o.name",
+        "question": "Which ONTs are wired directly to splitter \"1494277645\", without a sub-splitter?",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 143,
+        "template": 31,
+        "cypher": "MATCH (c:CABIN {name: \"9571132862\"})-[:CONNECTS_TO]->(sp:SPLITTER) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) WITH sp, count(DISTINCT o) AS total RETURN sp.name, total",
+        "question": "For each splitter on cabin \"9571132862\", how many ONTs does it serve?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "19",
+                    "5552268771"
+                ],
+                [
+                    "20",
+                    "8553081950"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 36,
+        "template": 7,
+        "cypher": "MATCH (sp:SPLITTER {name: \"7101187514\"})<-[:CONNECTS_TO*2]-(o:ONT) RETURN o.name",
+        "question": "List the ONTs connected to splitter \"7101187514\" via a sub-splitter.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1118377556"
+                ],
+                [
+                    "1277166424"
+                ],
+                [
+                    "2076877101"
+                ],
+                [
+                    "2120659828"
+                ],
+                [
+                    "3537221191"
+                ],
+                [
+                    "3754135051"
+                ],
+                [
+                    "4293163726"
+                ],
+                [
+                    "4311623640"
+                ],
+                [
+                    "5686035465"
+                ],
+                [
+                    "6053710712"
+                ],
+                [
+                    "6168165271"
+                ],
+                [
+                    "6611888072"
+                ],
+                [
+                    "6858492865"
+                ],
+                [
+                    "7065928469"
+                ],
+                [
+                    "7199414055"
+                ],
+                [
+                    "7754510039"
+                ],
+                [
+                    "8221042424"
+                ],
+                [
+                    "8505091639"
+                ],
+                [
+                    "8927834678"
+                ],
+                [
+                    "9856769003"
+                ],
+                [
+                    "9910685958"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 86,
+        "template": 18,
+        "cypher": "MATCH (o:ONT {name: \"5433802577\"}) RETURN o.status = \"active\" AS active",
+        "question": "Is ONT \"5433802577\" currently active?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "False"
+                ]
+            ],
+            [
+                [
+                    "inactive"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 28,
+        "template": 5,
+        "cypher": "MATCH (o:ONT {name: \"4108310021\"})-[:CONNECTS_TO*3..4]->(p:PORT) RETURN p.name",
+        "question": "What port is upstream of ONT \"4108310021\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "8861527078"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 188,
+        "template": 45,
+        "cypher": "MATCH (d:OLT {name: \"7945957051\"})<-[:CONNECTS_TO]-(c:CARD) MATCH (p:PORT)-[:CONNECTS_TO]->(c) WITH c, count(DISTINCT p) AS total WHERE total > 4 RETURN c.name, total",
+        "question": "Which cards on OLT \"7945957051\" have more than 4 ports?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1644104845",
+                    "5"
+                ],
+                [
+                    "6",
+                    "7897004081"
+                ]
+            ],
+            [
+                [
+                    "1644104845"
+                ],
+                [
+                    "7897004081"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 55,
+        "template": 11,
+        "cypher": "MATCH (d:OLT {name: \"9870266924\"})<-[:CONNECTS_TO]-(c:CARD) RETURN count(DISTINCT c) AS total",
+        "question": "How many cards does OLT \"9870266924\" have?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 40,
+        "template": 8,
+        "cypher": "MATCH (sp:SPLITTER {name: \"5626892525\"})<-[:CONNECTS_TO*1..2]-(o:ONT) RETURN o.name",
+        "question": "Which ONTs are served by splitter \"5626892525\", whether directly or through a sub-splitter?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1200144719"
+                ],
+                [
+                    "1467380230"
+                ],
+                [
+                    "1777711962"
+                ],
+                [
+                    "2791806480"
+                ],
+                [
+                    "4556838807"
+                ],
+                [
+                    "4581202439"
+                ],
+                [
+                    "7333640990"
+                ],
+                [
+                    "7401874383"
+                ],
+                [
+                    "8102970549"
+                ],
+                [
+                    "8657984648"
+                ],
+                [
+                    "8903559166"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 211,
+        "template": 50,
+        "cypher": null,
+        "question": "How much power does OLT \"6225774566\" draw?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 33,
+        "template": 6,
+        "cypher": "MATCH (sp:SPLITTER {name: \"9284753446\"})<-[:CONNECTS_TO]-(o:ONT) RETURN o.name",
+        "question": "List the ONTs attached straight to splitter \"9284753446\" with no sub-splitter in between.",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 39,
+        "template": 7,
+        "cypher": "MATCH (sp:SPLITTER {name: \"8701142033\"})<-[:CONNECTS_TO*2]-(o:ONT) RETURN o.name",
+        "question": "Which ONTs reach splitter \"8701142033\" through a sub-splitter?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1131997415"
+                ],
+                [
+                    "1190823218"
+                ],
+                [
+                    "1749968859"
+                ],
+                [
+                    "2713523745"
+                ],
+                [
+                    "2905332935"
+                ],
+                [
+                    "2925003261"
+                ],
+                [
+                    "3445371145"
+                ],
+                [
+                    "3767006218"
+                ],
+                [
+                    "3986082676"
+                ],
+                [
+                    "4311478063"
+                ],
+                [
+                    "4325336387"
+                ],
+                [
+                    "4588306485"
+                ],
+                [
+                    "4751609207"
+                ],
+                [
+                    "4988658118"
+                ],
+                [
+                    "5033744202"
+                ],
+                [
+                    "5116086585"
+                ],
+                [
+                    "5136931555"
+                ],
+                [
+                    "5294631705"
+                ],
+                [
+                    "5298588135"
+                ],
+                [
+                    "6062271904"
+                ],
+                [
+                    "6142308269"
+                ],
+                [
+                    "6178943026"
+                ],
+                [
+                    "6238409032"
+                ],
+                [
+                    "6321742321"
+                ],
+                [
+                    "6834907742"
+                ],
+                [
+                    "7127373576"
+                ],
+                [
+                    "7159086832"
+                ],
+                [
+                    "7828360452"
+                ],
+                [
+                    "7910484342"
+                ],
+                [
+                    "7956423069"
+                ],
+                [
+                    "8262062140"
+                ],
+                [
+                    "8384999919"
+                ],
+                [
+                    "8455595156"
+                ],
+                [
+                    "8485325006"
+                ],
+                [
+                    "8511557402"
+                ],
+                [
+                    "8609679014"
+                ],
+                [
+                    "8865925158"
+                ],
+                [
+                    "9139101900"
+                ],
+                [
+                    "9318335482"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 58,
+        "template": 11,
+        "cypher": "MATCH (d:OLT {name: \"2687963281\"})<-[:CONNECTS_TO]-(c:CARD) RETURN count(DISTINCT c) AS total",
+        "question": "Count the cards installed in OLT \"2687963281\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 60,
+        "template": 12,
+        "cypher": "MATCH (c:CABIN {name: \"2306313262\"})-[:CONNECTS_TO]->(sp:SPLITTER) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) RETURN count(DISTINCT o) AS total",
+        "question": "How many ONTs does cabin \"2306313262\" serve?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "158"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 148,
+        "template": 32,
+        "cypher": "MATCH (d:OLT) WITH d.vendor AS vendor, count(DISTINCT d) AS total RETURN vendor, total",
+        "question": "How many OLTs does each vendor supply?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "14",
+                    "Huawei"
+                ],
+                [
+                    "4",
+                    "ZTE"
+                ],
+                [
+                    "5",
+                    "Calix"
+                ],
+                [
+                    "9",
+                    "Nokia"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 41,
+        "template": 8,
+        "cypher": "MATCH (sp:SPLITTER {name: \"7101187514\"})<-[:CONNECTS_TO*1..2]-(o:ONT) RETURN o.name",
+        "question": "List every ONT downstream of splitter \"7101187514\", either through a sub-splitter or directly.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1118377556"
+                ],
+                [
+                    "1277166424"
+                ],
+                [
+                    "2076877101"
+                ],
+                [
+                    "2120659828"
+                ],
+                [
+                    "3537221191"
+                ],
+                [
+                    "3754135051"
+                ],
+                [
+                    "4293163726"
+                ],
+                [
+                    "4311623640"
+                ],
+                [
+                    "5686035465"
+                ],
+                [
+                    "6053710712"
+                ],
+                [
+                    "6168165271"
+                ],
+                [
+                    "6611888072"
+                ],
+                [
+                    "6858492865"
+                ],
+                [
+                    "7065928469"
+                ],
+                [
+                    "7199414055"
+                ],
+                [
+                    "7754510039"
+                ],
+                [
+                    "8221042424"
+                ],
+                [
+                    "8505091639"
+                ],
+                [
+                    "8927834678"
+                ],
+                [
+                    "9856769003"
+                ],
+                [
+                    "9910685958"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 197,
+        "template": 47,
+        "cypher": null,
+        "question": "What is the bandwidth of ONT \"6798890082\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 199,
+        "template": 48,
+        "cypher": null,
+        "question": "Find the firewall protecting ONT \"6230824401\".",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 29,
+        "template": 5,
+        "cypher": "MATCH (o:ONT {name: \"3998875736\"})-[:CONNECTS_TO*3..4]->(p:PORT) RETURN p.name",
+        "question": "Which port does ONT \"3998875736\" connect through?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2577755100"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 61,
+        "template": 12,
+        "cypher": "MATCH (c:CABIN {name: \"1203197986\"})-[:CONNECTS_TO]->(sp:SPLITTER) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) RETURN count(DISTINCT o) AS total",
+        "question": "Count the ONTs reachable from cabin \"1203197986\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "636"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 147,
+        "template": 31,
+        "cypher": "MATCH (c:CABIN {name: \"4202853292\"})-[:CONNECTS_TO]->(sp:SPLITTER) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) WITH sp, count(DISTINCT o) AS total RETURN sp.name, total",
+        "question": "For each splitter on cabin \"4202853292\", how many ONTs does it serve?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "12",
+                    "9478693966"
+                ],
+                [
+                    "17",
+                    "2187709067"
+                ],
+                [
+                    "23",
+                    "8536879748"
+                ],
+                [
+                    "5851893130",
+                    "9"
+                ],
+                [
+                    "6122408099",
+                    "9"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 173,
+        "template": 40,
+        "cypher": "MATCH (o:ONT)-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Serres\"}) RETURN count(DISTINCT o) AS total",
+        "question": "Count all ONTs located in SITE Serres.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "714"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 97,
+        "template": 20,
+        "cypher": "MATCH (d:OLT {name: \"7808958067\"})<-[:CONNECTS_TO]-(c:CARD {slot: 0}) RETURN c.name",
+        "question": "What card occupies slot 0 on OLT \"7808958067\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2262097838"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 149,
+        "template": 32,
+        "cypher": "MATCH (d:OLT) WITH d.vendor AS vendor, count(DISTINCT d) AS total RETURN vendor, total",
+        "question": "Break down the OLT count by vendor.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "14",
+                    "Huawei"
+                ],
+                [
+                    "4",
+                    "ZTE"
+                ],
+                [
+                    "5",
+                    "Calix"
+                ],
+                [
+                    "9",
+                    "Nokia"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 171,
+        "template": 40,
+        "cypher": "MATCH (o:ONT)-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Kalamata\"}) RETURN count(DISTINCT o) AS total",
+        "question": "Count all ONTs located in SITE Kalamata.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "733"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 15,
+        "template": 3,
+        "cypher": "MATCH (o:ONT {name: \"4265985720\"})-[:CONNECTS_TO*5..6]->(d:OLT) RETURN d.name",
+        "question": "Which OLT serves ONT \"4265985720\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "7211755002"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 106,
+        "template": 22,
+        "cypher": "MATCH (sp:SPLITTER {name: \"7057865653\"})<-[:CONNECTS_TO*1..2]-(o:ONT) WHERE o.signal_dbm < -28 RETURN o.name",
+        "question": "Which ONTs on splitter \"7057865653\" have a signal weaker than -28 dBm?",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 5,
+        "template": 1,
+        "cypher": "MATCH (p:PORT {name: \"4612984601\"})-[:CONNECTS_TO]->(c:CARD) RETURN c.name",
+        "question": "Which card is port \"4612984601\" on?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "5452117852"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 204,
+        "template": 49,
+        "cypher": null,
+        "question": "What is the subscriber name for ONT \"2449872318\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 108,
+        "template": 22,
+        "cypher": "MATCH (sp:SPLITTER {name: \"1494277645\"})<-[:CONNECTS_TO*1..2]-(o:ONT) WHERE o.signal_dbm < -28 RETURN o.name",
+        "question": "Which ONTs on splitter \"1494277645\" have a signal weaker than -28 dBm?",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 1,
+        "template": 0,
+        "cypher": "MATCH (o:ONT {name: \"2113277172\"})-[:CONNECTS_TO]->(s:SUB_SPLITTER) RETURN s.name",
+        "question": "What sub-splitter does ONT \"2113277172\" attach to?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "9146397268"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 51,
+        "template": 10,
+        "cypher": "MATCH (d:OLT {name: \"2042286248\"})<-[:CONNECTS_TO*5..6]-(o:ONT) RETURN count(DISTINCT o) AS total",
+        "question": "Count the ONTs connected to OLT \"2042286248\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "451"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 68,
+        "template": 13,
+        "cypher": "MATCH (sp:SPLITTER {name: \"9909247992\"})<-[:CONNECTS_TO]-(s:SUB_SPLITTER) RETURN count(DISTINCT s) AS total",
+        "question": "Count the sub-splitters under splitter \"9909247992\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 70,
+        "template": 14,
+        "cypher": "MATCH (d:OLT {vendor: \"Huawei\"}) RETURN d.name",
+        "question": "Which OLTs are made by Huawei?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2958076885"
+                ],
+                [
+                    "3033845528"
+                ],
+                [
+                    "3147459605"
+                ],
+                [
+                    "3683543150"
+                ],
+                [
+                    "3747531811"
+                ],
+                [
+                    "3936607399"
+                ],
+                [
+                    "4106265738"
+                ],
+                [
+                    "7211755002"
+                ],
+                [
+                    "7694160624"
+                ],
+                [
+                    "8682195977"
+                ],
+                [
+                    "8716723939"
+                ],
+                [
+                    "8776978181"
+                ],
+                [
+                    "9541229198"
+                ],
+                [
+                    "9931855915"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 116,
+        "template": 24,
+        "cypher": "MATCH (sp:SPLITTER)-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Komotini\"}) WHERE sp.install_date < date(\"2020-01-01\") RETURN sp.name",
+        "question": "Which splitters in SITE Komotini were installed before 2020?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1552941450"
+                ],
+                [
+                    "1842840693"
+                ],
+                [
+                    "2860426585"
+                ],
+                [
+                    "2932509188"
+                ],
+                [
+                    "6113337743"
+                ],
+                [
+                    "8535850950"
+                ],
+                [
+                    "8546610454"
+                ],
+                [
+                    "8701142033"
+                ],
+                [
+                    "9605422209"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 99,
+        "template": 21,
+        "cypher": "MATCH (d:OLT {name: \"1000775993\"})<-[:CONNECTS_TO*5..6]-(o:ONT {status: \"faulty\"}) RETURN count(DISTINCT o) AS total",
+        "question": "How many faulty ONTs does OLT \"1000775993\" serve?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "15"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 140,
+        "template": 30,
+        "cypher": "MATCH (d:OLT)-[:IN_SITE]->(s:SITE {name: \"Heraklion\"}) MATCH (o:ONT)-[:CONNECTS_TO*5..6]->(d) WITH d, count(DISTINCT o) AS total RETURN d.name, total",
+        "question": "For each OLT in SITE Heraklion, how many ONTs does it serve?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3147459605",
+                    "462"
+                ],
+                [
+                    "382",
+                    "3936607399"
+                ],
+                [
+                    "460",
+                    "9931855915"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 159,
+        "template": 37,
+        "cypher": "MATCH (o:ONT {status: \"faulty\"})-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE) WITH s, count(DISTINCT o) AS total RETURN s.name ORDER BY total DESC LIMIT 1",
+        "question": "What site has the highest number of ONTs in faulty state?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Heraklion"
+                ]
+            ],
+            [
+                [
+                    "64",
+                    "Heraklion"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 95,
+        "template": 20,
+        "cypher": "MATCH (d:OLT {name: \"8198396237\"})<-[:CONNECTS_TO]-(c:CARD {slot: 0}) RETURN c.name",
+        "question": "What card occupies slot 0 on OLT \"8198396237\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "7839047522"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 135,
+        "template": 28,
+        "cypher": "MATCH (c:CABIN) WHERE NOT EXISTS { (:CABIN)-[:BACKUP_FOR]->(c) } RETURN c.name",
+        "question": "List the cabins that are not backed up by any other cabin.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1149576228"
+                ],
+                [
+                    "1321323980"
+                ],
+                [
+                    "1579514018"
+                ],
+                [
+                    "1642455536"
+                ],
+                [
+                    "1769535120"
+                ],
+                [
+                    "2192150459"
+                ],
+                [
+                    "3021503752"
+                ],
+                [
+                    "4169559240"
+                ],
+                [
+                    "4202853292"
+                ],
+                [
+                    "4853507625"
+                ],
+                [
+                    "6571515107"
+                ],
+                [
+                    "7099373936"
+                ],
+                [
+                    "7139576005"
+                ],
+                [
+                    "7741351016"
+                ],
+                [
+                    "8252347842"
+                ],
+                [
+                    "8501902203"
+                ],
+                [
+                    "8757146643"
+                ],
+                [
+                    "8894343009"
+                ],
+                [
+                    "8958297157"
+                ],
+                [
+                    "8999814681"
+                ],
+                [
+                    "9514954069"
+                ],
+                [
+                    "9571132862"
+                ],
+                [
+                    "9785647099"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 133,
+        "template": 27,
+        "cypher": "MATCH (c:CABIN)-[:BACKUP_FOR]->(other:CABIN {name: \"6571515107\"}) RETURN c.name",
+        "question": "Which cabin backs up cabin \"6571515107\"?",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 2,
+        "template": 0,
+        "cypher": "MATCH (o:ONT {name: \"9090641779\"})-[:CONNECTS_TO]->(s:SUB_SPLITTER) RETURN s.name",
+        "question": "Find the sub-splitter serving ONT \"9090641779\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "5864358523"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 198,
+        "template": 48,
+        "cypher": null,
+        "question": "Which router serves ONT \"4791054488\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 216,
+        "template": 51,
+        "cypher": null,
+        "question": "What was the purchase cost of splitter \"8905663643\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 24,
+        "template": 4,
+        "cypher": "MATCH (sp:SPLITTER {name: \"7101187514\"})-[:CONNECTS_TO*4]->(d:OLT) RETURN d.name",
+        "question": "Which OLT does splitter \"7101187514\" connect to?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "9931855915"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 114,
+        "template": 24,
+        "cypher": "MATCH (sp:SPLITTER)-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Larissa\"}) WHERE sp.install_date < date(\"2020-01-01\") RETURN sp.name",
+        "question": "Which splitters in SITE Larissa were installed before 2020?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1786284406"
+                ],
+                [
+                    "2794795081"
+                ],
+                [
+                    "3120371122"
+                ],
+                [
+                    "4179095231"
+                ],
+                [
+                    "4335118535"
+                ],
+                [
+                    "6109806036"
+                ],
+                [
+                    "6464141329"
+                ],
+                [
+                    "8297521868"
+                ],
+                [
+                    "8340958073"
+                ],
+                [
+                    "8454618931"
+                ],
+                [
+                    "8619914255"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 34,
+        "template": 6,
+        "cypher": "MATCH (sp:SPLITTER {name: \"7101187514\"})<-[:CONNECTS_TO]-(o:ONT) RETURN o.name",
+        "question": "Which ONTs are wired directly to splitter \"7101187514\", without a sub-splitter?",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 134,
+        "template": 28,
+        "cypher": "MATCH (c:CABIN) WHERE NOT EXISTS { (:CABIN)-[:BACKUP_FOR]->(c) } RETURN c.name",
+        "question": "Which cabins have no backup cabin assigned?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1149576228"
+                ],
+                [
+                    "1321323980"
+                ],
+                [
+                    "1579514018"
+                ],
+                [
+                    "1642455536"
+                ],
+                [
+                    "1769535120"
+                ],
+                [
+                    "2192150459"
+                ],
+                [
+                    "3021503752"
+                ],
+                [
+                    "4169559240"
+                ],
+                [
+                    "4202853292"
+                ],
+                [
+                    "4853507625"
+                ],
+                [
+                    "6571515107"
+                ],
+                [
+                    "7099373936"
+                ],
+                [
+                    "7139576005"
+                ],
+                [
+                    "7741351016"
+                ],
+                [
+                    "8252347842"
+                ],
+                [
+                    "8501902203"
+                ],
+                [
+                    "8757146643"
+                ],
+                [
+                    "8894343009"
+                ],
+                [
+                    "8958297157"
+                ],
+                [
+                    "8999814681"
+                ],
+                [
+                    "9514954069"
+                ],
+                [
+                    "9571132862"
+                ],
+                [
+                    "9785647099"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 128,
+        "template": 26,
+        "cypher": "MATCH (c:CABIN {name: \"1321323980\"})-[:BACKUP_FOR]->(other:CABIN) RETURN other.name",
+        "question": "Which cabin is cabin \"1321323980\" the backup for?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4314196973"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 141,
+        "template": 30,
+        "cypher": "MATCH (d:OLT)-[:IN_SITE]->(s:SITE {name: \"Heraklion\"}) MATCH (o:ONT)-[:CONNECTS_TO*5..6]->(d) WITH d, count(DISTINCT o) AS total RETURN d.name, total",
+        "question": "Break down the ONT count per OLT in SITE Heraklion.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3147459605",
+                    "462"
+                ],
+                [
+                    "382",
+                    "3936607399"
+                ],
+                [
+                    "460",
+                    "9931855915"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 93,
+        "template": 19,
+        "cypher": "MATCH (d:OLT {name: \"3936607399\"}) RETURN d.vendor, d.model",
+        "question": "What vendor and model is OLT \"3936607399\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Huawei",
+                    "MA5800-X15"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 176,
+        "template": 41,
+        "cypher": "MATCH (s:SUB_SPLITTER) WHERE NOT EXISTS { (s)<-[:CONNECTS_TO]-(:ONT) } RETURN s.name",
+        "question": "List sub-splitters with zero ONTs.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1194840342"
+                ],
+                [
+                    "1359939785"
+                ],
+                [
+                    "1596680879"
+                ],
+                [
+                    "1596945939"
+                ],
+                [
+                    "1603766563"
+                ],
+                [
+                    "1611534515"
+                ],
+                [
+                    "1750839933"
+                ],
+                [
+                    "1819368847"
+                ],
+                [
+                    "1824024691"
+                ],
+                [
+                    "1830878405"
+                ],
+                [
+                    "1877331448"
+                ],
+                [
+                    "2306321406"
+                ],
+                [
+                    "2391964405"
+                ],
+                [
+                    "2648874016"
+                ],
+                [
+                    "2713744401"
+                ],
+                [
+                    "2760626346"
+                ],
+                [
+                    "2927126223"
+                ],
+                [
+                    "3007250183"
+                ],
+                [
+                    "3231084093"
+                ],
+                [
+                    "3278705111"
+                ],
+                [
+                    "3447972692"
+                ],
+                [
+                    "3575185654"
+                ],
+                [
+                    "3584306090"
+                ],
+                [
+                    "3684978624"
+                ],
+                [
+                    "3718507631"
+                ],
+                [
+                    "3756872039"
+                ],
+                [
+                    "3979053387"
+                ],
+                [
+                    "4001201683"
+                ],
+                [
+                    "4029418336"
+                ],
+                [
+                    "4331882754"
+                ],
+                [
+                    "4360012461"
+                ],
+                [
+                    "4434094883"
+                ],
+                [
+                    "4462499128"
+                ],
+                [
+                    "4744953230"
+                ],
+                [
+                    "4786192874"
+                ],
+                [
+                    "4802593534"
+                ],
+                [
+                    "4961383177"
+                ],
+                [
+                    "4993367914"
+                ],
+                [
+                    "5464641382"
+                ],
+                [
+                    "5507586727"
+                ],
+                [
+                    "5520606299"
+                ],
+                [
+                    "5561466474"
+                ],
+                [
+                    "5614896636"
+                ],
+                [
+                    "5716296345"
+                ],
+                [
+                    "5798555622"
+                ],
+                [
+                    "5922031886"
+                ],
+                [
+                    "5969385052"
+                ],
+                [
+                    "6013420229"
+                ],
+                [
+                    "6066526725"
+                ],
+                [
+                    "6068880718"
+                ],
+                [
+                    "6126027856"
+                ],
+                [
+                    "6147798908"
+                ],
+                [
+                    "6264242856"
+                ],
+                [
+                    "6421629476"
+                ],
+                [
+                    "6458362792"
+                ],
+                [
+                    "6497362068"
+                ],
+                [
+                    "6609280598"
+                ],
+                [
+                    "6679660680"
+                ],
+                [
+                    "6845288581"
+                ],
+                [
+                    "7009274399"
+                ],
+                [
+                    "7033084805"
+                ],
+                [
+                    "7069197541"
+                ],
+                [
+                    "7183409543"
+                ],
+                [
+                    "7196923317"
+                ],
+                [
+                    "7277457173"
+                ],
+                [
+                    "7463894611"
+                ],
+                [
+                    "7522205537"
+                ],
+                [
+                    "7611059368"
+                ],
+                [
+                    "7623140121"
+                ],
+                [
+                    "7635715093"
+                ],
+                [
+                    "7649577958"
+                ],
+                [
+                    "7723585150"
+                ],
+                [
+                    "7924288621"
+                ],
+                [
+                    "7963871842"
+                ],
+                [
+                    "7990984615"
+                ],
+                [
+                    "8214009484"
+                ],
+                [
+                    "8228886530"
+                ],
+                [
+                    "8331080902"
+                ],
+                [
+                    "8463028966"
+                ],
+                [
+                    "8645545408"
+                ],
+                [
+                    "8777282557"
+                ],
+                [
+                    "8867090978"
+                ],
+                [
+                    "8900785867"
+                ],
+                [
+                    "8906955590"
+                ],
+                [
+                    "8995956048"
+                ],
+                [
+                    "9098930821"
+                ],
+                [
+                    "9128091630"
+                ],
+                [
+                    "9230141395"
+                ],
+                [
+                    "9232233025"
+                ],
+                [
+                    "9307027079"
+                ],
+                [
+                    "9341241824"
+                ],
+                [
+                    "9351130454"
+                ],
+                [
+                    "9455470144"
+                ],
+                [
+                    "9476325155"
+                ],
+                [
+                    "9563143192"
+                ],
+                [
+                    "9796128709"
+                ],
+                [
+                    "9878319002"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 172,
+        "template": 40,
+        "cypher": "MATCH (o:ONT)-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Tripoli\"}) RETURN count(DISTINCT o) AS total",
+        "question": "How many ONTs are there in SITE Tripoli?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "413"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 103,
+        "template": 21,
+        "cypher": "MATCH (d:OLT {name: \"1267456641\"})<-[:CONNECTS_TO*5..6]-(o:ONT {status: \"faulty\"}) RETURN count(DISTINCT o) AS total",
+        "question": "How many faulty ONTs does OLT \"1267456641\" serve?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "13"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 160,
+        "template": 38,
+        "cypher": "MATCH (o:ONT {name: \"9090641779\"})-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE) RETURN s.name",
+        "question": "Which site is ONT \"9090641779\" in?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Patras"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 22,
+        "template": 4,
+        "cypher": "MATCH (sp:SPLITTER {name: \"7279873425\"})-[:CONNECTS_TO*4]->(d:OLT) RETURN d.name",
+        "question": "Which OLT does splitter \"7279873425\" connect to?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3936607399"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 14,
+        "template": 2,
+        "cypher": "MATCH (s:SUB_SPLITTER {name: \"4285588483\"})-[:CONNECTS_TO]->(sp:SPLITTER) RETURN sp.name",
+        "question": "Which splitter does sub-splitter \"4285588483\" feed into?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4117351930"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 94,
+        "template": 20,
+        "cypher": "MATCH (d:OLT {name: \"8716723939\"})<-[:CONNECTS_TO]-(c:CARD {slot: 0}) RETURN c.name",
+        "question": "Which card is in slot 0 of OLT \"8716723939\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "7937217158"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 166,
+        "template": 39,
+        "cypher": "MATCH (sp:SPLITTER {name: \"9309566481\"})-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE) RETURN s.name",
+        "question": "What site hosts splitter \"9309566481\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Rethymno"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 155,
+        "template": 35,
+        "cypher": "MATCH (c:CABIN)-[:CONNECTS_TO]->(sp:SPLITTER) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) WITH c, count(DISTINCT o) AS total RETURN c.name ORDER BY total DESC LIMIT 1",
+        "question": "What is the largest cabin by ONT count?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "9785647099"
+                ]
+            ],
+            [
+                [
+                    "1044",
+                    "9785647099"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 72,
+        "template": 15,
+        "cypher": "MATCH (p:PORT {admin_state: \"disabled\"}) RETURN p.name",
+        "question": "Which ports are administratively disabled?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1101877950"
+                ],
+                [
+                    "1634480471"
+                ],
+                [
+                    "2588763262"
+                ],
+                [
+                    "2654820588"
+                ],
+                [
+                    "2705330456"
+                ],
+                [
+                    "2771379221"
+                ],
+                [
+                    "3317348294"
+                ],
+                [
+                    "3501080206"
+                ],
+                [
+                    "4481943176"
+                ],
+                [
+                    "4497698420"
+                ],
+                [
+                    "5737864800"
+                ],
+                [
+                    "6001038037"
+                ],
+                [
+                    "6052566017"
+                ],
+                [
+                    "6338081825"
+                ],
+                [
+                    "6552765277"
+                ],
+                [
+                    "6636556934"
+                ],
+                [
+                    "7294910471"
+                ],
+                [
+                    "7877487623"
+                ],
+                [
+                    "8549658275"
+                ],
+                [
+                    "9093880302"
+                ],
+                [
+                    "9177413221"
+                ],
+                [
+                    "9262835002"
+                ],
+                [
+                    "9776296413"
+                ],
+                [
+                    "9792891816"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 130,
+        "template": 27,
+        "cypher": "MATCH (c:CABIN)-[:BACKUP_FOR]->(other:CABIN {name: \"2306313262\"}) RETURN c.name",
+        "question": "Which cabin serves as the standby for cabin \"2306313262\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2007110853"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 102,
+        "template": 21,
+        "cypher": "MATCH (d:OLT {name: \"9931855915\"})<-[:CONNECTS_TO*5..6]-(o:ONT {status: \"faulty\"}) RETURN count(DISTINCT o) AS total",
+        "question": "Count the ONTs in faulty state under OLT \"9931855915\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "24"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 122,
+        "template": 25,
+        "cypher": "MATCH (o:ONT {status: \"faulty\"})-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Sparta\"}) RETURN count(DISTINCT o) AS total",
+        "question": "Count the faulty ONTs located in SITE Sparta.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "15"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 20,
+        "template": 4,
+        "cypher": "MATCH (sp:SPLITTER {name: \"1041715906\"})-[:CONNECTS_TO*4]->(d:OLT) RETURN d.name",
+        "question": "Which OLT does splitter \"1041715906\" connect to?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3683543150"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 178,
+        "template": 42,
+        "cypher": "MATCH (sp:SPLITTER) WHERE NOT EXISTS { (sp)<-[:CONNECTS_TO]-(:CABIN) } RETURN sp.name",
+        "question": "Find splitters with no cabin.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1041715906"
+                ],
+                [
+                    "1100452277"
+                ],
+                [
+                    "1222649672"
+                ],
+                [
+                    "1271032325"
+                ],
+                [
+                    "1455180068"
+                ],
+                [
+                    "1975424847"
+                ],
+                [
+                    "1993534069"
+                ],
+                [
+                    "2223937993"
+                ],
+                [
+                    "2328129615"
+                ],
+                [
+                    "2446199141"
+                ],
+                [
+                    "2772120093"
+                ],
+                [
+                    "2924918591"
+                ],
+                [
+                    "3120371122"
+                ],
+                [
+                    "3432990973"
+                ],
+                [
+                    "3547877721"
+                ],
+                [
+                    "3797299627"
+                ],
+                [
+                    "3824157562"
+                ],
+                [
+                    "4472267249"
+                ],
+                [
+                    "4809642076"
+                ],
+                [
+                    "5148189571"
+                ],
+                [
+                    "5626892525"
+                ],
+                [
+                    "5671967031"
+                ],
+                [
+                    "5677033546"
+                ],
+                [
+                    "6199806557"
+                ],
+                [
+                    "6290939867"
+                ],
+                [
+                    "6358855720"
+                ],
+                [
+                    "6548534963"
+                ],
+                [
+                    "6654859339"
+                ],
+                [
+                    "6774712392"
+                ],
+                [
+                    "6847132060"
+                ],
+                [
+                    "7223511027"
+                ],
+                [
+                    "7414779703"
+                ],
+                [
+                    "7680596128"
+                ],
+                [
+                    "8297521868"
+                ],
+                [
+                    "8426176123"
+                ],
+                [
+                    "8535850950"
+                ],
+                [
+                    "8905663643"
+                ],
+                [
+                    "8950979978"
+                ],
+                [
+                    "9309566481"
+                ],
+                [
+                    "9695816606"
+                ],
+                [
+                    "9797538318"
+                ],
+                [
+                    "9917776160"
+                ],
+                [
+                    "9968667718"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 8,
+        "template": 1,
+        "cypher": "MATCH (p:PORT {name: \"2920593387\"})-[:CONNECTS_TO]->(c:CARD) RETURN c.name",
+        "question": "What card does port \"2920593387\" belong to?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "5667902585"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 203,
+        "template": 49,
+        "cypher": null,
+        "question": "Who is the customer on ONT \"5277272934\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 214,
+        "template": 51,
+        "cypher": null,
+        "question": "What was the purchase cost of splitter \"1334291518\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 137,
+        "template": 29,
+        "cypher": "MATCH (c:CABIN)-[:BACKUP_FOR]->(:CABIN) RETURN count(DISTINCT c) AS total",
+        "question": "Count the cabins that back up another cabin.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "16"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 144,
+        "template": 31,
+        "cypher": "MATCH (c:CABIN {name: \"7099373936\"})-[:CONNECTS_TO]->(sp:SPLITTER) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) WITH sp, count(DISTINCT o) AS total RETURN sp.name, total",
+        "question": "Per splitter of cabin \"7099373936\", give the ONT count.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1583772438",
+                    "45"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 186,
+        "template": 45,
+        "cypher": "MATCH (d:OLT {name: \"9931855915\"})<-[:CONNECTS_TO]-(c:CARD) MATCH (p:PORT)-[:CONNECTS_TO]->(c) WITH c, count(DISTINCT p) AS total WHERE total > 4 RETURN c.name, total",
+        "question": "Which cards on OLT \"9931855915\" have more than 4 ports?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1919828115",
+                    "6"
+                ],
+                [
+                    "6",
+                    "6112016621"
+                ]
+            ],
+            [
+                [
+                    "1919828115"
+                ],
+                [
+                    "6112016621"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 205,
+        "template": 49,
+        "cypher": null,
+        "question": "Who is the customer on ONT \"5133872635\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 185,
+        "template": 44,
+        "cypher": "MATCH (sp:SPLITTER)-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Veria\"}) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) WITH sp, count(DISTINCT o) AS total WHERE total > 40 RETURN sp.name, total",
+        "question": "Which splitters in SITE Veria serve more than 40 ONTs?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2023122484",
+                    "52"
+                ],
+                [
+                    "4566209655",
+                    "63"
+                ],
+                [
+                    "52",
+                    "9000324385"
+                ],
+                [
+                    "67",
+                    "9968667718"
+                ]
+            ],
+            [
+                [
+                    "2023122484"
+                ],
+                [
+                    "4566209655"
+                ],
+                [
+                    "9000324385"
+                ],
+                [
+                    "9968667718"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 26,
+        "template": 5,
+        "cypher": "MATCH (o:ONT {name: \"1965855898\"})-[:CONNECTS_TO*3..4]->(p:PORT) RETURN p.name",
+        "question": "What port is upstream of ONT \"1965855898\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4017331955"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 62,
+        "template": 12,
+        "cypher": "MATCH (c:CABIN {name: \"1642455536\"})-[:CONNECTS_TO]->(sp:SPLITTER) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) RETURN count(DISTINCT o) AS total",
+        "question": "How many ONTs does cabin \"1642455536\" serve?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "303"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 17,
+        "template": 3,
+        "cypher": "MATCH (o:ONT {name: \"5860710754\"})-[:CONNECTS_TO*5..6]->(d:OLT) RETURN d.name",
+        "question": "What OLT is ONT \"5860710754\" ultimately connected to?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2687963281"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 180,
+        "template": 43,
+        "cypher": "MATCH (c:CARD) WHERE NOT EXISTS { (c)<-[:CONNECTS_TO]-(:PORT) } RETURN c.name",
+        "question": "List cards that have no ports attached.",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 131,
+        "template": 27,
+        "cypher": "MATCH (c:CABIN)-[:BACKUP_FOR]->(other:CABIN {name: \"3021503752\"}) RETURN c.name",
+        "question": "Which cabin backs up cabin \"3021503752\"?",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 158,
+        "template": 37,
+        "cypher": "MATCH (o:ONT {status: \"faulty\"})-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE) WITH s, count(DISTINCT o) AS total RETURN s.name ORDER BY total DESC LIMIT 1",
+        "question": "Which site has the most faulty ONTs?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Heraklion"
+                ]
+            ],
+            [
+                [
+                    "64",
+                    "Heraklion"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 145,
+        "template": 31,
+        "cypher": "MATCH (c:CABIN {name: \"9073396215\"})-[:CONNECTS_TO]->(sp:SPLITTER) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) WITH sp, count(DISTINCT o) AS total RETURN sp.name, total",
+        "question": "For each splitter on cabin \"9073396215\", how many ONTs does it serve?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1389468773",
+                    "33"
+                ],
+                [
+                    "16",
+                    "5730958691"
+                ],
+                [
+                    "19",
+                    "3400466735"
+                ],
+                [
+                    "2024268292",
+                    "56"
+                ],
+                [
+                    "29",
+                    "9871974710"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 192,
+        "template": 46,
+        "cypher": "MATCH (sp:SPLITTER {split_ratio: 32})<-[:CONNECTS_TO*1..2]-(o:ONT) WITH sp, count(DISTINCT o) AS total WHERE total > 60 RETURN sp.name, total",
+        "question": "Find splitters with a split ratio of 32 that carry over 60 ONTs.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4335118535",
+                    "61"
+                ],
+                [
+                    "61",
+                    "7414779703"
+                ]
+            ],
+            [
+                [
+                    "4335118535"
+                ],
+                [
+                    "7414779703"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 129,
+        "template": 27,
+        "cypher": "MATCH (c:CABIN)-[:BACKUP_FOR]->(other:CABIN {name: \"7741351016\"}) RETURN c.name",
+        "question": "Which cabin backs up cabin \"7741351016\"?",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 12,
+        "template": 2,
+        "cypher": "MATCH (s:SUB_SPLITTER {name: \"5272007976\"})-[:CONNECTS_TO]->(sp:SPLITTER) RETURN sp.name",
+        "question": "Which splitter does sub-splitter \"5272007976\" feed into?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1222649672"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 139,
+        "template": 30,
+        "cypher": "MATCH (d:OLT)-[:IN_SITE]->(s:SITE {name: \"Tripoli\"}) MATCH (o:ONT)-[:CONNECTS_TO*5..6]->(d) WITH d, count(DISTINCT o) AS total RETURN d.name, total",
+        "question": "Break down the ONT count per OLT in SITE Tripoli.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "413",
+                    "7945957051"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 179,
+        "template": 43,
+        "cypher": "MATCH (c:CARD) WHERE NOT EXISTS { (c)<-[:CONNECTS_TO]-(:PORT) } RETURN c.name",
+        "question": "What are the cards with no ports?",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 91,
+        "template": 19,
+        "cypher": "MATCH (d:OLT {name: \"9931855915\"}) RETURN d.vendor, d.model",
+        "question": "What vendor and model is OLT \"9931855915\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Huawei",
+                    "MA5800-X7"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 209,
+        "template": 50,
+        "cypher": null,
+        "question": "How much power does OLT \"2958076885\" draw?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 53,
+        "template": 10,
+        "cypher": "MATCH (d:OLT {name: \"8682195977\"})<-[:CONNECTS_TO*5..6]-(o:ONT) RETURN count(DISTINCT o) AS total",
+        "question": "How many ONTs does OLT \"8682195977\" serve?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "487"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 163,
+        "template": 38,
+        "cypher": "MATCH (o:ONT {name: \"7653913874\"})-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE) RETURN s.name",
+        "question": "Which site is ONT \"7653913874\" in?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Thessaloniki"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 127,
+        "template": 26,
+        "cypher": "MATCH (c:CABIN {name: \"1579514018\"})-[:BACKUP_FOR]->(other:CABIN) RETURN other.name",
+        "question": "Cabin \"1579514018\" acts as backup for which cabin?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "9305745642"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 65,
+        "template": 13,
+        "cypher": "MATCH (sp:SPLITTER {name: \"9605422209\"})<-[:CONNECTS_TO]-(s:SUB_SPLITTER) RETURN count(DISTINCT s) AS total",
+        "question": "How many sub-splitters does splitter \"9605422209\" have?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "7"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 212,
+        "template": 50,
+        "cypher": null,
+        "question": "What is the operating temperature of OLT \"1736510471\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 100,
+        "template": 21,
+        "cypher": "MATCH (d:OLT {name: \"7945957051\"})<-[:CONNECTS_TO*5..6]-(o:ONT {status: \"faulty\"}) RETURN count(DISTINCT o) AS total",
+        "question": "Count the ONTs in faulty state under OLT \"7945957051\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "26"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 13,
+        "template": 2,
+        "cypher": "MATCH (s:SUB_SPLITTER {name: \"5272007976\"})-[:CONNECTS_TO]->(sp:SPLITTER) RETURN sp.name",
+        "question": "What is the parent splitter of sub-splitter \"5272007976\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1222649672"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 190,
+        "template": 45,
+        "cypher": "MATCH (d:OLT {name: \"3683543150\"})<-[:CONNECTS_TO]-(c:CARD) MATCH (p:PORT)-[:CONNECTS_TO]->(c) WITH c, count(DISTINCT p) AS total WHERE total > 4 RETURN c.name, total",
+        "question": "Which cards on OLT \"3683543150\" have more than 4 ports?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1139708169",
+                    "6"
+                ],
+                [
+                    "5",
+                    "6883361074"
+                ]
+            ],
+            [
+                [
+                    "1139708169"
+                ],
+                [
+                    "6883361074"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 136,
+        "template": 29,
+        "cypher": "MATCH (c:CABIN)-[:BACKUP_FOR]->(:CABIN) RETURN count(DISTINCT c) AS total",
+        "question": "How many cabins act as a backup for another cabin?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "16"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 101,
+        "template": 21,
+        "cypher": "MATCH (d:OLT {name: \"2040001239\"})<-[:CONNECTS_TO*5..6]-(o:ONT {status: \"faulty\"}) RETURN count(DISTINCT o) AS total",
+        "question": "How many faulty ONTs does OLT \"2040001239\" serve?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "20"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 75,
+        "template": 16,
+        "cypher": "MATCH (sp:SPLITTER {name: \"6969574756\"}) RETURN sp.split_ratio",
+        "question": "Give the split ratio of splitter \"6969574756\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "32"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 164,
+        "template": 38,
+        "cypher": "MATCH (o:ONT {name: \"7898098936\"})-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE) RETURN s.name",
+        "question": "What site does ONT \"7898098936\" belong to?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Kalamata"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 74,
+        "template": 16,
+        "cypher": "MATCH (sp:SPLITTER {name: \"2050616950\"}) RETURN sp.split_ratio",
+        "question": "What is the split ratio of splitter \"2050616950\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "32"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 110,
+        "template": 23,
+        "cypher": "MATCH (sp:SPLITTER {name: \"6384577406\"})<-[:CONNECTS_TO*1..2]-(o:ONT) RETURN min(o.signal_dbm) AS weakest",
+        "question": "Give the lowest signal value of any ONT served by splitter \"6384577406\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "-27.0"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 32,
+        "template": 6,
+        "cypher": "MATCH (sp:SPLITTER {name: \"3191386365\"})<-[:CONNECTS_TO]-(o:ONT) RETURN o.name",
+        "question": "Which ONTs are wired directly to splitter \"3191386365\", without a sub-splitter?",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 23,
+        "template": 4,
+        "cypher": "MATCH (sp:SPLITTER {name: \"5371857665\"})-[:CONNECTS_TO*4]->(d:OLT) RETURN d.name",
+        "question": "Find the OLT upstream of splitter \"5371857665\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1000775993"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 206,
+        "template": 49,
+        "cypher": null,
+        "question": "What is the subscriber name for ONT \"1292929085\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 46,
+        "template": 9,
+        "cypher": "MATCH (s:SUB_SPLITTER {name: \"4130446126\"})<-[:CONNECTS_TO]-(o:ONT) RETURN o.name",
+        "question": "Which ONTs hang off sub-splitter \"4130446126\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4278894014"
+                ],
+                [
+                    "4477674210"
+                ],
+                [
+                    "5044246685"
+                ],
+                [
+                    "5992691738"
+                ],
+                [
+                    "7084331041"
+                ],
+                [
+                    "7164674241"
+                ],
+                [
+                    "9181614692"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 27,
+        "template": 5,
+        "cypher": "MATCH (o:ONT {name: \"2388687133\"})-[:CONNECTS_TO*3..4]->(p:PORT) RETURN p.name",
+        "question": "Which port does ONT \"2388687133\" connect through?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2952520942"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 43,
+        "template": 8,
+        "cypher": "MATCH (sp:SPLITTER {name: \"5822738852\"})<-[:CONNECTS_TO*1..2]-(o:ONT) RETURN o.name",
+        "question": "List every ONT downstream of splitter \"5822738852\", either through a sub-splitter or directly.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1420792095"
+                ],
+                [
+                    "3341597281"
+                ],
+                [
+                    "3798262677"
+                ],
+                [
+                    "4904225168"
+                ],
+                [
+                    "6598397629"
+                ],
+                [
+                    "7717329032"
+                ],
+                [
+                    "7981508742"
+                ],
+                [
+                    "8240898316"
+                ],
+                [
+                    "8418302075"
+                ],
+                [
+                    "9653824047"
+                ],
+                [
+                    "9757131476"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 16,
+        "template": 3,
+        "cypher": "MATCH (o:ONT {name: \"6627334780\"})-[:CONNECTS_TO*5..6]->(d:OLT) RETURN d.name",
+        "question": "Trace ONT \"6627334780\" back to its OLT.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3033845528"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 54,
+        "template": 10,
+        "cypher": "MATCH (d:OLT {name: \"2428091874\"})<-[:CONNECTS_TO*5..6]-(o:ONT) RETURN count(DISTINCT o) AS total",
+        "question": "Count the ONTs connected to OLT \"2428091874\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "213"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 88,
+        "template": 18,
+        "cypher": "MATCH (o:ONT {name: \"5333360788\"}) RETURN o.status = \"active\" AS active",
+        "question": "Is ONT \"5333360788\" currently active?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "True"
+                ]
+            ],
+            [
+                [
+                    "active"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 96,
+        "template": 20,
+        "cypher": "MATCH (d:OLT {name: \"2687963281\"})<-[:CONNECTS_TO]-(c:CARD {slot: 0}) RETURN c.name",
+        "question": "Which card is in slot 0 of OLT \"2687963281\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "6703335297"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 113,
+        "template": 23,
+        "cypher": "MATCH (sp:SPLITTER {name: \"8848129176\"})<-[:CONNECTS_TO*1..2]-(o:ONT) RETURN min(o.signal_dbm) AS weakest",
+        "question": "What is the weakest signal reading among the ONTs served by splitter \"8848129176\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "-25.1"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 115,
+        "template": 24,
+        "cypher": "MATCH (sp:SPLITTER)-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Mytilene\"}) WHERE sp.install_date < date(\"2020-01-01\") RETURN sp.name",
+        "question": "List the splitters in SITE Mytilene with an install date earlier than 2020.",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 175,
+        "template": 41,
+        "cypher": "MATCH (s:SUB_SPLITTER) WHERE NOT EXISTS { (s)<-[:CONNECTS_TO]-(:ONT) } RETURN s.name",
+        "question": "Which sub-splitters have no ONTs connected?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1194840342"
+                ],
+                [
+                    "1359939785"
+                ],
+                [
+                    "1596680879"
+                ],
+                [
+                    "1596945939"
+                ],
+                [
+                    "1603766563"
+                ],
+                [
+                    "1611534515"
+                ],
+                [
+                    "1750839933"
+                ],
+                [
+                    "1819368847"
+                ],
+                [
+                    "1824024691"
+                ],
+                [
+                    "1830878405"
+                ],
+                [
+                    "1877331448"
+                ],
+                [
+                    "2306321406"
+                ],
+                [
+                    "2391964405"
+                ],
+                [
+                    "2648874016"
+                ],
+                [
+                    "2713744401"
+                ],
+                [
+                    "2760626346"
+                ],
+                [
+                    "2927126223"
+                ],
+                [
+                    "3007250183"
+                ],
+                [
+                    "3231084093"
+                ],
+                [
+                    "3278705111"
+                ],
+                [
+                    "3447972692"
+                ],
+                [
+                    "3575185654"
+                ],
+                [
+                    "3584306090"
+                ],
+                [
+                    "3684978624"
+                ],
+                [
+                    "3718507631"
+                ],
+                [
+                    "3756872039"
+                ],
+                [
+                    "3979053387"
+                ],
+                [
+                    "4001201683"
+                ],
+                [
+                    "4029418336"
+                ],
+                [
+                    "4331882754"
+                ],
+                [
+                    "4360012461"
+                ],
+                [
+                    "4434094883"
+                ],
+                [
+                    "4462499128"
+                ],
+                [
+                    "4744953230"
+                ],
+                [
+                    "4786192874"
+                ],
+                [
+                    "4802593534"
+                ],
+                [
+                    "4961383177"
+                ],
+                [
+                    "4993367914"
+                ],
+                [
+                    "5464641382"
+                ],
+                [
+                    "5507586727"
+                ],
+                [
+                    "5520606299"
+                ],
+                [
+                    "5561466474"
+                ],
+                [
+                    "5614896636"
+                ],
+                [
+                    "5716296345"
+                ],
+                [
+                    "5798555622"
+                ],
+                [
+                    "5922031886"
+                ],
+                [
+                    "5969385052"
+                ],
+                [
+                    "6013420229"
+                ],
+                [
+                    "6066526725"
+                ],
+                [
+                    "6068880718"
+                ],
+                [
+                    "6126027856"
+                ],
+                [
+                    "6147798908"
+                ],
+                [
+                    "6264242856"
+                ],
+                [
+                    "6421629476"
+                ],
+                [
+                    "6458362792"
+                ],
+                [
+                    "6497362068"
+                ],
+                [
+                    "6609280598"
+                ],
+                [
+                    "6679660680"
+                ],
+                [
+                    "6845288581"
+                ],
+                [
+                    "7009274399"
+                ],
+                [
+                    "7033084805"
+                ],
+                [
+                    "7069197541"
+                ],
+                [
+                    "7183409543"
+                ],
+                [
+                    "7196923317"
+                ],
+                [
+                    "7277457173"
+                ],
+                [
+                    "7463894611"
+                ],
+                [
+                    "7522205537"
+                ],
+                [
+                    "7611059368"
+                ],
+                [
+                    "7623140121"
+                ],
+                [
+                    "7635715093"
+                ],
+                [
+                    "7649577958"
+                ],
+                [
+                    "7723585150"
+                ],
+                [
+                    "7924288621"
+                ],
+                [
+                    "7963871842"
+                ],
+                [
+                    "7990984615"
+                ],
+                [
+                    "8214009484"
+                ],
+                [
+                    "8228886530"
+                ],
+                [
+                    "8331080902"
+                ],
+                [
+                    "8463028966"
+                ],
+                [
+                    "8645545408"
+                ],
+                [
+                    "8777282557"
+                ],
+                [
+                    "8867090978"
+                ],
+                [
+                    "8900785867"
+                ],
+                [
+                    "8906955590"
+                ],
+                [
+                    "8995956048"
+                ],
+                [
+                    "9098930821"
+                ],
+                [
+                    "9128091630"
+                ],
+                [
+                    "9230141395"
+                ],
+                [
+                    "9232233025"
+                ],
+                [
+                    "9307027079"
+                ],
+                [
+                    "9341241824"
+                ],
+                [
+                    "9351130454"
+                ],
+                [
+                    "9455470144"
+                ],
+                [
+                    "9476325155"
+                ],
+                [
+                    "9563143192"
+                ],
+                [
+                    "9796128709"
+                ],
+                [
+                    "9878319002"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 18,
+        "template": 3,
+        "cypher": "MATCH (o:ONT {name: \"5693280275\"})-[:CONNECTS_TO*5..6]->(d:OLT) RETURN d.name",
+        "question": "Which OLT serves ONT \"5693280275\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4868403910"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 174,
+        "template": 40,
+        "cypher": "MATCH (o:ONT)-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Alexandroupoli\"}) RETURN count(DISTINCT o) AS total",
+        "question": "How many ONTs are there in SITE Alexandroupoli?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "89"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 0,
+        "template": 0,
+        "cypher": "MATCH (o:ONT {name: \"1971932504\"})-[:CONNECTS_TO]->(s:SUB_SPLITTER) RETURN s.name",
+        "question": "Which sub-splitter is ONT \"1971932504\" connected to?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "7322772437"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 118,
+        "template": 24,
+        "cypher": "MATCH (sp:SPLITTER)-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Chios\"}) WHERE sp.install_date < date(\"2020-01-01\") RETURN sp.name",
+        "question": "Which splitters in SITE Chios were installed before 2020?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "6122408099"
+                ],
+                [
+                    "6184650401"
+                ],
+                [
+                    "6358855720"
+                ],
+                [
+                    "8384206882"
+                ],
+                [
+                    "8536879748"
+                ],
+                [
+                    "9478693966"
+                ],
+                [
+                    "9597226956"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 121,
+        "template": 25,
+        "cypher": "MATCH (o:ONT {status: \"faulty\"})-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Patras\"}) RETURN count(DISTINCT o) AS total",
+        "question": "How many faulty ONTs are there in SITE Patras?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "59"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 4,
+        "template": 0,
+        "cypher": "MATCH (o:ONT {name: \"7653913874\"})-[:CONNECTS_TO]->(s:SUB_SPLITTER) RETURN s.name",
+        "question": "What sub-splitter does ONT \"7653913874\" attach to?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "5108091498"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 73,
+        "template": 15,
+        "cypher": "MATCH (p:PORT {admin_state: \"disabled\"}) RETURN p.name",
+        "question": "List the ports whose admin state is disabled.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1101877950"
+                ],
+                [
+                    "1634480471"
+                ],
+                [
+                    "2588763262"
+                ],
+                [
+                    "2654820588"
+                ],
+                [
+                    "2705330456"
+                ],
+                [
+                    "2771379221"
+                ],
+                [
+                    "3317348294"
+                ],
+                [
+                    "3501080206"
+                ],
+                [
+                    "4481943176"
+                ],
+                [
+                    "4497698420"
+                ],
+                [
+                    "5737864800"
+                ],
+                [
+                    "6001038037"
+                ],
+                [
+                    "6052566017"
+                ],
+                [
+                    "6338081825"
+                ],
+                [
+                    "6552765277"
+                ],
+                [
+                    "6636556934"
+                ],
+                [
+                    "7294910471"
+                ],
+                [
+                    "7877487623"
+                ],
+                [
+                    "8549658275"
+                ],
+                [
+                    "9093880302"
+                ],
+                [
+                    "9177413221"
+                ],
+                [
+                    "9262835002"
+                ],
+                [
+                    "9776296413"
+                ],
+                [
+                    "9792891816"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 50,
+        "template": 10,
+        "cypher": "MATCH (d:OLT {name: \"7009930630\"})<-[:CONNECTS_TO*5..6]-(o:ONT) RETURN count(DISTINCT o) AS total",
+        "question": "How many ONTs does OLT \"7009930630\" serve?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "90"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 162,
+        "template": 38,
+        "cypher": "MATCH (o:ONT {name: \"7524759799\"})-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE) RETURN s.name",
+        "question": "Locate the site containing ONT \"7524759799\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Tripoli"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 177,
+        "template": 42,
+        "cypher": "MATCH (sp:SPLITTER) WHERE NOT EXISTS { (sp)<-[:CONNECTS_TO]-(:CABIN) } RETURN sp.name",
+        "question": "Which splitters are not connected to any cabin?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1041715906"
+                ],
+                [
+                    "1100452277"
+                ],
+                [
+                    "1222649672"
+                ],
+                [
+                    "1271032325"
+                ],
+                [
+                    "1455180068"
+                ],
+                [
+                    "1975424847"
+                ],
+                [
+                    "1993534069"
+                ],
+                [
+                    "2223937993"
+                ],
+                [
+                    "2328129615"
+                ],
+                [
+                    "2446199141"
+                ],
+                [
+                    "2772120093"
+                ],
+                [
+                    "2924918591"
+                ],
+                [
+                    "3120371122"
+                ],
+                [
+                    "3432990973"
+                ],
+                [
+                    "3547877721"
+                ],
+                [
+                    "3797299627"
+                ],
+                [
+                    "3824157562"
+                ],
+                [
+                    "4472267249"
+                ],
+                [
+                    "4809642076"
+                ],
+                [
+                    "5148189571"
+                ],
+                [
+                    "5626892525"
+                ],
+                [
+                    "5671967031"
+                ],
+                [
+                    "5677033546"
+                ],
+                [
+                    "6199806557"
+                ],
+                [
+                    "6290939867"
+                ],
+                [
+                    "6358855720"
+                ],
+                [
+                    "6548534963"
+                ],
+                [
+                    "6654859339"
+                ],
+                [
+                    "6774712392"
+                ],
+                [
+                    "6847132060"
+                ],
+                [
+                    "7223511027"
+                ],
+                [
+                    "7414779703"
+                ],
+                [
+                    "7680596128"
+                ],
+                [
+                    "8297521868"
+                ],
+                [
+                    "8426176123"
+                ],
+                [
+                    "8535850950"
+                ],
+                [
+                    "8905663643"
+                ],
+                [
+                    "8950979978"
+                ],
+                [
+                    "9309566481"
+                ],
+                [
+                    "9695816606"
+                ],
+                [
+                    "9797538318"
+                ],
+                [
+                    "9917776160"
+                ],
+                [
+                    "9968667718"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 83,
+        "template": 17,
+        "cypher": "MATCH (o:ONT {name: \"6179308700\"}) RETURN o.status",
+        "question": "What is the status of ONT \"6179308700\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "active"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 66,
+        "template": 13,
+        "cypher": "MATCH (sp:SPLITTER {name: \"1652571826\"})<-[:CONNECTS_TO]-(s:SUB_SPLITTER) RETURN count(DISTINCT s) AS total",
+        "question": "Count the sub-splitters under splitter \"1652571826\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "7"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 80,
+        "template": 17,
+        "cypher": "MATCH (o:ONT {name: \"4752563929\"}) RETURN o.status",
+        "question": "For ONT \"4752563929\", find its status.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "inactive"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 170,
+        "template": 40,
+        "cypher": "MATCH (o:ONT)-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Mytilene\"}) RETURN count(DISTINCT o) AS total",
+        "question": "How many ONTs are there in SITE Mytilene?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "148"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 71,
+        "template": 14,
+        "cypher": "MATCH (d:OLT {vendor: \"Huawei\"}) RETURN d.name",
+        "question": "List the OLTs from the vendor Huawei.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2958076885"
+                ],
+                [
+                    "3033845528"
+                ],
+                [
+                    "3147459605"
+                ],
+                [
+                    "3683543150"
+                ],
+                [
+                    "3747531811"
+                ],
+                [
+                    "3936607399"
+                ],
+                [
+                    "4106265738"
+                ],
+                [
+                    "7211755002"
+                ],
+                [
+                    "7694160624"
+                ],
+                [
+                    "8682195977"
+                ],
+                [
+                    "8716723939"
+                ],
+                [
+                    "8776978181"
+                ],
+                [
+                    "9541229198"
+                ],
+                [
+                    "9931855915"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 193,
+        "template": 47,
+        "cypher": null,
+        "question": "What is the bandwidth of ONT \"5333360788\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 79,
+        "template": 17,
+        "cypher": "MATCH (o:ONT {name: \"4108310021\"}) RETURN o.status",
+        "question": "What is the status of ONT \"4108310021\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "active"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 31,
+        "template": 6,
+        "cypher": "MATCH (sp:SPLITTER {name: \"1814773308\"})<-[:CONNECTS_TO]-(o:ONT) RETURN o.name",
+        "question": "List the ONTs attached straight to splitter \"1814773308\" with no sub-splitter in between.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1333591955"
+                ],
+                [
+                    "1492875524"
+                ],
+                [
+                    "3575597537"
+                ],
+                [
+                    "4119387730"
+                ],
+                [
+                    "5693280275"
+                ],
+                [
+                    "8485704961"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 52,
+        "template": 10,
+        "cypher": "MATCH (d:OLT {name: \"3879383733\"})<-[:CONNECTS_TO*5..6]-(o:ONT) RETURN count(DISTINCT o) AS total",
+        "question": "What is the ONT count for OLT \"3879383733\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "89"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 157,
+        "template": 36,
+        "cypher": "MATCH (sp:SPLITTER)<-[:CONNECTS_TO*1..2]-(o:ONT) WITH sp, count(DISTINCT o) AS total RETURN sp.name ORDER BY total DESC LIMIT 1",
+        "question": "What splitter has the highest ONT count?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "9968667718"
+                ]
+            ],
+            [
+                [
+                    "67",
+                    "9968667718"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 6,
+        "template": 1,
+        "cypher": "MATCH (p:PORT {name: \"4094654800\"})-[:CONNECTS_TO]->(c:CARD) RETURN c.name",
+        "question": "What card does port \"4094654800\" belong to?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2308817848"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 132,
+        "template": 27,
+        "cypher": "MATCH (c:CABIN)-[:BACKUP_FOR]->(other:CABIN {name: \"7139576005\"}) RETURN c.name",
+        "question": "Which cabin serves as the standby for cabin \"7139576005\"?",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 19,
+        "template": 3,
+        "cypher": "MATCH (o:ONT {name: \"4108310021\"})-[:CONNECTS_TO*5..6]->(d:OLT) RETURN d.name",
+        "question": "Trace ONT \"4108310021\" back to its OLT.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "8198396237"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 112,
+        "template": 23,
+        "cypher": "MATCH (sp:SPLITTER {name: \"2050616950\"})<-[:CONNECTS_TO*1..2]-(o:ONT) RETURN min(o.signal_dbm) AS weakest",
+        "question": "Give the lowest signal value of any ONT served by splitter \"2050616950\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "-30.6"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 195,
+        "template": 47,
+        "cypher": null,
+        "question": "What is the bandwidth of ONT \"4108310021\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 125,
+        "template": 26,
+        "cypher": "MATCH (c:CABIN {name: \"3298883961\"})-[:BACKUP_FOR]->(other:CABIN) RETURN other.name",
+        "question": "Cabin \"3298883961\" acts as backup for which cabin?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2971979635"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 59,
+        "template": 11,
+        "cypher": "MATCH (d:OLT {name: \"1000775993\"})<-[:CONNECTS_TO]-(c:CARD) RETURN count(DISTINCT c) AS total",
+        "question": "How many cards does OLT \"1000775993\" have?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 152,
+        "template": 34,
+        "cypher": "MATCH (o:ONT)-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE) WITH s, count(DISTINCT o) AS total RETURN s.name ORDER BY total DESC LIMIT 1",
+        "question": "Which site has the most ONTs?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Heraklion"
+                ]
+            ],
+            [
+                [
+                    "1304",
+                    "Heraklion"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 119,
+        "template": 25,
+        "cypher": "MATCH (o:ONT {status: \"faulty\"})-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Komotini\"}) RETURN count(DISTINCT o) AS total",
+        "question": "How many faulty ONTs are there in SITE Komotini?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "21"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 25,
+        "template": 5,
+        "cypher": "MATCH (o:ONT {name: \"5693280275\"})-[:CONNECTS_TO*3..4]->(p:PORT) RETURN p.name",
+        "question": "Which port does ONT \"5693280275\" connect through?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "7764899388"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 92,
+        "template": 19,
+        "cypher": "MATCH (d:OLT {name: \"2040001239\"}) RETURN d.vendor, d.model",
+        "question": "Give the vendor and model of OLT \"2040001239\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "7360 ISAM FX-16",
+                    "Nokia"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 151,
+        "template": 33,
+        "cypher": "MATCH (o:ONT)-[:CONNECTS_TO*5..6]->(d:OLT) WITH d, count(DISTINCT o) AS total RETURN d.name ORDER BY total DESC LIMIT 1",
+        "question": "What is the busiest OLT by ONT count?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2687963281"
+                ]
+            ],
+            [
+                [
+                    "2687963281",
+                    "626"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 64,
+        "template": 12,
+        "cypher": "MATCH (c:CABIN {name: \"9785647099\"})-[:CONNECTS_TO]->(sp:SPLITTER) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) RETURN count(DISTINCT o) AS total",
+        "question": "How many ONTs does cabin \"9785647099\" serve?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1044"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 45,
+        "template": 9,
+        "cypher": "MATCH (s:SUB_SPLITTER {name: \"7124436866\"})<-[:CONNECTS_TO]-(o:ONT) RETURN o.name",
+        "question": "List the ONTs connected to sub-splitter \"7124436866\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1213162408"
+                ],
+                [
+                    "1813058541"
+                ],
+                [
+                    "6926008198"
+                ],
+                [
+                    "8632921387"
+                ],
+                [
+                    "8719216965"
+                ],
+                [
+                    "9094551114"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 138,
+        "template": 30,
+        "cypher": "MATCH (d:OLT)-[:IN_SITE]->(s:SITE {name: \"Komotini\"}) MATCH (o:ONT)-[:CONNECTS_TO*5..6]->(d) WITH d, count(DISTINCT o) AS total RETURN d.name, total",
+        "question": "For each OLT in SITE Komotini, how many ONTs does it serve?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3683543150",
+                    "473"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 47,
+        "template": 9,
+        "cypher": "MATCH (s:SUB_SPLITTER {name: \"9582219910\"})<-[:CONNECTS_TO]-(o:ONT) RETURN o.name",
+        "question": "List the ONTs connected to sub-splitter \"9582219910\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3496781766"
+                ],
+                [
+                    "4153844809"
+                ],
+                [
+                    "6215675926"
+                ],
+                [
+                    "6529651607"
+                ],
+                [
+                    "7067732261"
+                ],
+                [
+                    "8212973135"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 82,
+        "template": 17,
+        "cypher": "MATCH (o:ONT {name: \"6798890082\"}) RETURN o.status",
+        "question": "For ONT \"6798890082\", find its status.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "active"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 69,
+        "template": 13,
+        "cypher": "MATCH (sp:SPLITTER {name: \"8369970899\"})<-[:CONNECTS_TO]-(s:SUB_SPLITTER) RETURN count(DISTINCT s) AS total",
+        "question": "How many sub-splitters does splitter \"8369970899\" have?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 201,
+        "template": 48,
+        "cypher": null,
+        "question": "Find the firewall protecting ONT \"3078728137\".",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 107,
+        "template": 22,
+        "cypher": "MATCH (sp:SPLITTER {name: \"4809642076\"})<-[:CONNECTS_TO*1..2]-(o:ONT) WHERE o.signal_dbm < -28 RETURN o.name",
+        "question": "List the ONTs under splitter \"4809642076\" with signal below -28 dBm.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3544038468"
+                ]
+            ],
+            [
+                [
+                    "-29.4",
+                    "3544038468"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 215,
+        "template": 51,
+        "cypher": null,
+        "question": "Which technician installed splitter \"6424643554\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 213,
+        "template": 51,
+        "cypher": null,
+        "question": "Which technician installed splitter \"6384577406\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 89,
+        "template": 19,
+        "cypher": "MATCH (d:OLT {name: \"3033845528\"}) RETURN d.vendor, d.model",
+        "question": "What vendor and model is OLT \"3033845528\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Huawei",
+                    "MA5800-X15"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 153,
+        "template": 34,
+        "cypher": "MATCH (o:ONT)-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE) WITH s, count(DISTINCT o) AS total RETURN s.name ORDER BY total DESC LIMIT 1",
+        "question": "What site serves the largest number of ONTs?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Heraklion"
+                ]
+            ],
+            [
+                [
+                    "1304",
+                    "Heraklion"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 167,
+        "template": 39,
+        "cypher": "MATCH (sp:SPLITTER {name: \"3744968556\"})-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE) RETURN s.name",
+        "question": "Which site is splitter \"3744968556\" in?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Veria"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 217,
+        "template": 51,
+        "cypher": null,
+        "question": "Which technician installed splitter \"4153306674\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 49,
+        "template": 9,
+        "cypher": "MATCH (s:SUB_SPLITTER {name: \"7214020262\"})<-[:CONNECTS_TO]-(o:ONT) RETURN o.name",
+        "question": "List the ONTs connected to sub-splitter \"7214020262\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "7514502101"
+                ],
+                [
+                    "8506704173"
+                ],
+                [
+                    "9118461991"
+                ],
+                [
+                    "9631128855"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 98,
+        "template": 20,
+        "cypher": "MATCH (d:OLT {name: \"1267456641\"})<-[:CONNECTS_TO]-(c:CARD {slot: 0}) RETURN c.name",
+        "question": "Which card is in slot 0 of OLT \"1267456641\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "8545692215"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 67,
+        "template": 13,
+        "cypher": "MATCH (sp:SPLITTER {name: \"9998088606\"})<-[:CONNECTS_TO]-(s:SUB_SPLITTER) RETURN count(DISTINCT s) AS total",
+        "question": "How many sub-splitters does splitter \"9998088606\" have?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "5"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 9,
+        "template": 1,
+        "cypher": "MATCH (p:PORT {name: \"7034440116\"})-[:CONNECTS_TO]->(c:CARD) RETURN c.name",
+        "question": "Which card is port \"7034440116\" on?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "7234039291"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 42,
+        "template": 8,
+        "cypher": "MATCH (sp:SPLITTER {name: \"9284753446\"})<-[:CONNECTS_TO*1..2]-(o:ONT) RETURN o.name",
+        "question": "Which ONTs are served by splitter \"9284753446\", whether directly or through a sub-splitter?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1409549535"
+                ],
+                [
+                    "1585492418"
+                ],
+                [
+                    "1967519828"
+                ],
+                [
+                    "2102595743"
+                ],
+                [
+                    "2236341193"
+                ],
+                [
+                    "2371102313"
+                ],
+                [
+                    "2586384944"
+                ],
+                [
+                    "3178185375"
+                ],
+                [
+                    "3222781467"
+                ],
+                [
+                    "3255496656"
+                ],
+                [
+                    "3313446445"
+                ],
+                [
+                    "3414911019"
+                ],
+                [
+                    "3581627057"
+                ],
+                [
+                    "4052805972"
+                ],
+                [
+                    "4288501009"
+                ],
+                [
+                    "4495315933"
+                ],
+                [
+                    "5518895329"
+                ],
+                [
+                    "5901517277"
+                ],
+                [
+                    "5953083486"
+                ],
+                [
+                    "6013978309"
+                ],
+                [
+                    "6681651035"
+                ],
+                [
+                    "7075161762"
+                ],
+                [
+                    "7153858949"
+                ],
+                [
+                    "7298466013"
+                ],
+                [
+                    "7378210752"
+                ],
+                [
+                    "7391979005"
+                ],
+                [
+                    "7626773376"
+                ],
+                [
+                    "7790305563"
+                ],
+                [
+                    "7860355274"
+                ],
+                [
+                    "7901414274"
+                ],
+                [
+                    "7908396982"
+                ],
+                [
+                    "8040779192"
+                ],
+                [
+                    "8336430355"
+                ],
+                [
+                    "9118330670"
+                ],
+                [
+                    "9363076758"
+                ],
+                [
+                    "9568139426"
+                ],
+                [
+                    "9602333687"
+                ],
+                [
+                    "9790987098"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 207,
+        "template": 49,
+        "cypher": null,
+        "question": "Who is the customer on ONT \"6230824401\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 44,
+        "template": 8,
+        "cypher": "MATCH (sp:SPLITTER {name: \"5822738852\"})<-[:CONNECTS_TO*1..2]-(o:ONT) RETURN o.name",
+        "question": "Which ONTs are served by splitter \"5822738852\", whether directly or through a sub-splitter?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1420792095"
+                ],
+                [
+                    "3341597281"
+                ],
+                [
+                    "3798262677"
+                ],
+                [
+                    "4904225168"
+                ],
+                [
+                    "6598397629"
+                ],
+                [
+                    "7717329032"
+                ],
+                [
+                    "7981508742"
+                ],
+                [
+                    "8240898316"
+                ],
+                [
+                    "8418302075"
+                ],
+                [
+                    "9653824047"
+                ],
+                [
+                    "9757131476"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 56,
+        "template": 11,
+        "cypher": "MATCH (d:OLT {name: \"3747531811\"})<-[:CONNECTS_TO]-(c:CARD) RETURN count(DISTINCT c) AS total",
+        "question": "Count the cards installed in OLT \"3747531811\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 183,
+        "template": 44,
+        "cypher": "MATCH (sp:SPLITTER)-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Tripoli\"}) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) WITH sp, count(DISTINCT o) AS total WHERE total > 40 RETURN sp.name, total",
+        "question": "Which splitters in SITE Tripoli serve more than 40 ONTs?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "57",
+                    "8352184240"
+                ],
+                [
+                    "64",
+                    "7086679175"
+                ]
+            ],
+            [
+                [
+                    "7086679175"
+                ],
+                [
+                    "8352184240"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 38,
+        "template": 7,
+        "cypher": "MATCH (sp:SPLITTER {name: \"3744968556\"})<-[:CONNECTS_TO*2]-(o:ONT) RETURN o.name",
+        "question": "List the ONTs connected to splitter \"3744968556\" via a sub-splitter.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1250359923"
+                ],
+                [
+                    "1380131622"
+                ],
+                [
+                    "2010458183"
+                ],
+                [
+                    "2831804833"
+                ],
+                [
+                    "3614364099"
+                ],
+                [
+                    "5649247492"
+                ],
+                [
+                    "5743775443"
+                ],
+                [
+                    "6253127251"
+                ],
+                [
+                    "6510817224"
+                ],
+                [
+                    "7001647283"
+                ],
+                [
+                    "8267980113"
+                ],
+                [
+                    "8891085182"
+                ],
+                [
+                    "9453801524"
+                ],
+                [
+                    "9880401202"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 57,
+        "template": 11,
+        "cypher": "MATCH (d:OLT {name: \"6225774566\"})<-[:CONNECTS_TO]-(c:CARD) RETURN count(DISTINCT c) AS total",
+        "question": "How many cards does OLT \"6225774566\" have?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 165,
+        "template": 39,
+        "cypher": "MATCH (sp:SPLITTER {name: \"1334291518\"})-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE) RETURN s.name",
+        "question": "Which site is splitter \"1334291518\" in?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Chalkis"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 120,
+        "template": 25,
+        "cypher": "MATCH (o:ONT {status: \"faulty\"})-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Heraklion\"}) RETURN count(DISTINCT o) AS total",
+        "question": "Count the faulty ONTs located in SITE Heraklion.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "64"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 181,
+        "template": 44,
+        "cypher": "MATCH (sp:SPLITTER)-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Sparta\"}) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) WITH sp, count(DISTINCT o) AS total WHERE total > 40 RETURN sp.name, total",
+        "question": "Which splitters in SITE Sparta serve more than 40 ONTs?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "52",
+                    "5371857665"
+                ]
+            ],
+            [
+                [
+                    "5371857665"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 35,
+        "template": 7,
+        "cypher": "MATCH (sp:SPLITTER {name: \"4153306674\"})<-[:CONNECTS_TO*2]-(o:ONT) RETURN o.name",
+        "question": "Which ONTs reach splitter \"4153306674\" through a sub-splitter?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1309766109"
+                ],
+                [
+                    "1978829323"
+                ],
+                [
+                    "2174712624"
+                ],
+                [
+                    "2221137900"
+                ],
+                [
+                    "2249321341"
+                ],
+                [
+                    "2612676742"
+                ],
+                [
+                    "2816458658"
+                ],
+                [
+                    "2834400308"
+                ],
+                [
+                    "2994948708"
+                ],
+                [
+                    "3026659848"
+                ],
+                [
+                    "3438728981"
+                ],
+                [
+                    "3455208531"
+                ],
+                [
+                    "3538205689"
+                ],
+                [
+                    "3595299577"
+                ],
+                [
+                    "4057170877"
+                ],
+                [
+                    "4086585505"
+                ],
+                [
+                    "4469785875"
+                ],
+                [
+                    "4565289644"
+                ],
+                [
+                    "4573065889"
+                ],
+                [
+                    "4614880161"
+                ],
+                [
+                    "4637805661"
+                ],
+                [
+                    "4719808773"
+                ],
+                [
+                    "4838211296"
+                ],
+                [
+                    "4969957478"
+                ],
+                [
+                    "4983629713"
+                ],
+                [
+                    "5141334943"
+                ],
+                [
+                    "5178066906"
+                ],
+                [
+                    "5271619315"
+                ],
+                [
+                    "5303178668"
+                ],
+                [
+                    "5439662955"
+                ],
+                [
+                    "5487227443"
+                ],
+                [
+                    "5563705720"
+                ],
+                [
+                    "6001064011"
+                ],
+                [
+                    "6012131581"
+                ],
+                [
+                    "6625171442"
+                ],
+                [
+                    "6919728698"
+                ],
+                [
+                    "6926104381"
+                ],
+                [
+                    "6962482169"
+                ],
+                [
+                    "7020582350"
+                ],
+                [
+                    "7196034902"
+                ],
+                [
+                    "7325088572"
+                ],
+                [
+                    "7330016228"
+                ],
+                [
+                    "7390470211"
+                ],
+                [
+                    "7514502101"
+                ],
+                [
+                    "7600217004"
+                ],
+                [
+                    "8168845973"
+                ],
+                [
+                    "8185348512"
+                ],
+                [
+                    "8506704173"
+                ],
+                [
+                    "8569363243"
+                ],
+                [
+                    "8767505334"
+                ],
+                [
+                    "8795976943"
+                ],
+                [
+                    "8796937586"
+                ],
+                [
+                    "8933443229"
+                ],
+                [
+                    "9048534762"
+                ],
+                [
+                    "9062686211"
+                ],
+                [
+                    "9118461991"
+                ],
+                [
+                    "9257589109"
+                ],
+                [
+                    "9303702867"
+                ],
+                [
+                    "9536312631"
+                ],
+                [
+                    "9631128855"
+                ],
+                [
+                    "9728376846"
+                ],
+                [
+                    "9910461724"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 111,
+        "template": 23,
+        "cypher": "MATCH (sp:SPLITTER {name: \"8455669768\"})<-[:CONNECTS_TO*1..2]-(o:ONT) RETURN min(o.signal_dbm) AS weakest",
+        "question": "What is the weakest signal reading among the ONTs served by splitter \"8455669768\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "-26.8"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 90,
+        "template": 19,
+        "cypher": "MATCH (d:OLT {name: \"1267456641\"}) RETURN d.vendor, d.model",
+        "question": "Give the vendor and model of OLT \"1267456641\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "7360 ISAM FX-16",
+                    "Nokia"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 184,
+        "template": 44,
+        "cypher": "MATCH (sp:SPLITTER)-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Rethymno\"}) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) WITH sp, count(DISTINCT o) AS total WHERE total > 40 RETURN sp.name, total",
+        "question": "In SITE Rethymno, find splitters with over 40 ONTs.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3304856158",
+                    "55"
+                ],
+                [
+                    "4044581675",
+                    "44"
+                ],
+                [
+                    "48",
+                    "9309566481"
+                ]
+            ],
+            [
+                [
+                    "3304856158"
+                ],
+                [
+                    "4044581675"
+                ],
+                [
+                    "9309566481"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 169,
+        "template": 39,
+        "cypher": "MATCH (sp:SPLITTER {name: \"9968667718\"})-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE) RETURN s.name",
+        "question": "Which site is splitter \"9968667718\" in?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Veria"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 37,
+        "template": 7,
+        "cypher": "MATCH (sp:SPLITTER {name: \"4809642076\"})<-[:CONNECTS_TO*2]-(o:ONT) RETURN o.name",
+        "question": "Which ONTs reach splitter \"4809642076\" through a sub-splitter?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "1944435530"
+                ],
+                [
+                    "2915570612"
+                ],
+                [
+                    "3133310153"
+                ],
+                [
+                    "3286192125"
+                ],
+                [
+                    "3331333532"
+                ],
+                [
+                    "3454803873"
+                ],
+                [
+                    "3538926810"
+                ],
+                [
+                    "3544038468"
+                ],
+                [
+                    "3743550360"
+                ],
+                [
+                    "3750524240"
+                ],
+                [
+                    "3911573209"
+                ],
+                [
+                    "4145961416"
+                ],
+                [
+                    "5478571182"
+                ],
+                [
+                    "5532204719"
+                ],
+                [
+                    "5558440050"
+                ],
+                [
+                    "5569905100"
+                ],
+                [
+                    "5613255554"
+                ],
+                [
+                    "5709214196"
+                ],
+                [
+                    "5742883130"
+                ],
+                [
+                    "5797332905"
+                ],
+                [
+                    "5879265201"
+                ],
+                [
+                    "6500782501"
+                ],
+                [
+                    "6814244460"
+                ],
+                [
+                    "7114873577"
+                ],
+                [
+                    "7258887478"
+                ],
+                [
+                    "7717872771"
+                ],
+                [
+                    "7719783918"
+                ],
+                [
+                    "7762995541"
+                ],
+                [
+                    "7767124533"
+                ],
+                [
+                    "7779891897"
+                ],
+                [
+                    "7905924574"
+                ],
+                [
+                    "8164111928"
+                ],
+                [
+                    "8320253060"
+                ],
+                [
+                    "8831561543"
+                ],
+                [
+                    "9865189988"
+                ],
+                [
+                    "9921369841"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 210,
+        "template": 50,
+        "cypher": null,
+        "question": "What is the operating temperature of OLT \"2428091874\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 3,
+        "template": 0,
+        "cypher": "MATCH (o:ONT {name: \"3998875736\"})-[:CONNECTS_TO]->(s:SUB_SPLITTER) RETURN s.name",
+        "question": "Which sub-splitter is ONT \"3998875736\" connected to?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3079159134"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 117,
+        "template": 24,
+        "cypher": "MATCH (sp:SPLITTER)-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Serres\"}) WHERE sp.install_date < date(\"2020-01-01\") RETURN sp.name",
+        "question": "List the splitters in SITE Serres with an install date earlier than 2020.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2340837726"
+                ],
+                [
+                    "2598456757"
+                ],
+                [
+                    "3464673187"
+                ],
+                [
+                    "5822738852"
+                ],
+                [
+                    "6674507104"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 124,
+        "template": 26,
+        "cypher": "MATCH (c:CABIN {name: \"9571132862\"})-[:BACKUP_FOR]->(other:CABIN) RETURN other.name",
+        "question": "Which cabin is cabin \"9571132862\" the backup for?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "7179610369"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 77,
+        "template": 16,
+        "cypher": "MATCH (sp:SPLITTER {name: \"7279873425\"}) RETURN sp.split_ratio",
+        "question": "Give the split ratio of splitter \"7279873425\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "32"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 21,
+        "template": 4,
+        "cypher": "MATCH (sp:SPLITTER {name: \"3744968556\"})-[:CONNECTS_TO*4]->(d:OLT) RETURN d.name",
+        "question": "Find the OLT upstream of splitter \"3744968556\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "8682195977"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 81,
+        "template": 17,
+        "cypher": "MATCH (o:ONT {name: \"9090641779\"}) RETURN o.status",
+        "question": "What is the status of ONT \"9090641779\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "active"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 194,
+        "template": 47,
+        "cypher": null,
+        "question": "How much throughput does ONT \"6208434379\" have?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 191,
+        "template": 46,
+        "cypher": "MATCH (sp:SPLITTER {split_ratio: 32})<-[:CONNECTS_TO*1..2]-(o:ONT) WITH sp, count(DISTINCT o) AS total WHERE total > 60 RETURN sp.name, total",
+        "question": "Which 32-way splitters serve more than 60 ONTs?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4335118535",
+                    "61"
+                ],
+                [
+                    "61",
+                    "7414779703"
+                ]
+            ],
+            [
+                [
+                    "4335118535"
+                ],
+                [
+                    "7414779703"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 105,
+        "template": 22,
+        "cypher": "MATCH (sp:SPLITTER {name: \"2023122484\"})<-[:CONNECTS_TO*1..2]-(o:ONT) WHERE o.signal_dbm < -28 RETURN o.name",
+        "question": "List the ONTs under splitter \"2023122484\" with signal below -28 dBm.",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 196,
+        "template": 47,
+        "cypher": null,
+        "question": "How much throughput does ONT \"3998875736\" have?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 200,
+        "template": 48,
+        "cypher": null,
+        "question": "Which router serves ONT \"6696681721\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 76,
+        "template": 16,
+        "cypher": "MATCH (sp:SPLITTER {name: \"1338879339\"}) RETURN sp.split_ratio",
+        "question": "What is the split ratio of splitter \"1338879339\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "8"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 63,
+        "template": 12,
+        "cypher": "MATCH (c:CABIN {name: \"9915522376\"})-[:CONNECTS_TO]->(sp:SPLITTER) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) RETURN count(DISTINCT o) AS total",
+        "question": "Count the ONTs reachable from cabin \"9915522376\".",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "487"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 11,
+        "template": 2,
+        "cypher": "MATCH (s:SUB_SPLITTER {name: \"6982881182\"})-[:CONNECTS_TO]->(sp:SPLITTER) RETURN sp.name",
+        "question": "What is the parent splitter of sub-splitter \"6982881182\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "6665786833"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 154,
+        "template": 35,
+        "cypher": "MATCH (c:CABIN)-[:CONNECTS_TO]->(sp:SPLITTER) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) WITH c, count(DISTINCT o) AS total RETURN c.name ORDER BY total DESC LIMIT 1",
+        "question": "Which cabin serves the most ONTs?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "9785647099"
+                ]
+            ],
+            [
+                [
+                    "1044",
+                    "9785647099"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 78,
+        "template": 16,
+        "cypher": "MATCH (sp:SPLITTER {name: \"8611801562\"}) RETURN sp.split_ratio",
+        "question": "What is the split ratio of splitter \"8611801562\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "16"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 202,
+        "template": 48,
+        "cypher": null,
+        "question": "Which router serves ONT \"5333360788\"?",
+        "answerable": false,
+        "answers": null
+    },
+    {
+        "qid": 10,
+        "template": 2,
+        "cypher": "MATCH (s:SUB_SPLITTER {name: \"5440822499\"})-[:CONNECTS_TO]->(sp:SPLITTER) RETURN sp.name",
+        "question": "Which splitter does sub-splitter \"5440822499\" feed into?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "4395139164"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 123,
+        "template": 25,
+        "cypher": "MATCH (o:ONT {status: \"faulty\"})-[:CONNECTS_TO*5..6]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Tripoli\"}) RETURN count(DISTINCT o) AS total",
+        "question": "How many faulty ONTs are there in SITE Tripoli?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "26"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 109,
+        "template": 23,
+        "cypher": "MATCH (sp:SPLITTER {name: \"3744968556\"})<-[:CONNECTS_TO*1..2]-(o:ONT) RETURN min(o.signal_dbm) AS weakest",
+        "question": "What is the weakest signal reading among the ONTs served by splitter \"3744968556\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "-26.9"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 168,
+        "template": 39,
+        "cypher": "MATCH (sp:SPLITTER {name: \"6548534963\"})-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE) RETURN s.name",
+        "question": "What site hosts splitter \"6548534963\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "Thessaloniki"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 150,
+        "template": 33,
+        "cypher": "MATCH (o:ONT)-[:CONNECTS_TO*5..6]->(d:OLT) WITH d, count(DISTINCT o) AS total RETURN d.name ORDER BY total DESC LIMIT 1",
+        "question": "Which OLT serves the most ONTs?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2687963281"
+                ]
+            ],
+            [
+                [
+                    "2687963281",
+                    "626"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 126,
+        "template": 26,
+        "cypher": "MATCH (c:CABIN {name: \"2192150459\"})-[:BACKUP_FOR]->(other:CABIN) RETURN other.name",
+        "question": "Which cabin is cabin \"2192150459\" the backup for?",
+        "answerable": true,
+        "answers": [
+            []
+        ]
+    },
+    {
+        "qid": 156,
+        "template": 36,
+        "cypher": "MATCH (sp:SPLITTER)<-[:CONNECTS_TO*1..2]-(o:ONT) WITH sp, count(DISTINCT o) AS total RETURN sp.name ORDER BY total DESC LIMIT 1",
+        "question": "Which splitter serves the most ONTs?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "9968667718"
+                ]
+            ],
+            [
+                [
+                    "67",
+                    "9968667718"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 146,
+        "template": 31,
+        "cypher": "MATCH (c:CABIN {name: \"7139576005\"})-[:CONNECTS_TO]->(sp:SPLITTER) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) WITH sp, count(DISTINCT o) AS total RETURN sp.name, total",
+        "question": "Per splitter of cabin \"7139576005\", give the ONT count.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "12",
+                    "2860426585"
+                ],
+                [
+                    "1552941450",
+                    "41"
+                ],
+                [
+                    "1842840693",
+                    "30"
+                ],
+                [
+                    "19",
+                    "8546610454"
+                ],
+                [
+                    "25",
+                    "7985907845"
+                ],
+                [
+                    "2551652854",
+                    "32"
+                ],
+                [
+                    "2932509188",
+                    "40"
+                ],
+                [
+                    "39",
+                    "6113337743"
+                ],
+                [
+                    "39",
+                    "8701142033"
+                ],
+                [
+                    "42",
+                    "9605422209"
+                ],
+                [
+                    "4413175781",
+                    "53"
+                ],
+                [
+                    "53",
+                    "9705443171"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 7,
+        "template": 1,
+        "cypher": "MATCH (p:PORT {name: \"8679287451\"})-[:CONNECTS_TO]->(c:CARD) RETURN c.name",
+        "question": "Which card is port \"8679287451\" on?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "2327058222"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 182,
+        "template": 44,
+        "cypher": "MATCH (sp:SPLITTER)-[:CONNECTS_TO*4]->(d:OLT)-[:IN_SITE]->(s:SITE {name: \"Kavala\"}) MATCH (o:ONT)-[:CONNECTS_TO*1..2]->(sp) WITH sp, count(DISTINCT o) AS total WHERE total > 40 RETURN sp.name, total",
+        "question": "In SITE Kavala, find splitters with over 40 ONTs.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "41",
+                    "8251339322"
+                ],
+                [
+                    "4153306674",
+                    "62"
+                ],
+                [
+                    "42",
+                    "6394475481"
+                ],
+                [
+                    "42",
+                    "9618962942"
+                ],
+                [
+                    "43",
+                    "6498806263"
+                ],
+                [
+                    "44",
+                    "9943348340"
+                ],
+                [
+                    "4608628085",
+                    "61"
+                ],
+                [
+                    "49",
+                    "5671967031"
+                ],
+                [
+                    "51",
+                    "5181450515"
+                ],
+                [
+                    "51",
+                    "7058115713"
+                ],
+                [
+                    "52",
+                    "7092083765"
+                ]
+            ],
+            [
+                [
+                    "4153306674"
+                ],
+                [
+                    "4608628085"
+                ],
+                [
+                    "5181450515"
+                ],
+                [
+                    "5671967031"
+                ],
+                [
+                    "6394475481"
+                ],
+                [
+                    "6498806263"
+                ],
+                [
+                    "7058115713"
+                ],
+                [
+                    "7092083765"
+                ],
+                [
+                    "8251339322"
+                ],
+                [
+                    "9618962942"
+                ],
+                [
+                    "9943348340"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 48,
+        "template": 9,
+        "cypher": "MATCH (s:SUB_SPLITTER {name: \"1590373370\"})<-[:CONNECTS_TO]-(o:ONT) RETURN o.name",
+        "question": "Which ONTs hang off sub-splitter \"1590373370\"?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "5495204335"
+                ],
+                [
+                    "5828932790"
+                ],
+                [
+                    "7441316052"
+                ],
+                [
+                    "8874734095"
+                ],
+                [
+                    "8880577075"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 189,
+        "template": 45,
+        "cypher": "MATCH (d:OLT {name: \"2687963281\"})<-[:CONNECTS_TO]-(c:CARD) MATCH (p:PORT)-[:CONNECTS_TO]->(c) WITH c, count(DISTINCT p) AS total WHERE total > 4 RETURN c.name, total",
+        "question": "On OLT \"2687963281\", list cards with over 4 ports.",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "3933546096",
+                    "6"
+                ],
+                [
+                    "6",
+                    "6992450959"
+                ]
+            ],
+            [
+                [
+                    "3933546096"
+                ],
+                [
+                    "6992450959"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 85,
+        "template": 18,
+        "cypher": "MATCH (o:ONT {name: \"2388687133\"}) RETURN o.status = \"active\" AS active",
+        "question": "Is ONT \"2388687133\" in active state?",
+        "answerable": true,
+        "answers": [
+            [
+                [
+                    "True"
+                ]
+            ],
+            [
+                [
+                    "active"
+                ]
+            ]
+        ]
+    }
+]

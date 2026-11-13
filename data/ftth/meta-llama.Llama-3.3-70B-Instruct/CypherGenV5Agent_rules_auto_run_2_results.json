@@ -1,0 +1,2502 @@
+[
+    {
+        "qid": 68,
+        "template": 13,
+        "question": "Count the sub-splitters under splitter \"9909247992\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 120,
+        "template": 25,
+        "question": "Count the faulty ONTs located in SITE Heraklion.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SITE {name: 'Heraklion'})<-[:IN_SITE]-(:OLT)<-[:CONNECTS_TO*5]-(:CABIN)-[:CONNECTS_TO]->(:SPLITTER)<-[:CONNECTS_TO*1..2]-(o:ONT {status: 'faulty'}) \nRETURN count(DISTINCT o)",
+        "query_ans": [
+            [
+                "56"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "64"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 87,
+        "template": 18,
+        "question": "Is ONT \"6208434379\" in active state?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 63,
+        "template": 12,
+        "question": "Count the ONTs reachable from cabin \"9915522376\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 41,
+        "template": 8,
+        "question": "List every ONT downstream of splitter \"7101187514\", either through a sub-splitter or directly.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 179,
+        "template": 43,
+        "question": "What are the cards with no ports?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 28,
+        "template": 5,
+        "question": "What port is upstream of ONT \"4108310021\"?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (ont:ONT {name: \"4108310021\"})-[:CONNECTS_TO*3]->(port:PORT) RETURN port.name",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "8861527078"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 160,
+        "template": 38,
+        "question": "Which site is ONT \"9090641779\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 74,
+        "template": 16,
+        "question": "What is the split ratio of splitter \"2050616950\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 208,
+        "template": 50,
+        "question": "What is the operating temperature of OLT \"3683543150\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 213,
+        "template": 51,
+        "question": "Which technician installed splitter \"6384577406\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 123,
+        "template": 25,
+        "question": "How many faulty ONTs are there in SITE Tripoli?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 214,
+        "template": 51,
+        "question": "What was the purchase cost of splitter \"1334291518\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 149,
+        "template": 32,
+        "question": "Break down the OLT count by vendor.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 62,
+        "template": 12,
+        "question": "How many ONTs does cabin \"1642455536\" serve?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 189,
+        "template": 45,
+        "question": "On OLT \"2687963281\", list cards with over 4 ports.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 71,
+        "template": 14,
+        "question": "List the OLTs from the vendor Huawei.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (olt:OLT {vendor: 'Huawei'})\nRETURN olt.name, olt.model, olt.capacity, olt.vendor",
+        "query_ans": [
+            [
+                "1024",
+                "2958076885",
+                "Huawei",
+                "MA5800-X7"
+            ],
+            [
+                "1024",
+                "3683543150",
+                "Huawei",
+                "MA5800-X7"
+            ],
+            [
+                "1024",
+                "3936607399",
+                "Huawei",
+                "MA5800-X15"
+            ],
+            [
+                "1024",
+                "4106265738",
+                "Huawei",
+                "MA5800-X7"
+            ],
+            [
+                "1024",
+                "9931855915",
+                "Huawei",
+                "MA5800-X7"
+            ],
+            [
+                "2048",
+                "3033845528",
+                "Huawei",
+                "MA5800-X15"
+            ],
+            [
+                "2048",
+                "8716723939",
+                "Huawei",
+                "MA5800-X15"
+            ],
+            [
+                "2048",
+                "8776978181",
+                "Huawei",
+                "MA5800-X15"
+            ],
+            [
+                "2048",
+                "9541229198",
+                "Huawei",
+                "MA5800-X7"
+            ],
+            [
+                "3147459605",
+                "4096",
+                "Huawei",
+                "MA5800-X15"
+            ],
+            [
+                "3747531811",
+                "4096",
+                "Huawei",
+                "MA5800-X15"
+            ],
+            [
+                "4096",
+                "7211755002",
+                "Huawei",
+                "MA5800-X7"
+            ],
+            [
+                "4096",
+                "7694160624",
+                "Huawei",
+                "MA5800-X15"
+            ],
+            [
+                "4096",
+                "8682195977",
+                "Huawei",
+                "MA5800-X7"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "2958076885"
+                ],
+                [
+                    "3033845528"
+                ],
+                [
+                    "3147459605"
+                ],
+                [
+                    "3683543150"
+                ],
+                [
+                    "3747531811"
+                ],
+                [
+                    "3936607399"
+                ],
+                [
+                    "4106265738"
+                ],
+                [
+                    "7211755002"
+                ],
+                [
+                    "7694160624"
+                ],
+                [
+                    "8682195977"
+                ],
+                [
+                    "8716723939"
+                ],
+                [
+                    "8776978181"
+                ],
+                [
+                    "9541229198"
+                ],
+                [
+                    "9931855915"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 196,
+        "template": 47,
+        "question": "How much throughput does ONT \"3998875736\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 79,
+        "template": 17,
+        "question": "What is the status of ONT \"4108310021\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 199,
+        "template": 48,
+        "question": "Find the firewall protecting ONT \"6230824401\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 29,
+        "template": 5,
+        "question": "Which port does ONT \"3998875736\" connect through?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 184,
+        "template": 44,
+        "question": "In SITE Rethymno, find splitters with over 40 ONTs.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 76,
+        "template": 16,
+        "question": "What is the split ratio of splitter \"1338879339\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 150,
+        "template": 33,
+        "question": "Which OLT serves the most ONTs?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 132,
+        "template": 27,
+        "question": "Which cabin serves as the standby for cabin \"7139576005\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 107,
+        "template": 22,
+        "question": "List the ONTs under splitter \"4809642076\" with signal below -28 dBm.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SPLITTER {name: \"4809642076\"})<-[:CONNECTS_TO]-(o:ONT) WHERE o.signal_dbm < -28 RETURN o.name, o.signal_dbm",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "3544038468"
+                ]
+            ],
+            [
+                [
+                    "-29.4",
+                    "3544038468"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 101,
+        "template": 21,
+        "question": "How many faulty ONTs does OLT \"2040001239\" serve?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (olt:OLT {name: \"2040001239\"})<-[:CONNECTS_TO*5..6]-(ont:ONT {status: \"FAULTY\"}) RETURN count(DISTINCT ont)",
+        "query_ans": [
+            [
+                "0"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "20"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 148,
+        "template": 32,
+        "question": "How many OLTs does each vendor supply?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 66,
+        "template": 13,
+        "question": "Count the sub-splitters under splitter \"1652571826\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 14,
+        "template": 2,
+        "question": "Which splitter does sub-splitter \"4285588483\" feed into?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 124,
+        "template": 26,
+        "question": "Which cabin is cabin \"9571132862\" the backup for?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 89,
+        "template": 19,
+        "question": "What vendor and model is OLT \"3033845528\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 69,
+        "template": 13,
+        "question": "How many sub-splitters does splitter \"8369970899\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 188,
+        "template": 45,
+        "question": "Which cards on OLT \"7945957051\" have more than 4 ports?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 163,
+        "template": 38,
+        "question": "Which site is ONT \"7653913874\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 73,
+        "template": 15,
+        "question": "List the ports whose admin state is disabled.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 175,
+        "template": 41,
+        "question": "Which sub-splitters have no ONTs connected?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 118,
+        "template": 24,
+        "question": "Which splitters in SITE Chios were installed before 2020?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SPLITTER)-[:CONNECTS_TO*4]->(o:OLT)-[:IN_SITE]->(si:SITE {name: 'Chios'}) \nWHERE s.install_date < '2020-01-01' \nRETURN s.name, s.install_date",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "6122408099"
+                ],
+                [
+                    "6184650401"
+                ],
+                [
+                    "6358855720"
+                ],
+                [
+                    "8384206882"
+                ],
+                [
+                    "8536879748"
+                ],
+                [
+                    "9478693966"
+                ],
+                [
+                    "9597226956"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 33,
+        "template": 6,
+        "question": "List the ONTs attached straight to splitter \"9284753446\" with no sub-splitter in between.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 215,
+        "template": 51,
+        "question": "Which technician installed splitter \"6424643554\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 209,
+        "template": 50,
+        "question": "How much power does OLT \"2958076885\" draw?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 95,
+        "template": 20,
+        "question": "What card occupies slot 0 on OLT \"8198396237\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 96,
+        "template": 20,
+        "question": "Which card is in slot 0 of OLT \"2687963281\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 39,
+        "template": 7,
+        "question": "Which ONTs reach splitter \"8701142033\" through a sub-splitter?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 20,
+        "template": 4,
+        "question": "Which OLT does splitter \"1041715906\" connect to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 102,
+        "template": 21,
+        "question": "Count the ONTs in faulty state under OLT \"9931855915\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 34,
+        "template": 6,
+        "question": "Which ONTs are wired directly to splitter \"7101187514\", without a sub-splitter?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 194,
+        "template": 47,
+        "question": "How much throughput does ONT \"6208434379\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 119,
+        "template": 25,
+        "question": "How many faulty ONTs are there in SITE Komotini?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SITE {name: 'Komotini'})<-[:IN_SITE]-(:OLT)<-[:CONNECTS_TO*5]-(:CABIN)-[:CONNECTS_TO]->(:SPLITTER)<-[:CONNECTS_TO]-(o:ONT {status: 'FAULTY'})\nRETURN count(DISTINCT o)",
+        "query_ans": [
+            [
+                "0"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "21"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 217,
+        "template": 51,
+        "question": "Which technician installed splitter \"4153306674\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 127,
+        "template": 26,
+        "question": "Cabin \"1579514018\" acts as backup for which cabin?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 46,
+        "template": 9,
+        "question": "Which ONTs hang off sub-splitter \"4130446126\"?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SPLITTER {name: \"4130446126\"})<-[:CONNECTS_TO]-(o:ONT) RETURN o.name",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "4278894014"
+                ],
+                [
+                    "4477674210"
+                ],
+                [
+                    "5044246685"
+                ],
+                [
+                    "5992691738"
+                ],
+                [
+                    "7084331041"
+                ],
+                [
+                    "7164674241"
+                ],
+                [
+                    "9181614692"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 191,
+        "template": 46,
+        "question": "Which 32-way splitters serve more than 60 ONTs?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 198,
+        "template": 48,
+        "question": "Which router serves ONT \"4791054488\"?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_POSITIVE"
+    },
+    {
+        "qid": 57,
+        "template": 11,
+        "question": "How many cards does OLT \"6225774566\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 82,
+        "template": 17,
+        "question": "For ONT \"6798890082\", find its status.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 203,
+        "template": 49,
+        "question": "Who is the customer on ONT \"5277272934\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 154,
+        "template": 35,
+        "question": "Which cabin serves the most ONTs?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 180,
+        "template": 43,
+        "question": "List cards that have no ports attached.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 125,
+        "template": 26,
+        "question": "Cabin \"3298883961\" acts as backup for which cabin?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 77,
+        "template": 16,
+        "question": "Give the split ratio of splitter \"7279873425\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 56,
+        "template": 11,
+        "question": "Count the cards installed in OLT \"3747531811\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 6,
+        "template": 1,
+        "question": "What card does port \"4094654800\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 55,
+        "template": 11,
+        "question": "How many cards does OLT \"9870266924\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 111,
+        "template": 23,
+        "question": "What is the weakest signal reading among the ONTs served by splitter \"8455669768\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 205,
+        "template": 49,
+        "question": "Who is the customer on ONT \"5133872635\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 32,
+        "template": 6,
+        "question": "Which ONTs are wired directly to splitter \"3191386365\", without a sub-splitter?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 59,
+        "template": 11,
+        "question": "How many cards does OLT \"1000775993\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 151,
+        "template": 33,
+        "question": "What is the busiest OLT by ONT count?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 40,
+        "template": 8,
+        "question": "Which ONTs are served by splitter \"5626892525\", whether directly or through a sub-splitter?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 27,
+        "template": 5,
+        "question": "Which port does ONT \"2388687133\" connect through?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (ont:ONT {name: \"2388687133\"})-[:CONNECTS_TO*3]->(port:PORT) RETURN port.name",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "2952520942"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 24,
+        "template": 4,
+        "question": "Which OLT does splitter \"7101187514\" connect to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 51,
+        "template": 10,
+        "question": "Count the ONTs connected to OLT \"2042286248\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 25,
+        "template": 5,
+        "question": "Which port does ONT \"5693280275\" connect through?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 200,
+        "template": 48,
+        "question": "Which router serves ONT \"6696681721\"?",
+        "result": "BenchmarkResult.GUARDRAILS_FALSE_POSITIVE"
+    },
+    {
+        "qid": 183,
+        "template": 44,
+        "question": "Which splitters in SITE Tripoli serve more than 40 ONTs?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 54,
+        "template": 10,
+        "question": "Count the ONTs connected to OLT \"2428091874\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 48,
+        "template": 9,
+        "question": "Which ONTs hang off sub-splitter \"1590373370\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 38,
+        "template": 7,
+        "question": "List the ONTs connected to splitter \"3744968556\" via a sub-splitter.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 186,
+        "template": 45,
+        "question": "Which cards on OLT \"9931855915\" have more than 4 ports?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 3,
+        "template": 0,
+        "question": "Which sub-splitter is ONT \"3998875736\" connected to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 75,
+        "template": 16,
+        "question": "Give the split ratio of splitter \"6969574756\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 97,
+        "template": 20,
+        "question": "What card occupies slot 0 on OLT \"7808958067\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 161,
+        "template": 38,
+        "question": "What site does ONT \"1971932504\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 64,
+        "template": 12,
+        "question": "How many ONTs does cabin \"9785647099\" serve?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 173,
+        "template": 40,
+        "question": "Count all ONTs located in SITE Serres.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 53,
+        "template": 10,
+        "question": "How many ONTs does OLT \"8682195977\" serve?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 167,
+        "template": 39,
+        "question": "Which site is splitter \"3744968556\" in?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SPLITTER {name: \"3744968556\"})<-[:CONNECTS_TO*1..2]-(o:ONT)-[:CONNECTS_TO*5..6]->(olt:OLT)-[:IN_SITE]->(site:SITE) RETURN site.name",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "Veria"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 83,
+        "template": 17,
+        "question": "What is the status of ONT \"6179308700\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 201,
+        "template": 48,
+        "question": "Find the firewall protecting ONT \"3078728137\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 91,
+        "template": 19,
+        "question": "What vendor and model is OLT \"9931855915\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 114,
+        "template": 24,
+        "question": "Which splitters in SITE Larissa were installed before 2020?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SPLITTER)<-[:CONNECTS_TO*1..2]-(o:ONT)-[:CONNECTS_TO*5..6]->(olt:OLT)-[:IN_SITE]->(site:SITE {name: 'Larissa'}) WHERE s.install_date < '2020-01-01' RETURN DISTINCT s.name",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "1786284406"
+                ],
+                [
+                    "2794795081"
+                ],
+                [
+                    "3120371122"
+                ],
+                [
+                    "4179095231"
+                ],
+                [
+                    "4335118535"
+                ],
+                [
+                    "6109806036"
+                ],
+                [
+                    "6464141329"
+                ],
+                [
+                    "8297521868"
+                ],
+                [
+                    "8340958073"
+                ],
+                [
+                    "8454618931"
+                ],
+                [
+                    "8619914255"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 142,
+        "template": 30,
+        "question": "For each OLT in SITE Sparta, how many ONTs does it serve?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 9,
+        "template": 1,
+        "question": "Which card is port \"7034440116\" on?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 10,
+        "template": 2,
+        "question": "Which splitter does sub-splitter \"5440822499\" feed into?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 130,
+        "template": 27,
+        "question": "Which cabin serves as the standby for cabin \"2306313262\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 159,
+        "template": 37,
+        "question": "What site has the highest number of ONTs in faulty state?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SITE)<-[:IN_SITE]-(o:OLT)<-[:CONNECTS_TO*4]-(sp:SPLITTER)<-[:CONNECTS_TO*1..2]-(ont:ONT {status: 'FAULTY'})\nRETURN s.name AS site, count(DISTINCT ont) AS count\nORDER BY count DESC\nLIMIT 1",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "Heraklion"
+                ]
+            ],
+            [
+                [
+                    "64",
+                    "Heraklion"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 181,
+        "template": 44,
+        "question": "Which splitters in SITE Sparta serve more than 40 ONTs?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 104,
+        "template": 22,
+        "question": "Which ONTs on splitter \"1975424847\" have a signal weaker than -28 dBm?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 1,
+        "template": 0,
+        "question": "What sub-splitter does ONT \"2113277172\" attach to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 94,
+        "template": 20,
+        "question": "Which card is in slot 0 of OLT \"8716723939\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 212,
+        "template": 50,
+        "question": "What is the operating temperature of OLT \"1736510471\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 108,
+        "template": 22,
+        "question": "Which ONTs on splitter \"1494277645\" have a signal weaker than -28 dBm?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 195,
+        "template": 47,
+        "question": "What is the bandwidth of ONT \"4108310021\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 85,
+        "template": 18,
+        "question": "Is ONT \"2388687133\" in active state?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 165,
+        "template": 39,
+        "question": "Which site is splitter \"1334291518\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 171,
+        "template": 40,
+        "question": "Count all ONTs located in SITE Kalamata.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 136,
+        "template": 29,
+        "question": "How many cabins act as a backup for another cabin?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 153,
+        "template": 34,
+        "question": "What site serves the largest number of ONTs?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 168,
+        "template": 39,
+        "question": "What site hosts splitter \"6548534963\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 187,
+        "template": 45,
+        "question": "On OLT \"1000775993\", list cards with over 4 ports.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 42,
+        "template": 8,
+        "question": "Which ONTs are served by splitter \"9284753446\", whether directly or through a sub-splitter?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 15,
+        "template": 3,
+        "question": "Which OLT serves ONT \"4265985720\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 52,
+        "template": 10,
+        "question": "What is the ONT count for OLT \"3879383733\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 162,
+        "template": 38,
+        "question": "Locate the site containing ONT \"7524759799\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 18,
+        "template": 3,
+        "question": "Which OLT serves ONT \"5693280275\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 155,
+        "template": 35,
+        "question": "What is the largest cabin by ONT count?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 98,
+        "template": 20,
+        "question": "Which card is in slot 0 of OLT \"1267456641\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 177,
+        "template": 42,
+        "question": "Which splitters are not connected to any cabin?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 139,
+        "template": 30,
+        "question": "Break down the ONT count per OLT in SITE Tripoli.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 115,
+        "template": 24,
+        "question": "List the splitters in SITE Mytilene with an install date earlier than 2020.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 113,
+        "template": 23,
+        "question": "What is the weakest signal reading among the ONTs served by splitter \"8848129176\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 35,
+        "template": 7,
+        "question": "Which ONTs reach splitter \"4153306674\" through a sub-splitter?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 67,
+        "template": 13,
+        "question": "How many sub-splitters does splitter \"9998088606\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 81,
+        "template": 17,
+        "question": "What is the status of ONT \"9090641779\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 105,
+        "template": 22,
+        "question": "List the ONTs under splitter \"2023122484\" with signal below -28 dBm.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 103,
+        "template": 21,
+        "question": "How many faulty ONTs does OLT \"1267456641\" serve?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 176,
+        "template": 41,
+        "question": "List sub-splitters with zero ONTs.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 137,
+        "template": 29,
+        "question": "Count the cabins that back up another cabin.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 146,
+        "template": 31,
+        "question": "Per splitter of cabin \"7139576005\", give the ONT count.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 106,
+        "template": 22,
+        "question": "Which ONTs on splitter \"7057865653\" have a signal weaker than -28 dBm?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 50,
+        "template": 10,
+        "question": "How many ONTs does OLT \"7009930630\" serve?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 138,
+        "template": 30,
+        "question": "For each OLT in SITE Komotini, how many ONTs does it serve?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 128,
+        "template": 26,
+        "question": "Which cabin is cabin \"1321323980\" the backup for?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 78,
+        "template": 16,
+        "question": "What is the split ratio of splitter \"8611801562\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 210,
+        "template": 50,
+        "question": "What is the operating temperature of OLT \"2428091874\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 170,
+        "template": 40,
+        "question": "How many ONTs are there in SITE Mytilene?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SITE {name: 'Mytilene'})<-[:IN_SITE]-(o:OLT)<-[:CONNECTS_TO*5]-(:CABIN)-[:CONNECTS_TO]->(:SPLITTER)<-[:CONNECTS_TO*1..2]-(ont:ONT) RETURN count(DISTINCT ont)",
+        "query_ans": [
+            [
+                "46"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "148"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 147,
+        "template": 31,
+        "question": "For each splitter on cabin \"4202853292\", how many ONTs does it serve?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 116,
+        "template": 24,
+        "question": "Which splitters in SITE Komotini were installed before 2020?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SPLITTER)-[:CONNECTS_TO*4]->(o:OLT)-[:IN_SITE]->(si:SITE {name: \"Komotini\"}) \nWHERE s.install_date < \"2020-01-01\" \nRETURN s.name, s.install_date",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "1552941450"
+                ],
+                [
+                    "1842840693"
+                ],
+                [
+                    "2860426585"
+                ],
+                [
+                    "2932509188"
+                ],
+                [
+                    "6113337743"
+                ],
+                [
+                    "8535850950"
+                ],
+                [
+                    "8546610454"
+                ],
+                [
+                    "8701142033"
+                ],
+                [
+                    "9605422209"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 202,
+        "template": 48,
+        "question": "Which router serves ONT \"5333360788\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 145,
+        "template": 31,
+        "question": "For each splitter on cabin \"9073396215\", how many ONTs does it serve?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 84,
+        "template": 18,
+        "question": "Is ONT \"4108310021\" currently active?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 134,
+        "template": 28,
+        "question": "Which cabins have no backup cabin assigned?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (c:CABIN) WHERE NOT EXISTS ((:CABIN)-[:BACKUP_FOR]->(c)) RETURN c.name, c.capacity, c.street",
+        "query_ans": [
+            [
+                "1149576228",
+                "96",
+                "Patission"
+            ],
+            [
+                "1321323980",
+                "96",
+                "Ermou"
+            ],
+            [
+                "1579514018",
+                "48",
+                "Patission"
+            ],
+            [
+                "1642455536",
+                "24",
+                "Patission"
+            ],
+            [
+                "1769535120",
+                "96",
+                "Syngrou"
+            ],
+            [
+                "2192150459",
+                "24",
+                "Patission"
+            ],
+            [
+                "24",
+                "4202853292",
+                "Stadiou"
+            ],
+            [
+                "24",
+                "7139576005",
+                "Ermou"
+            ],
+            [
+                "24",
+                "7741351016",
+                "Ermou"
+            ],
+            [
+                "24",
+                "8894343009",
+                "Vouliagmenis"
+            ],
+            [
+                "24",
+                "9514954069",
+                "Kifisias"
+            ],
+            [
+                "3021503752",
+                "48",
+                "Kifisias"
+            ],
+            [
+                "4169559240",
+                "48",
+                "Patission"
+            ],
+            [
+                "48",
+                "8252347842",
+                "Syngrou"
+            ],
+            [
+                "48",
+                "8958297157",
+                "Alexandras"
+            ],
+            [
+                "48",
+                "8999814681",
+                "Ermou"
+            ],
+            [
+                "4853507625",
+                "96",
+                "Vouliagmenis"
+            ],
+            [
+                "6571515107",
+                "96",
+                "Mesogeion"
+            ],
+            [
+                "7099373936",
+                "96",
+                "Stadiou"
+            ],
+            [
+                "8501902203",
+                "96",
+                "Vouliagmenis"
+            ],
+            [
+                "8757146643",
+                "96",
+                "Alexandras"
+            ],
+            [
+                "9571132862",
+                "96",
+                "Patission"
+            ],
+            [
+                "96",
+                "9785647099",
+                "Athinon"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "1149576228"
+                ],
+                [
+                    "1321323980"
+                ],
+                [
+                    "1579514018"
+                ],
+                [
+                    "1642455536"
+                ],
+                [
+                    "1769535120"
+                ],
+                [
+                    "2192150459"
+                ],
+                [
+                    "3021503752"
+                ],
+                [
+                    "4169559240"
+                ],
+                [
+                    "4202853292"
+                ],
+                [
+                    "4853507625"
+                ],
+                [
+                    "6571515107"
+                ],
+                [
+                    "7099373936"
+                ],
+                [
+                    "7139576005"
+                ],
+                [
+                    "7741351016"
+                ],
+                [
+                    "8252347842"
+                ],
+                [
+                    "8501902203"
+                ],
+                [
+                    "8757146643"
+                ],
+                [
+                    "8894343009"
+                ],
+                [
+                    "8958297157"
+                ],
+                [
+                    "8999814681"
+                ],
+                [
+                    "9514954069"
+                ],
+                [
+                    "9571132862"
+                ],
+                [
+                    "9785647099"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 172,
+        "template": 40,
+        "question": "How many ONTs are there in SITE Tripoli?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 126,
+        "template": 26,
+        "question": "Which cabin is cabin \"2192150459\" the backup for?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 110,
+        "template": 23,
+        "question": "Give the lowest signal value of any ONT served by splitter \"6384577406\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 12,
+        "template": 2,
+        "question": "Which splitter does sub-splitter \"5272007976\" feed into?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 143,
+        "template": 31,
+        "question": "For each splitter on cabin \"9571132862\", how many ONTs does it serve?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 122,
+        "template": 25,
+        "question": "Count the faulty ONTs located in SITE Sparta.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 207,
+        "template": 49,
+        "question": "Who is the customer on ONT \"6230824401\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 80,
+        "template": 17,
+        "question": "For ONT \"4752563929\", find its status.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 23,
+        "template": 4,
+        "question": "Find the OLT upstream of splitter \"5371857665\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 152,
+        "template": 34,
+        "question": "Which site has the most ONTs?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 58,
+        "template": 11,
+        "question": "Count the cards installed in OLT \"2687963281\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 204,
+        "template": 49,
+        "question": "What is the subscriber name for ONT \"2449872318\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 4,
+        "template": 0,
+        "question": "What sub-splitter does ONT \"7653913874\" attach to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 164,
+        "template": 38,
+        "question": "What site does ONT \"7898098936\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 47,
+        "template": 9,
+        "question": "List the ONTs connected to sub-splitter \"9582219910\".",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SPLITTER {name: \"9582219910\"})<-[:CONNECTS_TO]-(o:ONT) RETURN o.name",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "3496781766"
+                ],
+                [
+                    "4153844809"
+                ],
+                [
+                    "6215675926"
+                ],
+                [
+                    "6529651607"
+                ],
+                [
+                    "7067732261"
+                ],
+                [
+                    "8212973135"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 133,
+        "template": 27,
+        "question": "Which cabin backs up cabin \"6571515107\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 72,
+        "template": 15,
+        "question": "Which ports are administratively disabled?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (p:PORT {admin_state: 'DISABLED'}) RETURN p.name",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "1101877950"
+                ],
+                [
+                    "1634480471"
+                ],
+                [
+                    "2588763262"
+                ],
+                [
+                    "2654820588"
+                ],
+                [
+                    "2705330456"
+                ],
+                [
+                    "2771379221"
+                ],
+                [
+                    "3317348294"
+                ],
+                [
+                    "3501080206"
+                ],
+                [
+                    "4481943176"
+                ],
+                [
+                    "4497698420"
+                ],
+                [
+                    "5737864800"
+                ],
+                [
+                    "6001038037"
+                ],
+                [
+                    "6052566017"
+                ],
+                [
+                    "6338081825"
+                ],
+                [
+                    "6552765277"
+                ],
+                [
+                    "6636556934"
+                ],
+                [
+                    "7294910471"
+                ],
+                [
+                    "7877487623"
+                ],
+                [
+                    "8549658275"
+                ],
+                [
+                    "9093880302"
+                ],
+                [
+                    "9177413221"
+                ],
+                [
+                    "9262835002"
+                ],
+                [
+                    "9776296413"
+                ],
+                [
+                    "9792891816"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 109,
+        "template": 23,
+        "question": "What is the weakest signal reading among the ONTs served by splitter \"3744968556\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 92,
+        "template": 19,
+        "question": "Give the vendor and model of OLT \"2040001239\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 37,
+        "template": 7,
+        "question": "Which ONTs reach splitter \"4809642076\" through a sub-splitter?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (ont:ONT)-[:CONNECTS_TO]->(sub:SUB_SPLITTER)-[:CONNECTS_TO]->(splitter:SPLITTER {name: \"4809642076\"}) \nRETURN ont.name, sub.name, splitter.name",
+        "query_ans": [
+            [
+                "1006794831",
+                "3286192125",
+                "4809642076"
+            ],
+            [
+                "1006794831",
+                "3743550360",
+                "4809642076"
+            ],
+            [
+                "1006794831",
+                "3911573209",
+                "4809642076"
+            ],
+            [
+                "1006794831",
+                "4809642076",
+                "5478571182"
+            ],
+            [
+                "1006794831",
+                "4809642076",
+                "5558440050"
+            ],
+            [
+                "1006794831",
+                "4809642076",
+                "5569905100"
+            ],
+            [
+                "1006794831",
+                "4809642076",
+                "5613255554"
+            ],
+            [
+                "1006794831",
+                "4809642076",
+                "7762995541"
+            ],
+            [
+                "1006794831",
+                "4809642076",
+                "7779891897"
+            ],
+            [
+                "1006794831",
+                "4809642076",
+                "7905924574"
+            ],
+            [
+                "1006794831",
+                "4809642076",
+                "9865189988"
+            ],
+            [
+                "1944435530",
+                "4809642076",
+                "9372546777"
+            ],
+            [
+                "2570486125",
+                "2915570612",
+                "4809642076"
+            ],
+            [
+                "2570486125",
+                "3538926810",
+                "4809642076"
+            ],
+            [
+                "2570486125",
+                "4809642076",
+                "6500782501"
+            ],
+            [
+                "2570486125",
+                "4809642076",
+                "7114873577"
+            ],
+            [
+                "2570486125",
+                "4809642076",
+                "7258887478"
+            ],
+            [
+                "3133310153",
+                "4809642076",
+                "6221881643"
+            ],
+            [
+                "3144965916",
+                "3454803873",
+                "4809642076"
+            ],
+            [
+                "3144965916",
+                "4809642076",
+                "5742883130"
+            ],
+            [
+                "3144965916",
+                "4809642076",
+                "8164111928"
+            ],
+            [
+                "3144965916",
+                "4809642076",
+                "9921369841"
+            ],
+            [
+                "3331333532",
+                "4809642076",
+                "9372546777"
+            ],
+            [
+                "3544038468",
+                "4809642076",
+                "9372546777"
+            ],
+            [
+                "3750413158",
+                "4809642076",
+                "5797332905"
+            ],
+            [
+                "3750413158",
+                "4809642076",
+                "7719783918"
+            ],
+            [
+                "3750524240",
+                "4809642076",
+                "6221881643"
+            ],
+            [
+                "4145961416",
+                "4809642076",
+                "9372546777"
+            ],
+            [
+                "4809642076",
+                "5532204719",
+                "9372546777"
+            ],
+            [
+                "4809642076",
+                "5709214196",
+                "9372546777"
+            ],
+            [
+                "4809642076",
+                "5879265201",
+                "6221881643"
+            ],
+            [
+                "4809642076",
+                "6221881643",
+                "7717872771"
+            ],
+            [
+                "4809642076",
+                "6221881643",
+                "7767124533"
+            ],
+            [
+                "4809642076",
+                "6221881643",
+                "8320253060"
+            ],
+            [
+                "4809642076",
+                "6221881643",
+                "8831561543"
+            ],
+            [
+                "4809642076",
+                "6814244460",
+                "9372546777"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "1944435530"
+                ],
+                [
+                    "2915570612"
+                ],
+                [
+                    "3133310153"
+                ],
+                [
+                    "3286192125"
+                ],
+                [
+                    "3331333532"
+                ],
+                [
+                    "3454803873"
+                ],
+                [
+                    "3538926810"
+                ],
+                [
+                    "3544038468"
+                ],
+                [
+                    "3743550360"
+                ],
+                [
+                    "3750524240"
+                ],
+                [
+                    "3911573209"
+                ],
+                [
+                    "4145961416"
+                ],
+                [
+                    "5478571182"
+                ],
+                [
+                    "5532204719"
+                ],
+                [
+                    "5558440050"
+                ],
+                [
+                    "5569905100"
+                ],
+                [
+                    "5613255554"
+                ],
+                [
+                    "5709214196"
+                ],
+                [
+                    "5742883130"
+                ],
+                [
+                    "5797332905"
+                ],
+                [
+                    "5879265201"
+                ],
+                [
+                    "6500782501"
+                ],
+                [
+                    "6814244460"
+                ],
+                [
+                    "7114873577"
+                ],
+                [
+                    "7258887478"
+                ],
+                [
+                    "7717872771"
+                ],
+                [
+                    "7719783918"
+                ],
+                [
+                    "7762995541"
+                ],
+                [
+                    "7767124533"
+                ],
+                [
+                    "7779891897"
+                ],
+                [
+                    "7905924574"
+                ],
+                [
+                    "8164111928"
+                ],
+                [
+                    "8320253060"
+                ],
+                [
+                    "8831561543"
+                ],
+                [
+                    "9865189988"
+                ],
+                [
+                    "9921369841"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 49,
+        "template": 9,
+        "question": "List the ONTs connected to sub-splitter \"7214020262\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 182,
+        "template": 44,
+        "question": "In SITE Kavala, find splitters with over 40 ONTs.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 86,
+        "template": 18,
+        "question": "Is ONT \"5433802577\" currently active?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 211,
+        "template": 50,
+        "question": "How much power does OLT \"6225774566\" draw?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 157,
+        "template": 36,
+        "question": "What splitter has the highest ONT count?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 8,
+        "template": 1,
+        "question": "What card does port \"2920593387\" belong to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 43,
+        "template": 8,
+        "question": "List every ONT downstream of splitter \"5822738852\", either through a sub-splitter or directly.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 22,
+        "template": 4,
+        "question": "Which OLT does splitter \"7279873425\" connect to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 185,
+        "template": 44,
+        "question": "Which splitters in SITE Veria serve more than 40 ONTs?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 131,
+        "template": 27,
+        "question": "Which cabin backs up cabin \"3021503752\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 158,
+        "template": 37,
+        "question": "Which site has the most faulty ONTs?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SITE)<-[:IN_SITE]-(o:OLT)<-[:CONNECTS_TO*4]-(sp:SPLITTER)<-[:CONNECTS_TO*1..2]-(ont:ONT {status: 'FAULTY'})\nRETURN s.name AS site_name, count(DISTINCT ont) AS faulty_ont_count\nORDER BY faulty_ont_count DESC\nLIMIT 1",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "Heraklion"
+                ]
+            ],
+            [
+                [
+                    "64",
+                    "Heraklion"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 45,
+        "template": 9,
+        "question": "List the ONTs connected to sub-splitter \"7124436866\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 16,
+        "template": 3,
+        "question": "Trace ONT \"6627334780\" back to its OLT.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH p=(ont:ONT {name: \"6627334780\"})-[:CONNECTS_TO*5..6]->(olt:OLT) RETURN p",
+        "query_ans": [
+            [
+                "[{'signal_dbm': -20.8, 'name': '6627334780', 'install_date': neo4j.time.Date(2025, 8, 1), 'status': 'active'}, 'CONNECTS_TO', {'name': '8975722880', 'split_ratio': 8}, 'CONNECTS_TO', {'name': '2446199141', 'install_date': neo4j.time.Date(2024, 6, 22), 'split_ratio': 32}, 'CONNECTS_TO', {'name': '6744579021'}, 'CONNECTS_TO', {'name': '3966261213', 'admin_state': 'enabled', 'slot': 1}, 'CONNECTS_TO', {'name': '6021249284', 'slot': 0, 'card_type': 'GPON-8'}, 'CONNECTS_TO', {'vendor': 'Huawei', 'name': '3033845528', 'model': 'MA5800-X15', 'capacity': 2048}]"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "3033845528"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 169,
+        "template": 39,
+        "question": "Which site is splitter \"9968667718\" in?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 190,
+        "template": 45,
+        "question": "Which cards on OLT \"3683543150\" have more than 4 ports?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 30,
+        "template": 6,
+        "question": "Which ONTs are wired directly to splitter \"1494277645\", without a sub-splitter?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 121,
+        "template": 25,
+        "question": "How many faulty ONTs are there in SITE Patras?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SITE {name: 'Patras'})<-[:IN_SITE]-(olt:OLT)<-[:CONNECTS_TO*5]-(cabin:CABIN)-[:CONNECTS_TO]->(splitter:SPLITTER)<-[:CONNECTS_TO*1..2]-(ont:ONT {status: 'faulty'}) RETURN count(DISTINCT ont)",
+        "query_ans": [
+            [
+                "48"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "59"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 135,
+        "template": 28,
+        "question": "List the cabins that are not backed up by any other cabin.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 7,
+        "template": 1,
+        "question": "Which card is port \"8679287451\" on?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 65,
+        "template": 13,
+        "question": "How many sub-splitters does splitter \"9605422209\" have?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 156,
+        "template": 36,
+        "question": "Which splitter serves the most ONTs?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SPLITTER)<-[:CONNECTS_TO]-(o:ONT)\nRETURN s.name, count(DISTINCT o) as ont_count\nORDER BY ont_count DESC\nLIMIT 1",
+        "query_ans": [
+            [
+                "11",
+                "7317593302"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "9968667718"
+                ]
+            ],
+            [
+                [
+                    "67",
+                    "9968667718"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 5,
+        "template": 1,
+        "question": "Which card is port \"4612984601\" on?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 140,
+        "template": 30,
+        "question": "For each OLT in SITE Heraklion, how many ONTs does it serve?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 21,
+        "template": 4,
+        "question": "Find the OLT upstream of splitter \"3744968556\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 197,
+        "template": 47,
+        "question": "What is the bandwidth of ONT \"6798890082\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 31,
+        "template": 6,
+        "question": "List the ONTs attached straight to splitter \"1814773308\" with no sub-splitter in between.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 99,
+        "template": 21,
+        "question": "How many faulty ONTs does OLT \"1000775993\" serve?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (olt:OLT {name: \"1000775993\"})<-[:CONNECTS_TO*5..6]-(ont:ONT {status: \"FAULTY\"}) RETURN count(DISTINCT ont)",
+        "query_ans": [
+            [
+                "0"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "15"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 17,
+        "template": 3,
+        "question": "What OLT is ONT \"5860710754\" ultimately connected to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 112,
+        "template": 23,
+        "question": "Give the lowest signal value of any ONT served by splitter \"2050616950\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 2,
+        "template": 0,
+        "question": "Find the sub-splitter serving ONT \"9090641779\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 192,
+        "template": 46,
+        "question": "Find splitters with a split ratio of 32 that carry over 60 ONTs.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 129,
+        "template": 27,
+        "question": "Which cabin backs up cabin \"7741351016\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 13,
+        "template": 2,
+        "question": "What is the parent splitter of sub-splitter \"5272007976\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 0,
+        "template": 0,
+        "question": "Which sub-splitter is ONT \"1971932504\" connected to?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 11,
+        "template": 2,
+        "question": "What is the parent splitter of sub-splitter \"6982881182\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 19,
+        "template": 3,
+        "question": "Trace ONT \"4108310021\" back to its OLT.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH p=(ont:ONT {name: \"4108310021\"})-[:CONNECTS_TO*5..6]->(olt:OLT) RETURN p",
+        "query_ans": [
+            [
+                "[{'signal_dbm': -19.4, 'name': '4108310021', 'install_date': neo4j.time.Date(2020, 5, 1), 'status': 'active'}, 'CONNECTS_TO', {'name': '6228537557', 'split_ratio': 8}, 'CONNECTS_TO', {'name': '9943348340', 'install_date': neo4j.time.Date(2022, 4, 9), 'split_ratio': 8}, 'CONNECTS_TO', {'name': '5339627653'}, 'CONNECTS_TO', {'name': '8861527078', 'admin_state': 'enabled', 'slot': 0}, 'CONNECTS_TO', {'name': '7839047522', 'slot': 0, 'card_type': 'XGS-PON-8'}, 'CONNECTS_TO', {'vendor': 'ZTE', 'name': '8198396237', 'model': 'C600', 'capacity': 2048}]"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "8198396237"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 60,
+        "template": 12,
+        "question": "How many ONTs does cabin \"2306313262\" serve?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 193,
+        "template": 47,
+        "question": "What is the bandwidth of ONT \"5333360788\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 44,
+        "template": 8,
+        "question": "Which ONTs are served by splitter \"5822738852\", whether directly or through a sub-splitter?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 216,
+        "template": 51,
+        "question": "What was the purchase cost of splitter \"8905663643\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 117,
+        "template": 24,
+        "question": "List the splitters in SITE Serres with an install date earlier than 2020.",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (s:SITE {name: 'Serres'})<-[:IN_SITE*1]-(:OLT)<-[:CONNECTS_TO*5]-(:CABIN)-[:CONNECTS_TO]->(sp:SPLITTER) \nWHERE sp.install_date < '2020' \nRETURN sp.name, sp.install_date",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "2340837726"
+                ],
+                [
+                    "2598456757"
+                ],
+                [
+                    "3464673187"
+                ],
+                [
+                    "5822738852"
+                ],
+                [
+                    "6674507104"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 93,
+        "template": 19,
+        "question": "What vendor and model is OLT \"3936607399\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 166,
+        "template": 39,
+        "question": "What site hosts splitter \"9309566481\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 36,
+        "template": 7,
+        "question": "List the ONTs connected to splitter \"7101187514\" via a sub-splitter.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 61,
+        "template": 12,
+        "question": "Count the ONTs reachable from cabin \"1203197986\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 144,
+        "template": 31,
+        "question": "Per splitter of cabin \"7099373936\", give the ONT count.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 178,
+        "template": 42,
+        "question": "Find splitters with no cabin.",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 100,
+        "template": 21,
+        "question": "Count the ONTs in faulty state under OLT \"7945957051\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 206,
+        "template": 49,
+        "question": "What is the subscriber name for ONT \"1292929085\"?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 70,
+        "template": 14,
+        "question": "Which OLTs are made by Huawei?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (o:OLT {vendor: 'Huawei'}) RETURN o.name, o.model, o.capacity",
+        "query_ans": [
+            [
+                "1024",
+                "2958076885",
+                "MA5800-X7"
+            ],
+            [
+                "1024",
+                "3683543150",
+                "MA5800-X7"
+            ],
+            [
+                "1024",
+                "3936607399",
+                "MA5800-X15"
+            ],
+            [
+                "1024",
+                "4106265738",
+                "MA5800-X7"
+            ],
+            [
+                "1024",
+                "9931855915",
+                "MA5800-X7"
+            ],
+            [
+                "2048",
+                "3033845528",
+                "MA5800-X15"
+            ],
+            [
+                "2048",
+                "8716723939",
+                "MA5800-X15"
+            ],
+            [
+                "2048",
+                "8776978181",
+                "MA5800-X15"
+            ],
+            [
+                "2048",
+                "9541229198",
+                "MA5800-X7"
+            ],
+            [
+                "3147459605",
+                "4096",
+                "MA5800-X15"
+            ],
+            [
+                "3747531811",
+                "4096",
+                "MA5800-X15"
+            ],
+            [
+                "4096",
+                "7211755002",
+                "MA5800-X7"
+            ],
+            [
+                "4096",
+                "7694160624",
+                "MA5800-X15"
+            ],
+            [
+                "4096",
+                "8682195977",
+                "MA5800-X7"
+            ]
+        ],
+        "answers": [
+            [
+                [
+                    "2958076885"
+                ],
+                [
+                    "3033845528"
+                ],
+                [
+                    "3147459605"
+                ],
+                [
+                    "3683543150"
+                ],
+                [
+                    "3747531811"
+                ],
+                [
+                    "3936607399"
+                ],
+                [
+                    "4106265738"
+                ],
+                [
+                    "7211755002"
+                ],
+                [
+                    "7694160624"
+                ],
+                [
+                    "8682195977"
+                ],
+                [
+                    "8716723939"
+                ],
+                [
+                    "8776978181"
+                ],
+                [
+                    "9541229198"
+                ],
+                [
+                    "9931855915"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 174,
+        "template": 40,
+        "question": "How many ONTs are there in SITE Alexandroupoli?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 88,
+        "template": 18,
+        "question": "Is ONT \"5333360788\" currently active?",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 90,
+        "template": 19,
+        "question": "Give the vendor and model of OLT \"1267456641\".",
+        "result": "BenchmarkResult.CORRECT"
+    },
+    {
+        "qid": 26,
+        "template": 5,
+        "question": "What port is upstream of ONT \"1965855898\"?",
+        "result": "BenchmarkResult.INCORRECT",
+        "query": "MATCH (ont:ONT {name: \"1965855898\"})-[:CONNECTS_TO*3]->(port:PORT) RETURN port.name",
+        "query_ans": [],
+        "answers": [
+            [
+                [
+                    "4017331955"
+                ]
+            ]
+        ]
+    },
+    {
+        "qid": 141,
+        "template": 30,
+        "question": "Break down the ONT count per OLT in SITE Heraklion.",
+        "result": "BenchmarkResult.CORRECT"
+    }
+]
